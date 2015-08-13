@@ -1,0 +1,30 @@
+#################
+## Game-Files
+#################
+## Folders
+#################
+/prototype/minigolf/Debug/
+/prototype/minigolf/rpg/Debug/
+/prototype/minigolf/rpg/Release/
+
+
+#################
+## Files
+#################
+log.txt
+
+
+#################
+## Visual Studio
+#################
+*.suo
+*.user
+*.sln.docstates
+*.aps
+*.ncb
+*.opensdf
+*.sdf
+*.cachefile
+*.psess
+*.vsp
+*.vspx

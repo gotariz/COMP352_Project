@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<!--<asset type="image" path="media/images/player.png" />
+	<asset type="image" path="media/images/background.png" />
+	<asset type="image" path="media/images/placeholders/ph_grass.png" />
+	<asset type="image" path="media/images/logotemp.png" />
+	<asset type="image" path="media/images/arrowActive.png" />
+	<asset type="image" path="media/images/arrowInactive.png" />
+	<asset type="image" path="media/fonts/purista-medium-14-white/35.png" />
+	
+	<asset type="image" path="media/images/animation/frame_0.png" />
+	<asset type="image" path="media/images/animation/frame_1.png" />
+	<asset type="image" path="media/images/animation/frame_2.png" />
+	<asset type="image" path="media/images/animation/frame_3.png" />
+	<asset type="image" path="media/images/animation/frame_4.png" />
+	
+	<asset type="sound" path="media/sounds/god.wav" />
+	<asset type="music" path="media/music/enya.ogg" />
+	
+	<asset type="image" path="media/images/loading.png" />-->
+	<asset type="font" path="media/fonts/purista-medium-14-white/" />
+</root>

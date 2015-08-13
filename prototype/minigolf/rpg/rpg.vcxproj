@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{FFFBE032-0F7B-4B61-ADC0-683194108B87}</ProjectGuid>
+    <RootNamespace>pluto</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)\rpg\libraries\SDL_Lib;$(SolutionDir)\rpg\libraries\TinyXML2;$(SolutionDir)\rpg\source;$(SolutionDir)\rpg\libraries\gz-lib;$(SolutionDir)\rpg\libraries\Box2D_v2.3.0;$(SolutionDir)\rpg\libraries\SDL2-2.0.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)\rpg\libraries\Box2D_v2.3.0\lib\Debug;$(SolutionDir)\rpg\libraries\SDL2-2.0.3\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Box2D.lib;SDL2main.lib;SDL2.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_gfx.lib</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)\rpg\libraries\SDL_Lib;$(SolutionDir)\rpg\libraries\TinyXML2;$(SolutionDir)\rpg\source;$(SolutionDir)\rpg\libraries\gz-lib;$(SolutionDir)\rpg\libraries\Box2D_v2.3.0;$(SolutionDir)\rpg\libraries\SDL2-2.0.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)\rpg\libraries\Box2D_v2.3.0\lib\Release;$(SolutionDir)\rpg\libraries\SDL2-2.0.3\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Box2D.lib;SDL2main.lib;SDL2.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_gfx.lib</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="source\entities\Hole.cpp" />
+    <ClCompile Include="source\utils\glPriorityQueue.cpp" />
+    <ClCompile Include="source\animation\Animation.cpp" />
+    <ClCompile Include="source\animation\AnimationInstruction.cpp" />
+    <ClCompile Include="source\animation\AnimationManager.cpp" />
+    <ClCompile Include="source\entities\Object.cpp" />
+    <ClCompile Include="source\entities\ObjectManager.cpp" />
+    <ClCompile Include="source\entities\Player.cpp" />
+    <ClCompile Include="source\physics\ContactListener.cpp" />
+    <ClCompile Include="source\physics\debug\VisualDebugger.cpp" />
+    <ClCompile Include="source\physics\PhysicsFactory.cpp" />
+    <ClCompile Include="source\system\InputHandler.cpp" />
+    <ClCompile Include="source\utils\gzHeap.cpp" />
+    <ClCompile Include="source\video\sdlFont.cpp" />
+    <ClCompile Include="source\audio\glMusic.cpp" />
+    <ClCompile Include="source\audio\glSound.cpp" />
+    <ClCompile Include="source\system\AssetManager.cpp" />
+    <ClCompile Include="source\utils\utils.cpp" />
+    <ClCompile Include="source\video\AnimatedImage.cpp" />
+    <ClCompile Include="source\video\Image.cpp" />
+    <ClCompile Include="libraries\gz-lib\gz\Parsers\IniParser.cpp" />
+    <ClCompile Include="libraries\TinyXML2\tinyxml2.cpp" />
+    <ClCompile Include="source\scene\Camera.cpp" />
+    <ClCompile Include="source\system\Settings.cpp" />
+    <ClCompile Include="source\utils\gzClock.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\system\Engine.cpp" />
+    <ClCompile Include="source\system\GameData.cpp" />
+    <ClCompile Include="source\system\states\StateGame.cpp" />
+    <ClCompile Include="source\utils\Vector2.cpp" />
+    <ClCompile Include="source\video\sdlFontRenderer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\entities\Hole.h" />
+    <ClInclude Include="source\utils\gzHeap.h" />
+    <ClInclude Include="source\utils\glPriorityQueue.h" />
+    <ClInclude Include="source\animation\Animation.h" />
+    <ClInclude Include="source\animation\AnimationInstruction.h" />
+    <ClInclude Include="source\animation\AnimationManager.h" />
+    <ClInclude Include="source\entities\Object.h" />
+    <ClInclude Include="source\entities\ObjectManager.h" />
+    <ClInclude Include="source\entities\Player.h" />
+    <ClInclude Include="source\physics\ContactListener.h" />
+    <ClInclude Include="source\physics\debug\VisualDebugger.h" />
+    <ClInclude Include="source\physics\PhysicsFactory.h" />
+    <ClInclude Include="source\system\InputHandler.h" />
+    <ClInclude Include="source\utils\comparable.h" />
+    <ClInclude Include="source\video\sdlFont.h" />
+    <ClInclude Include="source\audio\glMusic.h" />
+    <ClInclude Include="source\audio\glSound.h" />
+    <ClInclude Include="source\system\AssetManager.h" />
+    <ClInclude Include="source\video\AnimatedImage.h" />
+    <ClInclude Include="source\video\Image.h" />
+    <ClInclude Include="libraries\gz-lib\gz.h" />
+    <ClInclude Include="libraries\gz-lib\gz\Color.h" />
+    <ClInclude Include="libraries\gz-lib\gz\DataStores\Array2D.h" />
+    <ClInclude Include="libraries\gz-lib\gz\DataStores\DataStores.h" />
+    <ClInclude Include="libraries\gz-lib\gz\DefaultCast.h" />
+    <ClInclude Include="libraries\gz-lib\gz\ErrorLogger.h" />
+    <ClInclude Include="libraries\gz-lib\gz\Parsers\IniParser.h" />
+    <ClInclude Include="libraries\gz-lib\gz\Print.h" />
+    <ClInclude Include="libraries\gz-lib\gz\Shapes.h" />
+    <ClInclude Include="libraries\gz-lib\gz\Shapes\Circle.h" />
+    <ClInclude Include="libraries\gz-lib\gz\Shapes\Collisions.h" />
+    <ClInclude Include="libraries\gz-lib\gz\Shapes\Dimension.h" />
+    <ClInclude Include="libraries\gz-lib\gz\Shapes\Line.h" />
+    <ClInclude Include="libraries\gz-lib\gz\Shapes\Point.h" />
+    <ClInclude Include="libraries\gz-lib\gz\Shapes\Position.h" />
+    <ClInclude Include="libraries\gz-lib\gz\Shapes\Rect.h" />
+    <ClInclude Include="libraries\gz-lib\gz\Shapes\Size.h" />
+    <ClInclude Include="libraries\gz-lib\gz\Utils.h" />
+    <ClInclude Include="libraries\TinyXML2\tinyxml2.h" />
+    <ClInclude Include="libraries\SDL_Lib\SDL_lib.h" />
+    <ClInclude Include="source\consts.h" />
+    <ClInclude Include="source\enums.h" />
+    <ClInclude Include="source\scene\Camera.h" />
+    <ClInclude Include="source\structs.h" />
+    <ClInclude Include="source\system\Settings.h" />
+    <ClInclude Include="source\utils\gzClock.h" />
+    <ClInclude Include="source\general.h" />
+    <ClInclude Include="source\system\Engine.h" />
+    <ClInclude Include="source\system\GameData.h" />
+    <ClInclude Include="source\system\states\IState.h" />
+    <ClInclude Include="source\system\states\StateGame.h" />
+    <ClInclude Include="source\utils\utils.h" />
+    <ClInclude Include="source\utils\Vector2.h" />
+    <ClInclude Include="source\video\sdlFontRenderer.h" />
+    <ClInclude Include="system\states\IState.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libraries\gz-lib\doxygen\html\annotated.html" />
+    <None Include="libraries\gz-lib\doxygen\html\classes.html" />
+    <None Include="libraries\gz-lib\doxygen\html\classgz_1_1_circle-members.html" />
+    <None Include="libraries\gz-lib\doxygen\html\classgz_1_1_circle.html" />
+    <None Include="libraries\gz-lib\doxygen\html\classgz_1_1_color-members.html" />
+    <None Include="libraries\gz-lib\doxygen\html\classgz_1_1_color.html" />
+    <None Include="libraries\gz-lib\doxygen\html\classgz_1_1_line-members.html" />
+    <None Include="libraries\gz-lib\doxygen\html\classgz_1_1_line.html" />
+    <None Include="libraries\gz-lib\doxygen\html\classgz_1_1_point-members.html" />
+    <None Include="libraries\gz-lib\doxygen\html\classgz_1_1_point.html" />
+    <None Include="libraries\gz-lib\doxygen\html\classgz_1_1_position-members.html" />
+    <None Include="libraries\gz-lib\doxygen\html\classgz_1_1_position.html" />
+    <None Include="libraries\gz-lib\doxygen\html\classgz_1_1_rect-members.html" />
+    <None Include="libraries\gz-lib\doxygen\html\classgz_1_1_rect.html" />
+    <None Include="libraries\gz-lib\doxygen\html\classgz_1_1_size-members.html" />
+    <None Include="libraries\gz-lib\doxygen\html\classgz_1_1_size.html" />
+    <None Include="libraries\gz-lib\doxygen\html\class_position-members.html" />
+    <None Include="libraries\gz-lib\doxygen\html\class_position.html" />
+    <None Include="libraries\gz-lib\doxygen\html\class_size-members.html" />
+    <None Include="libraries\gz-lib\doxygen\html\class_size.html" />
+    <None Include="libraries\gz-lib\doxygen\html\dir_4704ffe219e2afa6c17469022708a75f.html" />
+    <None Include="libraries\gz-lib\doxygen\html\dir_654f7797c7c960abc7b7273c1ce3ce06.html" />
+    <None Include="libraries\gz-lib\doxygen\html\files.html" />
+    <None Include="libraries\gz-lib\doxygen\html\functions.html" />
+    <None Include="libraries\gz-lib\doxygen\html\functions_func.html" />
+    <None Include="libraries\gz-lib\doxygen\html\functions_vars.html" />
+    <None Include="libraries\gz-lib\doxygen\html\globals.html" />
+    <None Include="libraries\gz-lib\doxygen\html\globals_func.html" />
+    <None Include="libraries\gz-lib\doxygen\html\index.html" />
+    <None Include="libraries\gz-lib\doxygen\html\main_8cpp.html" />
+    <None Include="libraries\gz-lib\doxygen\html\namespacegz.html" />
+    <None Include="libraries\gz-lib\doxygen\html\namespacegz_1_1string.html" />
+    <None Include="libraries\gz-lib\doxygen\html\namespacemembers.html" />
+    <None Include="libraries\gz-lib\doxygen\html\namespacemembers_func.html" />
+    <None Include="libraries\gz-lib\doxygen\html\namespacemembers_vars.html" />
+    <None Include="libraries\gz-lib\doxygen\html\namespaces.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\all_63.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\all_67.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\all_68.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\all_6c.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\all_6d.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\all_70.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\all_72.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\all_73.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\all_74.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\all_77.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\all_78.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\all_79.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\all_7e.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\classes_63.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\classes_6c.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\classes_70.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\classes_72.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\classes_73.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\files_63.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\files_6c.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\files_6d.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\files_70.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\files_72.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\files_73.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\functions_63.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\functions_67.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\functions_6c.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\functions_6d.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\functions_70.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\functions_72.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\functions_73.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\functions_74.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\functions_7e.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\namespaces_67.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\nomatches.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\variables_68.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\variables_70.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\variables_72.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\variables_77.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\variables_78.html" />
+    <None Include="libraries\gz-lib\doxygen\html\search\variables_79.html" />
+    <None Include="libraries\gz-lib\doxygen\html\_circle_8h.html" />
+    <None Include="libraries\gz-lib\doxygen\html\_circle_8h_source.html" />
+    <None Include="libraries\gz-lib\doxygen\html\_color_8h.html" />
+    <None Include="libraries\gz-lib\doxygen\html\_color_8h_source.html" />
+    <None Include="libraries\gz-lib\doxygen\html\_line_8h.html" />
+    <None Include="libraries\gz-lib\doxygen\html\_line_8h_source.html" />
+    <None Include="libraries\gz-lib\doxygen\html\_point_8h.html" />
+    <None Include="libraries\gz-lib\doxygen\html\_point_8h_source.html" />
+    <None Include="libraries\gz-lib\doxygen\html\_position_8h.html" />
+    <None Include="libraries\gz-lib\doxygen\html\_position_8h_source.html" />
+    <None Include="libraries\gz-lib\doxygen\html\_rect_8h.html" />
+    <None Include="libraries\gz-lib\doxygen\html\_rect_8h_source.html" />
+    <None Include="libraries\gz-lib\doxygen\html\_shapes_8h.html" />
+    <None Include="libraries\gz-lib\doxygen\html\_shapes_8h_source.html" />
+    <None Include="libraries\gz-lib\doxygen\html\_size_8h.html" />
+    <None Include="libraries\gz-lib\doxygen\html\_size_8h_source.html" />
+    <None Include="libraries\gz-lib\doxygen\html\_string_8h.html" />
+    <None Include="libraries\gz-lib\doxygen\html\_string_8h_source.html" />
+    <None Include="libraries\gz-lib\doxygen\index.html" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

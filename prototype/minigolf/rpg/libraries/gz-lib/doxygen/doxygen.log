@@ -1,0 +1,37 @@
+warning: source ..\Line.h is not a readable file or directory... skipping.
+warning: source ..\Shapes.h is not a readable file or directory... skipping.
+warning: source ..\String.h is not a readable file or directory... skipping.
+warning: source ..\Rect.h is not a readable file or directory... skipping.
+warning: source ..\Circle.h is not a readable file or directory... skipping.
+E:/Programming/Projects/gz-lib/gz/Shapes/Circle.h:33: warning: argument 'x' of command @param is not found in the argument list of gz::Circle< T >::Circle(T px, T py, T pr)
+E:/Programming/Projects/gz-lib/gz/Shapes/Circle.h:33: warning: argument 'y' of command @param is not found in the argument list of gz::Circle< T >::Circle(T px, T py, T pr)
+E:/Programming/Projects/gz-lib/gz/Shapes/Circle.h:33: warning: argument 'r' of command @param is not found in the argument list of gz::Circle< T >::Circle(T px, T py, T pr)
+E:/Programming/Projects/gz-lib/gz/Shapes/Circle.h:33: warning: The following parameters of gz::Circle::Circle(T px, T py, T pr) are not documented:
+  parameter 'px'
+  parameter 'py'
+  parameter 'pr'
+E:/Programming/Projects/gz-lib/gz/Shapes/Line.h:39: warning: argument 'x1' of command @param is not found in the argument list of gz::Line< T >::Line(T px1, T py1, T px2, T py2)
+E:/Programming/Projects/gz-lib/gz/Shapes/Line.h:39: warning: argument 'y1' of command @param is not found in the argument list of gz::Line< T >::Line(T px1, T py1, T px2, T py2)
+E:/Programming/Projects/gz-lib/gz/Shapes/Line.h:39: warning: argument 'x2' of command @param is not found in the argument list of gz::Line< T >::Line(T px1, T py1, T px2, T py2)
+E:/Programming/Projects/gz-lib/gz/Shapes/Line.h:39: warning: argument 'y2' of command @param is not found in the argument list of gz::Line< T >::Line(T px1, T py1, T px2, T py2)
+E:/Programming/Projects/gz-lib/gz/Shapes/Line.h:39: warning: The following parameters of gz::Line::Line(T px1, T py1, T px2, T py2) are not documented:
+  parameter 'px1'
+  parameter 'py1'
+  parameter 'px2'
+  parameter 'py2'
+E:/Programming/Projects/gz-lib/gz/Shapes/Point.h:31: warning: argument 'x' of command @param is not found in the argument list of gz::Point< T >::Point(T px, T py)
+E:/Programming/Projects/gz-lib/gz/Shapes/Point.h:31: warning: argument 'y' of command @param is not found in the argument list of gz::Point< T >::Point(T px, T py)
+E:/Programming/Projects/gz-lib/gz/Shapes/Point.h:31: warning: The following parameters of gz::Point::Point(T px, T py) are not documented:
+  parameter 'px'
+  parameter 'py'
+E:/Programming/Projects/gz-lib/gz/Shapes/Rect.h:37: warning: argument 'x' of command @param is not found in the argument list of gz::Rect< T >::Rect(T px, T py, T pw, T ph)
+E:/Programming/Projects/gz-lib/gz/Shapes/Rect.h:37: warning: argument 'y' of command @param is not found in the argument list of gz::Rect< T >::Rect(T px, T py, T pw, T ph)
+E:/Programming/Projects/gz-lib/gz/Shapes/Rect.h:37: warning: argument 'w' of command @param is not found in the argument list of gz::Rect< T >::Rect(T px, T py, T pw, T ph)
+E:/Programming/Projects/gz-lib/gz/Shapes/Rect.h:37: warning: argument 'h' of command @param is not found in the argument list of gz::Rect< T >::Rect(T px, T py, T pw, T ph)
+E:/Programming/Projects/gz-lib/gz/Shapes/Rect.h:37: warning: The following parameters of gz::Rect::Rect(T px, T py, T pw, T ph) are not documented:
+  parameter 'px'
+  parameter 'py'
+  parameter 'pw'
+  parameter 'ph'
+E:/Programming/Projects/gz-lib/gz/String.h:87: warning: The following parameters of gz::string::toStringFloat(const float &value, unsigned prec=0) are not documented:
+  parameter 'prec'
