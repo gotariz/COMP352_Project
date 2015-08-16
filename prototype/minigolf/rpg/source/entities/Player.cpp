@@ -3,6 +3,7 @@
 Player::Player(int id) : Object(id)
 {
     //ctor
+	m_type = PLAYER;
 }
 
 Player::~Player()

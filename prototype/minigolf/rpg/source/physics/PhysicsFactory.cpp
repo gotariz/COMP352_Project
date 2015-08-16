@@ -33,7 +33,7 @@ b2Body* PhysicsFactory::createPlayer(float x, float y, void* userPointer)
 
     b2Body* body = m_world->CreateBody(&bodyDef);
 	body->CreateFixture(&fixtureDef);
-	body->SetLinearDamping(0.9);
+	body->SetLinearDamping(0.0);
 	body->SetBullet(false);
 	body->SetSleepingAllowed(false);
 

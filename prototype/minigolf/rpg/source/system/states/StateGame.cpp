@@ -30,6 +30,7 @@ void StateGame::load()
 	world = new b2World(GRAVITY);
 	world->SetDebugDraw(visualDebugger);
 	world->SetContactListener(&d_contactListener);
+	gdata.world = world;
 
 	factory = PhysicsFactory(world);
 
@@ -38,8 +39,15 @@ void StateGame::load()
 
 	manager.setPhysicsWorld(world);
 
+	bg = new Image();
+	bg->setTexture(assets.getTexture("bg"));
+	bg->size.set(1, 1);
+	bg->scale.set(1, 1);
+
 	d_inputHandler.init();
 	loadLevel();
+
+	gdata.zoom = (gdata.settings->getScreenWidth() / 1920.f);
 
     loading = false;
 }
@@ -69,12 +77,19 @@ void StateGame::update()
 
 void StateGame::draw()
 {
-	//aimg.m_angle += 90.f / 60.f;
+	SDL_SetRenderDrawColor(gdata.renderer, 255, 255, 255, 255);
 	SDL_RenderClear(gdata.renderer);
+	SDL_SetRenderDrawColor(gdata.renderer, 0, 0, 0, 255);
+
+	Vector2 pos = gdata.toPixels(0, 0);
+	pos.x -= camera.getScreenX();
+	pos.y -= camera.getScreenY();
+	bg->scale.set(gdata.zoom, gdata.zoom);
+	bg->renderImage(gdata.renderer, pos.x, pos.y);
 
 	manager.draw();
 
-	world->DrawDebugData();
+	//world->DrawDebugData();
 
 	purista12->drawString(200, 200, player->getAbsolutePosition().toString());
 	
@@ -132,6 +147,14 @@ void StateGame::loadLevel()
 				obs->m_point2	= p2;
 				obs->m_time		= time;
 				obs->m_duration = duration;
+
+				Image* img = new Image();
+				img->setTexture(assets.getTexture("block"));
+				img->size.set(size.x, size.y);
+				img->anchor.x = ((size.x * WORLD_SCALE) / 2);
+				img->anchor.y = ((size.y * WORLD_SCALE) / 2);
+				obs->m_image = img;
+
 				manager.addObject(obs);
 
 			}
@@ -143,6 +166,14 @@ void StateGame::loadLevel()
 
 				Object* ground = new Object();
 				ground->setPhysicsObject(factory.createGround(pos.x, pos.y, size.x, size.y, angle));
+
+				Image* img = new Image();
+				img->setTexture(assets.getTexture("block"));
+				img->size.set(size.x, size.y);
+				img->anchor.x = ((size.x * WORLD_SCALE) / 2);
+				img->anchor.y = ((size.y * WORLD_SCALE) / 2);
+				ground->m_image = img;
+
 				manager.addObject(ground);
 
 			}
@@ -153,10 +184,52 @@ void StateGame::loadLevel()
 				player = new Player(manager.getValidID());
 				player->setPhysicsObject(factory.createPlayer(pos.x, pos.y, player));
 				player->m_name = "Object: player";
+				player->restart_pos = pos;
 				manager.addObject(player);
+
+				Image* p = new Image();
+				p->setTexture(assets.getTexture("player"));
+				p->anchor.set(25, 25);
+				p->size.set(1, 1);
+				player->m_image = p;
 
 				d_inputHandler.m_player = player;
 				gdata.player = player;
+			}
+			else if (attribute_type == "laser")
+			{
+				Vector2 pos			= Vector2(element->Attribute("position"));
+				Vector2 laser_dir	= Vector2(element->Attribute("laser_direction"));
+				Vector2 p1			= Vector2(element->Attribute("p1"));
+				Vector2 p2			= Vector2(element->Attribute("p2"));
+				bool moving			= atoi(element->Attribute("moving"));
+				float move_duration = atof(element->Attribute("duration"));
+				float move_time		= atof(element->Attribute("time"));
+
+				laser_dir.print("pos");
+
+				float start_angle	= atof(element->Attribute("start_angle"));
+				float delta_angle	= atof(element->Attribute("delta_angle"));
+				float rot_dur		= atof(element->Attribute("rotation_duration"));
+				bool rotating		= atoi(element->Attribute("rotating"));
+				float rot_time		= atof(element->Attribute("rotation_time"));
+
+				Laser* l = new Laser();
+				l->laserPos = pos;
+				l->laser_dir = laser_dir;
+				l->m_point1 = p1;
+				l->m_point2 = p2;
+				l->m_moving = moving;
+				l->m_duration = move_duration;
+				l->m_time = move_time;
+
+				l->start_angle = start_angle;
+				l->delta_angle = delta_angle;
+				l->r_duration = rot_dur;
+				l->m_rotating = rotating;
+				l->r_time = rot_time;
+
+				manager.addObject(l);
 			}
 			else if (attribute_type == "hole")
 			{
@@ -165,6 +238,13 @@ void StateGame::loadLevel()
 				Object* hole = new Object();
 				hole->setPhysicsObject(factory.createHole(pos.x,pos.y));
 				hole->m_type = HOLE;
+
+				Image* p = new Image();
+				p->setTexture(assets.getTexture("end"));
+				p->anchor.set(25, 25);
+				p->size.set(1, 1);
+				hole->m_image = p;
+
 				manager.addObject(hole);
 			}
 

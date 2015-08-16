@@ -29,6 +29,7 @@ enum ObjectType
 	NONE,
 	PIPE,
 	HOLE,
+	PLAYER,
 };
 
 enum Align

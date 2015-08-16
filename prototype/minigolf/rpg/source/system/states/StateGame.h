@@ -15,6 +15,7 @@
 #include "physics/debug/VisualDebugger.h"
 #include "physics/ContactListener.h"
 
+#include "entities/Laser.h"
 #include "entities/Object.h"
 #include "entities/Player.h"
 #include "entities/ObjectManager.h"
@@ -74,6 +75,8 @@ class StateGame : public IState
 		VisualDebugger*		visualDebugger = nullptr;
 		ContactListener		d_contactListener;
 		PhysicsFactory		factory;
+
+		Image*				bg;
 
 		void loadLevel();
 };

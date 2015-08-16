@@ -67,11 +67,16 @@ void Image::renderImage(SDL_Renderer* renderer)
 
 void Image::renderImage(SDL_Renderer* renderer, int x, int y)
 {
+	//cout << "calling" << endl;
 	SDL_Rect d;
-	d.x = x;
-	d.y = y;
-	d.w = dst_rec.w;
-	d.h = dst_rec.h;
+	d.x = x - int(anchor.x * scale.x);
+	d.y = y - int(anchor.y * scale.y);
+	d.w = dst_rec.w * scale.x;
+	d.h = dst_rec.h * scale.y;
+
+	SDL_Point r;
+	r.x = anchor.x;
+	r.y = anchor.y;
 
 	SDL_RenderCopyEx(
 		renderer,
@@ -79,7 +84,7 @@ void Image::renderImage(SDL_Renderer* renderer, int x, int y)
 		&src_rec,
 		&d,
 		-angle,
-		&rotation_point,
+		&r,
 		SDL_FLIP_NONE
 		);
 }
@@ -87,10 +92,14 @@ void Image::renderImage(SDL_Renderer* renderer, int x, int y)
 void Image::renderImage(SDL_Renderer* renderer, int x, int y, float nangle)
 {
 	SDL_Rect d;
-	d.x = x;
-	d.y = y;
-	d.w = dst_rec.w;
-	d.h = dst_rec.h;
+	d.x = x - int(anchor.x * scale.x);
+	d.y = y - int(anchor.y * scale.y);
+	d.w = dst_rec.w * size.x * scale.x;
+	d.h = dst_rec.h * size.y * scale.y;
+
+	SDL_Point r;
+	r.x = anchor.x * scale.x;
+	r.y = anchor.y * scale.y;
 
 	SDL_RenderCopyEx(
 		renderer,
@@ -98,7 +107,7 @@ void Image::renderImage(SDL_Renderer* renderer, int x, int y, float nangle)
 		&src_rec,
 		&d,
 		-nangle,
-		&rotation_point,
+		&r,
 		SDL_FLIP_NONE
 		);
 }

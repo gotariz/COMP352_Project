@@ -45,6 +45,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)\rpg\libraries\SDL_Lib;$(SolutionDir)\rpg\libraries\TinyXML2;$(SolutionDir)\rpg\source;$(SolutionDir)\rpg\libraries\gz-lib;$(SolutionDir)\rpg\libraries\Box2D_v2.3.0;$(SolutionDir)\rpg\libraries\SDL2-2.0.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -61,6 +62,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)\rpg\libraries\SDL_Lib;$(SolutionDir)\rpg\libraries\TinyXML2;$(SolutionDir)\rpg\source;$(SolutionDir)\rpg\libraries\gz-lib;$(SolutionDir)\rpg\libraries\Box2D_v2.3.0;$(SolutionDir)\rpg\libraries\SDL2-2.0.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -72,6 +74,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\entities\Laser.cpp" />
     <ClCompile Include="source\entities\Hole.cpp" />
     <ClCompile Include="source\utils\glPriorityQueue.cpp" />
     <ClCompile Include="source\animation\Animation.cpp" />
@@ -105,6 +108,7 @@
     <ClCompile Include="source\video\sdlFontRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\entities\Laser.h" />
     <ClInclude Include="source\entities\Hole.h" />
     <ClInclude Include="source\utils\gzHeap.h" />
     <ClInclude Include="source\utils\glPriorityQueue.h" />

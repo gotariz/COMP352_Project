@@ -14,8 +14,9 @@ class Image
 		SDL_Rect dst_rec;
 		SDL_Point rotation_point;
 
-		float scale_x = 1.f;
-		float scale_y = 1.f;
+		Vector2 size;
+		Vector2 scale;
+		Vector2 anchor;
 
 		float angle = 0.f;
 

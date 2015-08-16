@@ -21,7 +21,7 @@ class Object
     public: // variables
         //sf::Sprite*             m_image = nullptr;
 		int						m_type = NONE;
-        AnimatedImage*			m_image = nullptr;
+        Image*					m_image = nullptr;
         std::string             m_name = "";
 
         bool                    m_lockPosition = false;

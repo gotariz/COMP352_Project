@@ -25,6 +25,7 @@ class GameData
 		SDL_Surface*	surface = nullptr;
 		SDL_Renderer*	renderer = nullptr;
 		Settings*		settings = nullptr;
+		b2World*		world = nullptr;
 		RunState		gamestate = STATE_GAME;
 
 		float			zoom = 1.0;

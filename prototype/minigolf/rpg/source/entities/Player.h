@@ -13,6 +13,7 @@ class Player : public Object
 
     public:
 
+		Vector2 restart_pos;
         Object*     weapon = nullptr;
 
         float decceleration = 8.0f;

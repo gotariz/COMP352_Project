@@ -90,10 +90,15 @@ void Object::onDraw()
 {
     if (m_image)
     {
-		m_image->m_position = getAbsolutePosition();
-		m_image->m_angle = 360 - getAbsoluteRotation();
-		m_image->m_scale.set(gdata.zoom, gdata.zoom);
-        m_image->renderImage(gdata.renderer);
+		//m_image->m_position = getAbsolutePosition();
+		//m_image->m_angle = 360 - getAbsoluteRotation();
+		//m_image->m_scale.set(gdata.zoom, gdata.zoom);
+		Vector2 pos = getAbsolutePosition();
+		pos = gdata.toPixels(pos.x, pos.y);
+		pos.x -= gdata.camera->getScreenX();
+		pos.y -= gdata.camera->getScreenY();
+		m_image->scale.set(gdata.zoom,gdata.zoom);
+        m_image->renderImage(gdata.renderer,pos.x,pos.y,getRotation());
     }
 }
 

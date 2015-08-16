@@ -46,6 +46,13 @@ void InputHandler::handleEvents()
     debug_events();
 
     m_player->setMoveDirection(Vector2(m_rawVelocity));
+
+	if (gdata.keys[SDL_SCANCODE_R]->isKeyPressed)
+	{
+		m_player->setLinearVelocity(Vector2(0, 0));
+		m_player->setAbsolutePosition(m_player->restart_pos);
+		cout << "restarted" << endl;
+	}
 }
 
 void InputHandler::handlePlayerEvents()
