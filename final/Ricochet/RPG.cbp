@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="RPG" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/RPG" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="source" />
+					<Add directory="$(#sfml2.include)" />
+					<Add directory="$(#box2d.include)" />
+					<Add directory="$(#gz.include)" />
+					<Add directory="source/objects" />
+				</Compiler>
+				<Linker>
+					<Add library="sfml-audio-2" />
+					<Add library="sfml-graphics-2" />
+					<Add library="sfml-window-2" />
+					<Add library="sfml-system-2" />
+					<Add library="sfml-network-2" />
+					<Add library="Box2D" />
+					<Add directory="$(#sfml2.lib)" />
+					<Add directory="$(#box2d.lib)" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/RPG" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="source" />
+					<Add directory="$(#sfml2.include)" />
+					<Add directory="$(#box2d.include)" />
+					<Add directory="$(#gz.include)" />
+					<Add directory="source/objects" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="sfml-audio-2" />
+					<Add library="sfml-graphics-2" />
+					<Add library="sfml-window-2" />
+					<Add library="sfml-system-2" />
+					<Add library="sfml-network-2" />
+					<Add library="Box2D" />
+					<Add directory="$(#sfml2.lib)" />
+					<Add directory="$(#box2d.lib)" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="main.cpp" />
+		<Unit filename="source/animation/Animation.cpp" />
+		<Unit filename="source/animation/Animation.h" />
+		<Unit filename="source/animation/AnimationInstruction.cpp" />
+		<Unit filename="source/animation/AnimationInstruction.h" />
+		<Unit filename="source/animation/AnimationManager.cpp" />
+		<Unit filename="source/animation/AnimationManager.h" />
+		<Unit filename="source/consts.h" />
+		<Unit filename="source/dependencies.h" />
+		<Unit filename="source/enums.h" />
+		<Unit filename="source/general.h" />
+		<Unit filename="source/objects/Object.cpp" />
+		<Unit filename="source/objects/Object.h" />
+		<Unit filename="source/objects/ObjectManager.cpp" />
+		<Unit filename="source/objects/ObjectManager.h" />
+		<Unit filename="source/objects/Wall.cpp" />
+		<Unit filename="source/objects/Wall.h" />
+		<Unit filename="source/physics/ContactListener.cpp" />
+		<Unit filename="source/physics/ContactListener.h" />
+		<Unit filename="source/physics/PhysicsFactory.cpp" />
+		<Unit filename="source/physics/PhysicsFactory.h" />
+		<Unit filename="source/physics/debug/VisualDebugger.cpp" />
+		<Unit filename="source/physics/debug/VisualDebugger.h" />
+		<Unit filename="source/structs.h" />
+		<Unit filename="source/system/AssetManager.cpp" />
+		<Unit filename="source/system/AssetManager.h" />
+		<Unit filename="source/system/Engine.cpp" />
+		<Unit filename="source/system/Engine.h" />
+		<Unit filename="source/system/GameData.cpp" />
+		<Unit filename="source/system/GameData.h" />
+		<Unit filename="source/system/InputHandler.cpp" />
+		<Unit filename="source/system/InputHandler.h" />
+		<Unit filename="source/system/Settings.cpp" />
+		<Unit filename="source/system/Settings.h" />
+		<Unit filename="source/system/states/IState.h" />
+		<Unit filename="source/system/states/StateGame.cpp" />
+		<Unit filename="source/system/states/StateGame.h" />
+		<Unit filename="source/utils/Utils.cpp" />
+		<Unit filename="source/utils/Utils.h" />
+		<Unit filename="source/utils/Vector2.cpp" />
+		<Unit filename="source/utils/Vector2.h" />
+		<Unit filename="source/utils/gzClock.cpp" />
+		<Unit filename="source/utils/gzClock.h" />
+		<Unit filename="source/utils/tinyxml2.cpp" />
+		<Unit filename="source/utils/tinyxml2.h" />
+		<Unit filename="source/video/Camera.cpp" />
+		<Unit filename="source/video/Camera.h" />
+		<Unit filename="source/video/sfFont.cpp" />
+		<Unit filename="source/video/sfFont.h" />
+		<Unit filename="source/video/sfFontRenderer.cpp" />
+		<Unit filename="source/video/sfFontRenderer.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

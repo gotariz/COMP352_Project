@@ -1,0 +1,983 @@
+EXPORTS
+    _ZN14sfFontRenderer10drawStringEiiSsii @1
+    _ZN14sfFontRenderer20getRenderedTextWidthESs @2
+    _ZN14sfFontRenderer7setFontEP6sfFont @3
+    _ZN14sfFontRendererC1EPN2sf12RenderWindowE @4
+    _ZN14sfFontRendererC2EPN2sf12RenderWindowE @5
+    _ZN14sfFontRendererD0Ev @6
+    _ZN14sfFontRendererD1Ev @7
+    _ZN14sfFontRendererD2Ev @8
+    _ZN2sf4RectIiEC1Ev @9
+    _ZN6sfFont12getCharacterEi @10
+    _ZN6sfFont12loadFromFileESs @11
+    _ZN6sfFont4freeEv @12
+    _ZN6sfFont8toStringIjEESsRKT_ @13
+    _ZN6sfFont9getHeightEv @14
+    _ZN6sfFontC1Ev @15
+    _ZN6sfFontC2Ev @16
+    _ZN6sfFontD0Ev @17
+    _ZN6sfFontD1Ev @18
+    _ZN6sfFontD2Ev @19
+    _ZN9__gnu_cxx13new_allocatorIPN2sf6SpriteEE10deallocateEPS3_j @20
+    _ZN9__gnu_cxx13new_allocatorIPN2sf6SpriteEE7destroyIS3_EEvPT_ @21
+    _ZN9__gnu_cxx13new_allocatorIPN2sf6SpriteEE8allocateEjPKv @22
+    _ZN9__gnu_cxx13new_allocatorIPN2sf6SpriteEE9constructIS3_IRKS3_EEEvPT_DpOT0_ @23
+    _ZN9__gnu_cxx13new_allocatorIPN2sf6SpriteEEC2Ev @24
+    _ZN9__gnu_cxx13new_allocatorIPN2sf6SpriteEED2Ev @25
+    _ZNK9__gnu_cxx13new_allocatorIPN2sf6SpriteEE8max_sizeEv @26
+    _ZNKSt12_Vector_baseIPN2sf6SpriteESaIS2_EE19_M_get_Tp_allocatorEv @27
+    _ZNKSt13move_iteratorIPPN2sf6SpriteEE4baseEv @28
+    _ZNKSt6vectorIPN2sf6SpriteESaIS2_EE12_M_check_lenEjPKc @29
+    _ZNKSt6vectorIPN2sf6SpriteESaIS2_EE14_M_range_checkEj @30
+    _ZNKSt6vectorIPN2sf6SpriteESaIS2_EE4sizeEv @31
+    _ZNKSt6vectorIPN2sf6SpriteESaIS2_EE8max_sizeEv @32
+    _ZNSaIPN2sf6SpriteEEC2Ev @33
+    _ZNSaIPN2sf6SpriteEED2Ev @34
+    _ZNSt10_Iter_baseIPPN2sf6SpriteELb0EE7_S_baseES3_ @35
+    _ZNSt10_Iter_baseISt13move_iteratorIPPN2sf6SpriteEELb1EE7_S_baseES5_ @36
+    _ZNSt11__copy_moveILb1ELb1ESt26random_access_iterator_tagE8__copy_mIPN2sf6SpriteEEEPT_PKS6_S9_S7_ @37
+    _ZNSt12_Destroy_auxILb1EE9__destroyIPPN2sf6SpriteEEEvT_S6_ @38
+    _ZNSt12_Vector_baseIPN2sf6SpriteESaIS2_EE11_M_allocateEj @39
+    _ZNSt12_Vector_baseIPN2sf6SpriteESaIS2_EE12_Vector_implC1Ev @40
+    _ZNSt12_Vector_baseIPN2sf6SpriteESaIS2_EE12_Vector_implD1Ev @41
+    _ZNSt12_Vector_baseIPN2sf6SpriteESaIS2_EE13_M_deallocateEPS2_j @42
+    _ZNSt12_Vector_baseIPN2sf6SpriteESaIS2_EE19_M_get_Tp_allocatorEv @43
+    _ZNSt12_Vector_baseIPN2sf6SpriteESaIS2_EEC2Ev @44
+    _ZNSt12_Vector_baseIPN2sf6SpriteESaIS2_EED2Ev @45
+    _ZNSt13move_iteratorIPPN2sf6SpriteEEC1ES3_ @46
+    _ZNSt16allocator_traitsISaIPN2sf6SpriteEEE10_S_destroyIS2_EENSt9enable_ifIXsrNS4_16__destroy_helperIT_EE5valueEvE4typeERS3_PS8_ @47
+    _ZNSt16allocator_traitsISaIPN2sf6SpriteEEE11_S_max_sizeIKS3_EENSt9enable_ifIXsrNS4_16__maxsize_helperIT_EE5valueEjE4typeERS9_ @48
+    _ZNSt16allocator_traitsISaIPN2sf6SpriteEEE12_S_constructIS2_IRKS2_EEENSt9enable_ifIXsrNS4_18__construct_helperIT_IDpT0_EEE5valueEvE4typeERS3_PSA_DpOSB_ @49
+    _ZNSt16allocator_traitsISaIPN2sf6SpriteEEE7destroyIS2_EEvRS3_PT_ @50
+    _ZNSt16allocator_traitsISaIPN2sf6SpriteEEE8max_sizeERKS3_ @51
+    _ZNSt16allocator_traitsISaIPN2sf6SpriteEEE9constructIS2_IRKS2_EEEvRS3_PT_DpOT0_ @52
+    _ZNSt20__uninitialized_copyILb1EE13__uninit_copyISt13move_iteratorIPPN2sf6SpriteEES6_EET0_T_S9_S8_ @53
+    _ZNSt6vectorIPN2sf6SpriteESaIS2_EE15_M_erase_at_endEPS2_ @54
+    _ZNSt6vectorIPN2sf6SpriteESaIS2_EE19_M_emplace_back_auxIIRKS2_EEEvDpOT_ @55
+    _ZNSt6vectorIPN2sf6SpriteESaIS2_EE2atEj @56
+    _ZNSt6vectorIPN2sf6SpriteESaIS2_EE5clearEv @57
+    _ZNSt6vectorIPN2sf6SpriteESaIS2_EE9push_backERKS2_ @58
+    _ZNSt6vectorIPN2sf6SpriteESaIS2_EEC1Ev @59
+    _ZNSt6vectorIPN2sf6SpriteESaIS2_EED1Ev @60
+    _ZNSt6vectorIPN2sf6SpriteESaIS2_EEixEj @61
+    _ZNSt8ios_base7failureC1ERKS0_ @62
+    _ZNSt9exceptionC2ERKS_ @63
+    _ZSt12__miter_baseISt13move_iteratorIPPN2sf6SpriteEEENSt11_Miter_baseIT_E13iterator_typeES7_ @64
+    _ZSt12__niter_baseIPPN2sf6SpriteEENSt11_Niter_baseIT_E13iterator_typeES5_ @65
+    _ZSt13__copy_move_aILb1EPPN2sf6SpriteES3_ET1_T0_S5_S4_ @66
+    _ZSt14__copy_move_a2ILb1EPPN2sf6SpriteES3_ET1_T0_S5_S4_ @67
+    _ZSt18uninitialized_copyISt13move_iteratorIPPN2sf6SpriteEES4_ET0_T_S7_S6_ @68
+    _ZSt22__uninitialized_copy_aISt13move_iteratorIPPN2sf6SpriteEES4_S3_ET0_T_S7_S6_RSaIT1_E @69
+    _ZSt32__make_move_if_noexcept_iteratorIPPN2sf6SpriteESt13move_iteratorIS3_EET0_T_ @70
+    _ZSt34__uninitialized_move_if_noexcept_aIPPN2sf6SpriteES3_SaIS2_EET0_T_S6_S5_RT1_ @71
+    _ZSt3maxIjERKT_S2_S2_ @72
+    _ZSt4copyISt13move_iteratorIPPN2sf6SpriteEES4_ET0_T_S7_S6_ @73
+    _ZSt4moveIRSsEONSt16remove_referenceIT_E4typeEOS2_ @74
+    _ZSt7forwardIRKPN2sf6SpriteEEOT_RNSt16remove_referenceIS5_E4typeE @75
+    _ZSt8_DestroyIPPN2sf6SpriteEEvT_S4_ @76
+    _ZSt8_DestroyIPPN2sf6SpriteES2_EvT_S4_RSaIT0_E @77
+    _ZStorSt12_Ios_IostateS_ @78
+    _ZStplIcSt11char_traitsIcESaIcEESbIT_T0_T1_EOS6_PKS3_ @79
+    _ZStplIcSt11char_traitsIcESaIcEESbIT_T0_T1_ERKS6_OS6_ @80
+    _ZTI14sfFontRenderer @81 DATA
+    _ZTI6sfFont @82 DATA
+    _ZTINSt8ios_base7failureE @83 DATA
+    _ZTISt9exception @84 DATA
+    _ZTS14sfFontRenderer @85 DATA
+    _ZTS6sfFont @86 DATA
+    _ZTSNSt8ios_base7failureE @87 DATA
+    _ZTSSt9exception @88 DATA
+    _ZTV14sfFontRenderer @89 DATA
+    _ZTV6sfFont @90 DATA
+    _ZnwjPv @91
+    _get_output_format @92
+    _nm___ZN2sf12RenderStates7DefaultE @93 DATA
+
+IMPORTS
+
+    sfml-window-d-2.dll._ZN2sf10GlResource15ensureGlContextEv
+    sfml-window-d-2.dll._ZN2sf10GlResourceC1Ev
+    sfml-window-d-2.dll._ZN2sf10GlResourceC2Ev
+    sfml-window-d-2.dll._ZN2sf10GlResourceD1Ev
+    sfml-window-d-2.dll._ZN2sf10GlResourceD2Ev
+    sfml-graphics-d-2.dll._ZN2sf11CircleShape13setPointCountEj
+    sfml-graphics-d-2.dll._ZN2sf11CircleShape9setRadiusEf
+    sfml-graphics-d-2.dll._ZN2sf11CircleShapeC1Efj
+    sfml-graphics-d-2.dll._ZN2sf11CircleShapeC2Efj
+    sfml-graphics-d-2.dll._ZN2sf11ConvexShape13setPointCountEj
+    sfml-graphics-d-2.dll._ZN2sf11ConvexShape8setPointEjRKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZN2sf11ConvexShapeC1Ej
+    sfml-graphics-d-2.dll._ZN2sf11ConvexShapeC2Ej
+    sfml-system-d-2.dll._ZN2sf11NonCopyableC1Ev
+    sfml-system-d-2.dll._ZN2sf11NonCopyableC2Ev
+    sfml-audio-d-2.dll._ZN2sf11SoundBuffer10initializeERNS_4priv9SoundFileE
+    sfml-audio-d-2.dll._ZN2sf11SoundBuffer12loadFromFileERKSs
+    sfml-audio-d-2.dll._ZN2sf11SoundBuffer14loadFromMemoryEPKvj
+    sfml-audio-d-2.dll._ZN2sf11SoundBuffer14loadFromStreamERNS_11InputStreamE
+    sfml-audio-d-2.dll._ZN2sf11SoundBuffer15loadFromSamplesEPKsjjj
+    sfml-audio-d-2.dll._ZN2sf11SoundBuffer6updateEjj
+    sfml-audio-d-2.dll._ZN2sf11SoundBufferC1ERKS0_
+    sfml-audio-d-2.dll._ZN2sf11SoundBufferC1Ev
+    sfml-audio-d-2.dll._ZN2sf11SoundBufferC2ERKS0_
+    sfml-audio-d-2.dll._ZN2sf11SoundBufferC2Ev
+    sfml-audio-d-2.dll._ZN2sf11SoundBufferD1Ev
+    sfml-audio-d-2.dll._ZN2sf11SoundBufferD2Ev
+    sfml-audio-d-2.dll._ZN2sf11SoundBufferaSERKS0_
+    sfml-audio-d-2.dll._ZN2sf11SoundSource11setPositionERKNS_7Vector3IfEE
+    sfml-audio-d-2.dll._ZN2sf11SoundSource11setPositionEfff
+    sfml-audio-d-2.dll._ZN2sf11SoundSource14setAttenuationEf
+    sfml-audio-d-2.dll._ZN2sf11SoundSource14setMinDistanceEf
+    sfml-audio-d-2.dll._ZN2sf11SoundSource21setRelativeToListenerEb
+    sfml-audio-d-2.dll._ZN2sf11SoundSource8setPitchEf
+    sfml-audio-d-2.dll._ZN2sf11SoundSource9setVolumeEf
+    sfml-audio-d-2.dll._ZN2sf11SoundSourceC1ERKS0_
+    sfml-audio-d-2.dll._ZN2sf11SoundSourceC1Ev
+    sfml-audio-d-2.dll._ZN2sf11SoundSourceC2ERKS0_
+    sfml-audio-d-2.dll._ZN2sf11SoundSourceC2Ev
+    sfml-audio-d-2.dll._ZN2sf11SoundSourceD0Ev
+    sfml-audio-d-2.dll._ZN2sf11SoundSourceD1Ev
+    sfml-audio-d-2.dll._ZN2sf11SoundSourceD2Ev
+    sfml-audio-d-2.dll._ZN2sf11SoundStream10clearQueueEv
+    sfml-audio-d-2.dll._ZN2sf11SoundStream10initializeEjj
+    sfml-audio-d-2.dll._ZN2sf11SoundStream10streamDataEv
+    sfml-audio-d-2.dll._ZN2sf11SoundStream16setPlayingOffsetENS_4TimeE
+    sfml-audio-d-2.dll._ZN2sf11SoundStream17fillAndPushBufferEj
+    sfml-audio-d-2.dll._ZN2sf11SoundStream4playEv
+    sfml-audio-d-2.dll._ZN2sf11SoundStream4stopEv
+    sfml-audio-d-2.dll._ZN2sf11SoundStream5pauseEv
+    sfml-audio-d-2.dll._ZN2sf11SoundStream7setLoopEb
+    sfml-audio-d-2.dll._ZN2sf11SoundStream9fillQueueEv
+    sfml-audio-d-2.dll._ZN2sf11SoundStreamC1Ev
+    sfml-audio-d-2.dll._ZN2sf11SoundStreamC2Ev
+    sfml-audio-d-2.dll._ZN2sf11SoundStreamD0Ev
+    sfml-audio-d-2.dll._ZN2sf11SoundStreamD1Ev
+    sfml-audio-d-2.dll._ZN2sf11SoundStreamD2Ev
+    sfml-network-d-2.dll._ZN2sf11TcpListener5closeEv
+    sfml-network-d-2.dll._ZN2sf11TcpListener6acceptERNS_9TcpSocketE
+    sfml-network-d-2.dll._ZN2sf11TcpListener6listenEt
+    sfml-network-d-2.dll._ZN2sf11TcpListenerC1Ev
+    sfml-network-d-2.dll._ZN2sf11TcpListenerC2Ev
+    sfml-system-d-2.dll._ZN2sf11ThreadLocal8setValueEPv
+    sfml-system-d-2.dll._ZN2sf11ThreadLocalC1EPv
+    sfml-system-d-2.dll._ZN2sf11ThreadLocalC2EPv
+    sfml-system-d-2.dll._ZN2sf11ThreadLocalD1Ev
+    sfml-system-d-2.dll._ZN2sf11ThreadLocalD2Ev
+    sfml-graphics-d-2.dll._ZN2sf11VertexArray16setPrimitiveTypeENS_13PrimitiveTypeE
+    sfml-graphics-d-2.dll._ZN2sf11VertexArray5clearEv
+    sfml-graphics-d-2.dll._ZN2sf11VertexArray6appendERKNS_6VertexE
+    sfml-graphics-d-2.dll._ZN2sf11VertexArray6resizeEj
+    sfml-graphics-d-2.dll._ZN2sf11VertexArrayC1ENS_13PrimitiveTypeEj
+    sfml-graphics-d-2.dll._ZN2sf11VertexArrayC1Ev
+    sfml-graphics-d-2.dll._ZN2sf11VertexArrayC2ENS_13PrimitiveTypeEj
+    sfml-graphics-d-2.dll._ZN2sf11VertexArrayC2Ev
+    sfml-graphics-d-2.dll._ZN2sf11VertexArrayixEj
+    sfml-graphics-d-2.dll._ZN2sf12RenderStates7DefaultE
+    sfml-graphics-d-2.dll._ZN2sf12RenderStatesC1ENS_9BlendModeE
+    sfml-graphics-d-2.dll._ZN2sf12RenderStatesC1ENS_9BlendModeERKNS_9TransformEPKNS_7TextureEPKNS_6ShaderE
+    sfml-graphics-d-2.dll._ZN2sf12RenderStatesC1EPKNS_6ShaderE
+    sfml-graphics-d-2.dll._ZN2sf12RenderStatesC1EPKNS_7TextureE
+    sfml-graphics-d-2.dll._ZN2sf12RenderStatesC1ERKNS_9TransformE
+    sfml-graphics-d-2.dll._ZN2sf12RenderStatesC1Ev
+    sfml-graphics-d-2.dll._ZN2sf12RenderStatesC2ENS_9BlendModeE
+    sfml-graphics-d-2.dll._ZN2sf12RenderStatesC2ENS_9BlendModeERKNS_9TransformEPKNS_7TextureEPKNS_6ShaderE
+    sfml-graphics-d-2.dll._ZN2sf12RenderStatesC2EPKNS_6ShaderE
+    sfml-graphics-d-2.dll._ZN2sf12RenderStatesC2EPKNS_7TextureE
+    sfml-graphics-d-2.dll._ZN2sf12RenderStatesC2ERKNS_9TransformE
+    sfml-graphics-d-2.dll._ZN2sf12RenderStatesC2Ev
+    sfml-graphics-d-2.dll._ZN2sf12RenderTarget10initializeEv
+    sfml-graphics-d-2.dll._ZN2sf12RenderTarget11applyShaderEPKNS_6ShaderE
+    sfml-graphics-d-2.dll._ZN2sf12RenderTarget11popGLStatesEv
+    sfml-graphics-d-2.dll._ZN2sf12RenderTarget12applyTextureEPKNS_7TextureE
+    sfml-graphics-d-2.dll._ZN2sf12RenderTarget12pushGLStatesEv
+    sfml-graphics-d-2.dll._ZN2sf12RenderTarget13resetGLStatesEv
+    sfml-graphics-d-2.dll._ZN2sf12RenderTarget14applyBlendModeENS_9BlendModeE
+    sfml-graphics-d-2.dll._ZN2sf12RenderTarget14applyTransformERKNS_9TransformE
+    sfml-graphics-d-2.dll._ZN2sf12RenderTarget16applyCurrentViewEv
+    sfml-graphics-d-2.dll._ZN2sf12RenderTarget4drawEPKNS_6VertexEjNS_13PrimitiveTypeERKNS_12RenderStatesE
+    sfml-graphics-d-2.dll._ZN2sf12RenderTarget4drawERKNS_8DrawableERKNS_12RenderStatesE
+    sfml-graphics-d-2.dll._ZN2sf12RenderTarget5clearERKNS_5ColorE
+    sfml-graphics-d-2.dll._ZN2sf12RenderTarget7setViewERKNS_4ViewE
+    sfml-graphics-d-2.dll._ZN2sf12RenderTargetC1Ev
+    sfml-graphics-d-2.dll._ZN2sf12RenderTargetC2Ev
+    sfml-graphics-d-2.dll._ZN2sf12RenderTargetD0Ev
+    sfml-graphics-d-2.dll._ZN2sf12RenderTargetD1Ev
+    sfml-graphics-d-2.dll._ZN2sf12RenderTargetD2Ev
+    sfml-graphics-d-2.dll._ZN2sf12RenderWindow8activateEb
+    sfml-graphics-d-2.dll._ZN2sf12RenderWindow8onCreateEv
+    sfml-graphics-d-2.dll._ZN2sf12RenderWindow8onResizeEv
+    sfml-graphics-d-2.dll._ZN2sf12RenderWindowC1ENS_9VideoModeERKNS_6StringEjRKNS_15ContextSettingsE
+    sfml-graphics-d-2.dll._ZN2sf12RenderWindowC1EP6HWND__RKNS_15ContextSettingsE
+    sfml-graphics-d-2.dll._ZN2sf12RenderWindowC1Ev
+    sfml-graphics-d-2.dll._ZN2sf12RenderWindowC2ENS_9VideoModeERKNS_6StringEjRKNS_15ContextSettingsE
+    sfml-graphics-d-2.dll._ZN2sf12RenderWindowC2EP6HWND__RKNS_15ContextSettingsE
+    sfml-graphics-d-2.dll._ZN2sf12RenderWindowC2Ev
+    sfml-graphics-d-2.dll._ZN2sf12RenderWindowD0Ev
+    sfml-graphics-d-2.dll._ZN2sf12RenderWindowD1Ev
+    sfml-graphics-d-2.dll._ZN2sf12RenderWindowD2Ev
+    sfml-system-d-2.dll._ZN2sf12microsecondsEx
+    sfml-system-d-2.dll._ZN2sf12millisecondsEi
+    sfml-graphics-d-2.dll._ZN2sf13RenderTexture11setRepeatedEb
+    sfml-graphics-d-2.dll._ZN2sf13RenderTexture6createEjjb
+    sfml-graphics-d-2.dll._ZN2sf13RenderTexture7displayEv
+    sfml-graphics-d-2.dll._ZN2sf13RenderTexture8activateEb
+    sfml-graphics-d-2.dll._ZN2sf13RenderTexture9setActiveEb
+    sfml-graphics-d-2.dll._ZN2sf13RenderTexture9setSmoothEb
+    sfml-graphics-d-2.dll._ZN2sf13RenderTextureC1Ev
+    sfml-graphics-d-2.dll._ZN2sf13RenderTextureC2Ev
+    sfml-graphics-d-2.dll._ZN2sf13RenderTextureD0Ev
+    sfml-graphics-d-2.dll._ZN2sf13RenderTextureD1Ev
+    sfml-graphics-d-2.dll._ZN2sf13RenderTextureD2Ev
+    sfml-audio-d-2.dll._ZN2sf13SoundRecorder11isAvailableEv
+    sfml-audio-d-2.dll._ZN2sf13SoundRecorder22processCapturedSamplesEv
+    sfml-audio-d-2.dll._ZN2sf13SoundRecorder4stopEv
+    sfml-audio-d-2.dll._ZN2sf13SoundRecorder5startEj
+    sfml-audio-d-2.dll._ZN2sf13SoundRecorder6onStopEv
+    sfml-audio-d-2.dll._ZN2sf13SoundRecorder6recordEv
+    sfml-audio-d-2.dll._ZN2sf13SoundRecorder7cleanupEv
+    sfml-audio-d-2.dll._ZN2sf13SoundRecorder7onStartEv
+    sfml-audio-d-2.dll._ZN2sf13SoundRecorderC1Ev
+    sfml-audio-d-2.dll._ZN2sf13SoundRecorderC2Ev
+    sfml-audio-d-2.dll._ZN2sf13SoundRecorderD0Ev
+    sfml-audio-d-2.dll._ZN2sf13SoundRecorderD1Ev
+    sfml-audio-d-2.dll._ZN2sf13SoundRecorderD2Ev
+    sfml-graphics-d-2.dll._ZN2sf13Transformable11setPositionERKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZN2sf13Transformable11setPositionEff
+    sfml-graphics-d-2.dll._ZN2sf13Transformable11setRotationEf
+    sfml-graphics-d-2.dll._ZN2sf13Transformable4moveERKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZN2sf13Transformable4moveEff
+    sfml-graphics-d-2.dll._ZN2sf13Transformable5scaleERKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZN2sf13Transformable5scaleEff
+    sfml-graphics-d-2.dll._ZN2sf13Transformable6rotateEf
+    sfml-graphics-d-2.dll._ZN2sf13Transformable8setScaleERKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZN2sf13Transformable8setScaleEff
+    sfml-graphics-d-2.dll._ZN2sf13Transformable9setOriginERKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZN2sf13Transformable9setOriginEff
+    sfml-graphics-d-2.dll._ZN2sf13TransformableC1Ev
+    sfml-graphics-d-2.dll._ZN2sf13TransformableC2Ev
+    sfml-graphics-d-2.dll._ZN2sf13TransformableD0Ev
+    sfml-graphics-d-2.dll._ZN2sf13TransformableD1Ev
+    sfml-graphics-d-2.dll._ZN2sf13TransformableD2Ev
+    sfml-graphics-d-2.dll._ZN2sf14RectangleShape7setSizeERKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZN2sf14RectangleShapeC1ERKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZN2sf14RectangleShapeC2ERKNS_7Vector2IfEE
+    sfml-network-d-2.dll._ZN2sf14SocketSelector3addERNS_6SocketE
+    sfml-network-d-2.dll._ZN2sf14SocketSelector4waitENS_4TimeE
+    sfml-network-d-2.dll._ZN2sf14SocketSelector5clearEv
+    sfml-network-d-2.dll._ZN2sf14SocketSelector6removeERNS_6SocketE
+    sfml-network-d-2.dll._ZN2sf14SocketSelectorC1ERKS0_
+    sfml-network-d-2.dll._ZN2sf14SocketSelectorC1Ev
+    sfml-network-d-2.dll._ZN2sf14SocketSelectorC2ERKS0_
+    sfml-network-d-2.dll._ZN2sf14SocketSelectorC2Ev
+    sfml-network-d-2.dll._ZN2sf14SocketSelectorD1Ev
+    sfml-network-d-2.dll._ZN2sf14SocketSelectorD2Ev
+    sfml-network-d-2.dll._ZN2sf14SocketSelectoraSERKS0_
+    sfml-audio-d-2.dll._ZN2sf19SoundBufferRecorder16onProcessSamplesEPKsj
+    sfml-audio-d-2.dll._ZN2sf19SoundBufferRecorder6onStopEv
+    sfml-audio-d-2.dll._ZN2sf19SoundBufferRecorder7onStartEv
+    sfml-network-d-2.dll._ZN2sf3Ftp10deleteFileERKSs
+    sfml-network-d-2.dll._ZN2sf3Ftp10disconnectEv
+    sfml-network-d-2.dll._ZN2sf3Ftp10renameFileERKSsS2_
+    sfml-network-d-2.dll._ZN2sf3Ftp11getResponseEv
+    sfml-network-d-2.dll._ZN2sf3Ftp11sendCommandERKSsS2_
+    sfml-network-d-2.dll._ZN2sf3Ftp15ListingResponseC1ERKNS0_8ResponseERKSt6vectorIcSaIcEE
+    sfml-network-d-2.dll._ZN2sf3Ftp15ListingResponseC2ERKNS0_8ResponseERKSt6vectorIcSaIcEE
+    sfml-network-d-2.dll._ZN2sf3Ftp15changeDirectoryERKSs
+    sfml-network-d-2.dll._ZN2sf3Ftp15createDirectoryERKSs
+    sfml-network-d-2.dll._ZN2sf3Ftp15deleteDirectoryERKSs
+    sfml-network-d-2.dll._ZN2sf3Ftp15parentDirectoryEv
+    sfml-network-d-2.dll._ZN2sf3Ftp17DirectoryResponseC1ERKNS0_8ResponseE
+    sfml-network-d-2.dll._ZN2sf3Ftp17DirectoryResponseC2ERKNS0_8ResponseE
+    sfml-network-d-2.dll._ZN2sf3Ftp19getDirectoryListingERKSs
+    sfml-network-d-2.dll._ZN2sf3Ftp19getWorkingDirectoryEv
+    sfml-network-d-2.dll._ZN2sf3Ftp5loginERKSsS2_
+    sfml-network-d-2.dll._ZN2sf3Ftp5loginEv
+    sfml-network-d-2.dll._ZN2sf3Ftp6uploadERKSsS2_NS0_12TransferModeE
+    sfml-network-d-2.dll._ZN2sf3Ftp7connectERKNS_9IpAddressEtNS_4TimeE
+    sfml-network-d-2.dll._ZN2sf3Ftp8ResponseC1ENS1_6StatusERKSs
+    sfml-network-d-2.dll._ZN2sf3Ftp8ResponseC2ENS1_6StatusERKSs
+    sfml-network-d-2.dll._ZN2sf3Ftp8downloadERKSsS2_NS0_12TransferModeE
+    sfml-network-d-2.dll._ZN2sf3Ftp9keepAliveEv
+    sfml-network-d-2.dll._ZN2sf3FtpD1Ev
+    sfml-network-d-2.dll._ZN2sf3FtpD2Ev
+    sfml-system-d-2.dll._ZN2sf3errEv
+    sfml-graphics-d-2.dll._ZN2sf4Font12loadFromFileERKSs
+    sfml-graphics-d-2.dll._ZN2sf4Font14loadFromMemoryEPKvj
+    sfml-graphics-d-2.dll._ZN2sf4Font14loadFromStreamERNS_11InputStreamE
+    sfml-graphics-d-2.dll._ZN2sf4Font7cleanupEv
+    sfml-graphics-d-2.dll._ZN2sf4FontC1ERKS0_
+    sfml-graphics-d-2.dll._ZN2sf4FontC1Ev
+    sfml-graphics-d-2.dll._ZN2sf4FontC2ERKS0_
+    sfml-graphics-d-2.dll._ZN2sf4FontC2Ev
+    sfml-graphics-d-2.dll._ZN2sf4FontD1Ev
+    sfml-graphics-d-2.dll._ZN2sf4FontD2Ev
+    sfml-graphics-d-2.dll._ZN2sf4FontaSERKS0_
+    sfml-network-d-2.dll._ZN2sf4Http11sendRequestERKNS0_7RequestENS_4TimeE
+    sfml-network-d-2.dll._ZN2sf4Http7Request14setHttpVersionEjj
+    sfml-network-d-2.dll._ZN2sf4Http7Request6setUriERKSs
+    sfml-network-d-2.dll._ZN2sf4Http7Request7setBodyERKSs
+    sfml-network-d-2.dll._ZN2sf4Http7Request8setFieldERKSsS3_
+    sfml-network-d-2.dll._ZN2sf4Http7Request9setMethodENS1_6MethodE
+    sfml-network-d-2.dll._ZN2sf4Http7RequestC1ERKSsNS1_6MethodES3_
+    sfml-network-d-2.dll._ZN2sf4Http7RequestC2ERKSsNS1_6MethodES3_
+    sfml-network-d-2.dll._ZN2sf4Http7setHostERKSst
+    sfml-network-d-2.dll._ZN2sf4Http8Response5parseERKSs
+    sfml-network-d-2.dll._ZN2sf4Http8ResponseC1Ev
+    sfml-network-d-2.dll._ZN2sf4Http8ResponseC2Ev
+    sfml-network-d-2.dll._ZN2sf4HttpC1ERKSst
+    sfml-network-d-2.dll._ZN2sf4HttpC1Ev
+    sfml-network-d-2.dll._ZN2sf4HttpC2ERKSst
+    sfml-network-d-2.dll._ZN2sf4HttpC2Ev
+    sfml-system-d-2.dll._ZN2sf4LockC1ERNS_5MutexE
+    sfml-system-d-2.dll._ZN2sf4LockC2ERNS_5MutexE
+    sfml-system-d-2.dll._ZN2sf4LockD1Ev
+    sfml-system-d-2.dll._ZN2sf4LockD2Ev
+    sfml-graphics-d-2.dll._ZN2sf4Text14updateGeometryEv
+    sfml-graphics-d-2.dll._ZN2sf4Text16setCharacterSizeEj
+    sfml-graphics-d-2.dll._ZN2sf4Text7setFontERKNS_4FontE
+    sfml-graphics-d-2.dll._ZN2sf4Text8setColorERKNS_5ColorE
+    sfml-graphics-d-2.dll._ZN2sf4Text8setStyleEj
+    sfml-graphics-d-2.dll._ZN2sf4Text9setStringERKNS_6StringE
+    sfml-graphics-d-2.dll._ZN2sf4TextC1ERKNS_6StringERKNS_4FontEj
+    sfml-graphics-d-2.dll._ZN2sf4TextC1Ev
+    sfml-graphics-d-2.dll._ZN2sf4TextC2ERKNS_6StringERKNS_4FontEj
+    sfml-graphics-d-2.dll._ZN2sf4TextC2Ev
+    sfml-system-d-2.dll._ZN2sf4Time4ZeroE
+    sfml-system-d-2.dll._ZN2sf4TimeC1Ev
+    sfml-system-d-2.dll._ZN2sf4TimeC1Ex
+    sfml-system-d-2.dll._ZN2sf4TimeC2Ev
+    sfml-system-d-2.dll._ZN2sf4TimeC2Ex
+    sfml-graphics-d-2.dll._ZN2sf4View11setRotationEf
+    sfml-graphics-d-2.dll._ZN2sf4View11setViewportERKNS_4RectIfEE
+    sfml-graphics-d-2.dll._ZN2sf4View4moveERKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZN2sf4View4moveEff
+    sfml-graphics-d-2.dll._ZN2sf4View4zoomEf
+    sfml-graphics-d-2.dll._ZN2sf4View5resetERKNS_4RectIfEE
+    sfml-graphics-d-2.dll._ZN2sf4View6rotateEf
+    sfml-graphics-d-2.dll._ZN2sf4View7setSizeERKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZN2sf4View7setSizeEff
+    sfml-graphics-d-2.dll._ZN2sf4View9setCenterERKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZN2sf4View9setCenterEff
+    sfml-graphics-d-2.dll._ZN2sf4ViewC1ERKNS_4RectIfEE
+    sfml-graphics-d-2.dll._ZN2sf4ViewC1ERKNS_7Vector2IfEES4_
+    sfml-graphics-d-2.dll._ZN2sf4ViewC1Ev
+    sfml-graphics-d-2.dll._ZN2sf4ViewC2ERKNS_4RectIfEE
+    sfml-graphics-d-2.dll._ZN2sf4ViewC2ERKNS_7Vector2IfEES4_
+    sfml-graphics-d-2.dll._ZN2sf4ViewC2Ev
+    sfml-system-d-2.dll._ZN2sf5Clock7restartEv
+    sfml-system-d-2.dll._ZN2sf5ClockC1Ev
+    sfml-system-d-2.dll._ZN2sf5ClockC2Ev
+    sfml-graphics-d-2.dll._ZN2sf5Color11TransparentE
+    sfml-graphics-d-2.dll._ZN2sf5Color3RedE
+    sfml-graphics-d-2.dll._ZN2sf5Color4BlueE
+    sfml-graphics-d-2.dll._ZN2sf5Color4CyanE
+    sfml-graphics-d-2.dll._ZN2sf5Color5BlackE
+    sfml-graphics-d-2.dll._ZN2sf5Color5GreenE
+    sfml-graphics-d-2.dll._ZN2sf5Color5WhiteE
+    sfml-graphics-d-2.dll._ZN2sf5Color6YellowE
+    sfml-graphics-d-2.dll._ZN2sf5Color7MagentaE
+    sfml-graphics-d-2.dll._ZN2sf5ColorC1Ehhhh
+    sfml-graphics-d-2.dll._ZN2sf5ColorC1Ev
+    sfml-graphics-d-2.dll._ZN2sf5ColorC2Ehhhh
+    sfml-graphics-d-2.dll._ZN2sf5ColorC2Ev
+    sfml-graphics-d-2.dll._ZN2sf5GlyphC1Ev
+    sfml-graphics-d-2.dll._ZN2sf5GlyphC2Ev
+    sfml-graphics-d-2.dll._ZN2sf5Image12loadFromFileERKSs
+    sfml-graphics-d-2.dll._ZN2sf5Image14flipVerticallyEv
+    sfml-graphics-d-2.dll._ZN2sf5Image14loadFromMemoryEPKvj
+    sfml-graphics-d-2.dll._ZN2sf5Image14loadFromStreamERNS_11InputStreamE
+    sfml-graphics-d-2.dll._ZN2sf5Image16flipHorizontallyEv
+    sfml-graphics-d-2.dll._ZN2sf5Image19createMaskFromColorERKNS_5ColorEh
+    sfml-graphics-d-2.dll._ZN2sf5Image4copyERKS0_jjRKNS_4RectIiEEb
+    sfml-graphics-d-2.dll._ZN2sf5Image6createEjjPKh
+    sfml-graphics-d-2.dll._ZN2sf5Image6createEjjRKNS_5ColorE
+    sfml-graphics-d-2.dll._ZN2sf5Image8setPixelEjjRKNS_5ColorE
+    sfml-graphics-d-2.dll._ZN2sf5ImageC1Ev
+    sfml-graphics-d-2.dll._ZN2sf5ImageC2Ev
+    sfml-window-d-2.dll._ZN2sf5Mouse11getPositionERKNS_6WindowE
+    sfml-window-d-2.dll._ZN2sf5Mouse11getPositionEv
+    sfml-window-d-2.dll._ZN2sf5Mouse11setPositionERKNS_7Vector2IiEE
+    sfml-window-d-2.dll._ZN2sf5Mouse11setPositionERKNS_7Vector2IiEERKNS_6WindowE
+    sfml-window-d-2.dll._ZN2sf5Mouse15isButtonPressedENS0_6ButtonE
+    sfml-audio-d-2.dll._ZN2sf5Music10initializeEv
+    sfml-audio-d-2.dll._ZN2sf5Music12openFromFileERKSs
+    sfml-audio-d-2.dll._ZN2sf5Music14openFromMemoryEPKvj
+    sfml-audio-d-2.dll._ZN2sf5Music14openFromStreamERNS_11InputStreamE
+    sfml-audio-d-2.dll._ZN2sf5Music6onSeekENS_4TimeE
+    sfml-audio-d-2.dll._ZN2sf5Music9onGetDataERNS_11SoundStream5ChunkE
+    sfml-audio-d-2.dll._ZN2sf5MusicC1Ev
+    sfml-audio-d-2.dll._ZN2sf5MusicC2Ev
+    sfml-audio-d-2.dll._ZN2sf5MusicD0Ev
+    sfml-audio-d-2.dll._ZN2sf5MusicD1Ev
+    sfml-audio-d-2.dll._ZN2sf5MusicD2Ev
+    sfml-system-d-2.dll._ZN2sf5Mutex4lockEv
+    sfml-system-d-2.dll._ZN2sf5Mutex6unlockEv
+    sfml-system-d-2.dll._ZN2sf5MutexC1Ev
+    sfml-system-d-2.dll._ZN2sf5MutexC2Ev
+    sfml-system-d-2.dll._ZN2sf5MutexD1Ev
+    sfml-system-d-2.dll._ZN2sf5MutexD2Ev
+    sfml-graphics-d-2.dll._ZN2sf5Shape10setTextureEPKNS_7TextureEb
+    sfml-graphics-d-2.dll._ZN2sf5Shape12setFillColorERKNS_5ColorE
+    sfml-graphics-d-2.dll._ZN2sf5Shape13updateOutlineEv
+    sfml-graphics-d-2.dll._ZN2sf5Shape14setTextureRectERKNS_4RectIiEE
+    sfml-graphics-d-2.dll._ZN2sf5Shape15setOutlineColorERKNS_5ColorE
+    sfml-graphics-d-2.dll._ZN2sf5Shape15updateTexCoordsEv
+    sfml-graphics-d-2.dll._ZN2sf5Shape16updateFillColorsEv
+    sfml-graphics-d-2.dll._ZN2sf5Shape19setOutlineThicknessEf
+    sfml-graphics-d-2.dll._ZN2sf5Shape19updateOutlineColorsEv
+    sfml-graphics-d-2.dll._ZN2sf5Shape6updateEv
+    sfml-graphics-d-2.dll._ZN2sf5ShapeC1Ev
+    sfml-graphics-d-2.dll._ZN2sf5ShapeC2Ev
+    sfml-graphics-d-2.dll._ZN2sf5ShapeD0Ev
+    sfml-graphics-d-2.dll._ZN2sf5ShapeD1Ev
+    sfml-graphics-d-2.dll._ZN2sf5ShapeD2Ev
+    sfml-audio-d-2.dll._ZN2sf5Sound11resetBufferEv
+    sfml-audio-d-2.dll._ZN2sf5Sound16setPlayingOffsetENS_4TimeE
+    sfml-audio-d-2.dll._ZN2sf5Sound4playEv
+    sfml-audio-d-2.dll._ZN2sf5Sound4stopEv
+    sfml-audio-d-2.dll._ZN2sf5Sound5pauseEv
+    sfml-audio-d-2.dll._ZN2sf5Sound7setLoopEb
+    sfml-audio-d-2.dll._ZN2sf5Sound9setBufferERKNS_11SoundBufferE
+    sfml-audio-d-2.dll._ZN2sf5SoundC1ERKNS_11SoundBufferE
+    sfml-audio-d-2.dll._ZN2sf5SoundC1ERKS0_
+    sfml-audio-d-2.dll._ZN2sf5SoundC1Ev
+    sfml-audio-d-2.dll._ZN2sf5SoundC2ERKNS_11SoundBufferE
+    sfml-audio-d-2.dll._ZN2sf5SoundC2ERKS0_
+    sfml-audio-d-2.dll._ZN2sf5SoundC2Ev
+    sfml-audio-d-2.dll._ZN2sf5SoundD0Ev
+    sfml-audio-d-2.dll._ZN2sf5SoundD1Ev
+    sfml-audio-d-2.dll._ZN2sf5SoundD2Ev
+    sfml-audio-d-2.dll._ZN2sf5SoundaSERKS0_
+    sfml-system-d-2.dll._ZN2sf5sleepENS_4TimeE
+    sfml-network-d-2.dll._ZN2sf6Packet5clearEv
+    sfml-network-d-2.dll._ZN2sf6Packet6appendEPKvj
+    sfml-network-d-2.dll._ZN2sf6Packet6onSendERj
+    sfml-network-d-2.dll._ZN2sf6Packet9checkSizeEj
+    sfml-network-d-2.dll._ZN2sf6Packet9onReceiveEPKvj
+    sfml-network-d-2.dll._ZN2sf6PacketC1Ev
+    sfml-network-d-2.dll._ZN2sf6PacketC2Ev
+    sfml-network-d-2.dll._ZN2sf6PacketD0Ev
+    sfml-network-d-2.dll._ZN2sf6PacketD1Ev
+    sfml-network-d-2.dll._ZN2sf6PacketD2Ev
+    sfml-network-d-2.dll._ZN2sf6PacketlsEPKc
+    sfml-network-d-2.dll._ZN2sf6PacketlsEPKw
+    sfml-network-d-2.dll._ZN2sf6PacketlsERKNS_6StringE
+    sfml-network-d-2.dll._ZN2sf6PacketlsERKSbIwSt11char_traitsIwESaIwEE
+    sfml-network-d-2.dll._ZN2sf6PacketlsERKSs
+    sfml-network-d-2.dll._ZN2sf6PacketlsEa
+    sfml-network-d-2.dll._ZN2sf6PacketlsEb
+    sfml-network-d-2.dll._ZN2sf6PacketlsEd
+    sfml-network-d-2.dll._ZN2sf6PacketlsEf
+    sfml-network-d-2.dll._ZN2sf6PacketlsEh
+    sfml-network-d-2.dll._ZN2sf6PacketlsEi
+    sfml-network-d-2.dll._ZN2sf6PacketlsEj
+    sfml-network-d-2.dll._ZN2sf6PacketlsEs
+    sfml-network-d-2.dll._ZN2sf6PacketlsEt
+    sfml-network-d-2.dll._ZN2sf6PacketrsEPc
+    sfml-network-d-2.dll._ZN2sf6PacketrsEPw
+    sfml-network-d-2.dll._ZN2sf6PacketrsERNS_6StringE
+    sfml-network-d-2.dll._ZN2sf6PacketrsERSbIwSt11char_traitsIwESaIwEE
+    sfml-network-d-2.dll._ZN2sf6PacketrsERSs
+    sfml-network-d-2.dll._ZN2sf6PacketrsERa
+    sfml-network-d-2.dll._ZN2sf6PacketrsERb
+    sfml-network-d-2.dll._ZN2sf6PacketrsERd
+    sfml-network-d-2.dll._ZN2sf6PacketrsERf
+    sfml-network-d-2.dll._ZN2sf6PacketrsERh
+    sfml-network-d-2.dll._ZN2sf6PacketrsERi
+    sfml-network-d-2.dll._ZN2sf6PacketrsERj
+    sfml-network-d-2.dll._ZN2sf6PacketrsERs
+    sfml-network-d-2.dll._ZN2sf6PacketrsERt
+    sfml-graphics-d-2.dll._ZN2sf6Shader11isAvailableEv
+    sfml-graphics-d-2.dll._ZN2sf6Shader12loadFromFileERKSsNS0_4TypeE
+    sfml-graphics-d-2.dll._ZN2sf6Shader12loadFromFileERKSsS2_
+    sfml-graphics-d-2.dll._ZN2sf6Shader12setParameterERKSsNS0_18CurrentTextureTypeE
+    sfml-graphics-d-2.dll._ZN2sf6Shader12setParameterERKSsRKNS_5ColorE
+    sfml-graphics-d-2.dll._ZN2sf6Shader12setParameterERKSsRKNS_7TextureE
+    sfml-graphics-d-2.dll._ZN2sf6Shader12setParameterERKSsRKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZN2sf6Shader12setParameterERKSsRKNS_7Vector3IfEE
+    sfml-graphics-d-2.dll._ZN2sf6Shader12setParameterERKSsRKNS_9TransformE
+    sfml-graphics-d-2.dll._ZN2sf6Shader12setParameterERKSsf
+    sfml-graphics-d-2.dll._ZN2sf6Shader12setParameterERKSsff
+    sfml-graphics-d-2.dll._ZN2sf6Shader12setParameterERKSsfff
+    sfml-graphics-d-2.dll._ZN2sf6Shader12setParameterERKSsffff
+    sfml-graphics-d-2.dll._ZN2sf6Shader14CurrentTextureE
+    sfml-graphics-d-2.dll._ZN2sf6Shader14loadFromMemoryERKSsNS0_4TypeE
+    sfml-graphics-d-2.dll._ZN2sf6Shader14loadFromMemoryERKSsS2_
+    sfml-graphics-d-2.dll._ZN2sf6Shader14loadFromStreamERNS_11InputStreamENS0_4TypeE
+    sfml-graphics-d-2.dll._ZN2sf6Shader14loadFromStreamERNS_11InputStreamES2_
+    sfml-graphics-d-2.dll._ZN2sf6Shader16getParamLocationERKSs
+    sfml-graphics-d-2.dll._ZN2sf6Shader4bindEPKS0_
+    sfml-graphics-d-2.dll._ZN2sf6Shader7compileEPKcS2_
+    sfml-graphics-d-2.dll._ZN2sf6ShaderC1Ev
+    sfml-graphics-d-2.dll._ZN2sf6ShaderC2Ev
+    sfml-graphics-d-2.dll._ZN2sf6ShaderD1Ev
+    sfml-graphics-d-2.dll._ZN2sf6ShaderD2Ev
+    sfml-network-d-2.dll._ZN2sf6Socket11setBlockingEb
+    sfml-network-d-2.dll._ZN2sf6Socket5closeEv
+    sfml-network-d-2.dll._ZN2sf6Socket6createEj
+    sfml-network-d-2.dll._ZN2sf6Socket6createEv
+    sfml-network-d-2.dll._ZN2sf6SocketC1ENS0_4TypeE
+    sfml-network-d-2.dll._ZN2sf6SocketC2ENS0_4TypeE
+    sfml-network-d-2.dll._ZN2sf6SocketD0Ev
+    sfml-network-d-2.dll._ZN2sf6SocketD1Ev
+    sfml-network-d-2.dll._ZN2sf6SocketD2Ev
+    sfml-graphics-d-2.dll._ZN2sf6Sprite10setTextureERKNS_7TextureEb
+    sfml-graphics-d-2.dll._ZN2sf6Sprite14setTextureRectERKNS_4RectIiEE
+    sfml-graphics-d-2.dll._ZN2sf6Sprite15updatePositionsEv
+    sfml-graphics-d-2.dll._ZN2sf6Sprite15updateTexCoordsEv
+    sfml-graphics-d-2.dll._ZN2sf6Sprite8setColorERKNS_5ColorE
+    sfml-graphics-d-2.dll._ZN2sf6SpriteC1ERKNS_7TextureE
+    sfml-graphics-d-2.dll._ZN2sf6SpriteC1ERKNS_7TextureERKNS_4RectIiEE
+    sfml-graphics-d-2.dll._ZN2sf6SpriteC1Ev
+    sfml-graphics-d-2.dll._ZN2sf6SpriteC2ERKNS_7TextureE
+    sfml-graphics-d-2.dll._ZN2sf6SpriteC2ERKNS_7TextureERKNS_4RectIiEE
+    sfml-graphics-d-2.dll._ZN2sf6SpriteC2Ev
+    sfml-system-d-2.dll._ZN2sf6String10InvalidPosE
+    sfml-system-d-2.dll._ZN2sf6String3endEv
+    sfml-system-d-2.dll._ZN2sf6String5beginEv
+    sfml-system-d-2.dll._ZN2sf6String5clearEv
+    sfml-system-d-2.dll._ZN2sf6String5eraseEjj
+    sfml-system-d-2.dll._ZN2sf6String6insertEjRKS0_
+    sfml-system-d-2.dll._ZN2sf6StringC1EPKcRKSt6locale
+    sfml-system-d-2.dll._ZN2sf6StringC1EPKj
+    sfml-system-d-2.dll._ZN2sf6StringC1EPKw
+    sfml-system-d-2.dll._ZN2sf6StringC1ERKS0_
+    sfml-system-d-2.dll._ZN2sf6StringC1ERKSbIjSt11char_traitsIjESaIjEE
+    sfml-system-d-2.dll._ZN2sf6StringC1ERKSbIwSt11char_traitsIwESaIwEE
+    sfml-system-d-2.dll._ZN2sf6StringC1ERKSsRKSt6locale
+    sfml-system-d-2.dll._ZN2sf6StringC1EcRKSt6locale
+    sfml-system-d-2.dll._ZN2sf6StringC1Ej
+    sfml-system-d-2.dll._ZN2sf6StringC1Ev
+    sfml-system-d-2.dll._ZN2sf6StringC1Ew
+    sfml-system-d-2.dll._ZN2sf6StringC2EPKcRKSt6locale
+    sfml-system-d-2.dll._ZN2sf6StringC2EPKj
+    sfml-system-d-2.dll._ZN2sf6StringC2EPKw
+    sfml-system-d-2.dll._ZN2sf6StringC2ERKS0_
+    sfml-system-d-2.dll._ZN2sf6StringC2ERKSbIjSt11char_traitsIjESaIjEE
+    sfml-system-d-2.dll._ZN2sf6StringC2ERKSbIwSt11char_traitsIwESaIwEE
+    sfml-system-d-2.dll._ZN2sf6StringC2ERKSsRKSt6locale
+    sfml-system-d-2.dll._ZN2sf6StringC2EcRKSt6locale
+    sfml-system-d-2.dll._ZN2sf6StringC2Ej
+    sfml-system-d-2.dll._ZN2sf6StringC2Ev
+    sfml-system-d-2.dll._ZN2sf6StringC2Ew
+    sfml-system-d-2.dll._ZN2sf6StringaSERKS0_
+    sfml-system-d-2.dll._ZN2sf6StringixEj
+    sfml-system-d-2.dll._ZN2sf6StringpLERKS0_
+    sfml-system-d-2.dll._ZN2sf6Thread3runEv
+    sfml-system-d-2.dll._ZN2sf6Thread4waitEv
+    sfml-system-d-2.dll._ZN2sf6Thread6launchEv
+    sfml-system-d-2.dll._ZN2sf6Thread9terminateEv
+    sfml-system-d-2.dll._ZN2sf6ThreadD1Ev
+    sfml-system-d-2.dll._ZN2sf6ThreadD2Ev
+    sfml-graphics-d-2.dll._ZN2sf6VertexC1ERKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZN2sf6VertexC1ERKNS_7Vector2IfEERKNS_5ColorE
+    sfml-graphics-d-2.dll._ZN2sf6VertexC1ERKNS_7Vector2IfEERKNS_5ColorES4_
+    sfml-graphics-d-2.dll._ZN2sf6VertexC1ERKNS_7Vector2IfEES4_
+    sfml-graphics-d-2.dll._ZN2sf6VertexC1Ev
+    sfml-graphics-d-2.dll._ZN2sf6VertexC2ERKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZN2sf6VertexC2ERKNS_7Vector2IfEERKNS_5ColorE
+    sfml-graphics-d-2.dll._ZN2sf6VertexC2ERKNS_7Vector2IfEERKNS_5ColorES4_
+    sfml-graphics-d-2.dll._ZN2sf6VertexC2ERKNS_7Vector2IfEES4_
+    sfml-graphics-d-2.dll._ZN2sf6VertexC2Ev
+    sfml-window-d-2.dll._ZN2sf6Window10initializeEv
+    sfml-window-d-2.dll._ZN2sf6Window10setVisibleEb
+    sfml-window-d-2.dll._ZN2sf6Window11filterEventERKNS_5EventE
+    sfml-window-d-2.dll._ZN2sf6Window11setPositionERKNS_7Vector2IiEE
+    sfml-window-d-2.dll._ZN2sf6Window17setFramerateLimitEj
+    sfml-window-d-2.dll._ZN2sf6Window19setKeyRepeatEnabledEb
+    sfml-window-d-2.dll._ZN2sf6Window20setJoystickThresholdEf
+    sfml-window-d-2.dll._ZN2sf6Window21setMouseCursorVisibleEb
+    sfml-window-d-2.dll._ZN2sf6Window22setVerticalSyncEnabledEb
+    sfml-window-d-2.dll._ZN2sf6Window5closeEv
+    sfml-window-d-2.dll._ZN2sf6Window6createENS_9VideoModeERKNS_6StringEjRKNS_15ContextSettingsE
+    sfml-window-d-2.dll._ZN2sf6Window6createEP6HWND__RKNS_15ContextSettingsE
+    sfml-window-d-2.dll._ZN2sf6Window7displayEv
+    sfml-window-d-2.dll._ZN2sf6Window7setIconEjjPKh
+    sfml-window-d-2.dll._ZN2sf6Window7setSizeENS_7Vector2IjEE
+    sfml-window-d-2.dll._ZN2sf6Window8onCreateEv
+    sfml-window-d-2.dll._ZN2sf6Window8onResizeEv
+    sfml-window-d-2.dll._ZN2sf6Window8setTitleERKNS_6StringE
+    sfml-window-d-2.dll._ZN2sf6Window9pollEventERNS_5EventE
+    sfml-window-d-2.dll._ZN2sf6Window9waitEventERNS_5EventE
+    sfml-window-d-2.dll._ZN2sf6WindowC1ENS_9VideoModeERKNS_6StringEjRKNS_15ContextSettingsE
+    sfml-window-d-2.dll._ZN2sf6WindowC1EP6HWND__RKNS_15ContextSettingsE
+    sfml-window-d-2.dll._ZN2sf6WindowC1Ev
+    sfml-window-d-2.dll._ZN2sf6WindowC2ENS_9VideoModeERKNS_6StringEjRKNS_15ContextSettingsE
+    sfml-window-d-2.dll._ZN2sf6WindowC2EP6HWND__RKNS_15ContextSettingsE
+    sfml-window-d-2.dll._ZN2sf6WindowC2Ev
+    sfml-window-d-2.dll._ZN2sf6WindowD0Ev
+    sfml-window-d-2.dll._ZN2sf6WindowD1Ev
+    sfml-window-d-2.dll._ZN2sf6WindowD2Ev
+    sfml-window-d-2.dll._ZN2sf7Context9setActiveEb
+    sfml-window-d-2.dll._ZN2sf7ContextC1ERKNS_15ContextSettingsEjj
+    sfml-window-d-2.dll._ZN2sf7ContextC1Ev
+    sfml-window-d-2.dll._ZN2sf7ContextC2ERKNS_15ContextSettingsEjj
+    sfml-window-d-2.dll._ZN2sf7ContextC2Ev
+    sfml-window-d-2.dll._ZN2sf7ContextD1Ev
+    sfml-window-d-2.dll._ZN2sf7ContextD2Ev
+    sfml-graphics-d-2.dll._ZN2sf7Texture11setRepeatedEb
+    sfml-graphics-d-2.dll._ZN2sf7Texture12getValidSizeEj
+    sfml-graphics-d-2.dll._ZN2sf7Texture12loadFromFileERKSsRKNS_4RectIiEE
+    sfml-graphics-d-2.dll._ZN2sf7Texture13loadFromImageERKNS_5ImageERKNS_4RectIiEE
+    sfml-graphics-d-2.dll._ZN2sf7Texture14getMaximumSizeEv
+    sfml-graphics-d-2.dll._ZN2sf7Texture14loadFromMemoryEPKvjRKNS_4RectIiEE
+    sfml-graphics-d-2.dll._ZN2sf7Texture14loadFromStreamERNS_11InputStreamERKNS_4RectIiEE
+    sfml-graphics-d-2.dll._ZN2sf7Texture4bindEPKS0_NS0_14CoordinateTypeE
+    sfml-graphics-d-2.dll._ZN2sf7Texture6createEjj
+    sfml-graphics-d-2.dll._ZN2sf7Texture6updateEPKh
+    sfml-graphics-d-2.dll._ZN2sf7Texture6updateEPKhjjjj
+    sfml-graphics-d-2.dll._ZN2sf7Texture6updateERKNS_5ImageE
+    sfml-graphics-d-2.dll._ZN2sf7Texture6updateERKNS_5ImageEjj
+    sfml-graphics-d-2.dll._ZN2sf7Texture6updateERKNS_6WindowE
+    sfml-graphics-d-2.dll._ZN2sf7Texture6updateERKNS_6WindowEjj
+    sfml-graphics-d-2.dll._ZN2sf7Texture9setSmoothEb
+    sfml-graphics-d-2.dll._ZN2sf7TextureC1ERKS0_
+    sfml-graphics-d-2.dll._ZN2sf7TextureC1Ev
+    sfml-graphics-d-2.dll._ZN2sf7TextureC2ERKS0_
+    sfml-graphics-d-2.dll._ZN2sf7TextureC2Ev
+    sfml-graphics-d-2.dll._ZN2sf7TextureD1Ev
+    sfml-graphics-d-2.dll._ZN2sf7TextureD2Ev
+    sfml-graphics-d-2.dll._ZN2sf7TextureaSERKS0_
+    sfml-system-d-2.dll._ZN2sf7secondsEf
+    sfml-graphics-d-2.dll._ZN2sf8DrawableD0Ev
+    sfml-graphics-d-2.dll._ZN2sf8DrawableD1Ev
+    sfml-graphics-d-2.dll._ZN2sf8DrawableD2Ev
+    sfml-window-d-2.dll._ZN2sf8Joystick11isConnectedEj
+    sfml-window-d-2.dll._ZN2sf8Joystick14getButtonCountEj
+    sfml-window-d-2.dll._ZN2sf8Joystick15getAxisPositionEjNS0_4AxisE
+    sfml-window-d-2.dll._ZN2sf8Joystick15isButtonPressedEjj
+    sfml-window-d-2.dll._ZN2sf8Joystick6updateEv
+    sfml-window-d-2.dll._ZN2sf8Joystick7hasAxisEjNS0_4AxisE
+    sfml-window-d-2.dll._ZN2sf8Keyboard12isKeyPressedENS0_3KeyE
+    sfml-audio-d-2.dll._ZN2sf8Listener11getPositionEv
+    sfml-audio-d-2.dll._ZN2sf8Listener11setPositionERKNS_7Vector3IfEE
+    sfml-audio-d-2.dll._ZN2sf8Listener11setPositionEfff
+    sfml-audio-d-2.dll._ZN2sf8Listener12getDirectionEv
+    sfml-audio-d-2.dll._ZN2sf8Listener12setDirectionERKNS_7Vector3IfEE
+    sfml-audio-d-2.dll._ZN2sf8Listener12setDirectionEfff
+    sfml-audio-d-2.dll._ZN2sf8Listener15getGlobalVolumeEv
+    sfml-audio-d-2.dll._ZN2sf8Listener15setGlobalVolumeEf
+    sfml-network-d-2.dll._ZN2sf9IpAddress15getLocalAddressEv
+    sfml-network-d-2.dll._ZN2sf9IpAddress16getPublicAddressENS_4TimeE
+    sfml-network-d-2.dll._ZN2sf9IpAddress4NoneE
+    sfml-network-d-2.dll._ZN2sf9IpAddress9BroadcastE
+    sfml-network-d-2.dll._ZN2sf9IpAddress9LocalHostE
+    sfml-network-d-2.dll._ZN2sf9IpAddressC1EPKc
+    sfml-network-d-2.dll._ZN2sf9IpAddressC1ERKSs
+    sfml-network-d-2.dll._ZN2sf9IpAddressC1Ehhhh
+    sfml-network-d-2.dll._ZN2sf9IpAddressC1Ej
+    sfml-network-d-2.dll._ZN2sf9IpAddressC1Ev
+    sfml-network-d-2.dll._ZN2sf9IpAddressC2EPKc
+    sfml-network-d-2.dll._ZN2sf9IpAddressC2ERKSs
+    sfml-network-d-2.dll._ZN2sf9IpAddressC2Ehhhh
+    sfml-network-d-2.dll._ZN2sf9IpAddressC2Ej
+    sfml-network-d-2.dll._ZN2sf9IpAddressC2Ev
+    sfml-network-d-2.dll._ZN2sf9TcpSocket10disconnectEv
+    sfml-network-d-2.dll._ZN2sf9TcpSocket4sendEPKvj
+    sfml-network-d-2.dll._ZN2sf9TcpSocket4sendERNS_6PacketE
+    sfml-network-d-2.dll._ZN2sf9TcpSocket7connectERKNS_9IpAddressEtNS_4TimeE
+    sfml-network-d-2.dll._ZN2sf9TcpSocket7receiveEPvjRj
+    sfml-network-d-2.dll._ZN2sf9TcpSocket7receiveERNS_6PacketE
+    sfml-network-d-2.dll._ZN2sf9TcpSocketC1Ev
+    sfml-network-d-2.dll._ZN2sf9TcpSocketC2Ev
+    sfml-graphics-d-2.dll._ZN2sf9Transform5scaleERKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZN2sf9Transform5scaleERKNS_7Vector2IfEES4_
+    sfml-graphics-d-2.dll._ZN2sf9Transform5scaleEff
+    sfml-graphics-d-2.dll._ZN2sf9Transform5scaleEffff
+    sfml-graphics-d-2.dll._ZN2sf9Transform6rotateEf
+    sfml-graphics-d-2.dll._ZN2sf9Transform6rotateEfRKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZN2sf9Transform6rotateEfff
+    sfml-graphics-d-2.dll._ZN2sf9Transform7combineERKS0_
+    sfml-graphics-d-2.dll._ZN2sf9Transform8IdentityE
+    sfml-graphics-d-2.dll._ZN2sf9Transform9translateERKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZN2sf9Transform9translateEff
+    sfml-graphics-d-2.dll._ZN2sf9TransformC1Efffffffff
+    sfml-graphics-d-2.dll._ZN2sf9TransformC1Ev
+    sfml-graphics-d-2.dll._ZN2sf9TransformC2Efffffffff
+    sfml-graphics-d-2.dll._ZN2sf9TransformC2Ev
+    sfml-network-d-2.dll._ZN2sf9UdpSocket4bindEt
+    sfml-network-d-2.dll._ZN2sf9UdpSocket4sendEPKvjRKNS_9IpAddressEt
+    sfml-network-d-2.dll._ZN2sf9UdpSocket4sendERNS_6PacketERKNS_9IpAddressEt
+    sfml-network-d-2.dll._ZN2sf9UdpSocket6unbindEv
+    sfml-network-d-2.dll._ZN2sf9UdpSocket7receiveEPvjRjRNS_9IpAddressERt
+    sfml-network-d-2.dll._ZN2sf9UdpSocket7receiveERNS_6PacketERNS_9IpAddressERt
+    sfml-network-d-2.dll._ZN2sf9UdpSocketC1Ev
+    sfml-network-d-2.dll._ZN2sf9UdpSocketC2Ev
+    sfml-window-d-2.dll._ZN2sf9VideoMode14getDesktopModeEv
+    sfml-window-d-2.dll._ZN2sf9VideoMode18getFullscreenModesEv
+    sfml-window-d-2.dll._ZN2sf9VideoModeC1Ejjj
+    sfml-window-d-2.dll._ZN2sf9VideoModeC1Ev
+    sfml-window-d-2.dll._ZN2sf9VideoModeC2Ejjj
+    sfml-window-d-2.dll._ZN2sf9VideoModeC2Ev
+    sfml-system-d-2.dll._ZN2sfdVERNS_4TimeEf
+    sfml-system-d-2.dll._ZN2sfdVERNS_4TimeEx
+    sfml-system-d-2.dll._ZN2sfdvENS_4TimeEf
+    sfml-system-d-2.dll._ZN2sfdvENS_4TimeEx
+    sfml-system-d-2.dll._ZN2sfeqENS_4TimeES0_
+    sfml-graphics-d-2.dll._ZN2sfeqERKNS_5ColorES2_
+    sfml-system-d-2.dll._ZN2sfeqERKNS_6StringES2_
+    sfml-network-d-2.dll._ZN2sfeqERKNS_9IpAddressES2_
+    sfml-window-d-2.dll._ZN2sfeqERKNS_9VideoModeES2_
+    sfml-system-d-2.dll._ZN2sfgeENS_4TimeES0_
+    sfml-system-d-2.dll._ZN2sfgeERKNS_6StringES2_
+    sfml-network-d-2.dll._ZN2sfgeERKNS_9IpAddressES2_
+    sfml-window-d-2.dll._ZN2sfgeERKNS_9VideoModeES2_
+    sfml-system-d-2.dll._ZN2sfgtENS_4TimeES0_
+    sfml-system-d-2.dll._ZN2sfgtERKNS_6StringES2_
+    sfml-network-d-2.dll._ZN2sfgtERKNS_9IpAddressES2_
+    sfml-window-d-2.dll._ZN2sfgtERKNS_9VideoModeES2_
+    sfml-system-d-2.dll._ZN2sfleENS_4TimeES0_
+    sfml-system-d-2.dll._ZN2sfleERKNS_6StringES2_
+    sfml-network-d-2.dll._ZN2sfleERKNS_9IpAddressES2_
+    sfml-window-d-2.dll._ZN2sfleERKNS_9VideoModeES2_
+    sfml-network-d-2.dll._ZN2sflsERSoRKNS_9IpAddressE
+    sfml-system-d-2.dll._ZN2sfltENS_4TimeES0_
+    sfml-system-d-2.dll._ZN2sfltERKNS_6StringES2_
+    sfml-network-d-2.dll._ZN2sfltERKNS_9IpAddressES2_
+    sfml-window-d-2.dll._ZN2sfltERKNS_9VideoModeES2_
+    sfml-system-d-2.dll._ZN2sfmIERNS_4TimeES0_
+    sfml-system-d-2.dll._ZN2sfmLERNS_4TimeEf
+    sfml-system-d-2.dll._ZN2sfmLERNS_4TimeEx
+    sfml-graphics-d-2.dll._ZN2sfmLERNS_5ColorERKS0_
+    sfml-graphics-d-2.dll._ZN2sfmLERNS_9TransformERKS0_
+    sfml-system-d-2.dll._ZN2sfmiENS_4TimeES0_
+    sfml-system-d-2.dll._ZN2sfmlENS_4TimeEf
+    sfml-system-d-2.dll._ZN2sfmlENS_4TimeEx
+    sfml-graphics-d-2.dll._ZN2sfmlERKNS_5ColorES2_
+    sfml-graphics-d-2.dll._ZN2sfmlERKNS_9TransformERKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZN2sfmlERKNS_9TransformES2_
+    sfml-system-d-2.dll._ZN2sfmlEfNS_4TimeE
+    sfml-system-d-2.dll._ZN2sfmlExNS_4TimeE
+    sfml-system-d-2.dll._ZN2sfneENS_4TimeES0_
+    sfml-graphics-d-2.dll._ZN2sfneERKNS_5ColorES2_
+    sfml-system-d-2.dll._ZN2sfneERKNS_6StringES2_
+    sfml-network-d-2.dll._ZN2sfneERKNS_9IpAddressES2_
+    sfml-window-d-2.dll._ZN2sfneERKNS_9VideoModeES2_
+    sfml-system-d-2.dll._ZN2sfngENS_4TimeE
+    sfml-system-d-2.dll._ZN2sfpLERNS_4TimeES0_
+    sfml-graphics-d-2.dll._ZN2sfpLERNS_5ColorERKS0_
+    sfml-system-d-2.dll._ZN2sfplENS_4TimeES0_
+    sfml-graphics-d-2.dll._ZN2sfplERKNS_5ColorES2_
+    sfml-system-d-2.dll._ZN2sfplERKNS_6StringES2_
+    sfml-network-d-2.dll._ZN2sfrsERSiRNS_9IpAddressE
+    sfml-graphics-d-2.dll._ZNK2sf11CircleShape13getPointCountEv
+    sfml-graphics-d-2.dll._ZNK2sf11CircleShape8getPointEj
+    sfml-graphics-d-2.dll._ZNK2sf11CircleShape9getRadiusEv
+    sfml-graphics-d-2.dll._ZNK2sf11ConvexShape13getPointCountEv
+    sfml-graphics-d-2.dll._ZNK2sf11ConvexShape8getPointEj
+    sfml-audio-d-2.dll._ZNK2sf11SoundBuffer10getSamplesEv
+    sfml-audio-d-2.dll._ZNK2sf11SoundBuffer10saveToFileERKSs
+    sfml-audio-d-2.dll._ZNK2sf11SoundBuffer11attachSoundEPNS_5SoundE
+    sfml-audio-d-2.dll._ZNK2sf11SoundBuffer11detachSoundEPNS_5SoundE
+    sfml-audio-d-2.dll._ZNK2sf11SoundBuffer11getDurationEv
+    sfml-audio-d-2.dll._ZNK2sf11SoundBuffer13getSampleRateEv
+    sfml-audio-d-2.dll._ZNK2sf11SoundBuffer14getSampleCountEv
+    sfml-audio-d-2.dll._ZNK2sf11SoundBuffer15getChannelCountEv
+    sfml-audio-d-2.dll._ZNK2sf11SoundSource11getPositionEv
+    sfml-audio-d-2.dll._ZNK2sf11SoundSource14getAttenuationEv
+    sfml-audio-d-2.dll._ZNK2sf11SoundSource14getMinDistanceEv
+    sfml-audio-d-2.dll._ZNK2sf11SoundSource20isRelativeToListenerEv
+    sfml-audio-d-2.dll._ZNK2sf11SoundSource8getPitchEv
+    sfml-audio-d-2.dll._ZNK2sf11SoundSource9getStatusEv
+    sfml-audio-d-2.dll._ZNK2sf11SoundSource9getVolumeEv
+    sfml-audio-d-2.dll._ZNK2sf11SoundStream13getSampleRateEv
+    sfml-audio-d-2.dll._ZNK2sf11SoundStream15getChannelCountEv
+    sfml-audio-d-2.dll._ZNK2sf11SoundStream16getPlayingOffsetEv
+    sfml-audio-d-2.dll._ZNK2sf11SoundStream7getLoopEv
+    sfml-audio-d-2.dll._ZNK2sf11SoundStream9getStatusEv
+    sfml-network-d-2.dll._ZNK2sf11TcpListener12getLocalPortEv
+    sfml-system-d-2.dll._ZNK2sf11ThreadLocal8getValueEv
+    sfml-graphics-d-2.dll._ZNK2sf11VertexArray14getVertexCountEv
+    sfml-graphics-d-2.dll._ZNK2sf11VertexArray16getPrimitiveTypeEv
+    sfml-graphics-d-2.dll._ZNK2sf11VertexArray4drawERNS_12RenderTargetENS_12RenderStatesE
+    sfml-graphics-d-2.dll._ZNK2sf11VertexArray9getBoundsEv
+    sfml-graphics-d-2.dll._ZNK2sf11VertexArrayixEj
+    sfml-graphics-d-2.dll._ZNK2sf12RenderTarget11getViewportERKNS_4ViewE
+    sfml-graphics-d-2.dll._ZNK2sf12RenderTarget14getDefaultViewEv
+    sfml-graphics-d-2.dll._ZNK2sf12RenderTarget16mapCoordsToPixelERKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZNK2sf12RenderTarget16mapCoordsToPixelERKNS_7Vector2IfEERKNS_4ViewE
+    sfml-graphics-d-2.dll._ZNK2sf12RenderTarget16mapPixelToCoordsERKNS_7Vector2IiEE
+    sfml-graphics-d-2.dll._ZNK2sf12RenderTarget16mapPixelToCoordsERKNS_7Vector2IiEERKNS_4ViewE
+    sfml-graphics-d-2.dll._ZNK2sf12RenderTarget7getViewEv
+    sfml-graphics-d-2.dll._ZNK2sf12RenderWindow7captureEv
+    sfml-graphics-d-2.dll._ZNK2sf12RenderWindow7getSizeEv
+    sfml-graphics-d-2.dll._ZNK2sf13RenderTexture10getTextureEv
+    sfml-graphics-d-2.dll._ZNK2sf13RenderTexture10isRepeatedEv
+    sfml-graphics-d-2.dll._ZNK2sf13RenderTexture7getSizeEv
+    sfml-graphics-d-2.dll._ZNK2sf13RenderTexture8isSmoothEv
+    sfml-audio-d-2.dll._ZNK2sf13SoundRecorder13getSampleRateEv
+    sfml-graphics-d-2.dll._ZNK2sf13Transformable11getPositionEv
+    sfml-graphics-d-2.dll._ZNK2sf13Transformable11getRotationEv
+    sfml-graphics-d-2.dll._ZNK2sf13Transformable12getTransformEv
+    sfml-graphics-d-2.dll._ZNK2sf13Transformable19getInverseTransformEv
+    sfml-graphics-d-2.dll._ZNK2sf13Transformable8getScaleEv
+    sfml-graphics-d-2.dll._ZNK2sf13Transformable9getOriginEv
+    sfml-graphics-d-2.dll._ZNK2sf14RectangleShape13getPointCountEv
+    sfml-graphics-d-2.dll._ZNK2sf14RectangleShape7getSizeEv
+    sfml-graphics-d-2.dll._ZNK2sf14RectangleShape8getPointEj
+    sfml-network-d-2.dll._ZNK2sf14SocketSelector7isReadyERNS_6SocketE
+    sfml-audio-d-2.dll._ZNK2sf19SoundBufferRecorder9getBufferEv
+    sfml-network-d-2.dll._ZNK2sf3Ftp15ListingResponse10getListingEv
+    sfml-network-d-2.dll._ZNK2sf3Ftp17DirectoryResponse12getDirectoryEv
+    sfml-network-d-2.dll._ZNK2sf3Ftp8Response10getMessageEv
+    sfml-network-d-2.dll._ZNK2sf3Ftp8Response4isOkEv
+    sfml-network-d-2.dll._ZNK2sf3Ftp8Response9getStatusEv
+    sfml-graphics-d-2.dll._ZNK2sf4Font10getKerningEjjj
+    sfml-graphics-d-2.dll._ZNK2sf4Font10getTextureEj
+    sfml-graphics-d-2.dll._ZNK2sf4Font13findGlyphRectERNS0_4PageEjj
+    sfml-graphics-d-2.dll._ZNK2sf4Font14getLineSpacingEj
+    sfml-graphics-d-2.dll._ZNK2sf4Font14setCurrentSizeEj
+    sfml-graphics-d-2.dll._ZNK2sf4Font8getGlyphEjjb
+    sfml-graphics-d-2.dll._ZNK2sf4Font9loadGlyphEjjb
+    sfml-network-d-2.dll._ZNK2sf4Http7Request7prepareEv
+    sfml-network-d-2.dll._ZNK2sf4Http7Request8hasFieldERKSs
+    sfml-network-d-2.dll._ZNK2sf4Http8Response19getMajorHttpVersionEv
+    sfml-network-d-2.dll._ZNK2sf4Http8Response19getMinorHttpVersionEv
+    sfml-network-d-2.dll._ZNK2sf4Http8Response7getBodyEv
+    sfml-network-d-2.dll._ZNK2sf4Http8Response8getFieldERKSs
+    sfml-network-d-2.dll._ZNK2sf4Http8Response9getStatusEv
+    sfml-graphics-d-2.dll._ZNK2sf4Text14getLocalBoundsEv
+    sfml-graphics-d-2.dll._ZNK2sf4Text15getGlobalBoundsEv
+    sfml-graphics-d-2.dll._ZNK2sf4Text16findCharacterPosEj
+    sfml-graphics-d-2.dll._ZNK2sf4Text16getCharacterSizeEv
+    sfml-graphics-d-2.dll._ZNK2sf4Text4drawERNS_12RenderTargetENS_12RenderStatesE
+    sfml-graphics-d-2.dll._ZNK2sf4Text7getFontEv
+    sfml-graphics-d-2.dll._ZNK2sf4Text8getColorEv
+    sfml-graphics-d-2.dll._ZNK2sf4Text8getStyleEv
+    sfml-graphics-d-2.dll._ZNK2sf4Text9getStringEv
+    sfml-system-d-2.dll._ZNK2sf4Time14asMicrosecondsEv
+    sfml-system-d-2.dll._ZNK2sf4Time14asMillisecondsEv
+    sfml-system-d-2.dll._ZNK2sf4Time9asSecondsEv
+    sfml-graphics-d-2.dll._ZNK2sf4View11getRotationEv
+    sfml-graphics-d-2.dll._ZNK2sf4View11getViewportEv
+    sfml-graphics-d-2.dll._ZNK2sf4View12getTransformEv
+    sfml-graphics-d-2.dll._ZNK2sf4View19getInverseTransformEv
+    sfml-graphics-d-2.dll._ZNK2sf4View7getSizeEv
+    sfml-graphics-d-2.dll._ZNK2sf4View9getCenterEv
+    sfml-system-d-2.dll._ZNK2sf5Clock14getElapsedTimeEv
+    sfml-graphics-d-2.dll._ZNK2sf5Image10saveToFileERKSs
+    sfml-graphics-d-2.dll._ZNK2sf5Image12getPixelsPtrEv
+    sfml-graphics-d-2.dll._ZNK2sf5Image7getSizeEv
+    sfml-graphics-d-2.dll._ZNK2sf5Image8getPixelEjj
+    sfml-audio-d-2.dll._ZNK2sf5Music11getDurationEv
+    sfml-graphics-d-2.dll._ZNK2sf5Shape10getTextureEv
+    sfml-graphics-d-2.dll._ZNK2sf5Shape12getFillColorEv
+    sfml-graphics-d-2.dll._ZNK2sf5Shape14getLocalBoundsEv
+    sfml-graphics-d-2.dll._ZNK2sf5Shape14getTextureRectEv
+    sfml-graphics-d-2.dll._ZNK2sf5Shape15getGlobalBoundsEv
+    sfml-graphics-d-2.dll._ZNK2sf5Shape15getOutlineColorEv
+    sfml-graphics-d-2.dll._ZNK2sf5Shape19getOutlineThicknessEv
+    sfml-graphics-d-2.dll._ZNK2sf5Shape4drawERNS_12RenderTargetENS_12RenderStatesE
+    sfml-audio-d-2.dll._ZNK2sf5Sound16getPlayingOffsetEv
+    sfml-audio-d-2.dll._ZNK2sf5Sound7getLoopEv
+    sfml-audio-d-2.dll._ZNK2sf5Sound9getBufferEv
+    sfml-audio-d-2.dll._ZNK2sf5Sound9getStatusEv
+    sfml-network-d-2.dll._ZNK2sf6Packet11endOfPacketEv
+    sfml-network-d-2.dll._ZNK2sf6Packet11getDataSizeEv
+    sfml-network-d-2.dll._ZNK2sf6Packet7getDataEv
+    sfml-network-d-2.dll._ZNK2sf6PacketcvMS0_FbjEEv
+    sfml-graphics-d-2.dll._ZNK2sf6Shader12bindTexturesEv
+    sfml-network-d-2.dll._ZNK2sf6Socket10isBlockingEv
+    sfml-network-d-2.dll._ZNK2sf6Socket9getHandleEv
+    sfml-graphics-d-2.dll._ZNK2sf6Sprite10getTextureEv
+    sfml-graphics-d-2.dll._ZNK2sf6Sprite14getLocalBoundsEv
+    sfml-graphics-d-2.dll._ZNK2sf6Sprite14getTextureRectEv
+    sfml-graphics-d-2.dll._ZNK2sf6Sprite15getGlobalBoundsEv
+    sfml-graphics-d-2.dll._ZNK2sf6Sprite4drawERNS_12RenderTargetENS_12RenderStatesE
+    sfml-graphics-d-2.dll._ZNK2sf6Sprite8getColorEv
+    sfml-system-d-2.dll._ZNK2sf6String12toAnsiStringERKSt6locale
+    sfml-system-d-2.dll._ZNK2sf6String12toWideStringEv
+    sfml-system-d-2.dll._ZNK2sf6String3endEv
+    sfml-system-d-2.dll._ZNK2sf6String4findERKS0_j
+    sfml-system-d-2.dll._ZNK2sf6String5beginEv
+    sfml-system-d-2.dll._ZNK2sf6String7getDataEv
+    sfml-system-d-2.dll._ZNK2sf6String7getSizeEv
+    sfml-system-d-2.dll._ZNK2sf6String7isEmptyEv
+    sfml-system-d-2.dll._ZNK2sf6StringcvSbIwSt11char_traitsIwESaIwEEEv
+    sfml-system-d-2.dll._ZNK2sf6StringcvSsEv
+    sfml-system-d-2.dll._ZNK2sf6StringixEj
+    sfml-window-d-2.dll._ZNK2sf6Window11getPositionEv
+    sfml-window-d-2.dll._ZNK2sf6Window11getSettingsEv
+    sfml-window-d-2.dll._ZNK2sf6Window15getSystemHandleEv
+    sfml-window-d-2.dll._ZNK2sf6Window6isOpenEv
+    sfml-window-d-2.dll._ZNK2sf6Window7getSizeEv
+    sfml-window-d-2.dll._ZNK2sf6Window9setActiveEb
+    sfml-graphics-d-2.dll._ZNK2sf7Texture10isRepeatedEv
+    sfml-graphics-d-2.dll._ZNK2sf7Texture11copyToImageEv
+    sfml-graphics-d-2.dll._ZNK2sf7Texture7getSizeEv
+    sfml-graphics-d-2.dll._ZNK2sf7Texture8isSmoothEv
+    sfml-network-d-2.dll._ZNK2sf9IpAddress8toStringEv
+    sfml-network-d-2.dll._ZNK2sf9IpAddress9toIntegerEv
+    sfml-network-d-2.dll._ZNK2sf9TcpSocket12getLocalPortEv
+    sfml-network-d-2.dll._ZNK2sf9TcpSocket13getRemotePortEv
+    sfml-network-d-2.dll._ZNK2sf9TcpSocket16getRemoteAddressEv
+    sfml-graphics-d-2.dll._ZNK2sf9Transform10getInverseEv
+    sfml-graphics-d-2.dll._ZNK2sf9Transform13transformRectERKNS_4RectIfEE
+    sfml-graphics-d-2.dll._ZNK2sf9Transform14transformPointERKNS_7Vector2IfEE
+    sfml-graphics-d-2.dll._ZNK2sf9Transform14transformPointEff
+    sfml-graphics-d-2.dll._ZNK2sf9Transform9getMatrixEv
+    sfml-network-d-2.dll._ZNK2sf9UdpSocket12getLocalPortEv
+    sfml-window-d-2.dll._ZNK2sf9VideoMode7isValidEv
+    sfml-graphics-d-2.dll._ZTIN2sf11CircleShapeE
+    sfml-graphics-d-2.dll._ZTIN2sf11ConvexShapeE
+    sfml-audio-d-2.dll._ZTIN2sf11SoundSourceE
+    sfml-audio-d-2.dll._ZTIN2sf11SoundStreamE
+    sfml-network-d-2.dll._ZTIN2sf11TcpListenerE
+    sfml-graphics-d-2.dll._ZTIN2sf11VertexArrayE
+    sfml-graphics-d-2.dll._ZTIN2sf12RenderTargetE
+    sfml-graphics-d-2.dll._ZTIN2sf12RenderWindowE
+    sfml-graphics-d-2.dll._ZTIN2sf13RenderTextureE
+    sfml-audio-d-2.dll._ZTIN2sf13SoundRecorderE
+    sfml-graphics-d-2.dll._ZTIN2sf13TransformableE
+    sfml-graphics-d-2.dll._ZTIN2sf14RectangleShapeE
+    sfml-audio-d-2.dll._ZTIN2sf19SoundBufferRecorderE
+    sfml-graphics-d-2.dll._ZTIN2sf4TextE
+    sfml-audio-d-2.dll._ZTIN2sf5MusicE
+    sfml-graphics-d-2.dll._ZTIN2sf5ShapeE
+    sfml-audio-d-2.dll._ZTIN2sf5SoundE
+    sfml-network-d-2.dll._ZTIN2sf6PacketE
+    sfml-network-d-2.dll._ZTIN2sf6SocketE
+    sfml-graphics-d-2.dll._ZTIN2sf6SpriteE
+    sfml-window-d-2.dll._ZTIN2sf6WindowE
+    sfml-graphics-d-2.dll._ZTIN2sf8DrawableE
+    sfml-network-d-2.dll._ZTIN2sf9TcpSocketE
+    sfml-network-d-2.dll._ZTIN2sf9UdpSocketE
+    sfml-graphics-d-2.dll._ZTVN2sf11CircleShapeE
+    sfml-graphics-d-2.dll._ZTVN2sf11ConvexShapeE
+    sfml-audio-d-2.dll._ZTVN2sf11SoundSourceE
+    sfml-audio-d-2.dll._ZTVN2sf11SoundStreamE
+    sfml-network-d-2.dll._ZTVN2sf11TcpListenerE
+    sfml-graphics-d-2.dll._ZTVN2sf11VertexArrayE
+    sfml-graphics-d-2.dll._ZTVN2sf12RenderTargetE
+    sfml-graphics-d-2.dll._ZTVN2sf12RenderWindowE
+    sfml-graphics-d-2.dll._ZTVN2sf13RenderTextureE
+    sfml-audio-d-2.dll._ZTVN2sf13SoundRecorderE
+    sfml-graphics-d-2.dll._ZTVN2sf13TransformableE
+    sfml-graphics-d-2.dll._ZTVN2sf14RectangleShapeE
+    sfml-audio-d-2.dll._ZTVN2sf19SoundBufferRecorderE
+    sfml-graphics-d-2.dll._ZTVN2sf4TextE
+    sfml-audio-d-2.dll._ZTVN2sf5MusicE
+    sfml-graphics-d-2.dll._ZTVN2sf5ShapeE
+    sfml-audio-d-2.dll._ZTVN2sf5SoundE
+    sfml-network-d-2.dll._ZTVN2sf6PacketE
+    sfml-network-d-2.dll._ZTVN2sf6SocketE
+    sfml-graphics-d-2.dll._ZTVN2sf6SpriteE
+    sfml-window-d-2.dll._ZTVN2sf6WindowE
+    sfml-graphics-d-2.dll._ZTVN2sf8DrawableE
+    sfml-network-d-2.dll._ZTVN2sf9TcpSocketE
+    sfml-network-d-2.dll._ZTVN2sf9UdpSocketE
+    sfml-graphics-d-2.dll._ZThn40_N2sf12RenderWindow8activateEb
+    sfml-graphics-d-2.dll._ZThn40_N2sf12RenderWindowD0Ev
+    sfml-graphics-d-2.dll._ZThn40_N2sf12RenderWindowD1Ev
+    sfml-graphics-d-2.dll._ZThn40_NK2sf12RenderWindow7getSizeEv
+    sfml-graphics-d-2.dll._ZThn4_N2sf11CircleShapeD0Ev
+    sfml-graphics-d-2.dll._ZThn4_N2sf11CircleShapeD1Ev
+    sfml-graphics-d-2.dll._ZThn4_N2sf11ConvexShapeD0Ev
+    sfml-graphics-d-2.dll._ZThn4_N2sf11ConvexShapeD1Ev
+    sfml-graphics-d-2.dll._ZThn4_N2sf14RectangleShapeD0Ev
+    sfml-graphics-d-2.dll._ZThn4_N2sf14RectangleShapeD1Ev
+    sfml-graphics-d-2.dll._ZThn4_N2sf4TextD0Ev
+    sfml-graphics-d-2.dll._ZThn4_N2sf4TextD1Ev
+    sfml-graphics-d-2.dll._ZThn4_N2sf5ShapeD0Ev
+    sfml-graphics-d-2.dll._ZThn4_N2sf5ShapeD1Ev
+    sfml-graphics-d-2.dll._ZThn4_N2sf6SpriteD0Ev
+    sfml-graphics-d-2.dll._ZThn4_N2sf6SpriteD1Ev
