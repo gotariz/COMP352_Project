@@ -7,6 +7,7 @@
 #include "system/Settings.h"
 #include "system/states/IState.h"
 #include "system/states/StateGame.h"
+#include "system/states/StateMenu.h"
 
 class Engine
 {

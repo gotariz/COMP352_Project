@@ -56,9 +56,9 @@ void Engine::updateState()
         }
 		else if (gdata.gamestate == RunState::STATE_MENU)
         {
-//            IState* stateMenu = new StateMenu(gdata);
-//            stateMenu->initialise();
-//            activeState = stateMenu;
+            IState* stateMenu = new StateMenu();
+            stateMenu->initialise();
+            activeState = stateMenu;
         }
     }
 }

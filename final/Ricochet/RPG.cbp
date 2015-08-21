@@ -18,6 +18,7 @@
 					<Add directory="$(#box2d.include)" />
 					<Add directory="$(#gz.include)" />
 					<Add directory="source/objects" />
+					<Add directory="source/system/states" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-audio-2" />
@@ -42,6 +43,7 @@
 					<Add directory="$(#box2d.include)" />
 					<Add directory="$(#gz.include)" />
 					<Add directory="source/objects" />
+					<Add directory="source/system/states" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -75,6 +77,8 @@
 		<Unit filename="source/objects/Object.h" />
 		<Unit filename="source/objects/ObjectManager.cpp" />
 		<Unit filename="source/objects/ObjectManager.h" />
+		<Unit filename="source/objects/Obstacle.cpp" />
+		<Unit filename="source/objects/Obstacle.h" />
 		<Unit filename="source/objects/Wall.cpp" />
 		<Unit filename="source/objects/Wall.h" />
 		<Unit filename="source/physics/ContactListener.cpp" />
@@ -97,6 +101,8 @@
 		<Unit filename="source/system/states/IState.h" />
 		<Unit filename="source/system/states/StateGame.cpp" />
 		<Unit filename="source/system/states/StateGame.h" />
+		<Unit filename="source/system/states/StateMenu.cpp" />
+		<Unit filename="source/system/states/StateMenu.h" />
 		<Unit filename="source/utils/Utils.cpp" />
 		<Unit filename="source/utils/Utils.h" />
 		<Unit filename="source/utils/Vector2.cpp" />
