@@ -16,7 +16,7 @@ class GameData
 
     public: // variables
         bool			running = true;
-		RunState		gamestate = STATE_MENU;
+		RunState		gamestate = STATE_GAME;
 
 		AssetManager*	    assets = nullptr;
 		sf::RenderWindow*   window = nullptr;

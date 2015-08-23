@@ -17,8 +17,6 @@
 					<Add directory="$(#sfml2.include)" />
 					<Add directory="$(#box2d.include)" />
 					<Add directory="$(#gz.include)" />
-					<Add directory="source/objects" />
-					<Add directory="source/system/states" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-audio-2" />
@@ -79,6 +77,8 @@
 		<Unit filename="source/objects/ObjectManager.h" />
 		<Unit filename="source/objects/Obstacle.cpp" />
 		<Unit filename="source/objects/Obstacle.h" />
+		<Unit filename="source/objects/Player.cpp" />
+		<Unit filename="source/objects/Player.h" />
 		<Unit filename="source/objects/Wall.cpp" />
 		<Unit filename="source/objects/Wall.h" />
 		<Unit filename="source/physics/ContactListener.cpp" />

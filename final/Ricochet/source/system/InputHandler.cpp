@@ -62,23 +62,40 @@ void InputHandler::handlePlayerEvents()
 	if (gdata.keys[KEY_MOUSE_LEFT].isKeyPressed)
 	{
 
-		//s_pos = Vector2(mx,gdata.settings->getScreenHeight() - my);
+		s_pos = Vector2(gdata.mouse.x,gdata.settings->getScreenHeight() - gdata.mouse.y);
 	}
 
 	if (gdata.keys[KEY_MOUSE_LEFT].isKeyDown)
 	{
-		//Vector2 playerPosition = m_player->getAbsolutePosition();
-		//playerPosition = gdata.toPixels(playerPosition.x - gdata.camera->m_x, playerPosition.y - gdata.camera->m_y);
+		Vector2 playerPosition = m_player->getAbsolutePosition();
+		playerPosition = gdata.toPixels(playerPosition.x - gdata.camera->x, playerPosition.y - gdata.camera->y);
 
-		//e_pos = Vector2(mx, gdata.settings->getScreenHeight() - my);
+		e_pos = Vector2(gdata.mouse.x, gdata.settings->getScreenHeight() - gdata.mouse.y);
 	}
 
 	if (gdata.keys[KEY_MOUSE_LEFT].isKeyReleased)
 	{
-		//Vector2 velocity = s_pos - e_pos;
-		//velocity /= WORLD_SCALE;
-		//velocity *= 10;
+		Vector2 velocity = s_pos - e_pos;
+		velocity.y *= -1;
+
+		float d = velocity.getMagnitude();
+		if (d > 500) d = 500;
+		d /= 500;
+
+		velocity.normalise();
+		velocity.setMagnitude( 25.f * d );
+
+		cout << "vel=" << 25.f * d << endl;
+
+
+
+		if (velocity.getMagnitude() > 25)       velocity.setMagnitude(25);
+		else if (velocity.getMagnitude() < 5)   velocity.setMagnitude(5);
+		//m_player->m_physicsObject->ApplyLinearImpulse(velocity.toBulletVector(),b2Vec2(0,0),true);
+		//m_player->setLinearVelocity(Vector2(0,0));
 		//m_player->applyImpulse(velocity);
+		m_player->setLinearVelocity(velocity);
+		//velocity.print("vel:");
 	}
 }
 

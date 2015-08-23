@@ -2,7 +2,9 @@
 #define VECTOR2_H
 
 //using sqrt;
-#include "general.h"
+//#include "general.h"
+#include "dependencies.h"
+#include "consts.h"
 
 class Vector2
 {

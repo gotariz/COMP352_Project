@@ -18,7 +18,6 @@ void StateMenu::load()
     font = new sfFontRenderer(gdata.window);
     font->setFont(assets.getFont("purista-medium-14-white"));
 
-
 	gdata.zoom = (gdata.settings->getScreenWidth() / 1920.f);
 
     loading = false;

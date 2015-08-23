@@ -80,7 +80,10 @@ void VisualDebugger::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Col
 void VisualDebugger::DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color)
 {
     //no converion in cordinates of center and upper left corner, Circle in sfml is managed by default with the center
-    sf::CircleShape circle = sf::CircleShape(radius * WORLD_SCALE);
+    cout << radius << endl;
+    sf::CircleShape circle = sf::CircleShape( (radius * WORLD_SCALE) * gdata.zoom );
+    circle.setOrigin(circle.getRadius(),circle.getRadius());
+    circle.setFillColor(B2SFColor(color));
 
     Vector2 c = CartToScreen(center);
     Vector2 p = CartToScreen(center + (radius * axis));
@@ -102,6 +105,7 @@ void VisualDebugger::DrawCircle(const b2Vec2& center, float32 radius, const b2Co
 {
         //no converion in cordinates of center and upper left corner, Circle in sfml is managed by default with the center
     sf::CircleShape circle = sf::CircleShape(radius * WORLD_SCALE);
+    circle.setOrigin(circle.getRadius(),circle.getRadius());
     circle.setFillColor(sf::Color::Transparent);
     circle.setOutlineColor(B2SFColor(color));
 

@@ -19,8 +19,8 @@ b2Body* PhysicsFactory::createPlayer(float x, float y, void* userPointer)
     b2FixtureDef fixtureDef;
     fixtureDef.shape        = &shape;
     fixtureDef.density      = 1;
-    fixtureDef.restitution  = 1.0f;
-	fixtureDef.friction     = 0.0f;
+    fixtureDef.restitution  = 1;
+	fixtureDef.friction     = 0;
 
 	fixtureDef.filter.categoryBits = CF_PLAYER;			// what the object is
 	fixtureDef.filter.maskBits = CF_WALL | CF_GROUND;   // what the object collides with
@@ -33,8 +33,7 @@ b2Body* PhysicsFactory::createPlayer(float x, float y, void* userPointer)
 
     b2Body* body = m_world->CreateBody(&bodyDef);
 	body->CreateFixture(&fixtureDef);
-	body->SetLinearDamping(0.0);
-	body->SetBullet(false);
+	body->SetBullet(true);
 	body->SetSleepingAllowed(false);
 
 	return body;
@@ -55,9 +54,9 @@ b2Body* PhysicsFactory::createGround(float x, float y, float width, float height
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape		= &polygon_shape;
-	fixtureDef.density		= 1.0f;
-	fixtureDef.restitution	= 0.0f;
-	fixtureDef.friction	= 0.0f;
+	fixtureDef.density		= 1;
+	fixtureDef.restitution	= 1;
+	fixtureDef.friction	= 0;
 	fixtureDef.isSensor	= false;
 	fixtureDef.filter.categoryBits	= CF_GROUND;    // what the object is
 	fixtureDef.filter.maskBits		= CF_ALL;		// what the object collides with
@@ -67,14 +66,12 @@ b2Body* PhysicsFactory::createGround(float x, float y, float width, float height
 	bodyDef.angle = angle * DEGTORAD;
 ;
 	bodyDef.fixedRotation = true;
-	bodyDef.angularDamping = 0.0f;
-	bodyDef.linearDamping = 0.0f;
 	bodyDef.position.Set(x, y);
 	bodyDef.allowSleep = false;
 
 	b2Body* body = m_world->CreateBody(&bodyDef);
 	body->CreateFixture(&fixtureDef);
-	body->SetBullet(false);
+	body->SetBullet(true);
 
 	return body;
 }
@@ -125,9 +122,9 @@ b2Body* PhysicsFactory::createObsticle(float x, float y, float w, float h, float
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &polygon_shape;
-	fixtureDef.density = 1.0f;
-	fixtureDef.restitution = 0.0f;
-	fixtureDef.friction = 0.0f;
+	fixtureDef.density = 1;
+	fixtureDef.restitution = 1;
+	fixtureDef.friction = 0;
 	fixtureDef.isSensor = false;
 	fixtureDef.filter.categoryBits = CF_GROUND;    // what the object is
 	fixtureDef.filter.maskBits = CF_ALL;		// what the object collides with
@@ -135,8 +132,6 @@ b2Body* PhysicsFactory::createObsticle(float x, float y, float w, float h, float
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_staticBody;
 	bodyDef.fixedRotation = true;
-	bodyDef.angularDamping = 0.0f;
-	bodyDef.linearDamping = 0.0f;
 	bodyDef.position.Set(x, y);
 	bodyDef.angle = angle * DEGTORAD;
 	bodyDef.allowSleep = false;

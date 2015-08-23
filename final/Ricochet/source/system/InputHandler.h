@@ -4,10 +4,12 @@
 #include "general.h"
 
 #include "video/Camera.h"
+#include "video/sfFontRenderer.h"
+
 #include "system/GameData.h"
 #include "system/Settings.h"
 
-//#include "entities/Player.h"
+#include "objects/Player.h"
 
 class InputHandler
 {
@@ -24,7 +26,12 @@ class InputHandler
 
         void debug_events();
 
-        //Player* m_player;
+        Player* m_player;
+        sfFontRenderer* font = nullptr;
+
+        Vector2 s_pos;
+		Vector2 e_pos;
+
     private:
 
         int         lastUsed = 0;
@@ -39,14 +46,6 @@ class InputHandler
 		KeyboardKey* cameraR;
 		KeyboardKey* cameraU;
 		KeyboardKey* cameraD;
-
-		//int mx;
-		//int my;
-
-		Vector2 s_pos;
-		Vector2 e_pos;
-
-
 };
 
 #endif // INPUTHANDLER_H

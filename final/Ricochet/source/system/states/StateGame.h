@@ -14,7 +14,7 @@
 #include "physics/ContactListener.h"
 
 //#include "entities/Laser.h"
-//#include "entities/Player.h"
+#include "objects/Player.h"
 #include "objects/Object.h"
 #include "objects/Wall.h"
 #include "objects/ObjectManager.h"
@@ -57,6 +57,8 @@ class StateGame : public IState
 		Camera	            camera;
 
         sfFontRenderer*     font;
+        Player*             player = nullptr;
+
 		// Box2D physics
 		b2World*			world = nullptr;
 		VisualDebugger*		debugDraw = nullptr;

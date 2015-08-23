@@ -1009,14 +1009,21 @@
 	"objects/Object.h"
 	"utils/tinyxml2.h"
 
-1439781913 source:c:\users\tom\documents\github\comp329_project\final\ricochet\main.cpp
+1440255115 source:c:\users\tom\documents\github\comp329_project\final\ricochet\main.cpp
 	<iostream>
 	"general.h"
 	"system/Engine.h"
 	"system/GameData.h"
 	"system/Settings.h"
 
-1439778661 c:\users\tom\documents\github\comp329_project\final\ricochet\source\general.h
+1440249247 c:\users\tom\documents\github\comp329_project\final\ricochet\source\general.h
+	"dependencies.h"
+	"structs.h"
+	"enums.h"
+	"consts.h"
+	"utils/Utils.h"
+
+1440249251 c:\users\tom\documents\github\comp329_project\final\ricochet\source\dependencies.h
 	<cmath>
 	<exception>
 	<fstream>
@@ -1032,13 +1039,6 @@
 	<array>
 	<set>
 	<unordered_set>
-	"dependencies.h"
-	"structs.h"
-	"enums.h"
-	"consts.h"
-	"utils/Utils.h"
-
-1439783575 c:\users\tom\documents\github\comp329_project\final\ricochet\source\dependencies.h
 	"utils/tinyxml2.h"
 	"Box2D/Box2D.h"
 	"SFML/Window.hpp"
@@ -1062,7 +1062,7 @@
 	<android/log.h>
 	<assert.h>
 
-1392519380 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\box2d.h
+1440245728 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\box2d.h
 	<Box2D/Common/b2Settings.h>
 	<Box2D/Common/b2Draw.h>
 	<Box2D/Common/b2Timer.h>
@@ -1092,83 +1092,83 @@
 	<Box2D/Dynamics/Joints/b2WeldJoint.h>
 	<Box2D/Dynamics/Joints/b2WheelJoint.h>
 
-1382856099 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\common\b2settings.h
+1440245759 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\common\b2settings.h
 	<stddef.h>
 	<assert.h>
 	<float.h>
 
-1322352523 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\common\b2draw.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\common\b2draw.h
 	<Box2D/Common/b2Math.h>
 
-1382856060 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\common\b2math.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\common\b2math.h
 	<Box2D/Common/b2Settings.h>
 	<math.h>
 
-1375425743 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\common\b2timer.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\common\b2timer.h
 	<Box2D/Common/b2Settings.h>
 
-1300987018 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\shapes\b2circleshape.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\shapes\b2circleshape.h
 	<Box2D/Collision/Shapes/b2Shape.h>
 
-1313981392 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\shapes\b2shape.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\shapes\b2shape.h
 	<Box2D/Common/b2BlockAllocator.h>
 	<Box2D/Common/b2Math.h>
 	<Box2D/Collision/b2Collision.h>
 
-1300987018 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\common\b2blockallocator.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\common\b2blockallocator.h
 	<Box2D/Common/b2Settings.h>
 
-1382854526 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\b2collision.h
+1440245728 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\b2collision.h
 	<Box2D/Common/b2Math.h>
 	<limits.h>
 
-1314859986 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\shapes\b2edgeshape.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\shapes\b2edgeshape.h
 	<Box2D/Collision/Shapes/b2Shape.h>
 
-1382857618 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\shapes\b2chainshape.h
+1440245728 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\shapes\b2chainshape.h
 	<Box2D/Collision/Shapes/b2Shape.h>
 
-1324249490 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\shapes\b2polygonshape.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\shapes\b2polygonshape.h
 	<Box2D/Collision/Shapes/b2Shape.h>
 
-1332054490 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\b2broadphase.h
+1440245728 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\b2broadphase.h
 	<Box2D/Common/b2Settings.h>
 	<Box2D/Collision/b2Collision.h>
 	<Box2D/Collision/b2DynamicTree.h>
 	<algorithm>
 
-1332054496 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\b2dynamictree.h
+1440245728 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\b2dynamictree.h
 	<Box2D/Collision/b2Collision.h>
 	<Box2D/Common/b2GrowableStack.h>
 
-1383025930 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\common\b2growablestack.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\common\b2growablestack.h
 	<Box2D/Common/b2Settings.h>
-	<memory.h>
+	<string.h>
 
-1300987018 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\b2distance.h
+1440245728 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\b2distance.h
 	<Box2D/Common/b2Math.h>
 
-1375425734 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\b2timeofimpact.h
+1440245728 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\collision\b2timeofimpact.h
 	<Box2D/Common/b2Math.h>
 	<Box2D/Collision/b2Distance.h>
 
-1382854090 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\b2body.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\b2body.h
 	<Box2D/Common/b2Math.h>
 	<Box2D/Collision/Shapes/b2Shape.h>
 	<memory>
 
-1315072341 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\b2fixture.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\b2fixture.h
 	<Box2D/Dynamics/b2Body.h>
 	<Box2D/Collision/b2Collision.h>
 	<Box2D/Collision/Shapes/b2Shape.h>
 
-1314073600 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\b2worldcallbacks.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\b2worldcallbacks.h
 	<Box2D/Common/b2Settings.h>
 
-1315809130 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\b2timestep.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\b2timestep.h
 	<Box2D/Common/b2Math.h>
 
-1383020095 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\b2world.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\b2world.h
 	<Box2D/Common/b2Math.h>
 	<Box2D/Common/b2BlockAllocator.h>
 	<Box2D/Common/b2StackAllocator.h>
@@ -1176,52 +1176,52 @@
 	<Box2D/Dynamics/b2WorldCallbacks.h>
 	<Box2D/Dynamics/b2TimeStep.h>
 
-1300987018 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\common\b2stackallocator.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\common\b2stackallocator.h
 	<Box2D/Common/b2Settings.h>
 
-1300987018 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\b2contactmanager.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\b2contactmanager.h
 	<Box2D/Collision/b2BroadPhase.h>
 
-1383025930 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\contacts\b2contact.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\contacts\b2contact.h
 	<Box2D/Common/b2Math.h>
 	<Box2D/Collision/b2Collision.h>
 	<Box2D/Collision/Shapes/b2Shape.h>
 	<Box2D/Dynamics/b2Fixture.h>
 
-1315162982 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2distancejoint.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2distancejoint.h
 	<Box2D/Dynamics/Joints/b2Joint.h>
 
-1332136763 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2joint.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2joint.h
 	<Box2D/Common/b2Math.h>
 
-1315174277 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2frictionjoint.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2frictionjoint.h
 	<Box2D/Dynamics/Joints/b2Joint.h>
 
-1315174532 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2gearjoint.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2gearjoint.h
 	<Box2D/Dynamics/Joints/b2Joint.h>
 
-1382487182 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2motorjoint.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2motorjoint.h
 	<Box2D/Dynamics/Joints/b2Joint.h>
 
-1332051882 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2mousejoint.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2mousejoint.h
 	<Box2D/Dynamics/Joints/b2Joint.h>
 
-1315365926 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2prismaticjoint.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2prismaticjoint.h
 	<Box2D/Dynamics/Joints/b2Joint.h>
 
-1382546444 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2pulleyjoint.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2pulleyjoint.h
 	<Box2D/Dynamics/Joints/b2Joint.h>
 
-1315172372 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2revolutejoint.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2revolutejoint.h
 	<Box2D/Dynamics/Joints/b2Joint.h>
 
-1315194213 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2ropejoint.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2ropejoint.h
 	<Box2D/Dynamics/Joints/b2Joint.h>
 
-1315170663 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2weldjoint.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2weldjoint.h
 	<Box2D/Dynamics/Joints/b2Joint.h>
 
-1382546500 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2wheeljoint.h
+1440245729 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\box2d-master\\box2d\\box2d\dynamics\joints\b2wheeljoint.h
 	<Box2D/Dynamics/Joints/b2Joint.h>
 
 1439733587 c:\users\tom\documents\github\comp329_project\final\ricochet\\libraries\sfml-2.3.1\include\\sfml\window.hpp
@@ -1774,7 +1774,9 @@
 	<iostream>
 	<vector>
 
-1439777488 c:\users\tom\documents\github\comp329_project\final\ricochet\source\structs.h
+1440248948 c:\users\tom\documents\github\comp329_project\final\ricochet\source\structs.h
+	<vector>
+	"utils/Vector2.h"
 
 1440159762 c:\users\tom\documents\github\comp329_project\final\ricochet\source\enums.h
 
@@ -1794,8 +1796,9 @@
 	"Vector2.h"
 	"gzClock.h"
 
-1439733200 c:\users\tom\documents\github\comp329_project\final\ricochet\source\utils\vector2.h
-	"general.h"
+1440249292 c:\users\tom\documents\github\comp329_project\final\ricochet\source\utils\vector2.h
+	"dependencies.h"
+	"consts.h"
 
 1438737130 c:\users\tom\documents\github\comp329_project\final\ricochet\source\utils\gzclock.h
 	<time.h>
@@ -1809,7 +1812,7 @@
 	"system/states/StateGame.h"
 	"system/states/StateMenu.h"
 
-1440159828 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\gamedata.h
+1440252205 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\gamedata.h
 	"general.h"
 
 1438737130 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\settings.h
@@ -1818,7 +1821,7 @@
 1438737130 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\istate.h
 	"general.h"
 
-1439797838 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.h
+1440238756 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.h
 	"general.h"
 	"system/states/IState.h"
 	"system/AssetManager.h"
@@ -1828,6 +1831,7 @@
 	"physics/PhysicsFactory.h"
 	"physics/debug/VisualDebugger.h"
 	"physics/ContactListener.h"
+	"objects/Player.h"
 	"objects/Object.h"
 	"objects/Wall.h"
 	"objects/ObjectManager.h"
@@ -1851,19 +1855,22 @@
 	<limits>
 	<algorithm>
 
-1439797146 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\inputhandler.h
+1440240582 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\inputhandler.h
 	"general.h"
 	"video/Camera.h"
+	"video/sfFontRenderer.h"
 	"system/GameData.h"
 	"system/Settings.h"
+	"objects/Player.h"
 
 1439786068 c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\camera.h
 	"general.h"
 	"system/GameData.h"
 
-1439435830 c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\physicsfactory.h
+1440244883 c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\physicsfactory.h
 	"general.h"
 	"system/GameData.h"
+	"Box2D/Common/b2Settings.h"
 
 1439796066 c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\debug\visualdebugger.h
 	"general.h"
@@ -1872,7 +1879,7 @@
 	"video/Camera.h"
 	"video/sfFontRenderer.h"
 
-1439783972 c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\sffontrenderer.h
+1440215948 c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\sffontrenderer.h
 	"sfFont.h"
 	"general.h"
 	<string>
@@ -1881,7 +1888,7 @@
 	"general.h"
 	"objects/Object.h"
 
-1439797394 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\object.h
+1440248835 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\object.h
 	"general.h"
 	"system/GameData.h"
 	"video/Camera.h"
@@ -1924,22 +1931,22 @@
 	"objects/Object.h"
 	"utils/tinyxml2.h"
 
-1439798400 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\object.cpp
+1440248842 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\object.cpp
 	"Object.h"
 
 1439795697 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\objectmanager.cpp
 	"ObjectManager.h"
 
-1438737130 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\contactlistener.cpp
+1440255858 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\contactlistener.cpp
 	"ContactListener.h"
 
-1439799898 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\debug\visualdebugger.cpp
+1440240039 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\debug\visualdebugger.cpp
 	"VisualDebugger.h"
 
-1439795834 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\physicsfactory.cpp
+1440246274 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\physicsfactory.cpp
 	"PhysicsFactory.h"
 
-1439733199 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\assetmanager.cpp
+1440252558 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\assetmanager.cpp
 	"AssetManager.h"
 
 1440159719 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\engine.cpp
@@ -1948,13 +1955,13 @@
 1439785759 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\gamedata.cpp
 	"GameData.h"
 
-1439797257 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\inputhandler.cpp
+1440248181 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\inputhandler.cpp
 	"InputHandler.h"
 
 1438737130 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\settings.cpp
 	"Settings.h"
 
-1439798877 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.cpp
+1440254084 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.cpp
 	"StateGame.h"
 
 1438737130 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\utils\gzclock.cpp
@@ -1978,13 +1985,13 @@
 1425961053 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\sffont.cpp
 	"sfFont.h"
 
-1391225186 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\sffontrenderer.cpp
+1440238355 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\sffontrenderer.cpp
 	"sfFontRenderer.h"
 
 1440159046 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\obstacle.cpp
 	"Obstacle.h"
 
-1440159217 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\wall.cpp
+1440241681 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\wall.cpp
 	"Wall.h"
 
 1440159956 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\statemenu.h
@@ -1996,6 +2003,13 @@
 	"system/InputHandler.h"
 	"video/sfFontRenderer.h"
 
-1440159794 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\statemenu.cpp
+1440252187 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\statemenu.cpp
 	"StateMenu.h"
+
+1440341342 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\player.cpp
+	"Player.h"
+
+1440253097 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\player.h
+	"general.h"
+	"Object.h"
 

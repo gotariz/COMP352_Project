@@ -4,6 +4,7 @@
 #include "general.h"
 
 #include "system/GameData.h"
+#include "Box2D/Common/b2Settings.h"
 
 class PhysicsFactory
 {
@@ -16,7 +17,7 @@ class PhysicsFactory
 
     public:
         b2Body* createPlayer(float x = 0, float y = 0, void* userPointer = nullptr);
-		
+
 		b2Body* createGround(float x, float y, float width, float height, float angle = 0.f);
 		b2Body* createHole(float x, float y);
 

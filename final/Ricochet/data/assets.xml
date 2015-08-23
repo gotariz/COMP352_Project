@@ -17,6 +17,7 @@
 	<asset type="sound" path="media/sounds/god.wav" />
 	<asset type="music" path="media/music/enya.ogg" />-->
 	
+	<asset type="image" path="media/images/title_test.png" />
 	<asset type="image" path="media/images/player.png" />
 	<asset type="image" path="media/images/end.png" />
 	<asset type="image" path="media/images/block.png" />

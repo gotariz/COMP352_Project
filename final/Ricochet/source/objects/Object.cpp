@@ -39,11 +39,11 @@ void Object::onPostPhysicsUpdate()
     syncChildren();
 }
 
-void Object::onEnterCollision(Object* objectB)
+void Object::onEnterCollision(CollisionData cd)
 {
 }
 
-void Object::onExitCollision(Object* objectB)
+void Object::onExitCollision(CollisionData cd)
 {
 }
 
@@ -253,7 +253,8 @@ void Object::moveAbsoluteDistance(Vector2 delta)
 
 void Object::applyImpulse(Vector2 impulseForce)
 {
-    m_physicsObject->ApplyForceToCenter(impulseForce.toBulletVector(),true);
+    //m_physicsObject->ApplyForceToCenter(impulseForce.toBulletVector(),true);
+    m_physicsObject->ApplyLinearImpulse(impulseForce.toBulletVector(),b2Vec2(0,0),true);
 }
 
 void Object::setLinearVelocity(Vector2 linearVelocity)
@@ -261,6 +262,10 @@ void Object::setLinearVelocity(Vector2 linearVelocity)
     m_physicsObject->SetLinearVelocity(linearVelocity.toBulletVector());
 }
 
+Vector2 Object::getVelocity()
+{
+    return Vector2(m_physicsObject->GetLinearVelocity());
+}
 
 //=================================================================================
 //=================================================================================

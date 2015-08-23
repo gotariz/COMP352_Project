@@ -1,6 +1,19 @@
 #ifndef STRUCTS_H_INCLUDED
 #define STRUCTS_H_INCLUDED
 
+#include <vector>
+using namespace std;
+class Object;
+#include "utils/Vector2.h"
+
+
+struct CollisionData
+{
+    Object* objectB = nullptr;
+    vector<Vector2> points;
+    vector<Vector2> normals;
+};
+
 struct KeyboardKey
 {
    sf::Keyboard::Key   m_key;

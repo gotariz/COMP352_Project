@@ -37,8 +37,8 @@ class Object
         virtual void onPrePhysicsUpdate();
         virtual void onPostPhysicsUpdate();
         virtual void onCollision(Object* objectB);
-        virtual void onEnterCollision(Object* objectB);
-        virtual void onExitCollision(Object* objectB);
+        virtual void onEnterCollision(CollisionData cd);
+        virtual void onExitCollision(CollisionData cd);
         virtual void onDraw();
 
     public: // utilities
@@ -66,6 +66,7 @@ class Object
         virtual void setPhysicsObject(b2Body* physicsObject);
         virtual void applyImpulse(Vector2 impulseForce);
         virtual void setLinearVelocity(Vector2 linearVelocity);
+        virtual Vector2 getVelocity();
 
         // getters
         virtual Vector2 getPosition();

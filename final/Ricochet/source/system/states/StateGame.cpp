@@ -17,6 +17,7 @@ void StateGame::load()
 
     font = new sfFontRenderer(gdata.window);
     font->setFont(assets.getFont("purista-medium-14-white"));
+    font->setColor(sf::Color::Red);
 
 	camera = Camera(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight());
 	gdata.camera = &camera;
@@ -35,7 +36,15 @@ void StateGame::load()
 
 	manager.setPhysicsWorld(world);
 
+	player = new Player();
+	player->setPhysicsObject( factory.createPlayer(0,-7,player) );
+	manager.addObject(player);
+
 	input.init();
+	input.m_player = player;
+	input.font = new sfFontRenderer(gdata.window);
+	input.font->setFont(assets.getFont("purista-medium-14-white"));
+
 	loadLevel();
 
 	gdata.zoom = (gdata.settings->getScreenWidth() / 1920.f);
@@ -68,7 +77,7 @@ void StateGame::update()
 
 void StateGame::draw()
 {
-    gdata.window->clear(sf::Color(64,64,64,255));
+    gdata.window->clear(sf::Color(128,128,128,255));
 
 	//Vector2 pos = gdata.toPixels(0, 0);
 	//pos.x -= camera.getScreenX();
@@ -78,10 +87,19 @@ void StateGame::draw()
 
 	manager.draw();
 
-	world->DrawDebugData();
+	//world->DrawDebugData();
 
 
     font->drawString(0,0,"hello this is a test");
+
+
+    Vector2 velocity = input.s_pos - input.e_pos;
+    velocity /= WORLD_SCALE;
+    velocity *= 10;
+    velocity.y *= -1;
+
+    string v = gz::toString(velocity.x) + "," + gz::toString(velocity.y);
+    font->drawString(100,100,v);
 	// flip the buffer
 	gdata.window->display();
 }
