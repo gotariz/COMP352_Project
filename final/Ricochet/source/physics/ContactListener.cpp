@@ -29,8 +29,6 @@ void ContactListener::BeginContact(b2Contact* contact)
         CollisionData ca;
         CollisionData cb;
 
-        cout << contact->GetManifold()->pointCount << endl;
-
         ca.objectB = objectA;
         cb.objectB = objectB;
         for (int i = 0; i < contact->GetManifold()->pointCount; i++)

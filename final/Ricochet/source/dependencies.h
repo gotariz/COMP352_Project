@@ -25,5 +25,6 @@
 #include "SFML/Audio.hpp"
 #include "gz.h"
 
+using namespace std;
 
 #endif // DEPENDENCIES_H_INCLUDED

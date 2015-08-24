@@ -19,6 +19,14 @@ void StateGame::load()
     font->setFont(assets.getFont("purista-medium-14-white"));
     font->setColor(sf::Color::Red);
 
+    fntPower = new sfFontRenderer(gdata.window);
+    fntPower->setFont(assets.getFont("segoe-ui-light-48"));
+    fntPower->setColor(sf::Color::Black);
+
+    fntAngle = new sfFontRenderer(gdata.window);
+    fntAngle->setFont(assets.getFont("segoe-ui-light-20"));
+    fntAngle->setColor(sf::Color::Black);
+
 	camera = Camera(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight());
 	gdata.camera = &camera;
 
@@ -38,6 +46,7 @@ void StateGame::load()
 
 	player = new Player();
 	player->setPhysicsObject( factory.createPlayer(0,-7,player) );
+	player->reset_pos.set(0,-7);
 	manager.addObject(player);
 
 	input.init();
@@ -85,6 +94,31 @@ void StateGame::draw()
 	//bg->scale.set(gdata.zoom, gdata.zoom);
 	//bg->renderImage(gdata.renderer, pos.x, pos.y);
 
+    if (input.selecting)
+    {
+        float xo = 20;
+        if (input.angle <= 90 || (input.angle >= 180 && input.angle < 270))    xo = -120;
+        Vector2 p = gdata.toScreenPixels(player->getAbsolutePosition());
+        string v = gz::toString(input.power) + "%";
+        string a = gz::toString(input.angle) + " degrees";
+        fntPower->drawString(p.x + xo,p.y - 100,v);
+        fntAngle->drawString(p.x + xo,p.y - 50,a);
+
+        // draw the line
+        Vector2 n = gdata.toScreenPixels(player->getAbsolutePosition() + input.velocity);
+        //p.print("s");
+        //n.print("e");
+        //input.velocity.print("vel");
+        sf::Vertex line[] =
+        {
+            sf::Vertex(sf::Vector2f(p.x, p.y)),
+            sf::Vertex(sf::Vector2f(n.x, n.y))
+        };
+
+        gdata.window->draw(line, 2, sf::Lines);
+
+    }
+
 	manager.draw();
 
 	//world->DrawDebugData();
@@ -92,14 +126,6 @@ void StateGame::draw()
 
     font->drawString(0,0,"hello this is a test");
 
-
-    Vector2 velocity = input.s_pos - input.e_pos;
-    velocity /= WORLD_SCALE;
-    velocity *= 10;
-    velocity.y *= -1;
-
-    string v = gz::toString(velocity.x) + "," + gz::toString(velocity.y);
-    font->drawString(100,100,v);
 	// flip the buffer
 	gdata.window->display();
 }
@@ -257,3 +283,4 @@ void StateGame::loadLevel()
 		gz::print_w("Exception Thrown:" + gz::toString(ex.what()));
 	}
 }
+

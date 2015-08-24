@@ -42,9 +42,9 @@ class VisualDebugger : public b2Draw
 
         inline Vector2 CartToScreen(b2Vec2 point)
         {
-            Vector2 pos = gdata.toPixels(point.x, point.y);
-            pos.x -= cam->getScreenX();
-            pos.y -= cam->getScreenY();
+            Vector2 pos = gdata.toScreenPixels(point);
+            //pos.x -= cam->getScreenX();
+            //pos.y -= cam->getScreenY();
             return pos;
         }
 

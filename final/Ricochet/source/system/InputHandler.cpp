@@ -31,11 +31,6 @@ void InputHandler::handleEvents()
         {
             gdata.running = false;
         }
-        else if (event.type == sf::Event::MouseMoved)
-        {
-            gdata.mouse.x = event.mouseMove.x;
-            gdata.mouse.y = gdata.window->getSize().y - event.mouseMove.y;
-        }
     }
 
 	// update bound keys
@@ -48,8 +43,10 @@ void InputHandler::handleEvents()
 
 	if (gdata.keys[sf::Keyboard::R].isKeyPressed)
 	{
-		//m_player->setLinearVelocity(Vector2(0, 0));
-		//m_player->setAbsolutePosition(m_player->restart_pos);
+		m_player->setLinearVelocity(Vector2(0, 0));
+		m_player->setAbsolutePosition(m_player->reset_pos);
+		launched = false;
+		selecting = false;
 		cout << "restarted" << endl;
 	}
 }
@@ -61,41 +58,67 @@ void InputHandler::handlePlayerEvents()
 
 	if (gdata.keys[KEY_MOUSE_LEFT].isKeyPressed)
 	{
-
-		s_pos = Vector2(gdata.mouse.x,gdata.settings->getScreenHeight() - gdata.mouse.y);
+	    if (!launched)
+        {
+            s_pos = gdata.toScreenPixels(m_player->getAbsolutePosition());
+            s_pos.y = gdata.window->getSize().y - s_pos.y;
+            s_pos.print("start:");
+            Vector2 d = gdata.mouse - s_pos;
+            if (d.getMagnitude() <= (0.5 * WORLD_SCALE * gdata.zoom))
+            {
+                selecting = true;
+            }
+        }
 	}
 
 	if (gdata.keys[KEY_MOUSE_LEFT].isKeyDown)
 	{
-		Vector2 playerPosition = m_player->getAbsolutePosition();
-		playerPosition = gdata.toPixels(playerPosition.x - gdata.camera->x, playerPosition.y - gdata.camera->y);
+        if (selecting && !launched)
+		{
+		    e_pos = gdata.mouse;
+            velocity = s_pos - e_pos;
+            angle = velocity.getAngle();
 
-		e_pos = Vector2(gdata.mouse.x, gdata.settings->getScreenHeight() - gdata.mouse.y);
+            float dist = velocity.getMagnitude();
+            if (dist > pullbackDistance) dist = pullbackDistance;
+
+            power = static_cast<int>((dist / pullbackDistance) * 100);
+            float percent = power / 100.f;
+
+            velocity.normalise();
+            //angle = velocity.getAngle();
+            velocity.set(1,0);
+            velocity.rotate(angle);
+            velocity.setMagnitude( m_player->maxSpeed * percent );
+		}
 	}
 
 	if (gdata.keys[KEY_MOUSE_LEFT].isKeyReleased)
 	{
-		Vector2 velocity = s_pos - e_pos;
-		velocity.y *= -1;
+	    if (selecting && !launched)
+		{
+		    velocity = s_pos - e_pos;
+		    angle = velocity.getAngle();
 
-		float d = velocity.getMagnitude();
-		if (d > 500) d = 500;
-		d /= 500;
+            float dist = velocity.getMagnitude();
+            if (dist > pullbackDistance) dist = pullbackDistance;
 
-		velocity.normalise();
-		velocity.setMagnitude( 25.f * d );
+            power = static_cast<int>((dist / pullbackDistance) * 100);
+            float percent = power / 100.f;
 
-		cout << "vel=" << 25.f * d << endl;
+            velocity.normalise();
+            //angle = velocity.getAngle();
+            velocity.set(1,0);
+            velocity.rotate(angle);
+            velocity.setMagnitude( m_player->maxSpeed * percent );
 
 
-
-		if (velocity.getMagnitude() > 25)       velocity.setMagnitude(25);
-		else if (velocity.getMagnitude() < 5)   velocity.setMagnitude(5);
-		//m_player->m_physicsObject->ApplyLinearImpulse(velocity.toBulletVector(),b2Vec2(0,0),true);
-		//m_player->setLinearVelocity(Vector2(0,0));
-		//m_player->applyImpulse(velocity);
-		m_player->setLinearVelocity(velocity);
-		//velocity.print("vel:");
+            //if (velocity.getMagnitude() > m_player->maxSpeed)       velocity.setMagnitude(m_player->maxSpeed);
+            //else if (velocity.getMagnitude() < m_player->minSpeed)   velocity.setMagnitude(m_player->minSpeed);
+            m_player->setLinearVelocity(velocity);
+            selecting = false;
+            launched = true;
+		}
 	}
 }
 

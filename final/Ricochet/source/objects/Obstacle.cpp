@@ -50,10 +50,7 @@ void Obstacle::onDraw()
     if (m_physicsObject != nullptr)
     {
 		Vector2 pos = getAbsolutePosition();
-		pos = gdata.toPixels(pos.x, pos.y);
-		pos.x -= gdata.camera->getScreenX();
-		pos.y -= gdata.camera->getScreenY();
-
+		pos = gdata.toScreenPixels(pos.x, pos.y);
 		sf::RectangleShape rec(sf::Vector2f(m_size.x,m_size.y));
         rec.setPosition(pos.x,pos.y);
         rec.setOrigin(m_size.x/2,m_size.y/2);

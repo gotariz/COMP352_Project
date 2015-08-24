@@ -3,6 +3,7 @@
 Object::Object(int id) : m_id(id)
 {
     //ctor
+    onCreate();
 }
 
 Object::~Object()
@@ -58,9 +59,7 @@ void Object::onDraw()
     if (m_image.getTexture() != nullptr)
     {
 		Vector2 pos = getAbsolutePosition();
-		pos = gdata.toPixels(pos.x, pos.y);
-		pos.x -= gdata.camera->getScreenX();
-		pos.y -= gdata.camera->getScreenY();
+		pos = gdata.toScreenPixels(pos.x, pos.y);
 		m_image.setScale(gdata.zoom,gdata.zoom);
 		m_image.setRotation(getAbsoluteRotation());
         gdata.window->draw(m_image);

@@ -57,6 +57,9 @@ class StateGame : public IState
 		Camera	            camera;
 
         sfFontRenderer*     font;
+        sfFontRenderer*     fntPower;
+        sfFontRenderer*     fntAngle;
+
         Player*             player = nullptr;
 
 		// Box2D physics

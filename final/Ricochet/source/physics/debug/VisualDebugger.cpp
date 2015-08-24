@@ -8,8 +8,8 @@ sf::Color VisualDebugger::B2SFColor(const b2Color &color, int alpha = 255)
 
 void VisualDebugger::DrawAABB(b2AABB* aabb, const b2Color& color)
 {
-    Vector2 lower = CartToScreen(aabb->lowerBound);
-    Vector2 upper = CartToScreen(aabb->upperBound);
+    Vector2 lower = gdata.toScreenPixels(aabb->lowerBound);
+    Vector2 upper = gdata.toScreenPixels(aabb->upperBound);
 	sf::ConvexShape polygon;
     polygon.setPoint(0,sf::Vector2f(lower.x, lower.y));
     polygon.setPoint(1,sf::Vector2f(upper.x, lower.y));
@@ -38,10 +38,10 @@ void VisualDebugger::DrawTransform(const b2Transform& xf)
 {
     float lineLength = 0.4;
 
-    Vector2 pos = CartToScreen(xf.p);
+    Vector2 pos = gdata.toScreenPixels(xf.p);
 
 	b2Vec2 xAxis = xf.p + lineLength * xf.q.GetXAxis();
-	Vector2 xa = CartToScreen(xAxis);
+	Vector2 xa = gdata.toScreenPixels(xAxis);
 	sf::Vertex redLine[] =
 	{
 		sf::Vertex(sf::Vector2f(pos.x,pos.y), sf::Color::Red),
@@ -52,7 +52,7 @@ void VisualDebugger::DrawTransform(const b2Transform& xf)
 	// That's because the ordinate in SFML coordinate system points downward while the OpenGL(testbed) points upward
 	/*b2Vec2 yAxis(b2Vec2(xf.p.x + (lineLength * -xf.q.s), xf.p.y + (lineLength * xf.q.c)));*/
 	b2Vec2 yAxis = xf.p + lineLength * xf.q.GetYAxis();
-	Vector2 ya = CartToScreen(yAxis);
+	Vector2 ya = gdata.toScreenPixels(yAxis);
 	sf::Vertex greenLine[] =
 	{
 		sf::Vertex(sf::Vector2f(pos.x,pos.y), sf::Color::Green),
@@ -65,8 +65,8 @@ void VisualDebugger::DrawTransform(const b2Transform& xf)
 
 void VisualDebugger::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color)
 {
-    Vector2 point1 = CartToScreen(p1);
-    Vector2 point2 = CartToScreen(p2);
+    Vector2 point1 = gdata.toScreenPixels(p1);
+    Vector2 point2 = gdata.toScreenPixels(p2);
 
     sf::Vertex line[] =
     {
@@ -85,8 +85,8 @@ void VisualDebugger::DrawSolidCircle(const b2Vec2& center, float32 radius, const
     circle.setOrigin(circle.getRadius(),circle.getRadius());
     circle.setFillColor(B2SFColor(color));
 
-    Vector2 c = CartToScreen(center);
-    Vector2 p = CartToScreen(center + (radius * axis));
+    Vector2 c = gdata.toScreenPixels(center);
+    Vector2 p = gdata.toScreenPixels(center + (radius * axis));
 
     circle.setPosition(c.x,c.y);
 
@@ -109,7 +109,7 @@ void VisualDebugger::DrawCircle(const b2Vec2& center, float32 radius, const b2Co
     circle.setFillColor(sf::Color::Transparent);
     circle.setOutlineColor(B2SFColor(color));
 
-    Vector2 c = CartToScreen(center);
+    Vector2 c = gdata.toScreenPixels(center);
     circle.setPosition(c.x,c.y);
 
     gdata.window->draw(circle);
@@ -122,7 +122,7 @@ void VisualDebugger::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, cons
 	for(int i = 0; i < vertexCount; i++)
 	{
 		//polygon.setPoint(i, SFMLDraw::B2VecToSFVec(vertices[i]));
-		Vector2 v = CartToScreen(vertices[i]);
+		Vector2 v = gdata.toScreenPixels(vertices[i]);
 		sf::Vector2f transformedVec = sf::Vector2f(v.x,v.y);
 		polygon.setPoint(i, sf::Vector2f(std::floor(transformedVec.x), std::floor(transformedVec.y))); // flooring the coords to fix distorted lines on flat surfaces
 	}																								   // they still show up though.. but less frequently
@@ -138,7 +138,7 @@ void VisualDebugger::DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount,
 	for(int i = 0; i < vertexCount; i++)
 	{
 		//polygon.setPoint(i, SFMLDraw::B2VecToSFVec(vertices[i]));
-		Vector2 v = CartToScreen(vertices[i]);
+		Vector2 v = gdata.toScreenPixels(vertices[i]);
 		sf::Vector2f transformedVec = sf::Vector2f(v.x,v.y);
 		polygon.setPoint(i, sf::Vector2f(std::floor(transformedVec.x), std::floor(transformedVec.y))); // flooring the coords to fix distorted lines on flat surfaces
 	}																								   // they still show up though.. but less frequently

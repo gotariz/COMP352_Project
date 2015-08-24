@@ -1,5 +1,11 @@
 #include "Player.h"
 
+void Player::onCreate()
+{
+    color.setColor(5,91,165,255);
+    color.setTime(0.5f);
+}
+
 void Player::onUpdate()
 {
 
@@ -30,23 +36,9 @@ void Player::onUpdate()
 //    trail.push_back(circle);
 
 
-    if (c.r > 5)
-    {
-        c.r -= 165.f * gdata.m_timeDelta;
-        if (c.r < 5)
-        {
-            c.r = 5;
-        }
-    }
-//
-//    if (c.g < 91)
-//    {
-//        c.g += 91.f * gdata.m_timeDelta;
-//        if (c.g > 91)
-//        {
-//            c.g = 91;
-//        }
-//    }
+    color.update(gdata.m_timeDelta);
+
+    //cout << r << "-" << g << "-" << b << endl;
 //
 //    for (int i = 0; i < circles.size(); ++i)
 //    {
@@ -101,9 +93,13 @@ void Player::onCollision(Object* objectB)
     if (objectB->m_type == WALL)
     {
         float speed = getVelocity().getMagnitude();
-        speed /= 25.0;
-        c.r = 165 * speed;
-        c.g = 91 - (91 * speed);
+        speed /= maxSpeed;
+        int r = 165 * speed;
+        int g = 91 - (91 * speed);
+        int b = 165;
+        color.setColor2(r,g,165,255);
+        color.reset();
+        color.start();
     }
 }
 
@@ -112,12 +108,9 @@ void Player::onDraw()
     if (m_physicsObject != nullptr)
     {
 		Vector2 pos = getAbsolutePosition();
-		pos = gdata.toPixels(pos.x, pos.y);
-		pos.x -= gdata.camera->getScreenX();
-		pos.y -= gdata.camera->getScreenY();
-
+		pos = gdata.toScreenPixels(pos.x, pos.y);
 		sf::CircleShape circle((0.5 * WORLD_SCALE) * gdata.zoom);
-        circle.setFillColor(c);
+        circle.setFillColor(color.getCurrentColor());
         circle.setPosition(pos.x,pos.y);
         circle.setOrigin(circle.getRadius(),circle.getRadius());
         gdata.window->draw(circle);

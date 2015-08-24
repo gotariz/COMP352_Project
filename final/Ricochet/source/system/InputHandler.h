@@ -32,6 +32,13 @@ class InputHandler
         Vector2 s_pos;
 		Vector2 e_pos;
 
+		float pullbackDistance = 300;
+		int power = 0;
+		int angle = 0;
+		bool selecting = false;
+		bool launched = false;
+		Vector2 velocity;
+
     private:
 
         int         lastUsed = 0;

@@ -50,7 +50,9 @@ Vector2::~Vector2()
 
 float Vector2::getAngle()
 {
-    return atan2(y,x) * RADTODEG;
+    float a = atan2(y,x) * RADTODEG;
+    if (a < 0) a += 360;
+    return a;
 }
 
 float Vector2::getMagnitude()

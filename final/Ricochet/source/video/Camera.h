@@ -1,9 +1,9 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "general.h"
+//#include "general.h"
 
-#include "system/GameData.h"
+//#include "system/GameData.h"
 
 class Camera
 {
@@ -25,8 +25,8 @@ class Camera
         float w = 0; // pixel dimensions
         float h = 0;
 
-        int getScreenX();
-        int getScreenY();
+        //int getScreenX();
+        //int getScreenY();
 };
 
 #endif // CAMERA_H

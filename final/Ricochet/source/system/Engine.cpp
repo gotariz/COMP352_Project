@@ -25,6 +25,12 @@ void Engine::run()
 		gdata.window->setTitle( title.c_str() );
 		gdata.m_timeDelta = delta;
 
+        // update mouse position
+        sf::Vector2i mp = sf::Mouse::getPosition(*gdata.window);
+        gdata.mouse.x = mp.x;
+        gdata.mouse.y = gdata.window->getSize().y - mp.y;
+        gdata.mouse_raw.x = mp.x;
+        gdata.mouse_raw.y = mp.y;
 
         updateState();
 
