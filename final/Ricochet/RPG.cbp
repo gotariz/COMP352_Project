@@ -115,6 +115,8 @@
 		<Unit filename="source/utils/tinyxml2.h" />
 		<Unit filename="source/video/Camera.cpp" />
 		<Unit filename="source/video/Camera.h" />
+		<Unit filename="source/video/Trail.cpp" />
+		<Unit filename="source/video/Trail.h" />
 		<Unit filename="source/video/sfColor.cpp" />
 		<Unit filename="source/video/sfColor.h" />
 		<Unit filename="source/video/sfFont.cpp" />

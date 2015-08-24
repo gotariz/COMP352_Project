@@ -32,7 +32,7 @@ class InputHandler
         Vector2 s_pos;
 		Vector2 e_pos;
 
-		float pullbackDistance = 300;
+		float pullbackDistance = 200;
 		int power = 0;
 		int angle = 0;
 		bool selecting = false;

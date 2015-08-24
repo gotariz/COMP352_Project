@@ -45,6 +45,7 @@ void InputHandler::handleEvents()
 	{
 		m_player->setLinearVelocity(Vector2(0, 0));
 		m_player->setAbsolutePosition(m_player->reset_pos);
+		m_player->trail.clearTrail();
 		launched = false;
 		selecting = false;
 		cout << "restarted" << endl;
@@ -115,6 +116,7 @@ void InputHandler::handlePlayerEvents()
 
             //if (velocity.getMagnitude() > m_player->maxSpeed)       velocity.setMagnitude(m_player->maxSpeed);
             //else if (velocity.getMagnitude() < m_player->minSpeed)   velocity.setMagnitude(m_player->minSpeed);
+            m_player->trail.addPoint( m_player->getAbsolutePosition() );
             m_player->setLinearVelocity(velocity);
             selecting = false;
             launched = true;

@@ -6,6 +6,22 @@ using namespace std;
 class Object;
 #include "utils/Vector2.h"
 
+struct gzPair
+{
+    Vector2 left;
+    Vector2 right;
+
+    Vector2 center;
+};
+
+struct point
+{
+    Vector2 bl;
+    Vector2 br;
+    Vector2 tl;
+    Vector2 tr;
+};
+
 
 struct CollisionData
 {

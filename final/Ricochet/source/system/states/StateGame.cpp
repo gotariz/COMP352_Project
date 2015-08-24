@@ -114,13 +114,43 @@ void StateGame::draw()
 	//world->DrawDebugData();
 	if (input.selecting)
     {
+        float dist = 140;
         float xo = 20;
-        if (input.angle <= 90 || (input.angle >= 180 && input.angle < 270))    xo = -120;
+        float duration = 0.25;
+        if (input.angle <= 90 || (input.angle >= 180 && input.angle < 270))
+        {
+            // move text to the left
+            if (cx > -120)
+            {
+                cx -= dist * (gdata.m_timeDelta / duration);
+                if (cx < -120) cx = -120;
+            }
+        }
+        else
+        {
+            //moving text to the right
+            if (cx < 20)
+            {
+                cx += dist * (gdata.m_timeDelta / duration);
+                if (cx > 20) cx = 20;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+        //if (input.angle <= 90 || (input.angle >= 180 && input.angle < 270))    xo = -120;
         Vector2 p = gdata.toScreenPixels(player->getAbsolutePosition());
         string v = gz::toString(input.power) + "%";
         string a = gz::toString(input.angle) + " degrees";
-        fntPower->drawString(p.x + xo,p.y - 100,v);
-        fntAngle->drawString(p.x + xo,p.y - 50,a);
+        fntPower->drawString(p.x + cx,p.y - 100,v);
+        fntAngle->drawString(p.x + cx,p.y - 50,a);
     }
 
 

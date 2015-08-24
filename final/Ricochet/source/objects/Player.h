@@ -5,6 +5,7 @@
 #include "general.h"
 #include "Object.h"
 #include "sfColor.h"
+#include "video/Trail.h"
 
 class Player : public Object
 {
@@ -23,8 +24,7 @@ class Player : public Object
 		float minSpeed = 5;
 
         sfColor color;
-        vector<sf::CircleShape> circles;
-        vector<sf::CircleShape> trail;
+        Trail trail;
 
         Vector2 reset_pos;
 };

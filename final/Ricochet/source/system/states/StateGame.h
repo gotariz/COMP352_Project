@@ -68,6 +68,8 @@ class StateGame : public IState
 		ContactListener		collisions;
 		PhysicsFactory		factory;
 		bool                drawPhysicsDebug = true;
+
+		float cx = 20;
 };
 
 #endif // STATEGAME_H
