@@ -19,13 +19,14 @@ void StateGame::load()
     font->setFont(assets.getFont("purista-medium-14-white"));
     font->setColor(sf::Color::Red);
 
+    sf::Color purple = sf::Color(135,0,135);
     fntPower = new sfFontRenderer(gdata.window);
     fntPower->setFont(assets.getFont("segoe-ui-light-48"));
-    fntPower->setColor(sf::Color::Black);
+    fntPower->setColor(purple);
 
     fntAngle = new sfFontRenderer(gdata.window);
     fntAngle->setFont(assets.getFont("segoe-ui-light-20"));
-    fntAngle->setColor(sf::Color::Black);
+    fntAngle->setColor(purple);
 
 	camera = Camera(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight());
 	gdata.camera = &camera;
@@ -96,25 +97,14 @@ void StateGame::draw()
 
     if (input.selecting)
     {
-        float xo = 20;
-        if (input.angle <= 90 || (input.angle >= 180 && input.angle < 270))    xo = -120;
-        Vector2 p = gdata.toScreenPixels(player->getAbsolutePosition());
-        string v = gz::toString(input.power) + "%";
-        string a = gz::toString(input.angle) + " degrees";
-        fntPower->drawString(p.x + xo,p.y - 100,v);
-        fntAngle->drawString(p.x + xo,p.y - 50,a);
-
         // draw the line
+        Vector2 p = gdata.toScreenPixels(player->getAbsolutePosition());
         Vector2 n = gdata.toScreenPixels(player->getAbsolutePosition() + input.velocity);
-        //p.print("s");
-        //n.print("e");
-        //input.velocity.print("vel");
         sf::Vertex line[] =
         {
             sf::Vertex(sf::Vector2f(p.x, p.y)),
             sf::Vertex(sf::Vector2f(n.x, n.y))
         };
-
         gdata.window->draw(line, 2, sf::Lines);
 
     }
@@ -122,6 +112,16 @@ void StateGame::draw()
 	manager.draw();
 
 	//world->DrawDebugData();
+	if (input.selecting)
+    {
+        float xo = 20;
+        if (input.angle <= 90 || (input.angle >= 180 && input.angle < 270))    xo = -120;
+        Vector2 p = gdata.toScreenPixels(player->getAbsolutePosition());
+        string v = gz::toString(input.power) + "%";
+        string a = gz::toString(input.angle) + " degrees";
+        fntPower->drawString(p.x + xo,p.y - 100,v);
+        fntAngle->drawString(p.x + xo,p.y - 50,a);
+    }
 
 
     font->drawString(0,0,"hello this is a test");
