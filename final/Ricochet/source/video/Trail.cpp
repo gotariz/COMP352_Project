@@ -18,7 +18,6 @@ void Trail::clearTrail()
 void Trail::draw()
 {
     // Trim the tail
-    float length = 10;
     float d = 0;
     Vector2 previous = player;
     for (int i = points.size() - 1; i >= 0; --i)
@@ -50,7 +49,6 @@ void Trail::draw()
 
     vector<gzPair> pairs;
     float dist = 0;
-    float width = 0.5;
     Vector2 last;
     for (int i = 0; i < points.size(); ++i)
     {

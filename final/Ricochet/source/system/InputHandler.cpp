@@ -63,7 +63,6 @@ void InputHandler::handlePlayerEvents()
         {
             s_pos = gdata.toScreenPixels(m_player->getAbsolutePosition());
             s_pos.y = gdata.window->getSize().y - s_pos.y;
-            s_pos.print("start:");
             Vector2 d = gdata.mouse - s_pos;
             if (d.getMagnitude() <= (0.5 * WORLD_SCALE * gdata.zoom))
             {
@@ -118,6 +117,7 @@ void InputHandler::handlePlayerEvents()
             //else if (velocity.getMagnitude() < m_player->minSpeed)   velocity.setMagnitude(m_player->minSpeed);
             m_player->trail.addPoint( m_player->getAbsolutePosition() );
             m_player->setLinearVelocity(velocity);
+            m_player->trail.length = MAX_TAIL_LENGTH * (velocity.getMagnitude() / m_player->maxSpeed);
             selecting = false;
             launched = true;
 		}

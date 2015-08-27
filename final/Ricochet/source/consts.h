@@ -17,6 +17,9 @@ static const unsigned       SETTINGS_DEFAULT_HEIGHT = 600;
 // level
 static const string			LEVEL_PATH = "data/levels/level_";
 
+// vfx
+static const float          MAX_TAIL_LENGTH = 10.0f;
+
 // GUI
 static const unsigned       GUI_FONT_DEFAULT_SIZE = 12;
 static const std::string    GUI_FONT_DEFAULT_PATH = "media/fonts/puristal.otf";

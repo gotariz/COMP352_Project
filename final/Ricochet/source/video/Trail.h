@@ -17,8 +17,10 @@ class Trail
 
         void setPlayerPosition(Vector2 position);
         void setPlayerPosition(float x, float y);
-
         void clearTrail();
+
+        float length = 10;
+        float width = 0.5;
 
     private:
         void setApart(Vector2 &l, Vector2 &r, float distance);
