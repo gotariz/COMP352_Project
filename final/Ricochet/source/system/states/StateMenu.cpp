@@ -15,10 +15,17 @@ void StateMenu::load()
     assets.loadAssetList("data/assets.xml");
 	gdata.assets = &assets;
 
+ 	gdata.window->setKeyRepeatEnabled(false);
+
     font = new sfFontRenderer(gdata.window);
     font->setFont(assets.getFont("purista-medium-14-white"));
 
 	gdata.zoom = (gdata.settings->getScreenWidth() / 1920.f);
+
+	menuItems.push_back("Start");
+	menuItems.push_back("Achievements");
+	menuItems.push_back("Options");
+	menuItems.push_back("Exit");
 
     loading = false;
 }
@@ -42,6 +49,46 @@ void StateMenu::handleEvents()
         {
             gdata.running = false;
         }
+
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+        {
+            gdata.running = false;
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        {
+            selected -= 1;
+            if(selected < 0)
+                selected = menuItems.size() -1;
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        {
+            selected += 1;
+            if(selected > menuItems.size() -1)
+                selected = 0;
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+        {
+            if(selected == 0) //Start
+            {
+                //
+            }
+            if(selected == 1) //Achievements
+            {
+                //
+            }
+            if(selected == 2) //Options
+            {
+                //
+            }
+            if(selected == 3) //Exit
+            {
+                gdata.running = false;
+            }
+
+        }
     }
 }
 
@@ -53,6 +100,27 @@ void StateMenu::draw()
 
 
     font->drawString(0,0,"hello this is a test");
+
+    float x = gdata.settings->getScreenWidth() - 200;
+    float y = 100;
+
+    for(int i = 0; i < menuItems.size(); i++)
+    {
+        if(selected == i)
+        {
+            font->setColor(sf::Color::Cyan);
+            font->drawString(x - 50,y, menuItems[i]);
+        }
+        else
+        {
+            font->setColor(sf::Color::White);
+            font->drawString(x, y, menuItems[i]);
+        }
+        y += 100;
+    }
+
+
+
 	gdata.window->display();
 }
 
