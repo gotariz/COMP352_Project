@@ -10,6 +10,19 @@ StateGame::~StateGame()
     //dtor
 }
 
+void StateGame::reInit()
+{
+    gdata.settings->setScreenWidth(600);
+    gdata.settings->setScreenHeight(400);
+
+    gdata.settings->saveSettings();
+
+    gdata.window->setSize(sf::Vector2u(gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
+    gdata.view = new sf::View(sf::FloatRect(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight())); // remember to delete this
+    gdata.window->setView(*gdata.view);
+    gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
+}
+
 void StateGame::load()
 {
 	assets.loadAssetList("data/assets.xml");
@@ -354,4 +367,3 @@ void StateGame::loadLevel()
 		gz::print_w("Exception Thrown:" + gz::toString(ex.what()));
 	}
 }
-

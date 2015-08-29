@@ -10,10 +10,6 @@ using namespace std;
 
 int main()
 {
-
-    #undef b2_velocityThreshold
-    #define b2_velocityThreshold 0.001f
-
     cout << "Template Project v0.1" << endl;
 
     Settings settings;
@@ -31,13 +27,18 @@ int main()
     sf::RenderWindow window(sf::VideoMode(settings.getScreenWidth(), settings.getScreenHeight()), "Template v0.01",flags,s);
     window.setFramerateLimit(settings.getFpsLimit());
     window.setVerticalSyncEnabled(settings.getVsync());
-    //window.setVerticalSyncEnabled(true);
     gdata.window = &window;
+
 
     Engine game;
     game.initialise();
     game.run();
     game.exit();
+
+    if (gdata.view)
+    {
+        delete gdata.view;
+    }
 
     return 0;
 }

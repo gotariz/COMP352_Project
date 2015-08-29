@@ -17,7 +17,7 @@ class GameData
 
     public: // variables
         bool			running = true;
-		RunState		gamestate = STATE_MENU;
+		RunState		gamestate = STATE_GAME;
 
 		AssetManager*	    assets = nullptr;
 		sf::RenderWindow*   window = nullptr;
@@ -30,9 +30,12 @@ class GameData
 		Vector2         mouse;
 		Vector2         mouse_raw;
 
+		sf::View*       view = nullptr;
+
 		//Object* player = nullptr;
 
     public:
+
 		void updateKeys();
 		vector<KeyboardKey>	keys;
 		Vector2 toPixels(float x, float y);

@@ -1009,7 +1009,7 @@
 	"objects/Object.h"
 	"utils/tinyxml2.h"
 
-1440424828 source:c:\users\tom\documents\github\comp329_project\final\ricochet\main.cpp
+1440857060 source:c:\users\tom\documents\github\comp329_project\final\ricochet\main.cpp
 	<iostream>
 	"general.h"
 	"system/Engine.h"
@@ -1778,7 +1778,7 @@
 	<vector>
 	"utils/Vector2.h"
 
-1440159762 c:\users\tom\documents\github\comp329_project\final\ricochet\source\enums.h
+1440843744 c:\users\tom\documents\github\comp329_project\final\ricochet\source\enums.h
 
 1440502346 c:\users\tom\documents\github\comp329_project\final\ricochet\source\consts.h
 	<string>
@@ -1804,7 +1804,7 @@
 	<time.h>
 	<chrono>
 
-1440159750 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\engine.h
+1440855334 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\engine.h
 	"general.h"
 	"system/GameData.h"
 	"system/Settings.h"
@@ -1812,17 +1812,17 @@
 	"system/states/StateGame.h"
 	"system/states/StateMenu.h"
 
-1440397308 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\gamedata.h
+1440857035 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\gamedata.h
 	"general.h"
 	"video/Camera.h"
 
-1438737130 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\settings.h
+1440857480 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\settings.h
 	"general.h"
 
-1438737130 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\istate.h
+1440856742 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\istate.h
 	"general.h"
 
-1440419912 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.h
+1440855493 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.h
 	"general.h"
 	"system/states/IState.h"
 	"system/AssetManager.h"
@@ -1946,19 +1946,19 @@
 1440252558 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\assetmanager.cpp
 	"AssetManager.h"
 
-1440841092 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\engine.cpp
+1440855351 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\engine.cpp
 	"Engine.h"
 
-1440396621 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\gamedata.cpp
+1440855500 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\gamedata.cpp
 	"GameData.h"
 
 1440839696 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\inputhandler.cpp
 	"InputHandler.h"
 
-1438737130 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\settings.cpp
+1440857535 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\settings.cpp
 	"Settings.h"
 
-1440841312 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.cpp
+1440857021 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.cpp
 	"StateGame.h"
 
 1438737130 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\utils\gzclock.cpp
@@ -1991,7 +1991,7 @@
 1440836209 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\wall.cpp
 	"Wall.h"
 
-1440159956 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\statemenu.h
+1440843744 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\statemenu.h
 	"general.h"
 	"system/states/IState.h"
 	"system/AssetManager.h"
@@ -2000,7 +2000,7 @@
 	"system/InputHandler.h"
 	"video/sfFontRenderer.h"
 
-1440252187 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\statemenu.cpp
+1440843744 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\statemenu.cpp
 	"StateMenu.h"
 
 1440839775 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\player.cpp

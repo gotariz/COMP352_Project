@@ -34,6 +34,50 @@ unsigned Settings::getFpsLimit() const
     return m_fpsLimit;
 }
 
+void Settings::setVsync(bool vsync)
+{
+    m_vsync = vsync;
+}
+
+void Settings::setFullscreen(bool fullscreen)
+{
+    m_fullscreen = fullscreen;
+}
+
+void Settings::setScreenWidth(int width)
+{
+    m_resolution.w = width;
+}
+
+void Settings::setScreenHeight(int height)
+{
+    m_resolution.h = height;
+}
+
+void Settings::setFpsLimit(int fps_limit)
+{
+    m_fpsLimit = fps_limit;
+}
+
+
+void Settings::saveSettings()
+{
+    ofstream s ("data/config.ini");
+
+    if (s.is_open())
+    {
+        s << "fps=" << m_fpsLimit << endl;;
+        s << "fullscreen=" << (m_fullscreen ? "true" : "false") << endl;;
+        s << "width=" << m_resolution.w << endl;;
+        s << "height=" << m_resolution.h << endl;;
+        s << "vsync=" << m_vsync << endl;;
+        s.close();
+    }
+    else
+    {
+        cout << "Unable to open config.ini";
+    }
+}
 
 void Settings::readSettings()
 {

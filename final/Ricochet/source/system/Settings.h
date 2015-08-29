@@ -21,8 +21,15 @@ class Settings
         unsigned            getScreenHeight() const;
         unsigned            getFpsLimit() const;
 
+        void                setVsync(bool vsync);
+        void                setFullscreen(bool fullscreen);
+        void                setScreenWidth(int width);
+        void                setScreenHeight(int height);
+        void                setFpsLimit(int fps_limit);
+
     public: // extra functions
         void readSettings();
+        void saveSettings();
 };
 
 #endif // SETTINGS_H

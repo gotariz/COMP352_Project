@@ -12,6 +12,7 @@
 ## Files
 #################
 log.txt
+*.o
 
 
 #################
@@ -28,3 +29,5 @@ log.txt
 *.psess
 *.vsp
 *.vspx
+final/Ricochet/RPG.depend
+final/Ricochet/RPG.layout

@@ -49,6 +49,8 @@ class StateGame : public IState
 
         void loadLevel();
 
+        void reInit();
+
     public:
 
 		ObjectManager		manager;
