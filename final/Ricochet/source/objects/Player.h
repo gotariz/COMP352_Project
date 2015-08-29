@@ -3,14 +3,14 @@
 
 
 #include "general.h"
-#include "Object.h"
+#include "gObject.h"
 #include "sfColor.h"
 #include "video/Trail.h"
 
-class Player : public Object
+class Player : public gObject
 {
     public:
-        Player() : Object(){onCreate();}
+        Player() : gObject(){onCreate();}
         virtual ~Player(){}
 
     public:
@@ -18,10 +18,12 @@ class Player : public Object
         virtual void onUpdate();
         virtual void onCollision(Object* objectB);
         virtual void onEnterCollision(CollisionData cd);
+        virtual void onPostPhysicsUpdate();
         virtual void onDraw();
 
         float maxSpeed = 30;
 		float minSpeed = 5;
+		float currentSpeed = 0;
 
         sfColor color;
         Trail trail;

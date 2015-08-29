@@ -113,10 +113,10 @@ void Trail::draw()
 
     for (int i = pairs.size() - 1; i > 0;i-=1)
     {
-        Vector2 p1 = gdata.toPixels(pairs.at(i).left);
-        Vector2 p2 = gdata.toPixels(pairs.at(i).right);
-        Vector2 p3 = gdata.toPixels(pairs.at(i-1).right);
-        Vector2 p4 = gdata.toPixels(pairs.at(i-1).left);
+        Vector2 p1 = gdata.toScreenPixels(pairs.at(i).left);
+        Vector2 p2 = gdata.toScreenPixels(pairs.at(i).right);
+        Vector2 p3 = gdata.toScreenPixels(pairs.at(i-1).right);
+        Vector2 p4 = gdata.toScreenPixels(pairs.at(i-1).left);
 
         sf::ConvexShape convex;
         convex.setPointCount(4);

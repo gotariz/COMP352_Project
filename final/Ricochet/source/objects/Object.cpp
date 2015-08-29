@@ -11,59 +11,16 @@ Object::~Object()
     //dtor
 }
 
-void Object::onCreate()
-{
-
-}
-
-void Object::onDestroy()
-{
-
-}
-
-void Object::onCollision(Object* objectB)
-{
-
-}
-
-void Object::onUpdate()
-{
-
-}
-
-void Object::onPrePhysicsUpdate()
-{
-}
-
 void Object::onPostPhysicsUpdate()
 {
     syncChildren();
 }
 
-void Object::onEnterCollision(CollisionData cd)
-{
-}
-
-void Object::onExitCollision(CollisionData cd)
-{
-}
 
 void Object::setPhysicsObject(b2Body* physicsObject)
 {
     m_physicsObject = physicsObject;
     m_physicsObject->SetUserData(this);
-}
-
-void Object::onDraw()
-{
-    if (m_image.getTexture() != nullptr)
-    {
-		Vector2 pos = getAbsolutePosition();
-		pos = gdata.toScreenPixels(pos.x, pos.y);
-		m_image.setScale(gdata.zoom,gdata.zoom);
-		m_image.setRotation(getAbsoluteRotation());
-        gdata.window->draw(m_image);
-    }
 }
 
 vector<Object*>	Object::getChildren()
@@ -206,6 +163,13 @@ void Object::setAbsolutePosition(Vector2 newPosition)
     m_physicsObject->SetTransform( newPosition.toBulletVector(), m_physicsObject->GetAngle() );
 }
 
+void Object::setAngularVelocity(float speed)
+{
+    if (m_physicsObject)
+    {
+        m_physicsObject->SetAngularVelocity(speed);
+    }
+}
 
 
 //================================================================================

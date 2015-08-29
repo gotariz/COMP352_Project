@@ -1887,18 +1887,16 @@
 	"general.h"
 	"objects/Object.h"
 
-1440248835 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\object.h
+1440840011 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\object.h
 	"general.h"
-	"system/GameData.h"
-	"video/Camera.h"
 
-1440159210 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\wall.h
+1440839428 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\wall.h
 	"general.h"
 	"Obstacle.h"
 
-1440159015 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\obstacle.h
+1440836306 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\obstacle.h
 	"general.h"
-	"Object.h"
+	"gObject.h"
 
 1439795671 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\objectmanager.h
 	"general.h"
@@ -1930,7 +1928,7 @@
 	"objects/Object.h"
 	"utils/tinyxml2.h"
 
-1440401963 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\object.cpp
+1440840019 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\object.cpp
 	"Object.h"
 
 1439795697 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\objectmanager.cpp
@@ -1942,25 +1940,25 @@
 1440396726 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\debug\visualdebugger.cpp
 	"VisualDebugger.h"
 
-1440246274 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\physicsfactory.cpp
+1440836773 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\physicsfactory.cpp
 	"PhysicsFactory.h"
 
 1440252558 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\assetmanager.cpp
 	"AssetManager.h"
 
-1440398275 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\engine.cpp
+1440841092 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\engine.cpp
 	"Engine.h"
 
 1440396621 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\gamedata.cpp
 	"GameData.h"
 
-1440502360 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\inputhandler.cpp
+1440839696 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\inputhandler.cpp
 	"InputHandler.h"
 
 1438737130 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\settings.cpp
 	"Settings.h"
 
-1440426959 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.cpp
+1440841312 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.cpp
 	"StateGame.h"
 
 1438737130 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\utils\gzclock.cpp
@@ -1987,10 +1985,10 @@
 1440238355 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\sffontrenderer.cpp
 	"sfFontRenderer.h"
 
-1440396810 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\obstacle.cpp
+1440836327 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\obstacle.cpp
 	"Obstacle.h"
 
-1440241681 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\wall.cpp
+1440836209 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\wall.cpp
 	"Wall.h"
 
 1440159956 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\statemenu.h
@@ -2005,12 +2003,12 @@
 1440252187 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\statemenu.cpp
 	"StateMenu.h"
 
-1440502057 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\player.cpp
+1440839775 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\player.cpp
 	"Player.h"
 
-1440426786 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\player.h
+1440839659 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\player.h
 	"general.h"
-	"Object.h"
+	"gObject.h"
 	"sfColor.h"
 	"video/Trail.h"
 
@@ -2024,6 +2022,15 @@
 	"general.h"
 	"system/GameData.h"
 
-1440501975 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\trail.cpp
+1440825260 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\trail.cpp
 	"Trail.h"
+
+1440825047 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\gobject.cpp
+	"gObject.h"
+
+1440825010 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\gobject.h
+	"general.h"
+	"Object.h"
+	"system/GameData.h"
+	"video/Camera.h"
 

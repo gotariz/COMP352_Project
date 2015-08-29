@@ -2,10 +2,10 @@
 #define OBSTACLE_H
 
 #include "general.h"
-#include "Object.h"
+#include "gObject.h"
 
 
-class Obstacle : public Object
+class Obstacle : public gObject
 {
     public:
         Obstacle();
@@ -15,10 +15,10 @@ class Obstacle : public Object
         virtual void onUpdate();
         virtual void onDraw();
 
-        Vector2     m_size;
+        //Vector2     m_size;
 
         bool		m_moving = false;
-		int			m_nextPoint = 2;
+		Vector2		m_dest;
 		Vector2		m_point1;
 		Vector2		m_point2;
 		float		m_time = 0;

@@ -2,9 +2,6 @@
 #define OBJECT_H
 
 #include "general.h"
-#include "system/GameData.h"
-#include "video/Camera.h"
-//#include "video/AnimatedImage.h"
 
 class Object
 {
@@ -29,17 +26,20 @@ class Object
 
         // this should be private and used through functions
         std::vector<Object*>    m_collidingObjects;
+    public:
+        virtual int     getID();
+        vector<Object*>	getChildren();
 
     public: //events
-        virtual void onCreate();
-        virtual void onDestroy();
-        virtual void onUpdate();
-        virtual void onPrePhysicsUpdate();
+        virtual void onCreate(){}
+        virtual void onDestroy(){}
+        virtual void onUpdate(){}
+        virtual void onPrePhysicsUpdate(){}
         virtual void onPostPhysicsUpdate();
-        virtual void onCollision(Object* objectB);
-        virtual void onEnterCollision(CollisionData cd);
-        virtual void onExitCollision(CollisionData cd);
-        virtual void onDraw();
+        virtual void onCollision(Object* objectB){}
+        virtual void onEnterCollision(CollisionData cd){}
+        virtual void onExitCollision(CollisionData cd){}
+        virtual void onDraw(){}
 
     public: // utilities
         virtual void rotateAround(float angle, Vector2 origin);
@@ -66,6 +66,7 @@ class Object
         virtual void setPhysicsObject(b2Body* physicsObject);
         virtual void applyImpulse(Vector2 impulseForce);
         virtual void setLinearVelocity(Vector2 linearVelocity);
+        virtual void setAngularVelocity(float speed);
         virtual Vector2 getVelocity();
 
         // getters
@@ -74,9 +75,6 @@ class Object
         virtual Vector2 getAbsolutePosition();
         virtual float   getAbsoluteRotation();
 
-		vector<Object*>	getChildren();
-
-        virtual int     getID();
 		void deletePhysicsObject();
 
 

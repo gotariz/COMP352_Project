@@ -99,7 +99,7 @@ b2Body* PhysicsFactory::createHole(float x, float y)
 
 	b2Body* body = m_world->CreateBody(&bodyDef);
 	body->CreateFixture(&fixtureDef);
-	body->SetLinearDamping(1.0);
+	body->SetLinearDamping(0.0);
 	body->SetBullet(false);
 	body->SetSleepingAllowed(false);
 
@@ -130,7 +130,7 @@ b2Body* PhysicsFactory::createObsticle(float x, float y, float w, float h, float
 	fixtureDef.filter.maskBits = CF_ALL;		// what the object collides with
 
 	b2BodyDef bodyDef;
-	bodyDef.type = b2_staticBody;
+	bodyDef.type = b2_kinematicBody;
 	bodyDef.fixedRotation = true;
 	bodyDef.position.Set(x, y);
 	bodyDef.angle = angle * DEGTORAD;

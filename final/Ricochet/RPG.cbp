@@ -18,6 +18,7 @@
 					<Add directory="$(#box2d.include)" />
 					<Add directory="$(#gz.include)" />
 					<Add directory="source/video" />
+					<Add directory="source/objects" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-audio-2" />
@@ -83,6 +84,8 @@
 		<Unit filename="source/objects/Player.h" />
 		<Unit filename="source/objects/Wall.cpp" />
 		<Unit filename="source/objects/Wall.h" />
+		<Unit filename="source/objects/gObject.cpp" />
+		<Unit filename="source/objects/gObject.h" />
 		<Unit filename="source/physics/ContactListener.cpp" />
 		<Unit filename="source/physics/ContactListener.h" />
 		<Unit filename="source/physics/PhysicsFactory.cpp" />

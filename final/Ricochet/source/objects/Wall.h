@@ -11,6 +11,8 @@ class Wall : public Obstacle
         virtual ~Wall();
 
     public:
+        virtual void onUpdate();
+        virtual void onDraw();
 
 };
 

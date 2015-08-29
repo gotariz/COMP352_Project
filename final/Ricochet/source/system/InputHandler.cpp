@@ -113,8 +113,7 @@ void InputHandler::handlePlayerEvents()
             velocity.setMagnitude( m_player->maxSpeed * percent );
 
 
-            //if (velocity.getMagnitude() > m_player->maxSpeed)       velocity.setMagnitude(m_player->maxSpeed);
-            //else if (velocity.getMagnitude() < m_player->minSpeed)   velocity.setMagnitude(m_player->minSpeed);
+            m_player->currentSpeed = velocity.getMagnitude();
             m_player->trail.addPoint( m_player->getAbsolutePosition() );
             m_player->setLinearVelocity(velocity);
             m_player->trail.length = MAX_TAIL_LENGTH * (velocity.getMagnitude() / m_player->maxSpeed);

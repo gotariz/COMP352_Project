@@ -57,7 +57,24 @@ void StateGame::load()
 
 	loadLevel();
 
+//    Vector2 pos(0,0);
+//    Vector2 size(1,3);
+//
+//    Wall* wall = new Wall();
+//    wall->setPhysicsObject(factory.createObsticle(pos.x, pos.y, size.x, size.y, 0));
+//
+//    wall->m_moving	    = true;
+//    wall->m_time	    = 0.0f;
+//    wall->m_duration    = 3.0f;
+//    wall->m_point1	    = Vector2(0,0);
+//    wall->m_point2	    = Vector2(0,3);
+//    wall->m_dest        = wall->m_point2;
+//
+//    manager.addObject(wall);
+
 	gdata.zoom = (gdata.settings->getScreenWidth() / 1920.f);
+
+    sf::sleep(sf::milliseconds(3000));
 
     loading = false;
 }
@@ -65,7 +82,42 @@ void StateGame::load()
 bool StateGame::initialise()
 {
 	loading = true;
-	load();
+    sf::Thread loading_thread(&StateGame::load,this);
+    loading_thread.launch();
+
+    // loading screen data
+    gzClock clock;
+	float timedelta = clock.getDeltaSeconds();
+    sf::Sprite sprite;
+    sf::Texture texture;
+    if (texture.loadFromFile("media/images/loading.png"))
+    {
+        texture.setSmooth(true);
+        sprite.setTexture(texture);
+        sprite.setOrigin(texture.getSize().x / 2,texture.getSize().y / 2);
+        sprite.setPosition( gdata.settings->getScreenWidth() / 2,gdata.settings->getScreenHeight() / 2 );
+    }
+
+    while (loading)
+    {
+        timedelta = clock.getDeltaSeconds();
+        sf::Event event;
+        while (gdata.window->pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                gdata.running = false;
+            }
+        }
+
+        // draw
+        gdata.window->clear(sf::Color(0,0,0,255));
+        gdata.window->draw(sprite);
+        gdata.window->display();
+
+        sprite.rotate( 90.f * timedelta );
+
+    }
 
     return true;
 }
@@ -88,12 +140,6 @@ void StateGame::update()
 void StateGame::draw()
 {
     gdata.window->clear(sf::Color(128,128,128,255));
-
-	//Vector2 pos = gdata.toPixels(0, 0);
-	//pos.x -= camera.getScreenX();
-	//pos.y -= camera.getScreenY();
-	//bg->scale.set(gdata.zoom, gdata.zoom);
-	//bg->renderImage(gdata.renderer, pos.x, pos.y);
 
     if (input.selecting)
     {
@@ -136,16 +182,6 @@ void StateGame::draw()
             }
         }
 
-
-
-
-
-
-
-
-
-
-        //if (input.angle <= 90 || (input.angle >= 180 && input.angle < 270))    xo = -120;
         Vector2 p = gdata.toScreenPixels(player->getAbsolutePosition());
         string v = gz::toString(input.power) + "%";
         string a = gz::toString(input.angle) + " degrees";
@@ -197,23 +233,29 @@ void StateGame::loadLevel()
 				Vector2 size	= Vector2(element->Attribute("size"));
 				Vector2 p1		= Vector2(element->Attribute("p1"));
 				Vector2 p2		= Vector2(element->Attribute("p2"));
-				bool moves		= atoi(element->Attribute("moves"));
+				bool moving		= atoi(element->Attribute("moves"));
 				float duration	= atof(element->Attribute("duration"));
-				float time		= atof(element->Attribute("time"));
+				float progress	= atof(element->Attribute("progress"));
 				float angle		= atof(element->Attribute("rotation"));
+				float rotspeed  = atof(element->Attribute("rotationspeed"));
 
-				Wall* wall = new Wall();
-				wall->setPhysicsObject(factory.createObsticle(pos.x, pos.y, size.x, size.y, angle));
-				wall->m_moving	= moves;
-				wall->m_duration = duration;
-				wall->m_point1	= p1;
-				wall->m_point2	= p2;
-				wall->m_time		= time;
-				wall->m_duration = duration;
+                Wall* wall = new Wall();
+                wall->setPhysicsObject(factory.createObsticle(pos.x, pos.y, size.x, size.y, angle));
 
-                wall->m_size.set( size.x * WORLD_SCALE, size.y * WORLD_SCALE );
+                wall->m_moving	    = moving;
+                if (moving)
+                {
+                    wall->setPosition( p1 + ((p2 - p1) * progress));
+                    wall->m_duration    = duration;
+                    wall->m_point1	    = p1;
+                    wall->m_point2	    = p2;
+                    wall->m_dest        = p2;
 
-				manager.addObject(wall);
+                    wall->setAngularVelocity(rotspeed * DEGTORAD);
+                    wall->setLinearVelocity( (p2 - p1) / duration);
+                }
+
+                manager.addObject(wall);
 
 			}
 			else if (attribute_type == "barrier")
@@ -226,7 +268,6 @@ void StateGame::loadLevel()
 
 				Wall* wall = new Wall();
 				wall->setPhysicsObject(factory.createGround(pos.x, pos.y, size.x, size.y, angle));
-				wall->m_size.set((size.x * WORLD_SCALE),(size.y * WORLD_SCALE));
 
 				manager.addObject(wall);
 

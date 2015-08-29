@@ -44,9 +44,25 @@ void Player::onCollision(Object* objectB)
         int r = 165 * speed;
         int g = 91 - (91 * speed);
         int b = 165;
+
+        r = (r > 165) ? 165 : r;
+        g = (g < 0) ? 0 : g;
+
         color.setColor2(r,g,165,255);
         color.reset();
         color.start();
+
+        trail.length = MAX_TAIL_LENGTH * (getVelocity().getMagnitude() / maxSpeed);
+    }
+}
+
+void Player::onPostPhysicsUpdate()
+{
+    Vector2 vel = getVelocity();
+    if (vel.x != 0 && vel.y != 0)
+    {
+        vel.setMagnitude(currentSpeed);
+        setLinearVelocity(vel);
     }
 }
 

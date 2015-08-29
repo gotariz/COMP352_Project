@@ -20,6 +20,7 @@ void Engine::run()
 		double delta = clock.getDeltaSeconds();
 
 		// calculate fps
+		delta = (delta > 1.f /60) ? 1.f / 60 : delta;
 		double fps = 1.f / delta;
 		string title = "fps" + gz::toString(fps);
 		gdata.window->setTitle( title.c_str() );
@@ -38,8 +39,6 @@ void Engine::run()
         activeState->update();
         activeState->draw();
         running = gdata.running;
-
-		sf::sleep(sf::milliseconds(1));
     }
 }
 
