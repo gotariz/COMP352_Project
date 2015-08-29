@@ -42,7 +42,7 @@ enum MenuState
     MENU_MAIN               = 201,
     MENU_AWARDS             = 202,
     MENU_OPTIONS            = 203,
-    MENU_EXIT               = 204,
+    MENU_LEVELS             = 204,
 };
 
 #endif // ENUMS_H_INCLUDED
