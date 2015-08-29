@@ -28,23 +28,43 @@ class StateMenu : public IState
         virtual void freeResources();
         virtual void start();
 
+        //This is a list of items in the main menu (eg. start, awards, options, exit)
         vector<string> menuItems;
+
+        //This is a vector of all available options (vsync, fs, res, fps)
         vector<string> optionsItems;
+
+        //This is a vector of the each vector of options (eg. a list of resolutions you can choose)
         vector<vector<string>> optionsSettings;
 
+        //These are each selected option's choices (e.g. each resolution you can choose)
         vector<string>  vSync;
         vector<string>  fs;
         vector<string>  res;
         vector<string>  fps;
+
+        //This is a way to track which option is selected (eg. the 3rd resolution is selected)
         vector<int>     selectedOps;
 
+        //This is to track which main menu you are hovering
         int selected = 0;
+
+        //This is to track which option you are hovering in the options menu
         int selectedOption = 0;
+
+        //These are to track which setting you are hovering on a specific option
         int selectedVSync = 0;
         int selectedFs = 0;
         int selectedRes = 0;
         int selectedFPS = 0;
+
+        //This sets the 1st state to the main menu screen
         int menuState = MENU_MAIN;
+
+        int fsMode;
+        int vSyncMode;
+
+        void reset();
 
         float x;
         float y;

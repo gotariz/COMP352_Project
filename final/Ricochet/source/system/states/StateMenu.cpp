@@ -27,12 +27,13 @@ void StateMenu::load()
 	menuItems.push_back("Options");
 	menuItems.push_back("Exit");
 
+    fsMode = gdata.settings->getFullscreen();
+    vSyncMode = gdata.settings->getVsync();
 
-
-	vSync.push_back(gz::toString(gdata.settings->getVsync()));
-	vSync.push_back("1");
-    fs.push_back(gz::toString(gdata.settings->getFullscreen()));
-    fs.push_back(gz::toString(1));
+	vSync.push_back("Off");
+	vSync.push_back("On");
+    fs.push_back("Windowed");
+    fs.push_back("Fullscreen");
 
     vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
 	for (int i = 0; i < modes.size(); i++)
@@ -41,13 +42,17 @@ void StateMenu::load()
 	    res.push_back(gz::toString(mode.width) + "x" + gz::toString(mode.height));
 	}
 
-    fps.push_back(gz::toString(gdata.settings->getFpsLimit()));
+    fps.push_back(gz::toString(30));
     fps.push_back(gz::toString(60));
 
     optionsSettings.push_back(vSync);
     optionsSettings.push_back(fs);
     optionsSettings.push_back(res);
     optionsSettings.push_back(fps);
+
+    selectedVSync   = gdata.settings->getVsync();
+    selectedFs      = gdata.settings->getFullscreen();
+    selectedFPS     = gdata.settings->getFpsLimit();
 
     selectedOps.push_back(selectedVSync);
     selectedOps.push_back(selectedFs);
@@ -82,92 +87,166 @@ void StateMenu::handleEvents()
             gdata.running = false;
         }
 
-        if(menuState == MENU_MAIN)  //Handle events within the main menu screen
+        if(event.type == sf::Event::KeyPressed)
         {
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+            if(event.key.code == sf::Keyboard::R)
             {
-                gdata.running = false;
+                reset();
             }
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+            if(menuState == MENU_MAIN)  //Handle events within the main menu screen
             {
-                selected -= 1;
-                if(selected < 0)
-                    selected = menuItems.size() -1;
-            }
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-            {
-                selected += 1;
-                if(selected > menuItems.size() -1)
-                    selected = 0;
-            }
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
-            {
-                if(selected == 0) //Start
-                {
-                    gdata.gamestate = STATE_GAME;
-                }
-                if(selected == 1) //Achievements
-                {
-                    menuState = MENU_AWARDS;
-                }
-                if(selected == 2) //Options
-                {
-                    menuState = MENU_OPTIONS;
-                }
-                if(selected == 3) //Exit
+                if(event.key.code == sf::Keyboard::Escape)
                 {
                     gdata.running = false;
                 }
-            }
-        }
 
-        if(menuState == MENU_OPTIONS) //Handle events within the options menu screen
-        {
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace))
-            {
-                menuState = MENU_MAIN;
+                if (event.key.code == sf::Keyboard::Up)
+                {
+                    selected -= 1;
+                    if(selected < 0)
+                        selected = menuItems.size() -1;
+                }
+
+                if (event.key.code == sf::Keyboard::Down)
+                {
+                    selected += 1;
+                    if(selected > menuItems.size() -1)
+                        selected = 0;
+                }
+
+                if (event.key.code == sf::Keyboard::Return)
+                {
+                    if(selected == 0) //Start
+                    {
+                        gdata.gamestate = STATE_GAME;
+                    }
+                    if(selected == 1) //Achievements
+                    {
+                        menuState = MENU_AWARDS;
+                    }
+                    if(selected == 2) //Options
+                    {
+                        menuState = MENU_OPTIONS;
+                    }
+                    if(selected == 3) //Exit
+                    {
+                        gdata.running = false;
+                    }
+                }
             }
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+            //! TODO
+            //!     ->CHANGE ALL KEY PRESSES TO gdata.keys[sf::Keyboard::A].isKeyPressed
+            //!     ->VSYNC NEEDS TO CHANGE PROPERLY
+            //!     ->RESOLUTION NEEDS TO LOAD IN THE CORRECT SPOT
+            //!     ->FPS NEEDS TO LOAD IN PROPERLY, CURRENTLY ALWAYS SAYS 1 WHEN 0 UNTIL YOU PRESS RIGHT OR LEFT 2X
+            //!     ->CHECK FULLSCREEN IS WORKING PROPERLY
+            else if(menuState == MENU_OPTIONS) //Handle events within the options menu screen
             {
-                selectedOption -= 1;
-                if(selectedOption < 0)
-                    selectedOption = optionsItems.size() -1;
+                if(event.key.code == sf::Keyboard::BackSpace)
+                {
+                    menuState = MENU_MAIN;
+                }
+
+                if (event.key.code == sf::Keyboard::Return)
+                {
+                    gdata.settings->setVsync(vSyncMode);
+                    gdata.settings->setFullscreen(selectedFs);
+
+                    gdata.settings->setScreenWidth(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[0]));
+                    gdata.settings->setScreenHeight(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[1]));
+
+                    cout << "WTF: " << optionsSettings[3][selectedOps[selectedFPS]] <<endl;
+                    gdata.settings->setFpsLimit(gz::stringToUnsigned(optionsSettings[3][selectedOps[selectedFPS]]));
+
+                    gdata.settings->saveSettings();
+
+                    gdata.window->setSize(sf::Vector2u(gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
+                    gdata.view = new sf::View(sf::FloatRect(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
+                    gdata.window->setView(*gdata.view);
+                    gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
+
+                    cout << "<----------------------SETTINGS SAVED-------------------------->\n"
+                         << "\tvSync:\t" << vSyncMode << "\n"
+                         << "\tFullscreen:\t" << selectedFs << "\n"
+                         << "\tResolution:\t" << gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[0] << "x"
+                         << gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[1] << "\n"
+                         << "\tFPS Limit:\t" << gz::stringToUnsigned(optionsSettings[3][selectedOps[selectedFPS]]) << endl;
+
+                    gdata.window->setPosition(sf::Vector2i(0,0));
+                    //menuState = MENU_MAIN;
+                }
+
+                if (event.key.code == sf::Keyboard::Up)
+                {
+                    selectedOption -= 1;
+                    if(selectedOption < 0)
+                        selectedOption = optionsItems.size() -1;
+                }
+
+                if (event.key.code == sf::Keyboard::Down)
+                {
+                    selectedOption += 1;
+                    if(selectedOption > optionsItems.size() -1)
+                        selectedOption = 0;
+                }
+
+                if (event.key.code == sf::Keyboard::Right)
+                {
+                    selectedOps[selectedOption] += 1;
+                    if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
+                        selectedOps[selectedOption] = 0;
+
+                    if(selectedOption == 0)
+                        selectedVSync = selectedOption;
+                    if(selectedOption == 1)
+                        selectedFs = selectedOps[selectedOption];
+                    if(selectedOption == 2)
+                        selectedRes = selectedOption;
+                    if(selectedOption == 3)
+                        selectedFPS = selectedOption;
+                }
+
+                if (event.key.code == sf::Keyboard::Left)
+                {
+                    selectedOps[selectedOption] -= 1;
+                    if(selectedOps[selectedOption] < 0 )
+                        selectedOps[selectedOption] = optionsSettings[selectedOption].size()-1;
+
+                    if(selectedOption == 0)
+                        selectedVSync = selectedOption;
+                    if(selectedOption == 1)
+                        selectedFs = selectedOps[selectedOption];
+                    if(selectedOption == 2)
+                        selectedRes = selectedOption;
+                    if(selectedOption == 3)
+                        selectedFPS = selectedOption;
+                }
             }
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+            else if(menuState == MENU_AWARDS) //Handle events within the achievements menu screen
             {
-                selectedOption += 1;
-                if(selectedOption > optionsItems.size() -1)
-                    selectedOption = 0;
-            }
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-            {
-                selectedOps[selectedOption] += 1;
-                if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
-                    selectedOps[selectedOption] = 0;
-            }
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-            {
-                selectedOps[selectedOption] -= 1;
-                if(selectedOps[selectedOption] < 0 )
-                    selectedOps[selectedOption] = optionsSettings[selectedOption].size()-1;
-            }
-        }
-
-        if(menuState == MENU_AWARDS) //Handle events within the achievements menu screen
-        {
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace))
-            {
-                menuState = MENU_MAIN;
+                if(event.key.code == sf::Keyboard::BackSpace)
+                {
+                    menuState = MENU_MAIN;
+                }
             }
         }
     }
+}
+
+void StateMenu::reset()
+{
+    gdata.settings->setScreenWidth(600);
+    gdata.settings->setScreenHeight(400);
+
+    gdata.settings->saveSettings();
+
+    gdata.window->setSize(sf::Vector2u(gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
+    gdata.view = new sf::View(sf::FloatRect(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight())); // remember to delete this
+    gdata.window->setView(*gdata.view);
+    gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
 }
 
 void StateMenu::update(){}
@@ -176,21 +255,21 @@ void StateMenu::draw()
 {
     gdata.window->clear(sf::Color(64,64,64,255));
 
-    font->drawString(0,0,"hello this is a test");
+    font->drawString(0,0,"Press 'R' to reset screen");
 
     // Menu animation sliding
     if(menuState == MENU_MAIN)
     {
         if( x < gdata.settings->getScreenWidth() - 200)
-            x += 3.5;
+            x += gdata.settings->getScreenWidth()/20;
     }
     else
     {
         if( x > 50)
-            x -= 3.5;
+            x -= gdata.settings->getScreenWidth()/20;
     }
 
-    y = 100;
+    y = gdata.settings->getScreenHeight()/5;
 
     if(menuState == MENU_LEVELS)
     {
@@ -202,21 +281,21 @@ void StateMenu::draw()
 
     }
 
-    if(menuState == MENU_OPTIONS)
+    if(menuState == MENU_OPTIONS) //! NEED ANIMATIONS
     {
         for (int i = 0; i < optionsItems.size(); i++)
         {
             if(selectedOption == i)
             {
                 font->setColor(sf::Color::Cyan);
-                font->drawString(gdata.settings->getScreenWidth() /2 -25, y + (50 * i), optionsItems[i]);
-                font->drawString(gdata.settings->getScreenWidth() -200, y + (50 * i), optionsSettings[i][selectedOps[i]]);
+                font->drawString(gdata.settings->getScreenWidth() /2 -25, y + (gdata.settings->getScreenHeight()/10 * i), optionsItems[i]);
+                font->drawString(gdata.settings->getScreenWidth() -200, y + (gdata.settings->getScreenHeight()/10 * i), optionsSettings[i][selectedOps[i]]);
             }
             else
             {
                 font->setColor(sf::Color::White);
-                font->drawString(gdata.settings->getScreenWidth() /2, y + (50 * i), optionsItems[i]);
-                font->drawString(gdata.settings->getScreenWidth() -200, y + (50 * i), optionsSettings[i][selectedOps[i]]);
+                font->drawString(gdata.settings->getScreenWidth() /2, y + (gdata.settings->getScreenHeight()/10 * i), optionsItems[i]);
+                font->drawString(gdata.settings->getScreenWidth() -200, y + (gdata.settings->getScreenHeight()/10 * i), optionsSettings[i][selectedOps[i]]);
             }
         }
     }
@@ -229,19 +308,19 @@ void StateMenu::draw()
 
             // Menu Animations for selected
             if(menuState == MENU_MAIN && x > gdata.settings->getScreenWidth() - 250)
-                font->drawString(x - 50, y + (100 * i), menuItems[i]);
+                font->drawString(x - 50, y + (gdata.settings->getScreenHeight()/10 * i), menuItems[i]);
             else if(menuState == MENU_MAIN)
-                font->drawString(x,y, menuItems[i]);
+                font->drawString(x,y + (gdata.settings->getScreenHeight()/10 * i), menuItems[i]);
             else if(x < 100)
-                font->drawString(x + 50, y + (100 * i), menuItems[i]);
+                font->drawString(x + 50, y + (gdata.settings->getScreenHeight()/10 * i), menuItems[i]);
             else
-                font->drawString(x, y + (100 * i), menuItems[i]);
+                font->drawString(x, y + (gdata.settings->getScreenHeight()/10 * i), menuItems[i]);
 
         }
         else
         {
             font->setColor(sf::Color::White);
-            font->drawString(x, y + (100 * i), menuItems[i]);
+            font->drawString(x, y + (gdata.settings->getScreenHeight()/10 * i), menuItems[i]);
         }
     }
 
