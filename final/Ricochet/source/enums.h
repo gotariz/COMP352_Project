@@ -37,4 +37,12 @@ enum ExtraKeys
     KEY_MOUSE_SCROLL_DOWN   = 107,
 };
 
+enum MenuState
+{
+    MENU_MAIN               = 201,
+    MENU_AWARDS             = 202,
+    MENU_OPTIONS            = 203,
+    MENU_EXIT               = 204,
+};
+
 #endif // ENUMS_H_INCLUDED

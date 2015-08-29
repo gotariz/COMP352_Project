@@ -26,6 +26,14 @@ class StateMenu : public IState
         virtual void freeResources();
         virtual void start();
 
+        vector<string> menuItems;
+        vector<string> optionsItems;
+        int selected = 0;
+        int menuState = MENU_MAIN;
+
+        float x;
+        float y;
+
     public:
 
 		AssetManager	    assets;
