@@ -15,7 +15,7 @@ void StateMenu::load()
     assets.loadAssetList("data/assets.xml");
 	gdata.assets = &assets;
 
- 	gdata.window->setKeyRepeatEnabled(false);
+ 	//gdata.window->setKeyRepeatEnabled(false);
 
     font = new sfFontRenderer(gdata.window);
     font->setFont(assets.getFont("purista-medium-14-white"));
@@ -89,33 +89,33 @@ void StateMenu::handleEvents()
 
         if(event.type == sf::Event::KeyPressed)
         {
-            if(event.key.code == sf::Keyboard::R)
+            if(gdata.keys[sf::Keyboard::R].isKeyPressed)
             {
                 reset();
             }
 
             if(menuState == MENU_MAIN)  //Handle events within the main menu screen
             {
-                if(event.key.code == sf::Keyboard::Escape)
+                if(gdata.keys[sf::Keyboard:: Escape].isKeyPressed)
                 {
                     gdata.running = false;
                 }
 
-                if (event.key.code == sf::Keyboard::Up)
+                if (gdata.keys[sf::Keyboard::Up].isKeyPressed)
                 {
                     selected -= 1;
                     if(selected < 0)
                         selected = menuItems.size() -1;
                 }
 
-                if (event.key.code == sf::Keyboard::Down)
+                if (gdata.keys[sf::Keyboard::Down].isKeyPressed)
                 {
                     selected += 1;
                     if(selected > menuItems.size() -1)
                         selected = 0;
                 }
 
-                if (event.key.code == sf::Keyboard::Return)
+                if (gdata.keys[sf::Keyboard::Return].isKeyPressed)
                 {
                     if(selected == 0) //Start
                     {
@@ -144,12 +144,12 @@ void StateMenu::handleEvents()
             //!     ->CHECK FULLSCREEN IS WORKING PROPERLY
             else if(menuState == MENU_OPTIONS) //Handle events within the options menu screen
             {
-                if(event.key.code == sf::Keyboard::BackSpace)
+                if(gdata.keys[sf::Keyboard::BackSpace].isKeyPressed)
                 {
                     menuState = MENU_MAIN;
                 }
 
-                if (event.key.code == sf::Keyboard::Return)
+                if (gdata.keys[sf::Keyboard::Return].isKeyPressed)
                 {
                     gdata.settings->setVsync(vSyncMode);
                     gdata.settings->setFullscreen(selectedFs);
@@ -177,21 +177,21 @@ void StateMenu::handleEvents()
                     //menuState = MENU_MAIN;
                 }
 
-                if (event.key.code == sf::Keyboard::Up)
+                if (gdata.keys[sf::Keyboard::Up].isKeyPressed)
                 {
                     selectedOption -= 1;
                     if(selectedOption < 0)
                         selectedOption = optionsItems.size() -1;
                 }
 
-                if (event.key.code == sf::Keyboard::Down)
+                if (gdata.keys[sf::Keyboard::Down].isKeyPressed)
                 {
                     selectedOption += 1;
                     if(selectedOption > optionsItems.size() -1)
                         selectedOption = 0;
                 }
 
-                if (event.key.code == sf::Keyboard::Right)
+                if (gdata.keys[sf::Keyboard::Right].isKeyPressed)
                 {
                     selectedOps[selectedOption] += 1;
                     if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
@@ -207,7 +207,7 @@ void StateMenu::handleEvents()
                         selectedFPS = selectedOption;
                 }
 
-                if (event.key.code == sf::Keyboard::Left)
+                if (gdata.keys[sf::Keyboard::Left].isKeyPressed)
                 {
                     selectedOps[selectedOption] -= 1;
                     if(selectedOps[selectedOption] < 0 )
@@ -226,7 +226,7 @@ void StateMenu::handleEvents()
 
             else if(menuState == MENU_AWARDS) //Handle events within the achievements menu screen
             {
-                if(event.key.code == sf::Keyboard::BackSpace)
+                if(gdata.keys[sf::Keyboard::BackSpace].isKeyPressed)
                 {
                     menuState = MENU_MAIN;
                 }
