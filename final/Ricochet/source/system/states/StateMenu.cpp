@@ -42,7 +42,7 @@ void StateMenu::load()
 	    res.push_back(gz::toString(mode.width) + "x" + gz::toString(mode.height));
 	}
 
-    fps.push_back(gz::toString(30));
+    fps.push_back(gz::toString(0));
     fps.push_back(gz::toString(60));
 
     optionsSettings.push_back(vSync);
@@ -157,7 +157,6 @@ void StateMenu::handleEvents()
                     gdata.settings->setScreenWidth(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[0]));
                     gdata.settings->setScreenHeight(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[1]));
 
-                    cout << "WTF: " << optionsSettings[3][selectedOps[selectedFPS]] <<endl;
                     gdata.settings->setFpsLimit(gz::stringToUnsigned(optionsSettings[3][selectedOps[selectedFPS]]));
 
                     gdata.settings->saveSettings();
@@ -167,12 +166,12 @@ void StateMenu::handleEvents()
                     gdata.window->setView(*gdata.view);
                     gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
 
-                    cout << "<----------------------SETTINGS SAVED-------------------------->\n"
-                         << "\tvSync:\t" << vSyncMode << "\n"
-                         << "\tFullscreen:\t" << selectedFs << "\n"
-                         << "\tResolution:\t" << gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[0] << "x"
+                    cout << "\n<----------------------SETTINGS SAVED-------------------------->\n"
+                         << "\tvSync:\t\t\t\t" << vSyncMode << "\n"
+                         << "\tFullscreen:\t\t\t" << selectedFs << "\n"
+                         << "\tResolution:\t\t\t" << gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[0] << "x"
                          << gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[1] << "\n"
-                         << "\tFPS Limit:\t" << gz::stringToUnsigned(optionsSettings[3][selectedOps[selectedFPS]]) << endl;
+                         << "\tFPS Limit:\t\t\t" << gz::stringToUnsigned(optionsSettings[3][selectedOps[selectedFPS]]) << endl;
 
                     gdata.window->setPosition(sf::Vector2i(0,0));
                     //menuState = MENU_MAIN;
@@ -244,7 +243,7 @@ void StateMenu::reset()
     gdata.settings->saveSettings();
 
     gdata.window->setSize(sf::Vector2u(gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
-    gdata.view = new sf::View(sf::FloatRect(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight())); // remember to delete this
+    gdata.view = new sf::View(sf::FloatRect(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
     gdata.window->setView(*gdata.view);
     gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
 }
@@ -261,12 +260,12 @@ void StateMenu::draw()
     if(menuState == MENU_MAIN)
     {
         if( x < gdata.settings->getScreenWidth() - 200)
-            x += gdata.settings->getScreenWidth()/20;
+            x += gdata.settings->getScreenWidth()*0.003;
     }
     else
     {
         if( x > 50)
-            x -= gdata.settings->getScreenWidth()/20;
+            x -= gdata.settings->getScreenWidth()*0.003;
     }
 
     y = gdata.settings->getScreenHeight()/5;

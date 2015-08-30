@@ -66,7 +66,10 @@ class StateMenu : public IState
 
         void reset();
 
+        //main menu x
         float x;
+        //options menu x
+        float ox;
         float y;
 
     public:
