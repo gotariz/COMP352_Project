@@ -93,144 +93,143 @@ void StateMenu::handleEvents()
             {
                 reset();
             }
+        }
+    }
 
-            if(menuState == MENU_MAIN)  //Handle events within the main menu screen
+    if(menuState == MENU_MAIN)  //Handle events within the main menu screen
+    {
+        if(gdata.keys[sf::Keyboard:: Escape].isKeyPressed)
+        {
+            gdata.running = false;
+        }
+
+        if (gdata.keys[sf::Keyboard::Up].isKeyPressed)
+        {
+            selected -= 1;
+            if(selected < 0)
+                selected = menuItems.size() -1;
+        }
+
+        if (gdata.keys[sf::Keyboard::Down].isKeyPressed)
+        {
+            selected += 1;
+            if(selected > menuItems.size() -1)
+                selected = 0;
+        }
+
+        if (gdata.keys[sf::Keyboard::Return].isKeyPressed)
+        {
+            if(selected == 0) //Start
             {
-                if(gdata.keys[sf::Keyboard:: Escape].isKeyPressed)
-                {
-                    gdata.running = false;
-                }
-
-                if (gdata.keys[sf::Keyboard::Up].isKeyPressed)
-                {
-                    selected -= 1;
-                    if(selected < 0)
-                        selected = menuItems.size() -1;
-                }
-
-                if (gdata.keys[sf::Keyboard::Down].isKeyPressed)
-                {
-                    selected += 1;
-                    if(selected > menuItems.size() -1)
-                        selected = 0;
-                }
-
-                if (gdata.keys[sf::Keyboard::Return].isKeyPressed)
-                {
-                    if(selected == 0) //Start
-                    {
-                        gdata.gamestate = STATE_GAME;
-                    }
-                    if(selected == 1) //Achievements
-                    {
-                        menuState = MENU_AWARDS;
-                    }
-                    if(selected == 2) //Options
-                    {
-                        menuState = MENU_OPTIONS;
-                    }
-                    if(selected == 3) //Exit
-                    {
-                        gdata.running = false;
-                    }
-                }
+                gdata.gamestate = STATE_GAME;
             }
-
-            //! TODO
-            //!     ->CHANGE ALL KEY PRESSES TO gdata.keys[sf::Keyboard::A].isKeyPressed
-            //!     ->VSYNC NEEDS TO CHANGE PROPERLY
-            //!     ->RESOLUTION NEEDS TO LOAD IN THE CORRECT SPOT
-            //!     ->FPS NEEDS TO LOAD IN PROPERLY, CURRENTLY ALWAYS SAYS 1 WHEN 0 UNTIL YOU PRESS RIGHT OR LEFT 2X
-            //!     ->CHECK FULLSCREEN IS WORKING PROPERLY
-            else if(menuState == MENU_OPTIONS) //Handle events within the options menu screen
+            if(selected == 1) //Achievements
             {
-                if(gdata.keys[sf::Keyboard::BackSpace].isKeyPressed)
-                {
-                    menuState = MENU_MAIN;
-                }
-
-                if (gdata.keys[sf::Keyboard::Return].isKeyPressed)
-                {
-                    gdata.settings->setVsync(vSyncMode);
-                    gdata.settings->setFullscreen(selectedFs);
-
-                    gdata.settings->setScreenWidth(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[0]));
-                    gdata.settings->setScreenHeight(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[1]));
-
-                    gdata.settings->setFpsLimit(gz::stringToUnsigned(optionsSettings[3][selectedOps[selectedFPS]]));
-
-                    gdata.settings->saveSettings();
-
-                    gdata.window->setSize(sf::Vector2u(gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
-                    gdata.view = new sf::View(sf::FloatRect(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
-                    gdata.window->setView(*gdata.view);
-                    gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
-
-                    cout << "\n<----------------------SETTINGS SAVED-------------------------->\n"
-                         << "\tvSync:\t\t\t\t" << vSyncMode << "\n"
-                         << "\tFullscreen:\t\t\t" << selectedFs << "\n"
-                         << "\tResolution:\t\t\t" << gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[0] << "x"
-                         << gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[1] << "\n"
-                         << "\tFPS Limit:\t\t\t" << gz::stringToUnsigned(optionsSettings[3][selectedOps[selectedFPS]]) << endl;
-
-                    gdata.window->setPosition(sf::Vector2i(0,0));
-                    //menuState = MENU_MAIN;
-                }
-
-                if (gdata.keys[sf::Keyboard::Up].isKeyPressed)
-                {
-                    selectedOption -= 1;
-                    if(selectedOption < 0)
-                        selectedOption = optionsItems.size() -1;
-                }
-
-                if (gdata.keys[sf::Keyboard::Down].isKeyPressed)
-                {
-                    selectedOption += 1;
-                    if(selectedOption > optionsItems.size() -1)
-                        selectedOption = 0;
-                }
-
-                if (gdata.keys[sf::Keyboard::Right].isKeyPressed)
-                {
-                    selectedOps[selectedOption] += 1;
-                    if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
-                        selectedOps[selectedOption] = 0;
-
-                    if(selectedOption == 0)
-                        selectedVSync = selectedOption;
-                    if(selectedOption == 1)
-                        selectedFs = selectedOps[selectedOption];
-                    if(selectedOption == 2)
-                        selectedRes = selectedOption;
-                    if(selectedOption == 3)
-                        selectedFPS = selectedOption;
-                }
-
-                if (gdata.keys[sf::Keyboard::Left].isKeyPressed)
-                {
-                    selectedOps[selectedOption] -= 1;
-                    if(selectedOps[selectedOption] < 0 )
-                        selectedOps[selectedOption] = optionsSettings[selectedOption].size()-1;
-
-                    if(selectedOption == 0)
-                        selectedVSync = selectedOption;
-                    if(selectedOption == 1)
-                        selectedFs = selectedOps[selectedOption];
-                    if(selectedOption == 2)
-                        selectedRes = selectedOption;
-                    if(selectedOption == 3)
-                        selectedFPS = selectedOption;
-                }
+                menuState = MENU_AWARDS;
             }
-
-            else if(menuState == MENU_AWARDS) //Handle events within the achievements menu screen
+            if(selected == 2) //Options
             {
-                if(gdata.keys[sf::Keyboard::BackSpace].isKeyPressed)
-                {
-                    menuState = MENU_MAIN;
-                }
+                menuState = MENU_OPTIONS;
             }
+            if(selected == 3) //Exit
+            {
+                gdata.running = false;
+            }
+        }
+    }
+
+    //! TODO
+    //!     ->CHANGE ALL KEY PRESSES TO gdata.keys[sf::Keyboard::A].isKeyPressed
+    //!     ->VSYNC NEEDS TO CHANGE PROPERLY
+    //!     ->RESOLUTION NEEDS TO LOAD IN THE CORRECT SPOT
+    //!     ->FPS NEEDS TO LOAD IN PROPERLY, CURRENTLY ALWAYS SAYS 1 WHEN 0 UNTIL YOU PRESS RIGHT OR LEFT 2X
+    //!     ->CHECK FULLSCREEN IS WORKING PROPERLY
+    else if(menuState == MENU_OPTIONS) //Handle events within the options menu screen
+    {
+        if(gdata.keys[sf::Keyboard::BackSpace].isKeyPressed)
+        {
+            menuState = MENU_MAIN;
+        }
+
+        if (gdata.keys[sf::Keyboard::Return].isKeyPressed)
+        {
+            gdata.settings->setVsync(vSyncMode);
+            gdata.settings->setFullscreen(selectedFs);
+
+            gdata.settings->setScreenWidth(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[0]));
+            gdata.settings->setScreenHeight(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[1]));
+
+            gdata.settings->setFpsLimit(gz::stringToUnsigned(optionsSettings[3][selectedOps[selectedFPS]]));
+
+            gdata.settings->saveSettings();
+
+            gdata.window->setSize(sf::Vector2u(gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
+            gdata.view = new sf::View(sf::FloatRect(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
+            gdata.window->setView(*gdata.view);
+            gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
+
+            cout << "\n<----------------------SETTINGS SAVED-------------------------->\n"
+                 << "\tvSync:\t\t\t\t" << vSyncMode << "\n"
+                 << "\tFullscreen:\t\t\t" << selectedFs << "\n"
+                 << "\tResolution:\t\t\t" << gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[0] << "x"
+                 << gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[1] << "\n"
+                 << "\tFPS Limit:\t\t\t" << gz::stringToUnsigned(optionsSettings[3][selectedOps[selectedFPS]]) << endl;
+
+            gdata.window->setPosition(sf::Vector2i(0,0));
+            //menuState = MENU_MAIN;
+        }
+
+        if (gdata.keys[sf::Keyboard::Up].isKeyPressed)
+        {
+            selectedOption -= 1;
+            if(selectedOption < 0)
+                selectedOption = optionsItems.size() -1;
+        }
+
+        if (gdata.keys[sf::Keyboard::Down].isKeyPressed)
+        {
+            selectedOption += 1;
+            if(selectedOption > optionsItems.size() -1)
+                selectedOption = 0;
+        }
+
+        if (gdata.keys[sf::Keyboard::Right].isKeyPressed)
+        {
+            selectedOps[selectedOption] += 1;
+            if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
+                selectedOps[selectedOption] = 0;
+
+            if(selectedOption == 0)
+                selectedVSync = selectedOption;
+            if(selectedOption == 1)
+                selectedFs = selectedOps[selectedOption];
+            if(selectedOption == 2)
+                selectedRes = selectedOption;
+            if(selectedOption == 3)
+                selectedFPS = selectedOption;
+        }
+
+        if (gdata.keys[sf::Keyboard::Left].isKeyPressed)
+        {
+            selectedOps[selectedOption] -= 1;
+            if(selectedOps[selectedOption] < 0 )
+                selectedOps[selectedOption] = optionsSettings[selectedOption].size()-1;
+
+            if(selectedOption == 0)
+                selectedVSync = selectedOption;
+            if(selectedOption == 1)
+                selectedFs = selectedOps[selectedOption];
+            if(selectedOption == 2)
+                selectedRes = selectedOption;
+            if(selectedOption == 3)
+                selectedFPS = selectedOption;
+        }
+    }
+    else if(menuState == MENU_AWARDS) //Handle events within the achievements menu screen
+    {
+        if(gdata.keys[sf::Keyboard::BackSpace].isKeyPressed)
+        {
+            menuState = MENU_MAIN;
         }
     }
 }
