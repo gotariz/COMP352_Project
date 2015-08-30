@@ -87,9 +87,9 @@ void StateMenu::handleEvents()
             gdata.running = false;
         }
 
-        if(event.type == sf::Event::KeyPressed)
+        if(gdata.keys[sf::Keyboard::R].isKeyPressed)
         {
-            if(gdata.keys[sf::Keyboard::R].isKeyPressed)
+            if(event.key.code == sf::Keyboard::R)
             {
                 reset();
             }
@@ -121,11 +121,133 @@ void StateMenu::handleEvents()
         {
             if(selected == 0) //Start
             {
+<<<<<<< HEAD
                 gdata.gamestate = STATE_GAME;
+=======
+                if(event.key.code == sf::Keyboard::Escape)
+                {
+                    gdata.running = false;
+                }
+
+                if (event.key.code == sf::Keyboard::Up)
+                {
+                    selected -= 1;
+                    if(selected < 0)
+                        selected = menuItems.size() -1;
+                }
+
+                if (event.key.code == sf::Keyboard::Down)
+                {
+                    selected += 1;
+                    if(selected > menuItems.size() -1)
+                        selected = 0;
+                }
+
+                if (event.key.code == sf::Keyboard::Return)
+                {
+                    if(selected == 0) //Start
+                    {
+                        gdata.gamestate = STATE_GAME;
+                    }
+                    if(selected == 1) //Achievements
+                    {
+                        menuState = MENU_AWARDS;
+                    }
+                    if(selected == 2) //Options
+                    {
+                        menuState = MENU_OPTIONS;
+                    }
+                    if(selected == 3) //Exit
+                    {
+                        gdata.running = false;
+                    }
+                }
+>>>>>>> parent of cbb333a... Buggy Keys
             }
             if(selected == 1) //Achievements
             {
+<<<<<<< HEAD
                 menuState = MENU_AWARDS;
+=======
+                if(event.key.code == sf::Keyboard::BackSpace)
+                {
+                    menuState = MENU_MAIN;
+                }
+
+                if (event.key.code == sf::Keyboard::Return)
+                {
+                    gdata.settings->setVsync(vSyncMode);
+                    gdata.settings->setFullscreen(selectedFs);
+
+                    gdata.settings->setScreenWidth(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[0]));
+                    gdata.settings->setScreenHeight(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[1]));
+
+                    gdata.settings->setFpsLimit(gz::stringToUnsigned(optionsSettings[3][selectedOps[selectedFPS]]));
+
+                    gdata.settings->saveSettings();
+
+                    gdata.window->setSize(sf::Vector2u(gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
+                    gdata.view = new sf::View(sf::FloatRect(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
+                    gdata.window->setView(*gdata.view);
+                    gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
+
+                    cout << "\n<----------------------SETTINGS SAVED-------------------------->\n"
+                         << "\tvSync:\t\t\t\t" << vSyncMode << "\n"
+                         << "\tFullscreen:\t\t\t" << selectedFs << "\n"
+                         << "\tResolution:\t\t\t" << gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[0] << "x"
+                         << gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[1] << "\n"
+                         << "\tFPS Limit:\t\t\t" << gz::stringToUnsigned(optionsSettings[3][selectedOps[selectedFPS]]) << endl;
+
+                    gdata.window->setPosition(sf::Vector2i(0,0));
+                    //menuState = MENU_MAIN;
+                }
+
+                if (event.key.code == sf::Keyboard::Up)
+                {
+                    selectedOption -= 1;
+                    if(selectedOption < 0)
+                        selectedOption = optionsItems.size() -1;
+                }
+
+                if (event.key.code == sf::Keyboard::Down)
+                {
+                    selectedOption += 1;
+                    if(selectedOption > optionsItems.size() -1)
+                        selectedOption = 0;
+                }
+
+                if (event.key.code == sf::Keyboard::Right)
+                {
+                    selectedOps[selectedOption] += 1;
+                    if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
+                        selectedOps[selectedOption] = 0;
+
+                    if(selectedOption == 0)
+                        selectedVSync = selectedOption;
+                    if(selectedOption == 1)
+                        selectedFs = selectedOps[selectedOption];
+                    if(selectedOption == 2)
+                        selectedRes = selectedOption;
+                    if(selectedOption == 3)
+                        selectedFPS = selectedOption;
+                }
+
+                if (event.key.code == sf::Keyboard::Left)
+                {
+                    selectedOps[selectedOption] -= 1;
+                    if(selectedOps[selectedOption] < 0 )
+                        selectedOps[selectedOption] = optionsSettings[selectedOption].size()-1;
+
+                    if(selectedOption == 0)
+                        selectedVSync = selectedOption;
+                    if(selectedOption == 1)
+                        selectedFs = selectedOps[selectedOption];
+                    if(selectedOption == 2)
+                        selectedRes = selectedOption;
+                    if(selectedOption == 3)
+                        selectedFPS = selectedOption;
+                }
+>>>>>>> parent of cbb333a... Buggy Keys
             }
             if(selected == 2) //Options
             {
@@ -133,7 +255,14 @@ void StateMenu::handleEvents()
             }
             if(selected == 3) //Exit
             {
+<<<<<<< HEAD
                 gdata.running = false;
+=======
+                if(event.key.code == sf::Keyboard::BackSpace)
+                {
+                    menuState = MENU_MAIN;
+                }
+>>>>>>> parent of cbb333a... Buggy Keys
             }
         }
     }
