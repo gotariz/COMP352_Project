@@ -13,8 +13,9 @@
 #include "physics/debug/VisualDebugger.h"
 #include "physics/ContactListener.h"
 
-//#include "entities/Laser.h"
+#include "objects/Laser.h"
 #include "objects/Player.h"
+#include "objects/Hole.h"
 #include "objects/Object.h"
 #include "objects/Wall.h"
 #include "objects/ObjectManager.h"
@@ -46,6 +47,7 @@ class StateGame : public IState
         virtual void draw();
         virtual void freeResources();
         virtual void start();
+        virtual void reload();
 
         void loadLevel();
 

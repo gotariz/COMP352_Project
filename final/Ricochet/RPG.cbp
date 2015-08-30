@@ -74,6 +74,10 @@
 		<Unit filename="source/dependencies.h" />
 		<Unit filename="source/enums.h" />
 		<Unit filename="source/general.h" />
+		<Unit filename="source/objects/Hole.cpp" />
+		<Unit filename="source/objects/Hole.h" />
+		<Unit filename="source/objects/Laser.cpp" />
+		<Unit filename="source/objects/Laser.h" />
 		<Unit filename="source/objects/Object.cpp" />
 		<Unit filename="source/objects/Object.h" />
 		<Unit filename="source/objects/ObjectManager.cpp" />

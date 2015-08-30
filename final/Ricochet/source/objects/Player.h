@@ -10,7 +10,7 @@
 class Player : public gObject
 {
     public:
-        Player() : gObject(){onCreate();}
+        Player() : gObject(){onCreate();m_type = PLAYER;}
         virtual ~Player(){}
 
     public:

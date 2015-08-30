@@ -17,10 +17,8 @@
 	<asset type="sound" path="media/sounds/god.wav" />
 	<asset type="music" path="media/music/enya.ogg" />-->
 	
-	<asset type="image" path="media/images/title_test.png" />
-	<asset type="image" path="media/images/player.png" />
-	<asset type="image" path="media/images/end.png" />
-	<asset type="image" path="media/images/block.png" />
+	<asset type="image" path="media/images/hole_on.png" />
+	<asset type="image" path="media/images/hole_off.png" />
 	<asset type="image" path="media/images/bg.png" />
 	<asset type="font" path="media/fonts/purista-medium-14-white/" />
 	<asset type="font" path="media/fonts/segoe-ui-light-48/" />

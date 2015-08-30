@@ -10,10 +10,15 @@ StateGame::~StateGame()
     //dtor
 }
 
+void StateGame::reload()
+{
+
+}
+
 void StateGame::reInit()
 {
-    gdata.settings->setScreenWidth(600);
-    gdata.settings->setScreenHeight(400);
+    gdata.settings->setScreenWidth(1920);
+    gdata.settings->setScreenHeight(1080);
 
     gdata.settings->saveSettings();
 
@@ -25,6 +30,8 @@ void StateGame::reInit()
 
 void StateGame::load()
 {
+    reInit();
+
 	assets.loadAssetList("data/assets.xml");
 	gdata.assets = &assets;
 
@@ -58,11 +65,6 @@ void StateGame::load()
 
 	manager.setPhysicsWorld(world);
 
-	player = new Player();
-	player->setPhysicsObject( factory.createPlayer(0,-7,player) );
-	player->reset_pos.set(0,-7);
-	manager.addObject(player);
-
 	input.init();
 	input.m_player = player;
 	input.font = new sfFontRenderer(gdata.window);
@@ -70,24 +72,7 @@ void StateGame::load()
 
 	loadLevel();
 
-//    Vector2 pos(0,0);
-//    Vector2 size(1,3);
-//
-//    Wall* wall = new Wall();
-//    wall->setPhysicsObject(factory.createObsticle(pos.x, pos.y, size.x, size.y, 0));
-//
-//    wall->m_moving	    = true;
-//    wall->m_time	    = 0.0f;
-//    wall->m_duration    = 3.0f;
-//    wall->m_point1	    = Vector2(0,0);
-//    wall->m_point2	    = Vector2(0,3);
-//    wall->m_dest        = wall->m_point2;
-//
-//    manager.addObject(wall);
-
-	gdata.zoom = (gdata.settings->getScreenWidth() / 1920.f);
-
-    sf::sleep(sf::milliseconds(3000));
+	//gdata.zoom = (gdata.settings->getScreenWidth() / 1920.f);
 
     loading = false;
 }
@@ -153,6 +138,7 @@ void StateGame::update()
 void StateGame::draw()
 {
     gdata.window->clear(sf::Color(128,128,128,255));
+    //gdata.window->clear(sf::Color::Black);
 
     if (input.selecting)
     {
@@ -203,7 +189,7 @@ void StateGame::draw()
     }
 
 
-    font->drawString(0,0,"hello this is a test");
+    font->drawString(0,0,"Level " + gz::toString(gdata.level));
 
 	// flip the buffer
 	gdata.window->display();
@@ -218,7 +204,7 @@ void StateGame::loadLevel()
 	try
 	{
 		XMLDocument doc;
-		XMLError error = doc.LoadFile(  gz::toString(LEVEL_PATH + "1.xml").c_str() );
+		XMLError error = doc.LoadFile(  gz::toString(LEVEL_PATH + gz::toString(gdata.level) + ".xml").c_str() );
 
 		if (error != XML_NO_ERROR)
 		{
@@ -277,32 +263,22 @@ void StateGame::loadLevel()
 				Vector2 size	= Vector2(element->Attribute("size"));
 				float	angle	= atof(element->Attribute("rotation"));
 
-                cout << element->Attribute("position") << endl;
-
 				Wall* wall = new Wall();
 				wall->setPhysicsObject(factory.createGround(pos.x, pos.y, size.x, size.y, angle));
 
 				manager.addObject(wall);
 
 			}
-			/*else if (attribute_type == "player")
+			else if (attribute_type == "player")
 			{
 				Vector2 pos = Vector2(element->Attribute("position"));
 
-				player = new Player(manager.getValidID());
+				player = new Player();
 				player->setPhysicsObject(factory.createPlayer(pos.x, pos.y, player));
 				player->m_name = "Object: player";
-				player->restart_pos = pos;
+				player->reset_pos = pos;
 				manager.addObject(player);
-
-				Image* p = new Image();
-				p->setTexture(assets.getTexture("player"));
-				p->anchor.set(25, 25);
-				p->size.set(1, 1);
-				player->m_image = p;
-
-				d_inputHandler.m_player = player;
-				gdata.player = player;
+				input.m_player = player;
 			}
 			else if (attribute_type == "laser")
 			{
@@ -313,8 +289,6 @@ void StateGame::loadLevel()
 				bool moving			= atoi(element->Attribute("moving"));
 				float move_duration = atof(element->Attribute("duration"));
 				float move_time		= atof(element->Attribute("time"));
-
-				laser_dir.print("pos");
 
 				float start_angle	= atof(element->Attribute("start_angle"));
 				float delta_angle	= atof(element->Attribute("delta_angle"));
@@ -334,7 +308,7 @@ void StateGame::loadLevel()
 				l->start_angle = start_angle;
 				l->delta_angle = delta_angle;
 				l->r_duration = rot_dur;
-				l->m_rotating = rotating;
+				l->rotating = rotating;
 				l->r_time = rot_time;
 
 				manager.addObject(l);
@@ -343,18 +317,12 @@ void StateGame::loadLevel()
 			{
 				Vector2 pos = Vector2(element->Attribute("position"));
 
-				Object* hole = new Object();
+				Hole* hole = new Hole();
 				hole->setPhysicsObject(factory.createHole(pos.x,pos.y));
 				hole->m_type = HOLE;
-
-				Image* p = new Image();
-				p->setTexture(assets.getTexture("end"));
-				p->anchor.set(25, 25);
-				p->size.set(1, 1);
-				hole->m_image = p;
-
+				hole->m_image.setTexture(*assets.getTexture("hole_off"));
 				manager.addObject(hole);
-			}*/
+			}
 
 			element = element->NextSiblingElement("object");
 		}

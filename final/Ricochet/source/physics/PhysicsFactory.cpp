@@ -23,7 +23,7 @@ b2Body* PhysicsFactory::createPlayer(float x, float y, void* userPointer)
 	fixtureDef.friction     = 0;
 
 	fixtureDef.filter.categoryBits = CF_PLAYER;			// what the object is
-	fixtureDef.filter.maskBits = CF_WALL | CF_GROUND;   // what the object collides with
+	fixtureDef.filter.maskBits = CF_WALL | CF_GROUND | CF_HOLE;   // what the object collides with
 
 	b2BodyDef bodyDef;
 	bodyDef.type            = b2_dynamicBody;
@@ -78,30 +78,37 @@ b2Body* PhysicsFactory::createGround(float x, float y, float width, float height
 
 b2Body* PhysicsFactory::createHole(float x, float y)
 {
-	// create temp physics player
-	b2CircleShape shape;
-	shape.m_radius = 0.5;
+    // create temp physics player
+    float hw = 1.28 / 2;
+	float hh = 1.28 / 2;
+	b2Vec2 h[4];
+	h[0].Set(-hw, -hh);
+	h[1].Set(hw, -hh);
+	h[2].Set(hw, hh);
+	h[3].Set(-hw, hh);
+
+	b2PolygonShape polygon_shape;
+	polygon_shape.Set(h, 4);
 
 	b2FixtureDef fixtureDef;
-	fixtureDef.shape = &shape;
-	fixtureDef.density = 1;
-	fixtureDef.restitution = 0.85f;
-	fixtureDef.friction = 0.25f;
-	fixtureDef.isSensor = true;
-
-	fixtureDef.filter.categoryBits = CF_HOLE;     // what the object is
-	fixtureDef.filter.maskBits = CF_PLAYER;        // what the object collides with
+	fixtureDef.shape		= &polygon_shape;
+	fixtureDef.density		= 1;
+	fixtureDef.restitution	= 1;
+	fixtureDef.friction	= 0;
+	fixtureDef.isSensor	= true;
+	fixtureDef.filter.categoryBits	= CF_HOLE;    // what the object is
+	fixtureDef.filter.maskBits		= CF_PLAYER;		// what the object collides with
 
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_kinematicBody;
-	bodyDef.fixedRotation = true;
+	//bodyDef.angle = angle * DEGTORAD;
+	//bodyDef.fixedRotation = true;
 	bodyDef.position.Set(x, y);
+	bodyDef.allowSleep = false;
 
 	b2Body* body = m_world->CreateBody(&bodyDef);
 	body->CreateFixture(&fixtureDef);
-	body->SetLinearDamping(0.0);
 	body->SetBullet(false);
-	body->SetSleepingAllowed(false);
 
 	return body;
 }

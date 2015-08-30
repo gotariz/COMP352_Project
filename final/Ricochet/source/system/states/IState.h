@@ -22,6 +22,7 @@ class IState
         virtual void update() = 0;
         virtual void draw() = 0;
         virtual void freeResources() = 0;
+        virtual void reload(){}
 
         RunState getStateType() {return m_state;}
 };

@@ -1778,7 +1778,7 @@
 	<vector>
 	"utils/Vector2.h"
 
-1440843744 c:\users\tom\documents\github\comp329_project\final\ricochet\source\enums.h
+1440909682 c:\users\tom\documents\github\comp329_project\final\ricochet\source\enums.h
 
 1440502346 c:\users\tom\documents\github\comp329_project\final\ricochet\source\consts.h
 	<string>
@@ -1812,17 +1812,17 @@
 	"system/states/StateGame.h"
 	"system/states/StateMenu.h"
 
-1440857035 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\gamedata.h
+1440918194 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\gamedata.h
 	"general.h"
 	"video/Camera.h"
 
 1440857480 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\settings.h
 	"general.h"
 
-1440856742 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\istate.h
+1440917624 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\istate.h
 	"general.h"
 
-1440855493 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.h
+1440917665 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.h
 	"general.h"
 	"system/states/IState.h"
 	"system/AssetManager.h"
@@ -1832,7 +1832,9 @@
 	"physics/PhysicsFactory.h"
 	"physics/debug/VisualDebugger.h"
 	"physics/ContactListener.h"
+	"objects/Laser.h"
 	"objects/Player.h"
+	"objects/Hole.h"
 	"objects/Object.h"
 	"objects/Wall.h"
 	"objects/ObjectManager.h"
@@ -1940,13 +1942,13 @@
 1440396726 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\debug\visualdebugger.cpp
 	"VisualDebugger.h"
 
-1440836773 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\physicsfactory.cpp
+1440917152 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\physicsfactory.cpp
 	"PhysicsFactory.h"
 
 1440252558 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\assetmanager.cpp
 	"AssetManager.h"
 
-1440855351 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\engine.cpp
+1440918244 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\engine.cpp
 	"Engine.h"
 
 1440855500 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\gamedata.cpp
@@ -1958,7 +1960,7 @@
 1440857535 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\settings.cpp
 	"Settings.h"
 
-1440857021 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.cpp
+1440918330 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.cpp
 	"StateGame.h"
 
 1438737130 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\utils\gzclock.cpp
@@ -1991,8 +1993,10 @@
 1440836209 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\wall.cpp
 	"Wall.h"
 
-1440843744 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\statemenu.h
+1440909682 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\statemenu.h
 	"general.h"
+	<string>
+	<iostream>
 	"system/states/IState.h"
 	"system/AssetManager.h"
 	"system/GameData.h"
@@ -2000,13 +2004,13 @@
 	"system/InputHandler.h"
 	"video/sfFontRenderer.h"
 
-1440843744 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\statemenu.cpp
+1440909682 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\statemenu.cpp
 	"StateMenu.h"
 
-1440839775 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\player.cpp
+1440917175 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\player.cpp
 	"Player.h"
 
-1440839659 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\player.h
+1440917263 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\player.h
 	"general.h"
 	"gObject.h"
 	"sfColor.h"
@@ -2033,4 +2037,19 @@
 	"Object.h"
 	"system/GameData.h"
 	"video/Camera.h"
+
+1440918212 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\laser.cpp
+	"Laser.h"
+
+1440910312 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\laser.h
+	"general.h"
+	"Obstacle.h"
+
+1440917015 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\hole.h
+	"general.h"
+	"Obstacle.h"
+	"system/AssetManager.h"
+
+1440918205 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\hole.cpp
+	"Hole.h"
 

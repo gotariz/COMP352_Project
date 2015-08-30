@@ -44,8 +44,10 @@ void Engine::run()
 
 void Engine::updateState()
 {
-    if (!activeState || activeState->getStateType() != gdata.gamestate)
+    if (!activeState || activeState->getStateType() != gdata.gamestate || gdata.reload)
     {
+        gdata.reload = false;
+
         if (activeState) // delete the active state then create the new one
         {
             activeState->freeResources();

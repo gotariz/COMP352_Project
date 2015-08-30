@@ -17,7 +17,7 @@ class GameData
 
     public: // variables
         bool			running = true;
-		RunState		gamestate = STATE_MENU;
+		RunState		gamestate = STATE_GAME;
 
 		AssetManager*	    assets = nullptr;
 		sf::RenderWindow*   window = nullptr;
@@ -31,6 +31,8 @@ class GameData
 		Vector2         mouse_raw;
 
 		sf::View*       view = nullptr;
+		int             level = 1;
+		bool            reload = false;
 
 		//Object* player = nullptr;
 
