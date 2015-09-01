@@ -21,8 +21,8 @@
 #include "objects/ObjectManager.h"
 
 #include "video/Camera.h"
-//#include "video/AnimatedImage.h"
 #include "video/sfFontRenderer.h"
+#include "video/ParticleEmitter.h"
 
 
 /////////////////////////////////////////////////////////
@@ -65,6 +65,7 @@ class StateGame : public IState
         sfFontRenderer*     fntAngle;
 
         Player*             player = nullptr;
+        //ParticleEmitter     pe;
 
 		// Box2D physics
 		b2World*			world = nullptr;

@@ -20,8 +20,9 @@ class PhysicsFactory
 
 		b2Body* createGround(float x, float y, float width, float height, float angle = 0.f);
 		b2Body* createHole(float x, float y);
-
 		b2Body* createObsticle(float x, float y, float w, float h, float angle);
+
+		b2Body* createParticle(float x, float y);
 };
 
 #endif // PHYSICSFACTORY_H

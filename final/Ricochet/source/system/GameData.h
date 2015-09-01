@@ -8,6 +8,7 @@
 class Settings;
 class AssetManager;
 class Object;
+class PhysicsFactory;
 
 class GameData
 {
@@ -24,6 +25,7 @@ class GameData
 		Settings*		    settings = nullptr;
 		Camera*			    camera = nullptr;
 		b2World*		    world = nullptr;
+		PhysicsFactory*     factory = nullptr;
 
 		float			zoom = 1.0;
 		double			m_timeDelta = 0;

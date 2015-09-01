@@ -3,6 +3,7 @@
 
 #include "general.h"
 #include "Obstacle.h"
+#include "ParticleEmitter.h"
 
 class Laser : public Obstacle
 {
@@ -11,6 +12,8 @@ class Laser : public Obstacle
         virtual ~Laser();
 
     public:
+        ParticleEmitter emitter;
+
         float start_angle = 0;
         float delta_angle = 0;
         float r_duration = 0;

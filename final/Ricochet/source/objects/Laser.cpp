@@ -3,6 +3,10 @@
 Laser::Laser()
 {
     //ctor
+    emitter.frequency = 60;
+    emitter.duration = 375;
+    emitter.speed = 5;
+    emitter.size = 1;
 }
 
 Laser::~Laser()
@@ -85,12 +89,16 @@ void Laser::raycast()
 	{
 		for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
 		{
-			b2RayCastOutput output;
-			if (!f->RayCast(&output, input, 0)) continue;
-			if (output.fraction < closest_fraction)
+		    if (f->GetFilterData().categoryBits != CF_PARTICLE)
 			{
-				closest_fraction = output.fraction;
-				body = b;
+			    b2RayCastOutput output;
+                if (!f->RayCast(&output, input, 0)) continue;
+                if (output.fraction < closest_fraction)
+                {
+                    closest_fraction = output.fraction;
+                    body = b;
+                    emitter.dir = Vector2(output.normal);
+                }
 			}
 		}
 
@@ -119,10 +127,15 @@ void Laser::onUpdate()
     rotateLaser();
     moveLaser();
     raycast();
+
+    emitter.pos = laserPos + laser;
+    emitter.update();
 }
 
 void Laser::onDraw()
 {
+    emitter.drawParticles();
+
     Vector2 s = gdata.toScreenPixels(laserPos.x,laserPos.y);
     Vector2 e = laserPos + laser;
     e = gdata.toScreenPixels(e);

@@ -23,7 +23,7 @@ b2Body* PhysicsFactory::createPlayer(float x, float y, void* userPointer)
 	fixtureDef.friction     = 0;
 
 	fixtureDef.filter.categoryBits = CF_PLAYER;			// what the object is
-	fixtureDef.filter.maskBits = CF_WALL | CF_GROUND | CF_HOLE;   // what the object collides with
+	fixtureDef.filter.maskBits = CF_WALL | CF_GROUND | CF_HOLE | CF_PARTICLE;   // what the object collides with
 
 	b2BodyDef bodyDef;
 	bodyDef.type            = b2_dynamicBody;
@@ -33,7 +33,7 @@ b2Body* PhysicsFactory::createPlayer(float x, float y, void* userPointer)
 
     b2Body* body = m_world->CreateBody(&bodyDef);
 	body->CreateFixture(&fixtureDef);
-	body->SetBullet(true);
+	body->SetBullet(false);
 	body->SetSleepingAllowed(false);
 
 	return body;
@@ -150,6 +150,34 @@ b2Body* PhysicsFactory::createObsticle(float x, float y, float w, float h, float
 	return body;
 }
 
+b2Body* PhysicsFactory::createParticle(float x, float y)
+{
+    b2CircleShape shape;
+    shape.m_radius = (1.f / WORLD_SCALE / 3);
+
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape        = &shape;
+    fixtureDef.density      = 0.00001;
+    fixtureDef.restitution  = 0.75;
+	fixtureDef.friction     = 0;
+
+	fixtureDef.filter.categoryBits = CF_PARTICLE;			// what the object is
+	fixtureDef.filter.maskBits = CF_WALL | CF_GROUND | CF_PARTICLE | CF_PLAYER;   // what the object collides with
+
+	b2BodyDef bodyDef;
+	bodyDef.type            = b2_dynamicBody;
+    bodyDef.fixedRotation   = true;
+
+    bodyDef.position.Set(x,y);
+
+    b2Body* body = m_world->CreateBody(&bodyDef);
+	body->CreateFixture(&fixtureDef);
+	body->SetBullet(false);
+	body->SetSleepingAllowed(false);
+	body->SetLinearDamping(0.1);
+
+	return body;
+}
 
 
 

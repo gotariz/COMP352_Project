@@ -30,7 +30,7 @@ void StateGame::reInit()
 
 void StateGame::load()
 {
-    reInit();
+    //reInit();
 
 	assets.loadAssetList("data/assets.xml");
 	gdata.assets = &assets;
@@ -62,6 +62,7 @@ void StateGame::load()
 	gdata.world = world;
 
 	factory = PhysicsFactory(world);
+	gdata.factory = &factory;
 
 	manager.setPhysicsWorld(world);
 
@@ -137,8 +138,8 @@ void StateGame::update()
 
 void StateGame::draw()
 {
-    gdata.window->clear(sf::Color(128,128,128,255));
-    //gdata.window->clear(sf::Color::Black);
+    gdata.window->clear(sf::Color(32,32,32,255));
+    //gdata.window->clear(sf::Color::White);
 
     if (input.selecting)
     {

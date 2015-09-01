@@ -13,7 +13,7 @@
 #################
 log.txt
 *.o
-
+*.layout
 
 #################
 ## Visual Studio

@@ -1009,7 +1009,7 @@
 	"objects/Object.h"
 	"utils/tinyxml2.h"
 
-1440857060 source:c:\users\tom\documents\github\comp329_project\final\ricochet\main.cpp
+1441094740 source:c:\users\tom\documents\github\comp329_project\final\ricochet\main.cpp
 	<iostream>
 	"general.h"
 	"system/Engine.h"
@@ -1778,7 +1778,7 @@
 	<vector>
 	"utils/Vector2.h"
 
-1440909682 c:\users\tom\documents\github\comp329_project\final\ricochet\source\enums.h
+1441089922 c:\users\tom\documents\github\comp329_project\final\ricochet\source\enums.h
 
 1440502346 c:\users\tom\documents\github\comp329_project\final\ricochet\source\consts.h
 	<string>
@@ -1812,7 +1812,7 @@
 	"system/states/StateGame.h"
 	"system/states/StateMenu.h"
 
-1440931757 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\gamedata.h
+1441093952 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\gamedata.h
 	"general.h"
 	"video/Camera.h"
 
@@ -1822,7 +1822,7 @@
 1440917624 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\istate.h
 	"general.h"
 
-1440917665 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.h
+1441093851 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.h
 	"general.h"
 	"system/states/IState.h"
 	"system/AssetManager.h"
@@ -1840,6 +1840,7 @@
 	"objects/ObjectManager.h"
 	"video/Camera.h"
 	"video/sfFontRenderer.h"
+	"video/ParticleEmitter.h"
 
 1439783907 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\assetmanager.h
 	"general.h"
@@ -1868,7 +1869,7 @@
 
 1440395925 c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\camera.h
 
-1440244883 c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\physicsfactory.h
+1441090090 c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\physicsfactory.h
 	"general.h"
 	"system/GameData.h"
 	"Box2D/Common/b2Settings.h"
@@ -1930,7 +1931,7 @@
 	"objects/Object.h"
 	"utils/tinyxml2.h"
 
-1440840019 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\object.cpp
+1441092395 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\object.cpp
 	"Object.h"
 
 1439795697 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\objectmanager.cpp
@@ -1939,10 +1940,10 @@
 1440388187 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\contactlistener.cpp
 	"ContactListener.h"
 
-1440396726 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\debug\visualdebugger.cpp
+1441091539 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\debug\visualdebugger.cpp
 	"VisualDebugger.h"
 
-1440917152 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\physicsfactory.cpp
+1441091946 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\physics\physicsfactory.cpp
 	"PhysicsFactory.h"
 
 1440252558 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\assetmanager.cpp
@@ -1960,7 +1961,7 @@
 1440857535 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\settings.cpp
 	"Settings.h"
 
-1440918330 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.cpp
+1441095626 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.cpp
 	"StateGame.h"
 
 1438737130 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\utils\gzclock.cpp
@@ -2004,7 +2005,7 @@
 	"system/InputHandler.h"
 	"video/sfFontRenderer.h"
 
-1440933725 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\statemenu.cpp
+1441084293 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\statemenu.cpp
 	"StateMenu.h"
 
 1440917175 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\player.cpp
@@ -2038,12 +2039,13 @@
 	"system/GameData.h"
 	"video/Camera.h"
 
-1440918212 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\laser.cpp
+1441096119 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\laser.cpp
 	"Laser.h"
 
-1440910312 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\laser.h
+1441093266 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\laser.h
 	"general.h"
 	"Obstacle.h"
+	"ParticleEmitter.h"
 
 1440917015 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\hole.h
 	"general.h"
@@ -2052,4 +2054,31 @@
 
 1440918498 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\hole.cpp
 	"Hole.h"
+
+1441095987 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particle.cpp
+	"Particle.h"
+
+1441095978 c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particle.h
+	"general.h"
+	"IParticle.h"
+	"objects/gObject.h"
+
+1441087222 c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\iparticle.h
+
+1441087486 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particlesystem.cpp
+	"ParticleSystem.h"
+
+1441087480 c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particlesystem.h
+	"general.h"
+	"gObject.h"
+	"IParticle.h"
+	"ParticleEmitter.h"
+
+1441095945 c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particleemitter.h
+	"general.h"
+	"Particle.h"
+	"physics/PhysicsFactory.h"
+
+1441095838 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particleemitter.cpp
+	"ParticleEmitter.h"
 

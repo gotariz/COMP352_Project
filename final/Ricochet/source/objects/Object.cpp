@@ -216,17 +216,20 @@ void Object::moveAbsoluteDistance(Vector2 delta)
 
 void Object::applyImpulse(Vector2 impulseForce)
 {
+    if (!m_physicsObject) return;
     //m_physicsObject->ApplyForceToCenter(impulseForce.toBulletVector(),true);
     m_physicsObject->ApplyLinearImpulse(impulseForce.toBulletVector(),b2Vec2(0,0),true);
 }
 
 void Object::setLinearVelocity(Vector2 linearVelocity)
 {
+    if (!m_physicsObject) return;
     m_physicsObject->SetLinearVelocity(linearVelocity.toBulletVector());
 }
 
 Vector2 Object::getVelocity()
 {
+    if (!m_physicsObject) return Vector2(0,0);
     return Vector2(m_physicsObject->GetLinearVelocity());
 }
 
@@ -290,5 +293,6 @@ void Object::deletePhysicsObject()
 	if (m_physicsObject != nullptr)
 	{
 		m_physicsObject->GetWorld()->DestroyBody(m_physicsObject);
+		m_physicsObject = nullptr;
 	}
 }

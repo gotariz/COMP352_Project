@@ -36,31 +36,31 @@ void VisualDebugger::DrawPoint(const b2Vec2& p, float32 size, const b2Color& col
 
 void VisualDebugger::DrawTransform(const b2Transform& xf)
 {
-    float lineLength = 0.4;
-
-    Vector2 pos = gdata.toScreenPixels(xf.p);
-
-	b2Vec2 xAxis = xf.p + lineLength * xf.q.GetXAxis();
-	Vector2 xa = gdata.toScreenPixels(xAxis);
-	sf::Vertex redLine[] =
-	{
-		sf::Vertex(sf::Vector2f(pos.x,pos.y), sf::Color::Red),
-		sf::Vertex(sf::Vector2f(xa.x,xa.y), sf::Color::Red)
-	};
-
-	// You might notice that the ordinate(Y axis) points downward unlike the one in Box2D testbed
-	// That's because the ordinate in SFML coordinate system points downward while the OpenGL(testbed) points upward
-	/*b2Vec2 yAxis(b2Vec2(xf.p.x + (lineLength * -xf.q.s), xf.p.y + (lineLength * xf.q.c)));*/
-	b2Vec2 yAxis = xf.p + lineLength * xf.q.GetYAxis();
-	Vector2 ya = gdata.toScreenPixels(yAxis);
-	sf::Vertex greenLine[] =
-	{
-		sf::Vertex(sf::Vector2f(pos.x,pos.y), sf::Color::Green),
-		sf::Vertex(sf::Vector2f(ya.x,ya.y), sf::Color::Green)
-	};
-
-	gdata.window->draw(redLine, 2, sf::Lines);
-	gdata.window->draw(greenLine, 2, sf::Lines);
+//    float lineLength = 0.4;
+//
+//    Vector2 pos = gdata.toScreenPixels(xf.p);
+//
+//	b2Vec2 xAxis = xf.p + lineLength * xf.q.GetXAxis();
+//	Vector2 xa = gdata.toScreenPixels(xAxis);
+//	sf::Vertex redLine[] =
+//	{
+//		sf::Vertex(sf::Vector2f(pos.x,pos.y), sf::Color::Red),
+//		sf::Vertex(sf::Vector2f(xa.x,xa.y), sf::Color::Red)
+//	};
+//
+//	// You might notice that the ordinate(Y axis) points downward unlike the one in Box2D testbed
+//	// That's because the ordinate in SFML coordinate system points downward while the OpenGL(testbed) points upward
+//	/*b2Vec2 yAxis(b2Vec2(xf.p.x + (lineLength * -xf.q.s), xf.p.y + (lineLength * xf.q.c)));*/
+//	b2Vec2 yAxis = xf.p + lineLength * xf.q.GetYAxis();
+//	Vector2 ya = gdata.toScreenPixels(yAxis);
+//	sf::Vertex greenLine[] =
+//	{
+//		sf::Vertex(sf::Vector2f(pos.x,pos.y), sf::Color::Green),
+//		sf::Vertex(sf::Vector2f(ya.x,ya.y), sf::Color::Green)
+//	};
+//
+//	gdata.window->draw(redLine, 2, sf::Lines);
+//	gdata.window->draw(greenLine, 2, sf::Lines);
 }
 
 void VisualDebugger::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color)
@@ -80,7 +80,6 @@ void VisualDebugger::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Col
 void VisualDebugger::DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color)
 {
     //no converion in cordinates of center and upper left corner, Circle in sfml is managed by default with the center
-    cout << radius << endl;
     sf::CircleShape circle = sf::CircleShape( (radius * WORLD_SCALE) * gdata.zoom );
     circle.setOrigin(circle.getRadius(),circle.getRadius());
     circle.setFillColor(B2SFColor(color));
