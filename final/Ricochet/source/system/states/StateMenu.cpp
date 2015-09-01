@@ -40,7 +40,25 @@ void StateMenu::load()
 	{
 	    sf::VideoMode mode = modes[i];
 	    res.push_back(gz::toString(mode.width) + "x" + gz::toString(mode.height));
+
+	    if(mode.width == gdata.settings->getScreenWidth() && mode.height == gdata.settings->getScreenHeight())
+        {
+            selectedRes = i;
+            cout << "selectedRes = " << i << endl;
+        }
 	}
+
+	selectedVSync   = gdata.settings->getVsync();
+	selectedFs      = gdata.settings->getFullscreen();
+	selectedFPS     = gdata.settings->getFpsLimit();
+
+    cout << "\n<----------------------SETTINGS LOADED-------------------------->\n"
+         << "\tvSync:\t\t\t\t" << selectedVSync << "\n"
+         << "\tFullscreen:\t\t\t" << selectedFs << "\n"
+         << "\tResolution:\t\t\t" << gdata.settings->getScreenWidth() << "x"
+         << gdata.settings->getScreenHeight() << "\n"
+         << "\tFPS Limit:\t\t\t" << selectedFPS << endl;
+
 
     fps.push_back(gz::toString(0));
     fps.push_back(gz::toString(60));
@@ -87,7 +105,7 @@ void StateMenu::handleEvents()
             gdata.running = false;
         }
 
-        if(gdata.keys[sf::Keyboard::R].isKeyPressed)
+        else if(gdata.keys[sf::Keyboard::R].isKeyPressed)
         {
             if(event.key.code == sf::Keyboard::R)
             {
@@ -103,176 +121,88 @@ void StateMenu::handleEvents()
             gdata.running = false;
         }
 
-        if (gdata.keys[sf::Keyboard::Up].isKeyPressed)
+        else if (gdata.keys[sf::Keyboard::Up].isKeyPressed)
         {
             selected -= 1;
             if(selected < 0)
                 selected = menuItems.size() -1;
         }
 
-        if (gdata.keys[sf::Keyboard::Down].isKeyPressed)
+        else if (gdata.keys[sf::Keyboard::Down].isKeyPressed)
         {
             selected += 1;
             if(selected > menuItems.size() -1)
                 selected = 0;
         }
 
-        if (gdata.keys[sf::Keyboard::Return].isKeyPressed)
+        else if (gdata.keys[sf::Keyboard::Return].isKeyPressed)
         {
             if(selected == 0) //Start
             {
-<<<<<<< HEAD
                 gdata.gamestate = STATE_GAME;
-=======
                 if(event.key.code == sf::Keyboard::Escape)
                 {
                     gdata.running = false;
                 }
 
-                if (event.key.code == sf::Keyboard::Up)
+                else if (event.key.code == sf::Keyboard::Up)
                 {
                     selected -= 1;
                     if(selected < 0)
                         selected = menuItems.size() -1;
                 }
 
-                if (event.key.code == sf::Keyboard::Down)
+                else if (event.key.code == sf::Keyboard::Down)
                 {
                     selected += 1;
                     if(selected > menuItems.size() -1)
                         selected = 0;
                 }
 
-                if (event.key.code == sf::Keyboard::Return)
+                else if(event.key.code == sf::Keyboard::Return)
                 {
                     if(selected == 0) //Start
                     {
                         gdata.gamestate = STATE_GAME;
                     }
-                    if(selected == 1) //Achievements
+                    else if(selected == 1) //Achievements
                     {
                         menuState = MENU_AWARDS;
                     }
-                    if(selected == 2) //Options
+                    else if(selected == 2) //Options
                     {
                         menuState = MENU_OPTIONS;
                     }
-                    if(selected == 3) //Exit
+                    else if(selected == 3) //Exit
                     {
                         gdata.running = false;
                     }
                 }
->>>>>>> parent of cbb333a... Buggy Keys
             }
-            if(selected == 1) //Achievements
+            else if(selected == 1) //Achievements
             {
-<<<<<<< HEAD
-                menuState = MENU_AWARDS;
-=======
+                //menuState = MENU_AWARDS;
                 if(event.key.code == sf::Keyboard::BackSpace)
                 {
                     menuState = MENU_MAIN;
                 }
 
-                if (event.key.code == sf::Keyboard::Return)
-                {
-                    gdata.settings->setVsync(vSyncMode);
-                    gdata.settings->setFullscreen(selectedFs);
-
-                    gdata.settings->setScreenWidth(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[0]));
-                    gdata.settings->setScreenHeight(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[1]));
-
-                    gdata.settings->setFpsLimit(gz::stringToUnsigned(optionsSettings[3][selectedOps[selectedFPS]]));
-
-                    gdata.settings->saveSettings();
-
-                    gdata.window->setSize(sf::Vector2u(gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
-                    gdata.view = new sf::View(sf::FloatRect(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
-                    gdata.window->setView(*gdata.view);
-                    gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
-
-                    cout << "\n<----------------------SETTINGS SAVED-------------------------->\n"
-                         << "\tvSync:\t\t\t\t" << vSyncMode << "\n"
-                         << "\tFullscreen:\t\t\t" << selectedFs << "\n"
-                         << "\tResolution:\t\t\t" << gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[0] << "x"
-                         << gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[1] << "\n"
-                         << "\tFPS Limit:\t\t\t" << gz::stringToUnsigned(optionsSettings[3][selectedOps[selectedFPS]]) << endl;
-
-                    gdata.window->setPosition(sf::Vector2i(0,0));
-                    //menuState = MENU_MAIN;
-                }
-
-                if (event.key.code == sf::Keyboard::Up)
-                {
-                    selectedOption -= 1;
-                    if(selectedOption < 0)
-                        selectedOption = optionsItems.size() -1;
-                }
-
-                if (event.key.code == sf::Keyboard::Down)
-                {
-                    selectedOption += 1;
-                    if(selectedOption > optionsItems.size() -1)
-                        selectedOption = 0;
-                }
-
-                if (event.key.code == sf::Keyboard::Right)
-                {
-                    selectedOps[selectedOption] += 1;
-                    if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
-                        selectedOps[selectedOption] = 0;
-
-                    if(selectedOption == 0)
-                        selectedVSync = selectedOption;
-                    if(selectedOption == 1)
-                        selectedFs = selectedOps[selectedOption];
-                    if(selectedOption == 2)
-                        selectedRes = selectedOption;
-                    if(selectedOption == 3)
-                        selectedFPS = selectedOption;
-                }
-
-                if (event.key.code == sf::Keyboard::Left)
-                {
-                    selectedOps[selectedOption] -= 1;
-                    if(selectedOps[selectedOption] < 0 )
-                        selectedOps[selectedOption] = optionsSettings[selectedOption].size()-1;
-
-                    if(selectedOption == 0)
-                        selectedVSync = selectedOption;
-                    if(selectedOption == 1)
-                        selectedFs = selectedOps[selectedOption];
-                    if(selectedOption == 2)
-                        selectedRes = selectedOption;
-                    if(selectedOption == 3)
-                        selectedFPS = selectedOption;
-                }
->>>>>>> parent of cbb333a... Buggy Keys
             }
-            if(selected == 2) //Options
+            else if(selected == 2) //Options
             {
                 menuState = MENU_OPTIONS;
             }
-            if(selected == 3) //Exit
+            else if(selected == 3) //Exit
             {
-<<<<<<< HEAD
                 gdata.running = false;
-=======
                 if(event.key.code == sf::Keyboard::BackSpace)
                 {
                     menuState = MENU_MAIN;
                 }
->>>>>>> parent of cbb333a... Buggy Keys
             }
         }
     }
 
-    //! TODO
-    //!     ->CHANGE ALL KEY PRESSES TO gdata.keys[sf::Keyboard::A].isKeyPressed
-    //!     ->VSYNC NEEDS TO CHANGE PROPERLY
-    //!     ->RESOLUTION NEEDS TO LOAD IN THE CORRECT SPOT
-    //!     ->FPS NEEDS TO LOAD IN PROPERLY, CURRENTLY ALWAYS SAYS 1 WHEN 0 UNTIL YOU PRESS RIGHT OR LEFT 2X
-    //!     ->CHECK FULLSCREEN IS WORKING PROPERLY
     else if(menuState == MENU_OPTIONS) //Handle events within the options menu screen
     {
         if(gdata.keys[sf::Keyboard::BackSpace].isKeyPressed)
@@ -280,15 +210,16 @@ void StateMenu::handleEvents()
             menuState = MENU_MAIN;
         }
 
-        if (gdata.keys[sf::Keyboard::Return].isKeyPressed)
+
+        else if (gdata.keys[sf::Keyboard::Return].isKeyPressed)
         {
             gdata.settings->setVsync(vSyncMode);
             gdata.settings->setFullscreen(selectedFs);
 
-            gdata.settings->setScreenWidth(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[0]));
-            gdata.settings->setScreenHeight(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[1]));
+            gdata.settings->setScreenWidth(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedRes], 'x')[0]));
+            gdata.settings->setScreenHeight(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedRes], 'x')[1]));
 
-            gdata.settings->setFpsLimit(gz::stringToUnsigned(optionsSettings[3][selectedOps[selectedFPS]]));
+            gdata.settings->setFpsLimit(gz::stringToUnsigned(optionsSettings[3][selectedFPS]));
 
             gdata.settings->saveSettings();
 
@@ -297,61 +228,67 @@ void StateMenu::handleEvents()
             gdata.window->setView(*gdata.view);
             gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
 
+//            if(selectedFs != gdata.settings->getFullscreen())
+//            {
+//                gdata.window->close();
+//                gdata.window->
+//            }
+//
             cout << "\n<----------------------SETTINGS SAVED-------------------------->\n"
                  << "\tvSync:\t\t\t\t" << vSyncMode << "\n"
                  << "\tFullscreen:\t\t\t" << selectedFs << "\n"
-                 << "\tResolution:\t\t\t" << gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[0] << "x"
-                 << gz::splitString(optionsSettings[2][selectedOps[selectedRes]], 'x')[1] << "\n"
+                 << "\tResolution:\t\t\t" << gz::splitString(optionsSettings[2][selectedRes], 'x')[0] << "x"
+                 << gz::splitString(optionsSettings[2][selectedRes], 'x')[1] << "\n"
                  << "\tFPS Limit:\t\t\t" << gz::stringToUnsigned(optionsSettings[3][selectedOps[selectedFPS]]) << endl;
 
-            gdata.window->setPosition(sf::Vector2i(0,0));
+            //gdata.window->setPosition(sf::Vector2i(0,0));
             //menuState = MENU_MAIN;
         }
 
-        if (gdata.keys[sf::Keyboard::Up].isKeyPressed)
+        else if (gdata.keys[sf::Keyboard::Up].isKeyPressed)
         {
             selectedOption -= 1;
             if(selectedOption < 0)
                 selectedOption = optionsItems.size() -1;
         }
 
-        if (gdata.keys[sf::Keyboard::Down].isKeyPressed)
+        else if (gdata.keys[sf::Keyboard::Down].isKeyPressed)
         {
             selectedOption += 1;
             if(selectedOption > optionsItems.size() -1)
                 selectedOption = 0;
         }
 
-        if (gdata.keys[sf::Keyboard::Right].isKeyPressed)
+        else if (gdata.keys[sf::Keyboard::Right].isKeyPressed)
         {
             selectedOps[selectedOption] += 1;
             if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
                 selectedOps[selectedOption] = 0;
 
             if(selectedOption == 0)
-                selectedVSync = selectedOption;
-            if(selectedOption == 1)
+                selectedVSync = selectedOps[selectedOption];
+            else if(selectedOption == 1)
                 selectedFs = selectedOps[selectedOption];
-            if(selectedOption == 2)
-                selectedRes = selectedOption;
-            if(selectedOption == 3)
-                selectedFPS = selectedOption;
+            else if(selectedOption == 2)
+                selectedRes = selectedOps[selectedOption];
+            else if(selectedOption == 3)
+                selectedFPS = selectedOps[selectedOption];
         }
 
-        if (gdata.keys[sf::Keyboard::Left].isKeyPressed)
+        else if (gdata.keys[sf::Keyboard::Left].isKeyPressed)
         {
             selectedOps[selectedOption] -= 1;
             if(selectedOps[selectedOption] < 0 )
                 selectedOps[selectedOption] = optionsSettings[selectedOption].size()-1;
 
             if(selectedOption == 0)
-                selectedVSync = selectedOption;
-            if(selectedOption == 1)
+                selectedVSync = selectedOps[selectedOption];
+            else if(selectedOption == 1)
                 selectedFs = selectedOps[selectedOption];
-            if(selectedOption == 2)
-                selectedRes = selectedOption;
-            if(selectedOption == 3)
-                selectedFPS = selectedOption;
+            else if(selectedOption == 2)
+                selectedRes = selectedOps[selectedOption];
+            else if(selectedOption == 3)
+                selectedFPS = selectedOps[selectedOption];
         }
     }
     else if(menuState == MENU_AWARDS) //Handle events within the achievements menu screen
@@ -384,7 +321,7 @@ void StateMenu::draw()
 
     font->drawString(0,0,"Press 'R' to reset screen");
 
-    // Menu animation sliding
+    // Menu animation slidingendl;
     if(menuState == MENU_MAIN)
     {
         if( x < gdata.settings->getScreenWidth() - 200)
