@@ -213,6 +213,9 @@ void StateMenu::handleEvents()
 
         else if (gdata.keys[sf::Keyboard::Return].isKeyPressed)
         {
+            vSyncMode = selectedOps[0];
+            selectedFs = selectedOps[1];
+
             gdata.settings->setVsync(vSyncMode);
             gdata.settings->setFullscreen(selectedFs);
 
@@ -227,6 +230,7 @@ void StateMenu::handleEvents()
             gdata.view = new sf::View(sf::FloatRect(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
             gdata.window->setView(*gdata.view);
             gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
+            gdata.window->setVerticalSyncEnabled(vSyncMode);
 
 //            if(selectedFs != gdata.settings->getFullscreen())
 //            {
@@ -239,7 +243,7 @@ void StateMenu::handleEvents()
                  << "\tFullscreen:\t\t\t" << selectedFs << "\n"
                  << "\tResolution:\t\t\t" << gz::splitString(optionsSettings[2][selectedRes], 'x')[0] << "x"
                  << gz::splitString(optionsSettings[2][selectedRes], 'x')[1] << "\n"
-                 << "\tFPS Limit:\t\t\t" << gz::stringToUnsigned(optionsSettings[3][selectedOps[selectedFPS]]) << endl;
+                 << "\tFPS Limit:\t\t\t" << gz::stringToUnsigned(optionsSettings[3][selectedFPS]) << endl;
 
             //gdata.window->setPosition(sf::Vector2i(0,0));
             //menuState = MENU_MAIN;
@@ -321,16 +325,16 @@ void StateMenu::draw()
 
     font->drawString(0,0,"Press 'R' to reset screen");
 
-    // Menu animation slidingendl;
+    // Menu animation sliding;
     if(menuState == MENU_MAIN)
     {
         if( x < gdata.settings->getScreenWidth() - 200)
-            x += gdata.settings->getScreenWidth()*0.003;
+            x += (gdata.settings->getScreenWidth() - 200) * gdata.m_timeDelta;//gdata.settings->getScreenWidth()*0.003;
     }
     else
     {
         if( x > 50)
-            x -= gdata.settings->getScreenWidth()*0.003;
+            x -= (gdata.settings->getScreenWidth() - 200) * gdata.m_timeDelta;//gdata.settings->getScreenWidth()*0.003;
     }
 
     y = gdata.settings->getScreenHeight()/5;

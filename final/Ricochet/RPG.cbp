@@ -5,6 +5,7 @@
 		<Option title="RPG" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
+		<Option virtualFolders="source\system\states\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/RPG" prefix_auto="1" extension_auto="1" />
@@ -102,7 +103,9 @@
 		<Unit filename="source/system/AssetManager.cpp" />
 		<Unit filename="source/system/AssetManager.h" />
 		<Unit filename="source/system/Engine.cpp" />
-		<Unit filename="source/system/Engine.h" />
+		<Unit filename="source/system/Engine.h">
+			<Option virtualFolder="source/system/states/" />
+		</Unit>
 		<Unit filename="source/system/GameData.cpp" />
 		<Unit filename="source/system/GameData.h" />
 		<Unit filename="source/system/InputHandler.cpp" />
