@@ -3,7 +3,7 @@
 void BounceParticle::particle_draw()
 {
     float percent = (static_cast<float>(particle_age) / static_cast<float>(particle_dur));
-    float size = (50 * gdata.zoom) * percent;
+    float size = (75 * gdata.zoom) * percent;
     sf::CircleShape c(size);
 
     Vector2 p = gdata.toScreenPixels(pos);
