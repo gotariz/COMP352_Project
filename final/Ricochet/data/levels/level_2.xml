@@ -9,7 +9,7 @@
 	p1="0,0" 					// the two points the laser moves between (you always start at p1 and move toward p2)
 	p2="5,0" 					//.. to start at point inbetween the 2 set the time variables
 	duration="5" 				// how long it takes to move from point 1 to point 2
-	progress="0" 				// how far though the movement it is. 0.0 tp 1.0  (1 = 100% so it's at p2) 
+	time="0" 					// how far though the movement it is. egset to "duration / 2" would mean its half way to point 2
 	
 	rotating="0" 				// indicates if the laser rotates or not (0=NotRotation, 1=Rotating)
 	start_angle="0" 			// the start angle of the laser
@@ -20,10 +20,10 @@
 
 	-->
 
-	<!-- WHERE THE HOLE IS ON THE LEVEL-->
-	<object type="hole" position="0,6" />
 	<!-- WHERE THE PLAYER STARTS THE LEVEL-->
-	<object type="player" position="0,-7" />
+	<object type="player" position="14,0" />
+	<!-- WHERE THE HOLE IS ON THE LEVEL-->
+	<object type="hole" position="-14,0" />
 
 	<!-- WALLS ON THE EDGE OF THE SCREEN -->
 	<object type="barrier" position="-19,0" size="1,22" rotation="0"/>
@@ -31,8 +31,21 @@
 	<object type="barrier" position="0,-10.5" size="37,1" rotation="0"/>
 	<object type="barrier" position="0,10.5" size="37,1" rotation="0"/>
 
-	<object type="laser" position="18.5,-5" laser_direction="-1,0" p1="0,0" p2="0,-3" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
 
-	<object type="block" position="0,0" size="1,3" rotation="45" rotationspeed="45" moves="1" p1="-3,-6" p2="-3,7" duration="2" progress="0.5" />
-	<object type="block" position="0,0" size="1,3" rotation="-45" rotationspeed="360" moves="1" p1="3,-6" p2="3,7" duration="2" progress="0.5" />
+	<object type="barrier" position="0,5" size="30,1" rotation="0"/>
+	<object type="barrier" position="0,-5" size="30,1" rotation="0"/>
+	
+	<!--<object type="laser" position="-16,6" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>-->
+	<object type="laser" position="16,6" laser_direction="0,-1" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="-16,6" laser_direction="0,-1" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	
+	<object type="block" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-5,5" p2="-5,-5" duration="2" time="0"/>
+	<object type="block" position="0,0" size="0.5,2" rotation="0" moves="1" p1="4,5" p2="4,-5" duration="2" time="0"/>
+
+	
+<!--	<object type="laser" position="-18.5,5" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
+	<object type="laser" position="-18.5,-5" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" /> -->
+
+<!--	<object type="block" position="0,0" size="1,3" rotation="0" moves="1" p1="-3,-6" p2="-3,7" duration="2" time="0" />
+	<object type="block" position="0,0" size="1,3" rotation="0" moves="1" p1="3,-6" p2="3,7" duration="2" time="0" /> -->
 </root>

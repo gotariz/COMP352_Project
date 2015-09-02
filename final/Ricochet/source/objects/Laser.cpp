@@ -45,10 +45,10 @@ void Laser::moveLaser()
     if (!m_moving) return;
 
     Vector2 delta;
-    Vector2 dist_v = m_point1 - m_point2;
+    Vector2 dist_v = m_point2 - m_point1;
     float dist = dist_v.getMagnitude();
 
-    delta = m_point2 - m_point1;
+    delta = dist_v;
     delta.normalise();
     delta.setMagnitude(dist * (m_time / m_duration));
 

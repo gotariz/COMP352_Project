@@ -302,6 +302,7 @@ void StateGame::loadLevel()
 				l->laser_dir = laser_dir;
 				l->m_point1 = p1;
 				l->m_point2 = p2;
+				l->m_dest = p2;
 				l->m_moving = moving;
 				l->m_duration = move_duration;
 				l->m_time = move_time;
