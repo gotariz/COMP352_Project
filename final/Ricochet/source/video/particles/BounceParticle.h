@@ -11,6 +11,8 @@ class BounceParticle : public IParticle
     public:
         Vector2 pos;
 
+        sf::CircleShape c;
+
         virtual void particle_draw();
         virtual void particle_create();
         virtual void particle_update();

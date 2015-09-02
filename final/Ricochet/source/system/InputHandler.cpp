@@ -23,7 +23,6 @@ void InputHandler::init()
 
 void InputHandler::handleEvents()
 {
-
     sf::Event event;
     while (gdata.window->pollEvent(event))
     {
@@ -35,6 +34,9 @@ void InputHandler::handleEvents()
 
 	// update bound keys
 	gdata.updateKeys();
+
+	if (!gdata.window->hasFocus()) return;
+
     handlePlayerEvents();
     handleMouseEvents();
     handleControllerEvents();
@@ -43,12 +45,7 @@ void InputHandler::handleEvents()
 
 	if (gdata.keys[sf::Keyboard::R].isKeyPressed)
 	{
-		m_player->setLinearVelocity(Vector2(0, 0));
-		m_player->setAbsolutePosition(m_player->reset_pos);
-		m_player->trail.clearTrail();
-		launched = false;
-		selecting = false;
-		cout << "restarted" << endl;
+		gdata.reload = true;
 	}
 
 	if(gdata.keys[sf::Keyboard::Comma].isKeyPressed)
@@ -56,7 +53,6 @@ void InputHandler::handleEvents()
         if(gdata.level > 1)
             gdata.level -= 1;
         gdata.reload = true;
-        cout << "Level: " << gdata.level << endl;
     }
 
     if(gdata.keys[sf::Keyboard::Period].isKeyPressed)
@@ -64,7 +60,6 @@ void InputHandler::handleEvents()
         if(gdata.level < 9) //HARD CODED IN - NEED TO FIX
             gdata.level += 1;
         gdata.reload = true;
-        cout << "Level: " << gdata.level << endl;
     }
 
     if(gdata.keys[sf::Keyboard::BackSpace].isKeyPressed)
@@ -72,6 +67,15 @@ void InputHandler::handleEvents()
         gdata.gamestate = STATE_MENU;
         gdata.reload = true;
         cout << "Back to menu"<< endl;
+    }
+
+    if(gdata.keys[sf::Keyboard::D].isKeyPressed)
+    {
+        gdata.draw_debug = !gdata.draw_debug;
+    }
+    if(gdata.keys[sf::Keyboard::G].isKeyPressed)
+    {
+        gdata.draw_grid = !gdata.draw_grid;
     }
 
     if(gdata.keys[sf::Keyboard::Escape].isKeyPressed)

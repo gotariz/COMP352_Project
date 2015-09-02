@@ -10,6 +10,7 @@ void SparksEmitter::createParticle()
         Particle* p = new Particle();
         p->pos.set(pos);
         p->particle_dur = duration;
+        p->size = size;
         p->setPhysicsObject(gdata.factory->createParticle(p->pos.x,p->pos.y));
 
         Vector2 vel = dir;

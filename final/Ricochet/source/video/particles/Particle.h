@@ -8,9 +8,13 @@
 class Particle : public IParticle, public gObject
 {
     public:
+        Particle(){
+            m_type = PARTICLE;
+        }
         Vector2 pos;
-        int size = 1;
+        int size = 0;
 
+        sf::Color c = sf::Color::Red;
         virtual void particle_draw();
         virtual void particle_create();
         virtual void particle_update();

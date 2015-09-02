@@ -79,6 +79,8 @@ void Laser::raycast()
     b2Vec2 p1 = laserPos.toBulletVector();
 	float rayLength = 50;
 
+    rotated_laser.normalise(); // very important
+
 	b2RayCastInput	input;
 	input.p1 = p1;
 	input.p2 = b2Vec2(p1.x + rotated_laser.x, p1.y + rotated_laser.y);
@@ -90,7 +92,7 @@ void Laser::raycast()
 	{
 		for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
 		{
-		    if (f->GetFilterData().categoryBits != CF_PARTICLE)
+		    if (f->GetFilterData().categoryBits != CF_PARTICLE && !f->IsSensor())
 			{
 			    b2RayCastOutput output;
                 if (!f->RayCast(&output, input, 0)) continue;
@@ -106,7 +108,7 @@ void Laser::raycast()
 	}
 
 
-	if (body->GetUserData() != nullptr)
+	if (body != nullptr && body->GetUserData() != nullptr)
 	{
 		Object* p = static_cast<Object*>(body->GetUserData());
 
@@ -114,6 +116,7 @@ void Laser::raycast()
 		{
 			cout << "you died" << endl;
 			gdata.reload = true;
+			gdata.delay_reload = true;
 		}
 	}
 

@@ -125,9 +125,10 @@
 		<Unit filename="source/utils/gzClock.h" />
 		<Unit filename="source/utils/tinyxml2.cpp" />
 		<Unit filename="source/utils/tinyxml2.h" />
+		<Unit filename="source/video/Background.cpp" />
+		<Unit filename="source/video/Background.h" />
 		<Unit filename="source/video/Camera.cpp" />
 		<Unit filename="source/video/Camera.h" />
-		<Unit filename="source/video/IParticle.h" />
 		<Unit filename="source/video/Trail.cpp" />
 		<Unit filename="source/video/Trail.h" />
 		<Unit filename="source/video/particles/BounceEmitter.cpp" />

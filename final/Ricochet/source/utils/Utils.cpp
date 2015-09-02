@@ -13,8 +13,6 @@ float utils::toAngle(float rotation)
 
 int utils::getRandom(int min, int max)
 {
-	//gzClock clock;
-	//srand(clock.getCurrentTimeMilliseconds());
 	return (rand() % max) + min;
 }
 

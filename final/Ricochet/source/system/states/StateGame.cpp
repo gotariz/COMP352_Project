@@ -32,6 +32,9 @@ void StateGame::load()
 {
     //reInit();
 
+    gzClock clock;
+	srand(clock.getCurrentTimeMilliseconds());
+
 	assets.loadAssetList("data/assets.xml");
 	gdata.assets = &assets;
 
@@ -47,6 +50,14 @@ void StateGame::load()
     fntAngle = new sfFontRenderer(gdata.window);
     fntAngle->setFont(assets.getFont("segoe-ui-light-20"));
     fntAngle->setColor(purple);
+
+    fntIns = new sfFontRenderer(gdata.window);
+    fntIns->setFont(assets.getFont("segoe-ui-light-20"));
+    fntIns->setColor(sf::Color::White);
+
+    fntLevel = new sfFontRenderer(gdata.window);
+    fntLevel->setFont(assets.getFont("segoe-ui-light-48"));
+    fntLevel->setColor(sf::Color::White);
 
 	camera = Camera(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight());
 	gdata.camera = &camera;
@@ -66,6 +77,10 @@ void StateGame::load()
 
 	manager.setPhysicsWorld(world);
 
+	bg.bg_image.setTexture(*assets.getTexture("background"));
+	bg.num_circles = 60;
+	bg.init();
+
 	input.init();
 	input.m_player = player;
 	input.font = new sfFontRenderer(gdata.window);
@@ -73,7 +88,7 @@ void StateGame::load()
 
 	loadLevel();
 
-	//gdata.zoom = (gdata.settings->getScreenWidth() / 1920.f);
+	gdata.zoom = (gdata.settings->getScreenWidth() / 1900.f);
 
     loading = false;
 }
@@ -134,12 +149,15 @@ void StateGame::handleEvents()
 void StateGame::update()
 {
 	manager.update();
+	bg.update();
 }
 
 void StateGame::draw()
 {
     gdata.window->clear(sf::Color(32,32,32,255));
-    //gdata.window->clear(sf::Color::White);
+    //gdata.window->clear(sf::Color::Green);
+
+    bg.draw();
 
     if (input.selecting)
     {
@@ -157,7 +175,11 @@ void StateGame::draw()
 
 	manager.draw();
 
-	//world->DrawDebugData();
+    if (gdata.draw_debug)
+    {
+        world->DrawDebugData();
+    }
+
 	if (input.selecting)
     {
         float dist = 140;
@@ -189,11 +211,53 @@ void StateGame::draw()
         fntAngle->drawString(p.x + cx,p.y - 50,a);
     }
 
+    fntIns->drawString(10,10,"Press R to restart level");
+    fntLevel->drawString(130,110,"Level " + gz::toString(gdata.level));
+    //font->drawString(0,0,"Level " + gz::toString(gdata.level));
 
-    font->drawString(0,0,"Level " + gz::toString(gdata.level));
+
+    //===========================================
+    // DRAW A GRID
+    //===========================================
+    if (gdata.draw_grid)
+    {
+        for (int x = -19; x <= 19; ++x)
+        {
+            Vector2 p1(x,10.5);
+            Vector2 p2(x,-10.5);
+
+            p1 = gdata.toScreenPixels(p1);
+            p2 = gdata.toScreenPixels(p2);
+            drawLine(p1,p2);
+        }
+
+        for (int y = -10; y <= 10; ++y)
+        {
+            Vector2 p1(-19,y);
+            Vector2 p2(19,y);
+
+            p1 = gdata.toScreenPixels(p1);
+            p2 = gdata.toScreenPixels(p2);
+            drawLine(p1,p2);
+        }
+    }
+    //===========================================
+
+
+
 
 	// flip the buffer
 	gdata.window->display();
+}
+
+void StateGame::drawLine(Vector2 p1, Vector2 p2)
+{
+    sf::Vertex line[] =
+    {
+        sf::Vertex(sf::Vector2f(p1.x, p1.y),sf::Color(255,255,255,128)),
+        sf::Vertex(sf::Vector2f(p2.x, p2.y),sf::Color(255,255,255,128))
+    };
+    gdata.window->draw(line, 2, sf::Lines);
 }
 
 void StateGame::freeResources()
@@ -324,6 +388,18 @@ void StateGame::loadLevel()
 				hole->m_type = HOLE;
 				hole->m_image.setTexture(*assets.getTexture("hole_off"));
 				manager.addObject(hole);
+			}
+			else if (attribute_type == "bgcolor")
+			{
+//				int r = atoi(element->Attribute("r"));
+//				int g = atoi(element->Attribute("g"));
+//				int b = atoi(element->Attribute("b"));
+				int r = utils::getRandom(1,50);
+				int g = utils::getRandom(1,50);
+				int b = utils::getRandom(1,50);
+				int a = atoi(element->Attribute("a"));
+
+				bg.bg_image.setColor(sf::Color(r,g,b,a));
 			}
 
 			element = element->NextSiblingElement("object");

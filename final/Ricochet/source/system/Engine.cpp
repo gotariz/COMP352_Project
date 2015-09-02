@@ -46,14 +46,20 @@ void Engine::updateState()
 {
     if (!activeState || activeState->getStateType() != gdata.gamestate || gdata.reload)
     {
-        gdata.reload = false;
 
-        if (activeState) // delete the active state then create the new one
+        if (gdata.reload && activeState) // delete the active state then create the new one
         {
+            if (gdata.delay_reload)
+            {
+                gdata.delay_reload = false;
+                sf::sleep(sf::milliseconds(1000));
+            }
             activeState->freeResources();
             delete activeState;
             activeState = nullptr;
         }
+
+        gdata.reload = false;
 
         if (gdata.gamestate == RunState::STATE_GAME)
         {

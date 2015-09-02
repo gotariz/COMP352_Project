@@ -35,6 +35,10 @@ class GameData
 		sf::View*       view = nullptr;
 		int             level = 1;
 		bool            reload = false;
+		bool            delay_reload = false;
+		bool            draw_debug = false;
+		bool            draw_grid = false;
+		//bool            has_focus = true;
 
 		//Object* player = nullptr;
 

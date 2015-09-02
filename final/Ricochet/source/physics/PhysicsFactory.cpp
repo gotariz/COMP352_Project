@@ -35,11 +35,12 @@ b2Body* PhysicsFactory::createPlayer(float x, float y, void* userPointer)
 	body->CreateFixture(&fixtureDef);
 	body->SetBullet(false);
 	body->SetSleepingAllowed(false);
+	body->SetUserData(userPointer);
 
 	return body;
 }
 
-b2Body* PhysicsFactory::createGround(float x, float y, float width, float height, float angle)
+b2Body* PhysicsFactory::createGround(float x, float y, float width, float height, float angle, void* userPointer)
 {
 	float hw = width / 2;
 	float hh = height / 2;
@@ -72,11 +73,12 @@ b2Body* PhysicsFactory::createGround(float x, float y, float width, float height
 	b2Body* body = m_world->CreateBody(&bodyDef);
 	body->CreateFixture(&fixtureDef);
 	body->SetBullet(true);
+	body->SetUserData(userPointer);
 
 	return body;
 }
 
-b2Body* PhysicsFactory::createHole(float x, float y)
+b2Body* PhysicsFactory::createHole(float x, float y, void* userPointer)
 {
     // create temp physics player
     float hw = 1.28 / 2;
@@ -109,11 +111,12 @@ b2Body* PhysicsFactory::createHole(float x, float y)
 	b2Body* body = m_world->CreateBody(&bodyDef);
 	body->CreateFixture(&fixtureDef);
 	body->SetBullet(false);
+	body->SetUserData(userPointer);
 
 	return body;
 }
 
-b2Body* PhysicsFactory::createObsticle(float x, float y, float w, float h, float angle)
+b2Body* PhysicsFactory::createObsticle(float x, float y, float w, float h, float angle, void* userPointer)
 {
 	float hw = w / 2;
 	float hh = h / 2;
@@ -146,11 +149,12 @@ b2Body* PhysicsFactory::createObsticle(float x, float y, float w, float h, float
 	b2Body* body = m_world->CreateBody(&bodyDef);
 	body->CreateFixture(&fixtureDef);
 	body->SetBullet(false);
+	body->SetUserData(userPointer);
 
 	return body;
 }
 
-b2Body* PhysicsFactory::createParticle(float x, float y)
+b2Body* PhysicsFactory::createParticle(float x, float y, void* userPointer)
 {
     b2CircleShape shape;
     shape.m_radius = (1.f / WORLD_SCALE / 3);
@@ -175,6 +179,7 @@ b2Body* PhysicsFactory::createParticle(float x, float y)
 	body->SetBullet(false);
 	body->SetSleepingAllowed(false);
 	body->SetLinearDamping(0.1);
+	body->SetUserData(userPointer);
 
 	return body;
 }

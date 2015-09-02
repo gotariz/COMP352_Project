@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <root>
+	<object type="bgcolor" r="5" g="40" b="28" a="255" />
 	<!-- AXAMPLE AN EXPLANATION OF ATTRIBUTES
 	<object 
 	type="laser" 				// the type of object this will be
@@ -20,20 +21,20 @@
 
 	-->
 
-	<!-- WHERE THE PLAYER STARTS THE LEVEL-->
-	<object type="player" position="0,-6" />
 	<!-- WHERE THE HOLE IS ON THE LEVEL-->
 	<object type="hole" position="0,8" />
+	<!-- WHERE THE PLAYER STARTS THE LEVEL-->
+	<object type="player" position="0,-6" />
 
 	<!-- WALLS ON THE EDGE OF THE SCREEN -->
-	<object type="barrier" position="-19,0" size="1,22" rotation="0"/>
-	<object type="barrier" position="19,0" size="1,22" rotation="0"/>
-	<object type="barrier" position="0,-10.5" size="37,1" rotation="0"/>
-	<object type="barrier" position="0,10.5" size="37,1" rotation="0"/>
+	<object type="barrier" position="-18.5,0" size="1,21" rotation="0"/>
+	<object type="barrier" position="18.5,0" size="1,21" rotation="0"/>
+	<object type="barrier" position="0,-10" size="36,1" rotation="0"/>
+	<object type="barrier" position="0,10" size="36,1" rotation="0"/>
 	
-	<object type="laser" position="-18.5,5" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
-	<object type="laser" position="-18.5,-5" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
+	<object type="laser" position="-18,5" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
+	<object type="laser" position="-18,-5" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
 
-	<object type="block" position="0,0" size="1,3" rotation="0" moves="1" p1="-3,-6" p2="-3,7" duration="2" time="0" />
-	<object type="block" position="0,0" size="1,3" rotation="0" moves="1" p1="3,-6" p2="3,7" duration="2" time="0" />
+	<object type="block" position="0,0" size="1,3" rotation="0" moves="1" p1="-3,-6" p2="-3,8" duration="2" time="0" />
+	<object type="block" position="0,0" size="1,3" rotation="0" moves="1" p1="3,-6" p2="3,8" duration="2" time="0" />
 </root>

@@ -10,32 +10,19 @@ void Player::onCreate()
 void Player::onUpdate()
 {
     color.update(gdata.m_timeDelta);
-    //emitter.pos = getAbsolutePosition();
     emitter.update();
 }
 
 void Player::onEnterCollision(CollisionData cd)
 {
-    emitter.spawn = true;
     if (cd.points.size() > 0)
     {
-        emitter.pos = cd.points.at(0);
-        // find the 2 perpendicular points
-        trail.addPoint(getAbsolutePosition());
-//        sf::CircleShape circle(0);
-//        circle.setOutlineThickness(3);
-//        circle.setFillColor(sf::Color::Transparent);
-//        circle.setOutlineColor(sf::Color::White);
-//        circle.setOrigin(circle.getRadius(),circle.getRadius());
-//
-//        Vector2 p = cd.points.at(0);
-//        //p.print("cp:");
-//        p = gdata.toPixels(p.x,p.y);
-//		p.x -= gdata.camera->getScreenX();
-//		p.y -= gdata.camera->getScreenY();
-//        circle.setPosition(p.x,p.y);
-//
-//        circles.push_back(circle);
+        if (cd.objectB->m_type != PARTICLE)
+        {
+            emitter.spawn = true;
+            emitter.pos = cd.points.at(0);
+            trail.addPoint(getAbsolutePosition());
+        }
     }
 }
 
@@ -84,6 +71,10 @@ void Player::onDraw()
         circle.setFillColor(color.getCurrentColor());
         circle.setPosition(pos.x,pos.y);
         circle.setOrigin(circle.getRadius(),circle.getRadius());
+
+        circle.setOutlineThickness(1);
+        circle.setOutlineColor(sf::Color::Black);
+
         gdata.window->draw(circle);
     }
 }

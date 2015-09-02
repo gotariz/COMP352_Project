@@ -5,6 +5,17 @@
 using namespace std;
 class Object;
 #include "utils/Vector2.h"
+#include "dependencies.h"
+
+struct bgCircle
+{
+    sf::CircleShape c;
+    Vector2 pos;
+    Vector2 dest;
+    float radius;
+    float alpha;
+    float speed;
+};
 
 struct gzPair
 {

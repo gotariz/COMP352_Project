@@ -19,7 +19,7 @@
 	
 	<asset type="image" path="media/images/hole_on.png" />
 	<asset type="image" path="media/images/hole_off.png" />
-	<asset type="image" path="media/images/bg.png" />
+	<asset type="image" path="media/images/background.png" />
 	<asset type="font" path="media/fonts/purista-medium-14-white/" />
 	<asset type="font" path="media/fonts/segoe-ui-light-48/" />
 	<asset type="font" path="media/fonts/segoe-ui-light-20/" />

@@ -8,6 +8,7 @@ void BounceEmitter::createParticle()
         p->pos = pos;
         p->particle_dur = 500;
         particles.push_back(p);
+        p->particle_create();
         spawn = false;
     }
 }

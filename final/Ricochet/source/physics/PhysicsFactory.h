@@ -18,11 +18,11 @@ class PhysicsFactory
     public:
         b2Body* createPlayer(float x = 0, float y = 0, void* userPointer = nullptr);
 
-		b2Body* createGround(float x, float y, float width, float height, float angle = 0.f);
-		b2Body* createHole(float x, float y);
-		b2Body* createObsticle(float x, float y, float w, float h, float angle);
+		b2Body* createGround(float x, float y, float width, float height, float angle = 0.f, void* userPointer = nullptr);
+		b2Body* createHole(float x, float y, void* userPointer = nullptr);
+		b2Body* createObsticle(float x, float y, float w, float h, float angle, void* userPointer = nullptr);
 
-		b2Body* createParticle(float x, float y);
+		b2Body* createParticle(float x, float y, void* userPointer = nullptr);
 };
 
 #endif // PHYSICSFACTORY_H

@@ -23,6 +23,7 @@
 #include "video/Camera.h"
 #include "video/sfFontRenderer.h"
 #include "video/particles/ParticleEmitter.h"
+#include "video/Background.h"
 
 
 /////////////////////////////////////////////////////////
@@ -53,6 +54,8 @@ class StateGame : public IState
 
         void reInit();
 
+        void drawLine(Vector2 p1, Vector2 p2);
+
     public:
 
 		ObjectManager		manager;
@@ -63,8 +66,11 @@ class StateGame : public IState
         sfFontRenderer*     font;
         sfFontRenderer*     fntPower;
         sfFontRenderer*     fntAngle;
+        sfFontRenderer*     fntIns;
+        sfFontRenderer*     fntLevel;
 
         Player*             player = nullptr;
+        Background          bg;
         //ParticleEmitter     pe;
 
 		// Box2D physics

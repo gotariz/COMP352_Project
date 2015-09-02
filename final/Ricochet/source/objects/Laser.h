@@ -22,7 +22,7 @@ class Laser : public Obstacle
         bool rotating = false;
 
         Vector2 rotated_laser;
-        Vector2 laser_dir;
+        Vector2 laser_dir;  // normalised vec of the direction the laser is pointing
 		Vector2	laser;
 		Vector2 laserPos;
 

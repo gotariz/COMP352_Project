@@ -7,6 +7,7 @@ enum ObjectType
     PLAYER,
     HOLE,
     WALL,
+    PARTICLE,
 };
 
 enum CollisionGroups

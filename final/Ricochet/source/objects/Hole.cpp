@@ -37,6 +37,8 @@ void Hole::onEnterCollision(CollisionData cd)
         m_image.setTexture(*gdata.assets->getTexture("hole_on"));
         gdata.reload = true;
         gdata.level += 1;
+        if (gdata.level > 9) gdata.level = 9;
+        gdata.delay_reload = true;
     }
 }
 

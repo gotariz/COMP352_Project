@@ -4,18 +4,19 @@ void BounceParticle::particle_draw()
 {
     float percent = (static_cast<float>(particle_age) / static_cast<float>(particle_dur));
     float size = (75 * gdata.zoom) * percent;
-    sf::CircleShape c(size);
 
     Vector2 p = gdata.toScreenPixels(pos);
-    c.setOrigin(size,size);
     c.setPosition(p.x,p.y);
-    c.setFillColor(sf::Color(255,255,255,255 * (1.f - percent)));// * (1.f - percent)));
+    c.setRadius(size);
+    c.setOrigin(size,size);
+    c.setFillColor(sf::Color(255,255,255,0));
+    c.setOutlineColor(sf::Color(255,255,255,255 * (1.f - percent)));
     gdata.window->draw(c);
 }
 
 void BounceParticle::particle_create()
 {
-
+    c.setOutlineThickness(2);
 }
 
 void BounceParticle::particle_update()

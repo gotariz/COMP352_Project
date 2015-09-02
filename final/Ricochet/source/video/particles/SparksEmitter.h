@@ -8,10 +8,10 @@
 class SparksEmitter : public ParticleEmitter
 {
     public:
-        float frequency = 30; // particles per-second
-        int duration = 375;
-        float speed = 5;
-        int size = 1;
+        float frequency = 0; // particles per-second
+        int duration = 0;
+        float speed = 0;
+        int size = 0;
 
         virtual void createParticle();
 };
