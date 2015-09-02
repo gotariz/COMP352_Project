@@ -50,6 +50,35 @@ void InputHandler::handleEvents()
 		selecting = false;
 		cout << "restarted" << endl;
 	}
+
+	if(gdata.keys[sf::Keyboard::Comma].isKeyPressed)
+    {
+        if(gdata.level > 1)
+            gdata.level -= 1;
+        gdata.reload = true;
+        cout << "Level: " << gdata.level << endl;
+    }
+
+    if(gdata.keys[sf::Keyboard::Period].isKeyPressed)
+    {
+        if(gdata.level < 9) //HARD CODED IN - NEED TO FIX
+            gdata.level += 1;
+        gdata.reload = true;
+        cout << "Level: " << gdata.level << endl;
+    }
+
+    if(gdata.keys[sf::Keyboard::BackSpace].isKeyPressed)
+    {
+        gdata.gamestate = STATE_MENU;
+        gdata.reload = true;
+        cout << "Back to menu"<< endl;
+    }
+
+    if(gdata.keys[sf::Keyboard::Escape].isKeyPressed)
+    {
+        cout << "Exit Game"<< endl;
+        gdata.running = false;
+    }
 }
 
 void InputHandler::handlePlayerEvents()

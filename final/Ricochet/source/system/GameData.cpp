@@ -62,12 +62,12 @@ GameData::GameData()
 
     keys.at(sf::Keyboard::LBracket)  = KeyboardKey(sf::Keyboard::LBracket,"[");
     keys.at(sf::Keyboard::RBracket)  = KeyboardKey(sf::Keyboard::RBracket,"]");
-    keys.at(sf::Keyboard::SemiColon) = KeyboardKey(sf::Keyboard::Menu,";");
-    keys.at(sf::Keyboard::Comma)     = KeyboardKey(sf::Keyboard::Menu,",");
-    keys.at(sf::Keyboard::Period)    = KeyboardKey(sf::Keyboard::Menu,".");
-    keys.at(sf::Keyboard::Quote)     = KeyboardKey(sf::Keyboard::Menu,"'");
-    keys.at(sf::Keyboard::Slash)     = KeyboardKey(sf::Keyboard::Menu,"/");
-    keys.at(sf::Keyboard::BackSlash) = KeyboardKey(sf::Keyboard::Menu,"\\");
+    keys.at(sf::Keyboard::SemiColon) = KeyboardKey(sf::Keyboard::SemiColon,";");
+    keys.at(sf::Keyboard::Comma)     = KeyboardKey(sf::Keyboard::Comma,",");
+    keys.at(sf::Keyboard::Period)    = KeyboardKey(sf::Keyboard::Period,".");
+    keys.at(sf::Keyboard::Quote)     = KeyboardKey(sf::Keyboard::Quote,"'");
+    keys.at(sf::Keyboard::Slash)     = KeyboardKey(sf::Keyboard::Slash,"/");
+    keys.at(sf::Keyboard::BackSlash) = KeyboardKey(sf::Keyboard::BackSlash,"\\");
 
     keys.at(sf::Keyboard::Tilde)     = KeyboardKey(sf::Keyboard::Tilde,"~");
     keys.at(sf::Keyboard::Equal)     = KeyboardKey(sf::Keyboard::Equal,"=");
