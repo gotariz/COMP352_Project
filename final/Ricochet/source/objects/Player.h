@@ -6,6 +6,7 @@
 #include "gObject.h"
 #include "sfColor.h"
 #include "video/Trail.h"
+#include "video/particles/BounceEmitter.h"
 
 class Player : public gObject
 {
@@ -24,6 +25,8 @@ class Player : public gObject
         float maxSpeed = 30;
 		float minSpeed = 5;
 		float currentSpeed = 0;
+
+		BounceEmitter emitter;
 
         sfColor color;
         Trail trail;

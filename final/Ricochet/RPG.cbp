@@ -19,6 +19,7 @@
 					<Add directory="$(#gz.include)" />
 					<Add directory="source/video" />
 					<Add directory="source/objects" />
+					<Add directory="source/video/particles" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-audio-2" />
@@ -45,6 +46,7 @@
 					<Add directory="source/objects" />
 					<Add directory="source/system/states" />
 					<Add directory="source/video" />
+					<Add directory="source/video/particles" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -123,12 +125,19 @@
 		<Unit filename="source/video/Camera.cpp" />
 		<Unit filename="source/video/Camera.h" />
 		<Unit filename="source/video/IParticle.h" />
-		<Unit filename="source/video/Particle.cpp" />
-		<Unit filename="source/video/Particle.h" />
-		<Unit filename="source/video/ParticleEmitter.cpp" />
-		<Unit filename="source/video/ParticleEmitter.h" />
 		<Unit filename="source/video/Trail.cpp" />
 		<Unit filename="source/video/Trail.h" />
+		<Unit filename="source/video/particles/BounceEmitter.cpp" />
+		<Unit filename="source/video/particles/BounceEmitter.h" />
+		<Unit filename="source/video/particles/BounceParticle.cpp" />
+		<Unit filename="source/video/particles/BounceParticle.h" />
+		<Unit filename="source/video/particles/IParticle.h" />
+		<Unit filename="source/video/particles/Particle.cpp" />
+		<Unit filename="source/video/particles/Particle.h" />
+		<Unit filename="source/video/particles/ParticleEmitter.cpp" />
+		<Unit filename="source/video/particles/ParticleEmitter.h" />
+		<Unit filename="source/video/particles/SparksEmitter.cpp" />
+		<Unit filename="source/video/particles/SparksEmitter.h" />
 		<Unit filename="source/video/sfColor.cpp" />
 		<Unit filename="source/video/sfColor.h" />
 		<Unit filename="source/video/sfFont.cpp" />

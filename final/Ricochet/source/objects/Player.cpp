@@ -4,18 +4,22 @@ void Player::onCreate()
 {
     color.setColor(5,91,165,255);
     color.setTime(0.5f);
+    emitter.enabled = true;
 }
 
 void Player::onUpdate()
 {
     color.update(gdata.m_timeDelta);
+    //emitter.pos = getAbsolutePosition();
+    emitter.update();
 }
 
 void Player::onEnterCollision(CollisionData cd)
 {
+    emitter.spawn = true;
     if (cd.points.size() > 0)
     {
-
+        emitter.pos = cd.points.at(0);
         // find the 2 perpendicular points
         trail.addPoint(getAbsolutePosition());
 //        sf::CircleShape circle(0);
@@ -68,6 +72,7 @@ void Player::onPostPhysicsUpdate()
 
 void Player::onDraw()
 {
+    emitter.drawParticles();
     trail.setPlayerPosition(getAbsolutePosition());
     trail.draw();
 

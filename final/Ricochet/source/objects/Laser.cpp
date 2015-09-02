@@ -7,6 +7,7 @@ Laser::Laser()
     emitter.duration = 375;
     emitter.speed = 5;
     emitter.size = 1;
+    emitter.enabled = true;
 }
 
 Laser::~Laser()

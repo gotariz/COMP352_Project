@@ -1822,7 +1822,7 @@
 1440917624 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\istate.h
 	"general.h"
 
-1441093851 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.h
+1441158272 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.h
 	"general.h"
 	"system/states/IState.h"
 	"system/AssetManager.h"
@@ -1840,7 +1840,7 @@
 	"objects/ObjectManager.h"
 	"video/Camera.h"
 	"video/sfFontRenderer.h"
-	"video/ParticleEmitter.h"
+	"video/particles/ParticleEmitter.h"
 
 1439783907 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\assetmanager.h
 	"general.h"
@@ -2008,14 +2008,15 @@
 1441084293 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\statemenu.cpp
 	"StateMenu.h"
 
-1440917175 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\player.cpp
+1441160564 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\player.cpp
 	"Player.h"
 
-1440917263 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\player.h
+1441159791 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\player.h
 	"general.h"
 	"gObject.h"
 	"sfColor.h"
 	"video/Trail.h"
+	"video/particles/BounceEmitter.h"
 
 1440401300 c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\sfcolor.h
 	"dependencies.h"
@@ -2039,13 +2040,13 @@
 	"system/GameData.h"
 	"video/Camera.h"
 
-1441096119 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\laser.cpp
+1441159861 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\laser.cpp
 	"Laser.h"
 
-1441093266 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\laser.h
+1441158646 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\laser.h
 	"general.h"
 	"Obstacle.h"
-	"ParticleEmitter.h"
+	"video/particles/SparksEmitter.h"
 
 1440917015 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\hole.h
 	"general.h"
@@ -2081,4 +2082,44 @@
 
 1441095838 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particleemitter.cpp
 	"ParticleEmitter.h"
+
+1441159838 c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particles\particleemitter.h
+	"general.h"
+	"Particle.h"
+	"physics/PhysicsFactory.h"
+
+1441095978 c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particles\particle.h
+	"general.h"
+	"IParticle.h"
+	"objects/gObject.h"
+
+1441087222 c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particles\iparticle.h
+
+1441095987 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particles\particle.cpp
+	"Particle.h"
+
+1441158546 c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particles\sparksemitter.h
+	"general.h"
+	"ParticleEmitter.h"
+
+1441158620 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particles\particleemitter.cpp
+	"ParticleEmitter.h"
+
+1441158667 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particles\sparksemitter.cpp
+	"SparksEmitter.h"
+
+1441160166 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particles\bounceemitter.cpp
+	"BounceEmitter.h"
+
+1441159688 c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particles\bounceemitter.h
+	"ParticleEmitter.h"
+	"BounceParticle.h"
+
+1441159736 c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particles\bounceparticle.h
+	"general.h"
+	"system/GameData.h"
+	"IParticle.h"
+
+1441160478 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particles\bounceparticle.cpp
+	"BounceParticle.h"
 

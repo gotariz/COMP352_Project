@@ -3,7 +3,7 @@
 
 #include "general.h"
 #include "Obstacle.h"
-#include "ParticleEmitter.h"
+#include "video/particles/SparksEmitter.h"
 
 class Laser : public Obstacle
 {
@@ -12,7 +12,7 @@ class Laser : public Obstacle
         virtual ~Laser();
 
     public:
-        ParticleEmitter emitter;
+        SparksEmitter emitter;
 
         float start_angle = 0;
         float delta_angle = 0;

@@ -22,7 +22,7 @@
 
 #include "video/Camera.h"
 #include "video/sfFontRenderer.h"
-#include "video/ParticleEmitter.h"
+#include "video/particles/ParticleEmitter.h"
 
 
 /////////////////////////////////////////////////////////
