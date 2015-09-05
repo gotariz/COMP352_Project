@@ -21,6 +21,9 @@
 
 	-->
 
+<!-- LASER BEAM -->
+	<object type="laser" position="-18,4" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
+
 	<!-- WHERE THE HOLE IS ON THE LEVEL-->
 	<object type="hole" position="10,-6" />
 	<!-- WHERE THE PLAYER STARTS THE LEVEL-->
@@ -37,8 +40,5 @@
 	<!-- LEVEL WALLS - CLOCKWISE FROM BOTTOM LEFT-->
 	<object type="barrier" position="-15.75,-3.5" size="6.5, 14" rotation="0"/>
 	
-	
-	<!-- LASER BEAM -->
-	<object type="laser" position="-18,4" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
-	<object type="block" position="-12,5" size="1,2" rotation="0" moves="1" p1="-12,0" p2="-12,5" duration="2.5" time="0" />
+	<object type="block" position="-12,5" size="1,2" rotation="0" moves="1" p1="-12,0" p2="-12,4.9" duration="2.5" time="0" />
 </root>

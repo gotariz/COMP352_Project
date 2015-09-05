@@ -8,6 +8,11 @@ Laser::Laser()
     emitter.speed = 5;
     emitter.size = 1;
     emitter.enabled = true;
+
+    beam.setTexture(*gdata.assets->getTexture("laser_beam"));
+    beam.setOrigin(0,7);
+    tip.setTexture(*gdata.assets->getTexture("laser_end"));
+    tip.setOrigin(0,7);
 }
 
 Laser::~Laser()
@@ -144,12 +149,19 @@ void Laser::onDraw()
     Vector2 e = laserPos + laser;
     e = gdata.toScreenPixels(e);
 
-    sf::Vertex line[] = {
-        sf::Vertex(sf::Vector2f(s.x,s.y),sf::Color(255,0,0,255)),
-        sf::Vertex(sf::Vector2f(e.x,e.y),sf::Color(255,0,0,255))
-        };
+    float length = laser.getMagnitude();
+    beam.setScale(length,1);
+    float rot = (float)atan2(laser.y,laser.x);
+    rot *= RADTODEG;
+    rot *= -1;
 
-    gdata.window->draw(line,2,sf::Lines);
+    beam.setRotation(rot);
+    beam.setPosition(s.x,s.y);
+    tip.setPosition(e.x,e.y);
+    tip.setRotation(rot);
+
+    gdata.window->draw(beam);
+    gdata.window->draw(tip);
 
 }
 

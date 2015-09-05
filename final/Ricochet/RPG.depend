@@ -1009,7 +1009,7 @@
 	"objects/Object.h"
 	"utils/tinyxml2.h"
 
-1441094740 source:c:\users\tom\documents\github\comp329_project\final\ricochet\main.cpp
+1441349894 source:c:\users\tom\documents\github\comp329_project\final\ricochet\main.cpp
 	<iostream>
 	"general.h"
 	"system/Engine.h"
@@ -1861,7 +1861,7 @@
 	<limits>
 	<algorithm>
 
-1440420284 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\inputhandler.h
+1441362976 c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\inputhandler.h
 	"general.h"
 	"video/Camera.h"
 	"video/sfFontRenderer.h"
@@ -1957,13 +1957,13 @@
 1441199022 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\gamedata.cpp
 	"GameData.h"
 
-1441221585 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\inputhandler.cpp
+1441363042 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\inputhandler.cpp
 	"InputHandler.h"
 
 1440857535 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\settings.cpp
 	"Settings.h"
 
-1441221798 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.cpp
+1441362840 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\stategame.cpp
 	"StateGame.h"
 
 1438737130 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\utils\gzclock.cpp
@@ -2010,7 +2010,7 @@
 1441204368 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\system\states\statemenu.cpp
 	"StateMenu.h"
 
-1441221894 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\player.cpp
+1441363600 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\player.cpp
 	"Player.h"
 
 1441159791 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\player.h
@@ -2042,13 +2042,14 @@
 	"system/GameData.h"
 	"video/Camera.h"
 
-1441220935 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\laser.cpp
+1441354628 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\laser.cpp
 	"Laser.h"
 
-1441210825 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\laser.h
+1441351940 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\laser.h
 	"general.h"
 	"Obstacle.h"
 	"video/particles/SparksEmitter.h"
+	"system/AssetManager.h"
 
 1440917015 c:\users\tom\documents\github\comp329_project\final\ricochet\source\objects\hole.h
 	"general.h"
@@ -2122,7 +2123,7 @@
 	"system/GameData.h"
 	"IParticle.h"
 
-1441200831 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particles\bounceparticle.cpp
+1441336837 source:c:\users\tom\documents\github\comp329_project\final\ricochet\source\video\particles\bounceparticle.cpp
 	"BounceParticle.h"
 
 1441166241 source:c:\comp329_project\final\ricochet\main.cpp

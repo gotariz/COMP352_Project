@@ -21,6 +21,9 @@
 
 	-->
 
+	<object type="laser" position="5,0" laser_direction="0,-1" p1="-3,0.5" p2="1,0.5" moving="1" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
+	<object type="laser" position="0,0" laser_direction="0,-1" p1="1,0.5" p2="5,0.5" moving="1" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
+
 	<!-- WHERE THE HOLE IS ON THE LEVEL-->
 	<object type="hole" position="-7,7" />
 	<!-- WHERE THE PLAYER STARTS THE LEVEL-->
@@ -40,9 +43,6 @@
 	<object type="barrier" position="1, -2" size="1,1" rotation="0"/>
 	<object type="barrier" position="3, -2" size="1,1" rotation="0"/>
 	<object type="barrier" position="5, -2" size="1,1" rotation="0"/>
-
-	<object type="laser" position="5,0" laser_direction="0,-1" p1="-3,0.5" p2="1,0.5" moving="1" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
-	<object type="laser" position="0,0" laser_direction="0,-1" p1="1,0.5" p2="5,0.5" moving="1" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
 	
 	<!--LASERS -->
 	<!--<object type="laser" position="-3,0.5" laser_direction="0,-1" p1="-3,0.5" p2="1,0.5" moving="1" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />

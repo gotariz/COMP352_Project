@@ -30,14 +30,52 @@ void StateGame::reInit()
 
 void StateGame::load()
 {
-    //reInit();
-
+    cout << "=========================================================" << endl;
+    cout << "Loading Level" << endl;
+    cout << "=========================================================" << endl;
     gzClock clock;
 	srand(clock.getCurrentTimeMilliseconds());
 
+    cout << "Loading Assets: ";
 	assets.loadAssetList("data/assets.xml");
 	gdata.assets = &assets;
+	cout << "Complete" << endl;
 
+    cout << "Setting up Physics: ";
+	debugDraw = new VisualDebugger();
+	debugDraw->SetFlags(b2Draw::e_shapeBit | b2Draw::e_jointBit | b2Draw::e_pairBit | b2Draw::e_centerOfMassBit);
+	debugDraw->cam = &camera;
+	debugDraw->font->setFont(assets.getFont("purista-medium-14-white"));
+
+	world = new b2World(GRAVITY);
+	world->SetDebugDraw(debugDraw);
+	world->SetContactListener(&collisions);
+	gdata.world = world;
+
+	factory = PhysicsFactory(world);
+	gdata.factory = &factory;
+	manager.setPhysicsWorld(world);
+	cout << "Complete" << endl;
+
+    cout << "Loading Level: ";
+    loadLevel();
+
+    bg.bg_image.setTexture(*assets.getTexture("background"));
+	bg.num_circles = 60;
+	bg.init();
+
+	camera = Camera(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight());
+	gdata.camera = &camera;
+    cout << "Complete" << endl;
+
+    cout << "Enabling Input";
+	input.init();
+	input.m_player = player;
+	input.font = new sfFontRenderer(gdata.window);
+	input.font->setFont(assets.getFont("purista-medium-14-white"));
+    cout << "Complete" << endl;
+
+    cout << "Creating Fonts: ";
     font = new sfFontRenderer(gdata.window);
     font->setFont(assets.getFont("purista-medium-14-white"));
     font->setColor(sf::Color::Red);
@@ -58,35 +96,7 @@ void StateGame::load()
     fntLevel = new sfFontRenderer(gdata.window);
     fntLevel->setFont(assets.getFont("segoe-ui-light-48"));
     fntLevel->setColor(sf::Color::White);
-
-	camera = Camera(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight());
-	gdata.camera = &camera;
-
-	debugDraw = new VisualDebugger();
-	debugDraw->SetFlags(b2Draw::e_shapeBit | b2Draw::e_jointBit | b2Draw::e_pairBit | b2Draw::e_centerOfMassBit);
-	debugDraw->cam = &camera;
-	debugDraw->font->setFont(assets.getFont("purista-medium-14-white"));
-
-	world = new b2World(GRAVITY);
-	world->SetDebugDraw(debugDraw);
-	world->SetContactListener(&collisions);
-	gdata.world = world;
-
-	factory = PhysicsFactory(world);
-	gdata.factory = &factory;
-
-	manager.setPhysicsWorld(world);
-
-	bg.bg_image.setTexture(*assets.getTexture("background"));
-	bg.num_circles = 60;
-	bg.init();
-
-	input.init();
-	input.m_player = player;
-	input.font = new sfFontRenderer(gdata.window);
-	input.font->setFont(assets.getFont("purista-medium-14-white"));
-
-	loadLevel();
+    cout << "Complete" << endl;
 
 	gdata.zoom = (gdata.settings->getScreenWidth() / 1900.f);
 
@@ -133,6 +143,9 @@ bool StateGame::initialise()
 
     }
 
+    cout << "=========================================================" << endl;
+    cout << "Loading Complete" << endl;
+    cout << "=========================================================" << endl;
     return true;
 }
 
@@ -205,8 +218,8 @@ void StateGame::draw()
         }
 
         Vector2 p = gdata.toScreenPixels(player->getAbsolutePosition());
-        string v = gz::toString(input.power) + "%";
-        string a = gz::toString(input.angle) + " degrees";
+        string v = gz::toString(input.angle) + "*";
+        string a = gz::toString(input.power) + " units p/s";
         fntPower->drawString(p.x + cx,p.y - 100,v);
         fntAngle->drawString(p.x + cx,p.y - 50,a);
     }
@@ -394,12 +407,22 @@ void StateGame::loadLevel()
 //				int r = atoi(element->Attribute("r"));
 //				int g = atoi(element->Attribute("g"));
 //				int b = atoi(element->Attribute("b"));
-				int r = utils::getRandom(1,50);
-				int g = utils::getRandom(1,50);
-				int b = utils::getRandom(1,50);
-				int a = atoi(element->Attribute("a"));
+                int min = 0;
+                int max = 50;
 
-				bg.bg_image.setColor(sf::Color(r,g,b,a));
+				int r = utils::getRandom(min,max);
+				int g = utils::getRandom(min,max);
+				if (r < 20 && g < 20) min = 20;
+				int b = utils::getRandom(min,max);
+				int lum = (r+r+b+g+g+g) / 6;
+				if (lum < 12)
+                {
+                    r += 10;
+                    g += 10;
+                    b += 10;
+                }
+
+				bg.bg_image.setColor(sf::Color(r,g,b,255));
 			}
 
 			element = element->NextSiblingElement("object");

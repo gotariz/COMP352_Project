@@ -21,41 +21,31 @@
 
 	-->
 
-	<object type="laser" position="-3.65,-3.65" laser_direction="1,1" />
-	<object type="laser" position="3.65,3.65" laser_direction="-1,-1" />
-	
-	<!-- WHERE THE PLAYER STARTS THE LEVEL-->
-	<object type="player" position="-11.7,-5" />
 	<!-- WHERE THE HOLE IS ON THE LEVEL-->
-	<object type="hole" position="11.7,5" />
+	<object type="hole" position="5.5,4" />
+	<!-- WHERE THE PLAYER STARTS THE LEVEL-->
+	<object type="player" position="-10.5,-5" />
 
 	<!-- WALLS ON THE EDGE OF THE SCREEN -->
-	<object type="barrier" position="-19,0" size="1,22" rotation="0"/>
-	<object type="barrier" position="19,0" size="1,22" rotation="0"/>
-	<object type="barrier" position="0,-10.5" size="37,1" rotation="0"/>
-	<object type="barrier" position="0,10.5" size="37,1" rotation="0"/>
+	<object type="barrier" position="0.5,8.07" size="10,10" rotation="45"/>
+	<object type="barrier" position="-5.5,-9.07" size="10,10" rotation="45"/>
+	
+	<object type="barrier" position="11,11" size="20,15" rotation="-45"/>
+	<object type="barrier" position="-14,-14" size="20,15" rotation="-45"/>
 
-	<!-- BACKGROUND BARRIERS -->
-	<object type="barrier" position="-15.1,6.7" size="21.7,11" rotation="45"/>
-	<object type="barrier" position="5,9.3" size="11.5,8" rotation="-45"/>
-	<object type="barrier" position="18.1,9.6" size="13.8,11.5" rotation="-45"/>
-	<object type="barrier" position="14.1,-8" size="19.2,11.6" rotation="45"/>
-	<object type="barrier" position="-5,-9.2" size="11.4,7.8" rotation="-45"/>
-	<object type="barrier" position="-17,-10.3" size="11,11" rotation="-45"/>
+	<object type="barrier" position="11.5,-7.5" size="30,15" rotation="45"/>
+	<object type="barrier" position="-15,8" size="30,15" rotation="45"/>
+
+	<!-- Clockwise starting from top left wall in blueprint -->
+	<object type="barrier" position="-10.5,2.5" size="14,0.8" rotation="45"/>
 	
-	<!-- OUTER FRAME, clockwise starting top left -->
-	<object type="barrier" position="-9.8,3.7" size="19.3,1" rotation="45"/>
-	<object type="barrier" position="1.7,6.3" size="12,1" rotation="-45"/>
-	<object type="barrier" position="9,4.5" size="8.8,1" rotation="45"/>
-	<object type="barrier" position="14,5" size="6,1" rotation="-45"/>
-	<object type="barrier" position="9.8,-3.7" size="19.3,1" rotation="45"/>
-	<object type="barrier" position="-1.7,-6.3" size="12,1" rotation="-45"/>
-	<object type="barrier" position="-9,-4.5" size="8.8,1" rotation="45"/>
-	<object type="barrier" position="-14,-5" size="6,1" rotation="-45"/>
 	
-	<!-- CENTER BARRIERS + Lasers-->
-	<object type="barrier" position="1.5,1.5" size="1,1" rotation="45"/>
-	<object type="barrier" position="-1.5,-1.5" size="1,1" rotation="45"/>
+
+	
+	<object type="barrier" position="-1.25,0.75" size="1,0.5" rotation="-45"/>
+	<object type="barrier" position="-3.75,-1.75" size="1,0.5" rotation="-45"/>
+	
+	<!-- WHOLE THING NEEDS TO BE MADE LARGER! -->
 	
 <!--	<object type="laser" position="-18.5,5" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
 	<object type="laser" position="-18.5,-5" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" /> -->

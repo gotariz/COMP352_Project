@@ -90,6 +90,12 @@ void InputHandler::handlePlayerEvents()
     float h = 0;
     float v = 0;
 
+    locked = false;
+    if (gdata.keys[sf::Keyboard::Space].isKeyDown)
+    {
+        locked = true;
+    }
+
 	if (gdata.keys[KEY_MOUSE_LEFT].isKeyPressed)
 	{
 	    if (!launched)
@@ -106,7 +112,7 @@ void InputHandler::handlePlayerEvents()
 
 	if (gdata.keys[KEY_MOUSE_LEFT].isKeyDown)
 	{
-        if (selecting && !launched)
+        if (selecting && !launched && !locked)
 		{
 		    e_pos = gdata.mouse;
             velocity = s_pos - e_pos;
@@ -118,12 +124,27 @@ void InputHandler::handlePlayerEvents()
             power = static_cast<int>((dist / pullbackDistance) * 100);
             float percent = power / 100.f;
 
-            velocity.normalise();
-            //angle = velocity.getAngle();
+            //velocity.normalise();
             velocity.set(1,0);
             velocity.rotate(angle);
             velocity.setMagnitude( m_player->maxSpeed * percent );
 		}
+		else if (selecting && !launched && locked)
+        {
+                e_pos = gdata.mouse;
+                float power = (s_pos - e_pos).getMagnitude();
+
+                cout << "power:" << power << endl;
+                Vector2 new_e_pos = s_pos - e_pos;
+                new_e_pos.setMagnitude(power);
+                e_pos = s_pos + new_e_pos;
+
+                if (power > pullbackDistance) power = pullbackDistance;
+                power = static_cast<int>((power / pullbackDistance) * 100);
+                float percent = power / 100.f;
+
+                velocity.setMagnitude( m_player->maxSpeed * percent );
+        }
 	}
 
 	if (gdata.keys[KEY_MOUSE_LEFT].isKeyReleased)
@@ -140,7 +161,7 @@ void InputHandler::handlePlayerEvents()
             float percent = power / 100.f;
 
             velocity.normalise();
-            //angle = velocity.getAngle();
+            angle = velocity.getAngle();
             velocity.set(1,0);
             velocity.rotate(angle);
             velocity.setMagnitude( m_player->maxSpeed * percent );

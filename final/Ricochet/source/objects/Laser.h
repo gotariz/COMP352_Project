@@ -4,6 +4,7 @@
 #include "general.h"
 #include "Obstacle.h"
 #include "video/particles/SparksEmitter.h"
+#include "system/AssetManager.h"
 
 class Laser : public Obstacle
 {
@@ -25,6 +26,9 @@ class Laser : public Obstacle
         Vector2 laser_dir;  // normalised vec of the direction the laser is pointing
 		Vector2	laser;
 		Vector2 laserPos;
+
+		sf::Sprite  beam;
+		sf::Sprite  tip;
 
         virtual void onUpdate();
 		virtual void onDraw();
