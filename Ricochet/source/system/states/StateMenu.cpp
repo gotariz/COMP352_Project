@@ -75,6 +75,11 @@ void StateMenu::load()
 	optionsItems.push_back("Resolution");
 	optionsItems.push_back("FPS Limit");
 
+    bg.bg_image.setTexture(*gdata.assets->getTexture("background"));
+    bg.bg_image.setColor(sf::Color(6,23,40,255));
+	bg.num_circles = 100;
+	bg.init();
+
     loading = false;
 }
 
@@ -316,12 +321,15 @@ void StateMenu::reset()
     gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
 }
 
-void StateMenu::update(){}
+void StateMenu::update()
+{
+    bg.update();
+}
 
 void StateMenu::draw()
 {
     gdata.window->clear(sf::Color(64,64,64,255));
-
+    bg.draw();
     font.drawString(0,0,"Press 'R' to reset screen");
 
     // Menu animation sliding;

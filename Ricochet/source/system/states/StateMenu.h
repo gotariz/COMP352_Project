@@ -12,6 +12,7 @@
 #include "system/InputHandler.h"
 
 #include "video/sfFontRenderer.h"
+#include "video/Background.h"
 
 class StateMenu : public IState
 {
@@ -67,10 +68,11 @@ class StateMenu : public IState
         void reset();
 
         //main menu x
-        float x;
+        float x = 0;
         //options menu x
-        float ox;
-        float y;
+        float ox = 0;
+        float y = 0;
+        Background bg;
 
     public:
         sfFontRenderer      font;

@@ -213,9 +213,11 @@ Vector2 GameData::toScreenPixels(float x, float y)
 {
     int pixel_x = window->getSize().x / 2 + (x * (WORLD_SCALE * zoom));
 	int pixel_y = window->getSize().y / 2 - (y * (WORLD_SCALE * zoom));
+	int cx = camera ? camera->x : 0;
+	int cy = camera ? camera->y : 0;
 
-	pixel_x -= camera->x * (WORLD_SCALE * gdata.zoom);
-	pixel_y -= -camera->y * (WORLD_SCALE * gdata.zoom);
+	pixel_x -= cx * (WORLD_SCALE * gdata.zoom);
+	pixel_y -= -cy * (WORLD_SCALE * gdata.zoom);
 
     return Vector2(pixel_x,pixel_y);
 }
@@ -224,9 +226,11 @@ Vector2 GameData::toScreenPixels(Vector2 p)
 {
     int pixel_x = window->getSize().x / 2 + (p.x * (WORLD_SCALE * zoom));
 	int pixel_y = window->getSize().y / 2 - (p.y * (WORLD_SCALE * zoom));
+    int cx = camera ? camera->x : 0;
+	int cy = camera ? camera->y : 0;
 
-	pixel_x -= camera->x * (WORLD_SCALE * gdata.zoom);
-	pixel_y -= -camera->y * (WORLD_SCALE * gdata.zoom);
+	pixel_x -= cx * (WORLD_SCALE * gdata.zoom);
+	pixel_y -= -cy * (WORLD_SCALE * gdata.zoom);
 
     return Vector2(pixel_x,pixel_y);
 }
@@ -235,9 +239,11 @@ Vector2 GameData::toScreenPixels(b2Vec2 p)
 {
     int pixel_x = window->getSize().x / 2 + (p.x * (WORLD_SCALE * zoom));
 	int pixel_y = window->getSize().y / 2 - (p.y * (WORLD_SCALE * zoom));
+	int cx = camera ? camera->x : 0;
+	int cy = camera ? camera->y : 0;
 
-	pixel_x -= camera->x * (WORLD_SCALE * gdata.zoom);
-	pixel_y -= -camera->y * (WORLD_SCALE * gdata.zoom);
+	pixel_x -= cx * (WORLD_SCALE * gdata.zoom);
+	pixel_y -= -cy * (WORLD_SCALE * gdata.zoom);
 
     return Vector2(pixel_x,pixel_y);
 }
