@@ -24,9 +24,6 @@ class Camera
         float y = 0;
         float w = 0; // pixel dimensions
         float h = 0;
-
-        //int getScreenX();
-        //int getScreenY();
 };
 
 #endif // CAMERA_H

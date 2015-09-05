@@ -4,6 +4,9 @@
 class IParticle
 {
     public:
+        IParticle(){}
+        virtual ~IParticle(){}
+
         int particle_age = 0;
         int particle_dur = 0;
 

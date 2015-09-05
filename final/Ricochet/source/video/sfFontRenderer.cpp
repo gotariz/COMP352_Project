@@ -10,6 +10,11 @@ sfFontRenderer::~sfFontRenderer()
     //dtor
 }
 
+void sfFontRenderer::setWindow(sf::RenderWindow* window)
+{
+    m_window = window;
+}
+
 void sfFontRenderer::setFont(sfFont* font)
 {
     m_font = font;

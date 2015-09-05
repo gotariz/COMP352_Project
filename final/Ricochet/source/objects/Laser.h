@@ -36,6 +36,7 @@ class Laser : public Obstacle
 		void rotateLaser();
 		void moveLaser();
 		void raycast();
+		virtual void freeResources();
 };
 
 #endif // LASER_H

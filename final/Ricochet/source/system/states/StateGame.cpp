@@ -8,6 +8,7 @@ StateGame::StateGame() : IState(STATE_GAME)
 StateGame::~StateGame()
 {
     //dtor
+    //cout << "deleting state" << endl;
 }
 
 void StateGame::reload()
@@ -17,15 +18,15 @@ void StateGame::reload()
 
 void StateGame::reInit()
 {
-    gdata.settings->setScreenWidth(1920);
-    gdata.settings->setScreenHeight(1080);
-
-    gdata.settings->saveSettings();
-
-    gdata.window->setSize(sf::Vector2u(gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
-    gdata.view = new sf::View(sf::FloatRect(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight())); // remember to delete this
-    gdata.window->setView(*gdata.view);
-    gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
+//    gdata.settings->setScreenWidth(1920);
+//    gdata.settings->setScreenHeight(1080);
+//
+//    gdata.settings->saveSettings();
+//
+//    gdata.window->setSize(sf::Vector2u(gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
+//    gdata.view = new sf::View(sf::FloatRect(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight())); // remember to delete this
+//    gdata.window->setView(*gdata.view);
+//    gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
 }
 
 void StateGame::load()
@@ -36,16 +37,11 @@ void StateGame::load()
     gzClock clock;
 	srand(clock.getCurrentTimeMilliseconds());
 
-    cout << "Loading Assets: ";
-	assets.loadAssetList("data/assets.xml");
-	gdata.assets = &assets;
-	cout << "Complete" << endl;
-
     cout << "Setting up Physics: ";
 	debugDraw = new VisualDebugger();
 	debugDraw->SetFlags(b2Draw::e_shapeBit | b2Draw::e_jointBit | b2Draw::e_pairBit | b2Draw::e_centerOfMassBit);
 	debugDraw->cam = &camera;
-	debugDraw->font->setFont(assets.getFont("purista-medium-14-white"));
+	debugDraw->font.setFont(gdata.assets->getFont("purista-medium-14-white"));
 
 	world = new b2World(GRAVITY);
 	world->SetDebugDraw(debugDraw);
@@ -60,7 +56,7 @@ void StateGame::load()
     cout << "Loading Level: ";
     loadLevel();
 
-    bg.bg_image.setTexture(*assets.getTexture("background"));
+    bg.bg_image.setTexture(*gdata.assets->getTexture("background"));
 	bg.num_circles = 60;
 	bg.init();
 
@@ -71,31 +67,29 @@ void StateGame::load()
     cout << "Enabling Input";
 	input.init();
 	input.m_player = player;
-	input.font = new sfFontRenderer(gdata.window);
-	input.font->setFont(assets.getFont("purista-medium-14-white"));
     cout << "Complete" << endl;
 
     cout << "Creating Fonts: ";
-    font = new sfFontRenderer(gdata.window);
-    font->setFont(assets.getFont("purista-medium-14-white"));
-    font->setColor(sf::Color::Red);
+    font.setWindow(gdata.window);
+    font.setFont(gdata.assets->getFont("purista-medium-14-white"));
+    font.setColor(sf::Color::Red);
 
     sf::Color purple = sf::Color(135,0,135);
-    fntPower = new sfFontRenderer(gdata.window);
-    fntPower->setFont(assets.getFont("segoe-ui-light-48"));
-    fntPower->setColor(purple);
+    fntPower.setWindow(gdata.window);
+    fntPower.setFont(gdata.assets->getFont("segoe-ui-light-48"));
+    fntPower.setColor(purple);
 
-    fntAngle = new sfFontRenderer(gdata.window);
-    fntAngle->setFont(assets.getFont("segoe-ui-light-20"));
-    fntAngle->setColor(purple);
+    fntAngle.setWindow(gdata.window);
+    fntAngle.setFont(gdata.assets->getFont("segoe-ui-light-20"));
+    fntAngle.setColor(purple);
 
-    fntIns = new sfFontRenderer(gdata.window);
-    fntIns->setFont(assets.getFont("segoe-ui-light-20"));
-    fntIns->setColor(sf::Color::White);
+    fntIns.setWindow(gdata.window);
+    fntIns.setFont(gdata.assets->getFont("segoe-ui-light-20"));
+    fntIns.setColor(sf::Color::White);
 
-    fntLevel = new sfFontRenderer(gdata.window);
-    fntLevel->setFont(assets.getFont("segoe-ui-light-48"));
-    fntLevel->setColor(sf::Color::White);
+    fntLevel.setWindow(gdata.window);
+    fntLevel.setFont(gdata.assets->getFont("segoe-ui-light-48"));
+    fntLevel.setColor(sf::Color::White);
     cout << "Complete" << endl;
 
 	gdata.zoom = (gdata.settings->getScreenWidth() / 1900.f);
@@ -168,7 +162,6 @@ void StateGame::update()
 void StateGame::draw()
 {
     gdata.window->clear(sf::Color(32,32,32,255));
-    //gdata.window->clear(sf::Color::Green);
 
     bg.draw();
 
@@ -220,14 +213,12 @@ void StateGame::draw()
         Vector2 p = gdata.toScreenPixels(player->getAbsolutePosition());
         string v = gz::toString(input.angle) + "*";
         string a = gz::toString(input.power) + " units p/s";
-        fntPower->drawString(p.x + cx,p.y - 100,v);
-        fntAngle->drawString(p.x + cx,p.y - 50,a);
+        fntPower.drawString(p.x + cx,p.y - 100,v);
+        fntAngle.drawString(p.x + cx,p.y - 50,a);
     }
 
-    fntIns->drawString(10,10,"Press R to restart level");
-    fntLevel->drawString(130,110,"Level " + gz::toString(gdata.level));
-    //font->drawString(0,0,"Level " + gz::toString(gdata.level));
-
+    fntIns.drawString(10,10,"Press R to restart level");
+    fntLevel.drawString(130,110,"Level " + gz::toString(gdata.level));
 
     //===========================================
     // DRAW A GRID
@@ -275,6 +266,11 @@ void StateGame::drawLine(Vector2 p1, Vector2 p2)
 
 void StateGame::freeResources()
 {
+    //assets.freeResources();
+    manager.freeResources();
+
+    delete world;
+    delete debugDraw;
 }
 
 void StateGame::loadLevel()
@@ -399,7 +395,7 @@ void StateGame::loadLevel()
 				Hole* hole = new Hole();
 				hole->setPhysicsObject(factory.createHole(pos.x,pos.y));
 				hole->m_type = HOLE;
-				hole->m_image.setTexture(*assets.getTexture("hole_off"));
+				hole->m_image.setTexture(*gdata.assets->getTexture("hole_off"));
 				manager.addObject(hole);
 			}
 			else if (attribute_type == "bgcolor")

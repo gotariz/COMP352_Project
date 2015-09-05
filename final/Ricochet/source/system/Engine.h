@@ -8,6 +8,7 @@
 #include "system/states/IState.h"
 #include "system/states/StateGame.h"
 #include "system/states/StateMenu.h"
+#include "AssetManager.h"
 
 class Engine
 {
@@ -21,6 +22,7 @@ class Engine
     public: // public member variables
         bool running;
 		Settings	settings;
+		AssetManager assets;
 
     public:
         void run();

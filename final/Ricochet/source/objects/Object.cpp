@@ -11,11 +11,16 @@ Object::~Object()
     //dtor
 }
 
+void Object::freeResources()
+{
+    deletePhysicsObject();
+    m_physicsObject = nullptr;
+}
+
 void Object::onPostPhysicsUpdate()
 {
     syncChildren();
 }
-
 
 void Object::setPhysicsObject(b2Body* physicsObject)
 {

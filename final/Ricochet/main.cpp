@@ -35,10 +35,5 @@ int main()
     game.run();
     game.exit();
 
-    if (gdata.view)
-    {
-        delete gdata.view;
-    }
-
     return 0;
 }

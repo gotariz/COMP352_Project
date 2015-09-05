@@ -3,6 +3,7 @@
 
 #include "general.h"
 #include "ParticleEmitter.h"
+#include "SparkParticle.h"
 
 
 class SparksEmitter : public ParticleEmitter

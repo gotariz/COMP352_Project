@@ -2,7 +2,7 @@
 #define PARTICLEEMITTER_H
 
 #include "general.h"
-#include "Particle.h"
+#include "IParticle.h"
 #include "physics/PhysicsFactory.h"
 
 class ParticleEmitter
@@ -21,7 +21,6 @@ class ParticleEmitter
         virtual void update();
         virtual void freeResources();
         virtual void drawParticles();
-        static bool condition(IParticle* p);
 };
 
 #endif // PARTICLEEMITTER_H

@@ -20,7 +20,7 @@ namespace sfLib
 class sfFontRenderer
 {
     public:
-        sfFontRenderer(sf::RenderWindow* window);
+        sfFontRenderer(sf::RenderWindow* window = nullptr);
         virtual ~sfFontRenderer();
 
     public:
@@ -29,6 +29,7 @@ class sfFontRenderer
         void drawString(int x, int y, std::string text, int horizontalPosition = sfLib::sfAlign::LEFT, int verticalPosition = sfLib::sfAlign::TOP);
 
         unsigned getRenderedTextWidth(std::string text);
+        void setWindow(sf::RenderWindow* window);
 
     private:
         sf::RenderWindow*   m_window;

@@ -27,7 +27,6 @@ class InputHandler
         void debug_events();
 
         Player* m_player;
-        sfFontRenderer* font = nullptr;
 
         Vector2 s_pos;
 		Vector2 e_pos;

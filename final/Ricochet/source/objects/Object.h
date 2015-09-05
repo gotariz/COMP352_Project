@@ -41,6 +41,8 @@ class Object
         virtual void onExitCollision(CollisionData cd){}
         virtual void onDraw(){}
 
+        virtual void freeResources();
+
     public: // utilities
         virtual void rotateAround(float angle, Vector2 origin);
         virtual void rotate(float angle);

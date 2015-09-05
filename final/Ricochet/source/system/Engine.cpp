@@ -54,9 +54,11 @@ void Engine::updateState()
                 gdata.delay_reload = false;
                 sf::sleep(sf::milliseconds(1000));
             }
+
             activeState->freeResources();
             delete activeState;
             activeState = nullptr;
+            cout << "deleted state" << endl;
         }
 
         gdata.reload = false;
@@ -66,6 +68,7 @@ void Engine::updateState()
             IState* stateGame = new StateGame();
             stateGame->initialise();
             activeState = stateGame;
+            cout << "created new state" << endl;
         }
 		else if (gdata.gamestate == RunState::STATE_MENU)
         {
@@ -79,6 +82,12 @@ void Engine::updateState()
 bool Engine::initialise()
 {
     running = true;
+
+    cout << "Loading Assets: ";
+    assets.loadAssetList("data/assets.xml");
+	gdata.assets = &assets;
+	cout << "Complete" << endl;
+
     return true;
 }
 
@@ -93,6 +102,13 @@ void Engine::exit()
         activeState = nullptr;
     }
 
+    if (gdata.view != nullptr)
+    {
+        delete gdata.view;
+        gdata.view = nullptr;
+    }
+
+    assets.freeResources();
 	//Destroy window
 	//SDL_DestroyWindow(gdata.window);
 

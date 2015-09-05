@@ -182,3 +182,15 @@ Object* ObjectManager::getObject(int id)
     return result;
 }
 
+void ObjectManager::freeResources()
+{
+    for (int i = 0; i < m_objects.size(); ++i)
+    {
+        Object* o = m_objects.at(i);
+        o->freeResources();
+        delete o;
+    }
+    m_objects.clear();
+}
+
+

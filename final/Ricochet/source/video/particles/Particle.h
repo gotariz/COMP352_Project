@@ -11,6 +11,7 @@ class Particle : public IParticle, public gObject
         Particle(){
             m_type = PARTICLE;
         }
+
         Vector2 pos;
         int size = 0;
 

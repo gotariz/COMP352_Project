@@ -12,13 +12,8 @@ StateMenu::~StateMenu()
 
 void StateMenu::load()
 {
-    assets.loadAssetList("data/assets.xml");
-	gdata.assets = &assets;
-
- 	//gdata.window->setKeyRepeatEnabled(false);
-
-    font = new sfFontRenderer(gdata.window);
-    font->setFont(assets.getFont("purista-medium-14-white"));
+    font.setWindow(gdata.window);
+    font.setFont(gdata.assets->getFont("purista-medium-14-white"));
 
 	menuItems.push_back("Start");
 	menuItems.push_back("Achievements");
@@ -309,6 +304,12 @@ void StateMenu::reset()
 
     gdata.settings->saveSettings();
 
+    // this is important to stop memory leaks
+    if (gdata.view != nullptr)
+    {
+        gdata.view = nullptr;
+    }
+
     gdata.window->setSize(sf::Vector2u(gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
     gdata.view = new sf::View(sf::FloatRect(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
     gdata.window->setView(*gdata.view);
@@ -321,7 +322,7 @@ void StateMenu::draw()
 {
     gdata.window->clear(sf::Color(64,64,64,255));
 
-    font->drawString(0,0,"Press 'R' to reset screen");
+    font.drawString(0,0,"Press 'R' to reset screen");
 
     // Menu animation sliding;
     if(menuState == MENU_MAIN)
@@ -353,15 +354,15 @@ void StateMenu::draw()
         {
             if(selectedOption == i)
             {
-                font->setColor(sf::Color::Cyan);
-                font->drawString(gdata.settings->getScreenWidth() /2 -25, y + (gdata.settings->getScreenHeight()/10 * i), optionsItems[i]);
-                font->drawString(gdata.settings->getScreenWidth() -200, y + (gdata.settings->getScreenHeight()/10 * i), optionsSettings[i][selectedOps[i]]);
+                font.setColor(sf::Color::Cyan);
+                font.drawString(gdata.settings->getScreenWidth() /2 -25, y + (gdata.settings->getScreenHeight()/10 * i), optionsItems[i]);
+                font.drawString(gdata.settings->getScreenWidth() -200, y + (gdata.settings->getScreenHeight()/10 * i), optionsSettings[i][selectedOps[i]]);
             }
             else
             {
-                font->setColor(sf::Color::White);
-                font->drawString(gdata.settings->getScreenWidth() /2, y + (gdata.settings->getScreenHeight()/10 * i), optionsItems[i]);
-                font->drawString(gdata.settings->getScreenWidth() -200, y + (gdata.settings->getScreenHeight()/10 * i), optionsSettings[i][selectedOps[i]]);
+                font.setColor(sf::Color::White);
+                font.drawString(gdata.settings->getScreenWidth() /2, y + (gdata.settings->getScreenHeight()/10 * i), optionsItems[i]);
+                font.drawString(gdata.settings->getScreenWidth() -200, y + (gdata.settings->getScreenHeight()/10 * i), optionsSettings[i][selectedOps[i]]);
             }
         }
     }
@@ -370,23 +371,23 @@ void StateMenu::draw()
     {
         if(selected == i)
         {
-            font->setColor(sf::Color::Cyan);
+            font.setColor(sf::Color::Cyan);
 
             // Menu Animations for selected
             if(menuState == MENU_MAIN && x > gdata.settings->getScreenWidth() - 250)
-                font->drawString(x - 50, y + (gdata.settings->getScreenHeight()/10 * i), menuItems[i]);
+                font.drawString(x - 50, y + (gdata.settings->getScreenHeight()/10 * i), menuItems[i]);
             else if(menuState == MENU_MAIN)
-                font->drawString(x,y + (gdata.settings->getScreenHeight()/10 * i), menuItems[i]);
+                font.drawString(x,y + (gdata.settings->getScreenHeight()/10 * i), menuItems[i]);
             else if(x < 100)
-                font->drawString(x + 50, y + (gdata.settings->getScreenHeight()/10 * i), menuItems[i]);
+                font.drawString(x + 50, y + (gdata.settings->getScreenHeight()/10 * i), menuItems[i]);
             else
-                font->drawString(x, y + (gdata.settings->getScreenHeight()/10 * i), menuItems[i]);
+                font.drawString(x, y + (gdata.settings->getScreenHeight()/10 * i), menuItems[i]);
 
         }
         else
         {
-            font->setColor(sf::Color::White);
-            font->drawString(x, y + (gdata.settings->getScreenHeight()/10 * i), menuItems[i]);
+            font.setColor(sf::Color::White);
+            font.drawString(x, y + (gdata.settings->getScreenHeight()/10 * i), menuItems[i]);
         }
     }
 

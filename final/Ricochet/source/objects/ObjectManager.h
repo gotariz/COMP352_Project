@@ -16,6 +16,8 @@ class ObjectManager
         void update();
         void draw();
 
+        void freeResources();
+
         unsigned getValidID();
         void addObject(Object* object);
         void removeObject(Object* object);

@@ -6,6 +6,7 @@
 /prototype/minigolf/Debug/
 /prototype/minigolf/rpg/Debug/
 /prototype/minigolf/rpg/Release/
+/final/Ricochet/obj/
 
 
 #################
@@ -14,6 +15,7 @@
 log.txt
 *.o
 *.layout
+*.depend
 
 #################
 ## Visual Studio
@@ -32,3 +34,4 @@ log.txt
 final/Ricochet/RPG.depend
 final/Ricochet/RPG.layout
 final/Ricochet/RPG.depend
+*.o

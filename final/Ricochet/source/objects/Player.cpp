@@ -80,6 +80,11 @@ void Player::onDraw()
     }
 }
 
+void Player::freeResources()
+{
+    emitter.freeResources();
+}
+
 
 
 

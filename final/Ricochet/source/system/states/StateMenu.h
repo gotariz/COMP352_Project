@@ -73,10 +73,7 @@ class StateMenu : public IState
         float y;
 
     public:
-
-		AssetManager	    assets;
-
-        sfFontRenderer*     font;
+        sfFontRenderer      font;
 };
 
 #endif // STATEMENU_H

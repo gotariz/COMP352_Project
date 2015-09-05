@@ -165,6 +165,12 @@ void Laser::onDraw()
 
 }
 
+void Laser::freeResources()
+{
+    emitter.freeResources();
+}
+
+
 
 
 

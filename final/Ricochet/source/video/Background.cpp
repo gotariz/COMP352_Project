@@ -2,8 +2,7 @@
 
 void Background::init()
 {
-    bg_image.setOrigin(960,540);
-    //bg_image.setColor( sf::Color(5,40,28,255) );
+    bg_image.setOrigin(960,540); // half the image size
 
     for (int i = 0; i < num_circles; ++i)
     {

@@ -16,12 +16,12 @@ class VisualDebugger : public b2Draw
 		VisualDebugger()
 		{
 		    scale = WORLD_SCALE;
-		    font = new sfFontRenderer(gdata.window);
+		    font.setWindow(gdata.window);
         }
 
         float       scale;
         Camera*     cam;
-        sfFontRenderer* font = nullptr;
+        sfFontRenderer font;
     private: // member variables
 
     public:
@@ -37,23 +37,6 @@ class VisualDebugger : public b2Draw
 
         sf::Color B2SFColor(const b2Color &color, int alpha);
         void DrawMouseJoint(b2Vec2& p1, b2Vec2& p2, const b2Color &boxColor, const b2Color &lineColor);
-
-    public: //inliners
-
-        inline Vector2 CartToScreen(b2Vec2 point)
-        {
-            Vector2 pos = gdata.toScreenPixels(point);
-            //pos.x -= cam->getScreenX();
-            //pos.y -= cam->getScreenY();
-            return pos;
-        }
-
-
-        //inline sf::Color GLColorToSFML(const b2Color &color, sf::Uint8 alpha = 255)
-        //{ return sf::Color(static_cast<sf::Uint8>(color.r * 255), static_cast<sf::Uint8>(color.g * 255), static_cast<sf::Uint8>(color.b * 255), alpha); }
-
-        //inline sf::Vector2f B2VecToSFVec(const b2Vec2 &vector, bool scaleToPixels = true)
-        //{ return sf::Vector2f(vector.x * (scaleToPixels ? scale : 1.f), vector.y * (scaleToPixels ? scale : 1.f)); }
 };
 
 #endif // VISUALDEBUGGER_H
