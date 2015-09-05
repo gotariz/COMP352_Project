@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<root>
+	<animation name="sword-swing" duration="0.5" loops="1">
+		<reset value="true" rotation="0" position="0,0" />
+		<instruction starttime="0" duration="0.5">
+			<start relative="false" position="0,0" rotation="0" />
+			<end relative="false" position="0,0" rotation="45" />
+		</instruction>
+	</animation>
+</root>

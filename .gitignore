@@ -3,11 +3,8 @@
 #################
 ## Folders
 #################
-/prototype/minigolf/Debug/
-/prototype/minigolf/rpg/Debug/
-/prototype/minigolf/rpg/Release/
-/final/Ricochet/obj/
-
+/Ricochet/obj/
+/Ricochet/bin/Debug/
 
 #################
 ## Files
@@ -16,21 +13,3 @@ log.txt
 *.o
 *.layout
 *.depend
-/final/Ricochet/RPG.depend
-/final/Ricochet/RPG.layout
-
-#################
-## Visual Studio
-#################
-*.suo
-*.user
-*.sln.docstates
-*.aps
-*.ncb
-*.opensdf
-*.sdf
-*.cachefile
-*.psess
-*.vsp
-*.vspx
-final/Ricochet/RPG.layout

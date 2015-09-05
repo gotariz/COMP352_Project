@@ -1,0 +1,6 @@
+#ifndef DATASTORES_H_INCLUDED
+#define DATASTORES_H_INCLUDED
+
+#include "Array2D.h"
+
+#endif // DATASTORES_H_INCLUDED
