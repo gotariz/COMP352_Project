@@ -58,7 +58,6 @@ void Engine::updateState()
             activeState->freeResources();
             delete activeState;
             activeState = nullptr;
-            cout << "deleted state" << endl;
         }
 
         gdata.reload = false;
@@ -68,7 +67,6 @@ void Engine::updateState()
             IState* stateGame = new StateGame();
             stateGame->initialise();
             activeState = stateGame;
-            cout << "created new state" << endl;
         }
 		else if (gdata.gamestate == RunState::STATE_MENU)
         {

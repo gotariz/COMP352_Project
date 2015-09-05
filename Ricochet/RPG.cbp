@@ -13,6 +13,7 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++11" />
 					<Add option="-g" />
 					<Add directory="source" />
 					<Add directory="$(#sfml2.include)" />
@@ -40,6 +41,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-std=c++11" />
 					<Add directory="source" />
 					<Add directory="$(#sfml2.include)" />
 					<Add directory="$(#box2d.include)" />

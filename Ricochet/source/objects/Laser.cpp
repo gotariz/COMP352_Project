@@ -150,7 +150,7 @@ void Laser::onDraw()
     e = gdata.toScreenPixels(e);
 
     float length = laser.getMagnitude();
-    beam.setScale(length,1);
+    beam.setScale(length * gdata.zoom,1);
     float rot = (float)atan2(laser.y,laser.x);
     rot *= RADTODEG;
     rot *= -1;
