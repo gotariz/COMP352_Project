@@ -87,6 +87,15 @@ void Vector2::print(std::string name)
     gz::print_d(name+  ": {x=" + gz::toString(x) + ",y=" + gz::toString(y) + "}");
 }
 
+float Vector2::dot(Vector2 v2)
+{
+    Vector2 v1(x,y);
+
+    v1.normalise();
+    v2.normalise();
+
+    return acos((v1.x * v2.x) + (v1.y * v2.y)) * RADTODEG;
+}
 
 void Vector2::rotate(float angle)
 {

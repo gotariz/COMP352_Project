@@ -19,6 +19,10 @@ class utils
     public:
         static float toAngle(float rotation);
 		static int	getRandom(int min, int max);
+
+		static int roundUp(float num, int clip);
+		static int roundDown(float num, int clip);
+		static int roundNearest(float num, int clip);
 };
 
 #endif // UTILS_H

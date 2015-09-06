@@ -19,12 +19,9 @@ void BounceParticle::particle_create()
     c.setOutlineThickness(2);
 }
 
-void BounceParticle::particle_update()
-{
-    particle_age += static_cast<int>(gdata.m_timeDelta * 1000.f);
-}
-
 void BounceParticle::particle_destroy()
 {
 
 }
+
+

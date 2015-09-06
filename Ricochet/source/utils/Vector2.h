@@ -26,6 +26,8 @@ class Vector2
         sf::Vector2f  toSfmlVector();
         float getAngle();
 
+        float dot(Vector2 v2);
+
         void    rotate(float angle);
         void    rotateAround(float angle, Vector2 vec);
         void    rotateAround(float angle, float origin_x, float origin_y);

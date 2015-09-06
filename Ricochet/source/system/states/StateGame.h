@@ -50,6 +50,8 @@ class StateGame : public IState
         virtual void start();
         virtual void reload();
 
+        Vector2 raycast(Vector2 start, Vector2 dir, float length);
+
         void loadLevel();
 
         void reInit();

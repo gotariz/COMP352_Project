@@ -30,11 +30,71 @@ void StateGame::reInit()
 
 void StateGame::load()
 {
-    //reInit();
+    cout << "===================================================" << endl;
+    cout << "Loading Level " << gdata.level << endl;
+    cout << "===================================================" << endl;
 
+    cout << "setting RNG seed:";
     gzClock clock;
 	srand(clock.getCurrentTimeMilliseconds());
+	cout << "complete" << endl;
 
+    cout << "creating camera:";
+    camera = Camera(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight());
+	gdata.camera = &camera;
+	cout << "complete" << endl;
+
+    cout << "initialising physics:";
+	debugDraw = new VisualDebugger();
+	debugDraw->SetFlags(b2Draw::e_shapeBit | b2Draw::e_jointBit | b2Draw::e_pairBit | b2Draw::e_centerOfMassBit);
+	debugDraw->cam = &camera;
+	debugDraw->font.setFont(gdata.assets->getFont("purista-medium-14-white"));
+
+	world = new b2World(GRAVITY);
+	world->SetDebugDraw(debugDraw);
+	world->SetContactListener(&collisions);
+	gdata.world = world;
+
+	factory = PhysicsFactory(world);
+	gdata.factory = &factory;
+	cout << "complete" << endl;
+
+	manager.setPhysicsWorld(world);
+
+    cout << "creating background:";
+	bg.bg_image.setTexture(*gdata.assets->getTexture("background"));
+	bg.num_circles = 60;
+	bg.init();
+
+	int min = 5;
+    int max = 50;
+
+    int r = utils::getRandom(min,max);
+    int g = utils::getRandom(min,max);
+    if (r < 25 && g < 25) min = 25;
+    int b = utils::getRandom(min,max);
+
+    int lum = (r+r+b+g+g+g) / 6;
+    if (lum < 12)
+    {
+        r += 10;
+        g += 10;
+        b += 10;
+    }
+
+    bg.bg_image.setColor(sf::Color(r,g,b,255));
+	cout << "complete" << endl;
+
+    cout << "initialising input:";
+	input.init();
+	input.m_player = player;
+	cout << "complete" << endl;
+
+    cout << "initialising input:";
+    loadLevel();
+	cout << "complete" << endl;
+
+	cout << "createing fonts:";
     font.setWindow(gdata.window);
     font.setFont(gdata.assets->getFont("purista-medium-14-white"));
     font.setColor(sf::Color::Red);
@@ -55,36 +115,13 @@ void StateGame::load()
     fntLevel.setWindow(gdata.window);
     fntLevel.setFont(gdata.assets->getFont("segoe-ui-light-48"));
     fntLevel.setColor(sf::Color::White);
+    cout << "complete" << endl;
 
-	camera = Camera(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight());
-	gdata.camera = &camera;
-
-	debugDraw = new VisualDebugger();
-	debugDraw->SetFlags(b2Draw::e_shapeBit | b2Draw::e_jointBit | b2Draw::e_pairBit | b2Draw::e_centerOfMassBit);
-	debugDraw->cam = &camera;
-	debugDraw->font.setFont(gdata.assets->getFont("purista-medium-14-white"));
-
-	world = new b2World(GRAVITY);
-	world->SetDebugDraw(debugDraw);
-	world->SetContactListener(&collisions);
-	gdata.world = world;
-
-	factory = PhysicsFactory(world);
-	gdata.factory = &factory;
-
-	manager.setPhysicsWorld(world);
-
-	bg.bg_image.setTexture(*gdata.assets->getTexture("background"));
-	bg.num_circles = 60;
-	bg.init();
-
-	input.init();
-	input.m_player = player;
-
-	loadLevel();
-
+    cout << "adjusting screen size:";
 	gdata.zoom = (gdata.settings->getScreenWidth() / 1900.f);
+	cout << "complete" << endl;
 
+    cout << "===================================================" << endl;
     loading = false;
 }
 
@@ -157,14 +194,28 @@ void StateGame::draw()
     if (input.selecting)
     {
         // draw the line
-        Vector2 p = gdata.toScreenPixels(player->getAbsolutePosition());
-        Vector2 n = gdata.toScreenPixels(player->getAbsolutePosition() + input.velocity);
+        Vector2 start = player->getAbsolutePosition();
+        Vector2 dir = input.vel;
+        float length = 50;
+        Vector2 e = raycast(start,dir,length);
+
+        Vector2 p = gdata.toScreenPixels(start);
+        Vector2 n = gdata.toScreenPixels(start + e);//gdata.toScreenPixels(player->getAbsolutePosition() + dir);
         sf::Vertex line[] =
         {
-            sf::Vertex(sf::Vector2f(p.x, p.y)),
-            sf::Vertex(sf::Vector2f(n.x, n.y))
+            sf::Vertex(sf::Vector2f(p.x, p.y),sf::Color(255,255,255,32)),
+            sf::Vertex(sf::Vector2f(n.x, n.y),sf::Color(255,255,255,32))
         };
         gdata.window->draw(line, 2, sf::Lines);
+
+        e.setMagnitude( e.getMagnitude() * (static_cast<float>(input.power) / 100.f) );
+        Vector2 n2 = gdata.toScreenPixels(start + e);//gdata.toScreenPixels(player->getAbsolutePosition() + dir);
+        sf::Vertex line2[] =
+        {
+            sf::Vertex(sf::Vector2f(p.x, p.y),sf::Color::White),
+            sf::Vertex(sf::Vector2f(n2.x, n2.y),sf::Color::White)
+        };
+        gdata.window->draw(line2, 2, sf::Lines);
 
     }
 
@@ -202,6 +253,8 @@ void StateGame::draw()
         Vector2 p = gdata.toScreenPixels(player->getAbsolutePosition());
         string v = gz::toString(input.power) + "%";
         string a = gz::toString(input.angle) + " degrees";
+        //string v = gz::toString( input.s_pos.x) + "," + gz::toString( input.s_pos.y);
+        //string a = gz::toString( input.e_pos.x) + "," + gz::toString( input.e_pos.y);
         fntPower.drawString(p.x + cx,p.y - 100,v);
         fntAngle.drawString(p.x + cx,p.y - 50,a);
     }
@@ -243,6 +296,42 @@ void StateGame::draw()
 
 	// flip the buffer
 	gdata.window->display();
+}
+
+Vector2 StateGame::raycast(Vector2 start, Vector2 dir, float length)
+{
+    dir.normalise(); //ensure dir is normalised
+
+	b2RayCastInput	input;
+	input.p1 = start.toBulletVector();
+	input.p2 = (start + dir).toBulletVector();
+	input.maxFraction = length;
+
+	float contact_distance = length;
+	for (b2Body* b = gdata.world->GetBodyList(); b; b = b->GetNext())
+	{
+		for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
+		{
+		    if (f->GetFilterData().categoryBits != CF_PARTICLE && !f->IsSensor() && f->GetFilterData().categoryBits != CF_PLAYER)
+			{
+			    b2RayCastOutput output;
+                if (!f->RayCast(&output, input, 0))
+                {
+                    continue;
+                }
+                if (output.fraction < contact_distance)
+                {
+                    contact_distance = output.fraction;
+                }
+			}
+		}
+	}
+
+    Vector2 delta = dir;
+    delta.normalise();
+    delta.setMagnitude(contact_distance);
+
+	return (delta);
 }
 
 void StateGame::drawLine(Vector2 p1, Vector2 p2)
@@ -290,7 +379,7 @@ void StateGame::loadLevel()
 		{
 			std::string attribute_type = element->Attribute("type");
 
-			if (attribute_type == "block")
+			if (attribute_type == "platform")
 			{
 				Vector2 pos		= Vector2(element->Attribute("position"));
 				Vector2 size	= Vector2(element->Attribute("size"));
@@ -302,26 +391,26 @@ void StateGame::loadLevel()
 				float angle		= atof(element->Attribute("rotation"));
 				float rotspeed  = atof(element->Attribute("rotationspeed"));
 
-                Wall* wall = new Wall();
-                wall->setPhysicsObject(factory.createObsticle(pos.x, pos.y, size.x, size.y, angle, wall));
+                Wall* platform = new Wall();
+                platform->setPhysicsObject(factory.createObsticle(pos.x, pos.y, size.x, size.y, angle, platform));
 
-                wall->m_moving	    = moving;
+                platform->m_moving	    = moving;
                 if (moving)
                 {
-                    wall->setPosition( p1 + ((p2 - p1) * progress));
-                    wall->m_duration    = duration;
-                    wall->m_point1	    = p1;
-                    wall->m_point2	    = p2;
-                    wall->m_dest        = p2;
+                    platform->setPosition( p1 + ((p2 - p1) * progress));
+                    platform->m_duration    = duration;
+                    platform->m_point1	    = p1;
+                    platform->m_point2	    = p2;
+                    platform->m_dest        = p2;
 
-                    wall->setAngularVelocity(rotspeed * DEGTORAD);
-                    wall->setLinearVelocity( (p2 - p1) / duration);
+                    platform->setAngularVelocity(rotspeed * DEGTORAD);
+                    platform->setLinearVelocity( (p2 - p1) / duration);
                 }
 
-                manager.addObject(wall);
+                manager.addObject(platform);
 
 			}
-			else if (attribute_type == "barrier")
+			else if (attribute_type == "wall")
 			{
 				Vector2 pos		= Vector2(element->Attribute("position"));
 				Vector2 size	= Vector2(element->Attribute("size"));
@@ -387,26 +476,6 @@ void StateGame::loadLevel()
 				hole->m_type = HOLE;
 				hole->m_image.setTexture(*gdata.assets->getTexture("hole_off"));
 				manager.addObject(hole);
-			}
-			else if (attribute_type == "bgcolor")
-			{
-				int min = 5;
-                int max = 50;
-
-				int r = utils::getRandom(min,max);
-				int g = utils::getRandom(min,max);
-				if (r < 25 && g < 25) min = 25;
-				int b = utils::getRandom(min,max);
-
-				int lum = (r+r+b+g+g+g) / 6;
-				if (lum < 12)
-                {
-                    r += 10;
-                    g += 10;
-                    b += 10;
-                }
-
-				bg.bg_image.setColor(sf::Color(r,g,b,255));
 			}
 
 			element = element->NextSiblingElement("object");

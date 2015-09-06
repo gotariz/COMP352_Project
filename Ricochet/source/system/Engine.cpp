@@ -52,7 +52,7 @@ void Engine::updateState()
             if (gdata.delay_reload)
             {
                 gdata.delay_reload = false;
-                //sf::sleep(sf::milliseconds(1000));
+                sf::sleep(sf::milliseconds(1000));
             }
             activeState->freeResources();
             delete activeState;

@@ -23,7 +23,6 @@ class Player : public gObject
         virtual void onDraw();
 
         float maxSpeed = 30;
-		float minSpeed = 5;
 		float currentSpeed = 0;
 
 		BounceEmitter emitter;

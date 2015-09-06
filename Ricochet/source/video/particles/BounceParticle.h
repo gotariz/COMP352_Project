@@ -3,10 +3,10 @@
 
 #include "general.h"
 #include "system/GameData.h"
-#include "IParticle.h"
+#include "Particle.h"
 
 
-class BounceParticle : public IParticle
+class BounceParticle : public Particle
 {
     public:
         BounceParticle(){}
@@ -16,7 +16,6 @@ class BounceParticle : public IParticle
 
         virtual void particle_draw();
         virtual void particle_create();
-        virtual void particle_update();
         virtual void particle_destroy();
 };
 

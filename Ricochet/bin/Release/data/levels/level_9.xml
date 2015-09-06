@@ -1,53 +1,30 @@
 <?xml version="1.0"?>
 <root>
-	<object type="bgcolor" r="5" g="40" b="28" a="255" />
-	<!-- AXAMPLE AN EXPLANATION OF ATTRIBUTES
-	<object 
-	type="laser" 				// the type of object this will be
-	position="-18.5,5" 			// the position of where the object will be located
-	laser_direction="1,0" 		// the direction the laser is pointing(positive x is right, positive y is up. This direction will always be 0 degrees)
-	moving="0"					// indicates whether the laser moves between 2 points (0=NotMoving, 1=Moving) 
-	p1="0,0" 					// the two points the laser moves between (you always start at p1 and move toward p2)
-	p2="5,0" 					//.. to start at point inbetween the 2 set the time variables
-	duration="5" 				// how long it takes to move from point 1 to point 2
-	time="0" 					// how far though the movement it is. egset to "duration / 2" would mean its half way to point 2
-	
-	rotating="0" 				// indicates if the laser rotates or not (0=NotRotation, 1=Rotating)
-	start_angle="0" 			// the start angle of the laser
-	delta_angle="45" 			// how much the laser rotates
-	rotation_duration="1" 		// how long it takes to laser to rotation the delta_angle amount
-	rotation_time="0"			// how far through the rotation it is
-	/>
-
-	-->
+	<!-- HOLE -->
+	<object type="hole" position="10.5,-4.25" />
 
 	<!-- LASERS -->
 	<object type="laser" position="5,0" laser_direction="-1,0" p1="18,0.75" p2="18,-9.25" moving="1" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
 	<object type="laser" position="0,0" laser_direction="-1,0" p1="18,-9.25" p2="18,0.75" moving="1" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
 	
-	<object type="laser" position="-17.5,-9" laser_direction="0,1" />
-	<object type="laser" position="-17.5,-9" laser_direction="1,0" />
-	<object type="laser" position="17.5,9" laser_direction="-1,0" />
-
-	<!-- WHERE THE HOLE IS ON THE LEVEL-->
-	<object type="hole" position="10.5,-4.25" />
-	<!-- WHERE THE PLAYER STARTS THE LEVEL-->
+	<!-- PLAYER -->
 	<object type="player" position="3,5" />
-
+	
+	<!-- WALLS -->
 	<!-- WALLS ON THE EDGE OF THE SCREEN -->
-	<object type="barrier" position="-18.5,0" size="1,21" rotation="0"/>
-	<object type="barrier" position="18.5,0" size="1,21" rotation="0"/>
-	<object type="barrier" position="0,-10" size="36,1" rotation="0"/>
-	<object type="barrier" position="0,10" size="36,1" rotation="0"/>
+	<object type="wall" position="-18.5,0" size="1,21" rotation="0"/>
+	<object type="wall" position="18.5,0" size="1,21" rotation="0"/>
+	<object type="wall" position="0,-10" size="36,1" rotation="0"/>
+	<object type="wall" position="0,10" size="36,1" rotation="0"/>
 	
 	<!-- MAIN FRAME - Top to bottom -->
-	<object type="barrier" position="0.25, 7.5" size="7.5, 1" rotation="0"/>
-	<object type="barrier" position="4.5, 5" size="1,6" rotation="0"/>
-	<object type="barrier" position="2, 2.5" size="4,1" rotation="0"/>
-	<object type="barrier" position="0.5, -0.5" size="1,5" rotation="0"/>
-	<object type="barrier" position="0.5, -7.5" size="1,4" rotation="0"/>
-	
-	<!-- MOVING WALLS -->
-	<object type="block" position="0,0" size="1,3" rotation="-45" moves="1" p1="-6.2,7.3" p2="-9.8,3.7" duration="2" time="0" />
-	<object type="block" position="0,0" size="1,3" rotation="45" moves="1" p1="-6.2,-6" p2="-9.8,-2.4" duration="2" time="0" />
+	<object type="wall" position="0.25, 7.5" size="7.5, 1" rotation="0"/>
+	<object type="wall" position="4.5, 5" size="1,6" rotation="0"/>
+	<object type="wall" position="2, 2.5" size="4,1" rotation="0"/>
+	<object type="wall" position="0.5, -0.5" size="1,5" rotation="0"/>
+	<object type="wall" position="0.5, -7.5" size="1,4" rotation="0"/>
+
+	<!-- PLATFORMS -->
+	<object type="platform" position="0,0" size="1,3" rotation="-45" moves="1" p1="-6.2,7.3" p2="-9.8,3.7" duration="2" time="0" />
+	<object type="platform" position="0,0" size="1,3" rotation="45" moves="1" p1="-6.2,-6" p2="-9.8,-2.4" duration="2" time="0" />
 </root>
