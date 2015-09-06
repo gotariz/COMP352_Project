@@ -3,6 +3,7 @@
 SparkParticle::SparkParticle()
 {
     //ctor
+    m_type = PARTICLE;
 }
 
 SparkParticle::~SparkParticle()
@@ -44,4 +45,3 @@ void SparkParticle::particle_destroy()
 {
     deletePhysicsObject();
 }
-

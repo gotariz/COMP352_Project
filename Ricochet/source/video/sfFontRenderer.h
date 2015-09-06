@@ -20,20 +20,20 @@ namespace sfLib
 class sfFontRenderer
 {
     public:
-        sfFontRenderer(sf::RenderWindow* window = nullptr);
+        sfFontRenderer();
         virtual ~sfFontRenderer();
 
     public:
         void setFont(sfFont* font);
         void setColor(sf::Color c);
         void drawString(int x, int y, std::string text, int horizontalPosition = sfLib::sfAlign::LEFT, int verticalPosition = sfLib::sfAlign::TOP);
-
-        unsigned getRenderedTextWidth(std::string text);
         void setWindow(sf::RenderWindow* window);
 
+        unsigned getRenderedTextWidth(std::string text);
+
     private:
-        sf::RenderWindow*   m_window;
-        sfFont*             m_font;
+        sf::RenderWindow*   m_window = nullptr;
+        sfFont*             m_font = nullptr;
         sf::Color           m_color = sf::Color::White;
 };
 

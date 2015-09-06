@@ -3,8 +3,8 @@
 
 #include "general.h"
 #include "Obstacle.h"
-#include "video/particles/SparksEmitter.h"
 #include "system/AssetManager.h"
+#include "video/particles/SparksEmitter.h"
 
 class Laser : public Obstacle
 {
@@ -14,6 +14,9 @@ class Laser : public Obstacle
 
     public:
         SparksEmitter emitter;
+
+        sf::Sprite laser_beam;
+        sf::Sprite laser_end;
 
         float start_angle = 0;
         float delta_angle = 0;
@@ -27,16 +30,13 @@ class Laser : public Obstacle
 		Vector2	laser;
 		Vector2 laserPos;
 
-		sf::Sprite  beam;
-		sf::Sprite  tip;
-
         virtual void onUpdate();
 		virtual void onDraw();
+		virtual void freeResources();
 
 		void rotateLaser();
 		void moveLaser();
 		void raycast();
-		virtual void freeResources();
 };
 
 #endif // LASER_H

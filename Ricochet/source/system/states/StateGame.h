@@ -25,7 +25,7 @@
 #include "video/particles/ParticleEmitter.h"
 #include "video/Background.h"
 
-#include <iostream>
+
 /////////////////////////////////////////////////////////
 //#include "animation/AnimationManager.h"
 //#include "animation/AnimationInstruction.h"
@@ -59,18 +59,18 @@ class StateGame : public IState
     public:
 
 		ObjectManager		manager;
-		//AssetManager	    assets;
 		InputHandler		input;
 		Camera	            camera;
 
-        sfFontRenderer      font;
-        sfFontRenderer      fntPower;
-        sfFontRenderer      fntAngle;
-        sfFontRenderer      fntIns;
-        sfFontRenderer      fntLevel;
+        sfFontRenderer     font;
+        sfFontRenderer     fntPower;
+        sfFontRenderer     fntAngle;
+        sfFontRenderer     fntIns;
+        sfFontRenderer     fntLevel;
 
         Player*             player = nullptr;
         Background          bg;
+        //ParticleEmitter     pe;
 
 		// Box2D physics
 		b2World*			world = nullptr;

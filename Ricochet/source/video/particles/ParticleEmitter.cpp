@@ -5,21 +5,23 @@ void ParticleEmitter::update()
 {
     accumelator += gdata.m_timeDelta;
 
-    // remove dead particles
-    for (int i = 0; i < particles.size(); )
+    vector<IParticle*> live_particles;
+
+    for (int i = 0; i < particles.size(); ++i)
     {
         IParticle* p = particles.at(i);
         if (p->particle_age >= p->particle_dur)
         {
-            particles.erase(particles.begin() + i);
             p->particle_destroy();
             delete p;
         }
         else
         {
-            ++i;
+            live_particles.push_back(p);
         }
     }
+    particles.clear();
+    particles = live_particles;
 
     for (int i = 0; i < particles.size(); ++i)
     {
@@ -39,6 +41,16 @@ void ParticleEmitter::freeResources()
     }
 
     particles.clear();
+}
+
+bool ParticleEmitter::condition(IParticle* p)
+{
+    bool del = (p->particle_age >= p->particle_dur);
+    if (del)
+    {
+        p->particle_destroy();
+    }
+    return del;
 }
 
 void ParticleEmitter::drawParticles()

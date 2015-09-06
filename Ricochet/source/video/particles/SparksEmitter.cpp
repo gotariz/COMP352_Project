@@ -5,18 +5,17 @@ void SparksEmitter::createParticle()
     float t = (1.f / frequency);
     while (accumelator >= t)
     {
-        float angle         = utils::getRandom(0,180) - 90;
-        Vector2 vel         = dir;
-
-        vel.rotate(angle);
-        vel.setMagnitude(speed);
-
+        float angle = utils::getRandom(0,180);
+        angle -= 90;
         SparkParticle* p = new SparkParticle();
-
-        p->particle_age = 0;
+        p->pos.set(pos);
         p->particle_dur = duration;
         p->size = size;
-        p->setPhysicsObject(gdata.factory->createParticle(pos.x,pos.y));
+        p->setPhysicsObject(gdata.factory->createParticle(p->pos.x,p->pos.y,p));
+
+        Vector2 vel = dir;
+        vel.rotate(angle);
+        vel.setMagnitude(speed);
         p->setLinearVelocity(vel);
 
         particles.push_back(p);

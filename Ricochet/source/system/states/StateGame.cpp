@@ -8,7 +8,6 @@ StateGame::StateGame() : IState(STATE_GAME)
 StateGame::~StateGame()
 {
     //dtor
-    //cout << "deleting state" << endl;
 }
 
 void StateGame::reload()
@@ -18,58 +17,24 @@ void StateGame::reload()
 
 void StateGame::reInit()
 {
-//    gdata.settings->setScreenWidth(1920);
-//    gdata.settings->setScreenHeight(1080);
-//
-//    gdata.settings->saveSettings();
-//
-//    gdata.window->setSize(sf::Vector2u(gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
-//    gdata.view = new sf::View(sf::FloatRect(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight())); // remember to delete this
-//    gdata.window->setView(*gdata.view);
-//    gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
+    gdata.settings->setScreenWidth(1920);
+    gdata.settings->setScreenHeight(1080);
+
+    gdata.settings->saveSettings();
+
+    gdata.window->setSize(sf::Vector2u(gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
+    gdata.view = new sf::View(sf::FloatRect(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight())); // remember to delete this
+    gdata.window->setView(*gdata.view);
+    gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
 }
 
 void StateGame::load()
 {
-    cout << "=========================================================" << endl;
-    cout << "Loading Level" << endl;
-    cout << "=========================================================" << endl;
+    //reInit();
+
     gzClock clock;
 	srand(clock.getCurrentTimeMilliseconds());
 
-    cout << "Setting up Physics: ";
-	debugDraw = new VisualDebugger();
-	debugDraw->SetFlags(b2Draw::e_shapeBit | b2Draw::e_jointBit | b2Draw::e_pairBit | b2Draw::e_centerOfMassBit);
-	debugDraw->cam = &camera;
-	debugDraw->font.setFont(gdata.assets->getFont("purista-medium-14-white"));
-
-	world = new b2World(GRAVITY);
-	world->SetDebugDraw(debugDraw);
-	world->SetContactListener(&collisions);
-	gdata.world = world;
-
-	factory = PhysicsFactory(world);
-	gdata.factory = &factory;
-	manager.setPhysicsWorld(world);
-	cout << "Complete" << endl;
-
-    cout << "Loading Level: ";
-    loadLevel();
-
-    bg.bg_image.setTexture(*gdata.assets->getTexture("background"));
-	bg.num_circles = 60;
-	bg.init();
-
-	camera = Camera(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight());
-	gdata.camera = &camera;
-    cout << "Complete" << endl;
-
-    cout << "Enabling Input";
-	input.init();
-	input.m_player = player;
-    cout << "Complete" << endl;
-
-    cout << "Creating Fonts: ";
     font.setWindow(gdata.window);
     font.setFont(gdata.assets->getFont("purista-medium-14-white"));
     font.setColor(sf::Color::Red);
@@ -90,7 +55,33 @@ void StateGame::load()
     fntLevel.setWindow(gdata.window);
     fntLevel.setFont(gdata.assets->getFont("segoe-ui-light-48"));
     fntLevel.setColor(sf::Color::White);
-    cout << "Complete" << endl;
+
+	camera = Camera(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight());
+	gdata.camera = &camera;
+
+	debugDraw = new VisualDebugger();
+	debugDraw->SetFlags(b2Draw::e_shapeBit | b2Draw::e_jointBit | b2Draw::e_pairBit | b2Draw::e_centerOfMassBit);
+	debugDraw->cam = &camera;
+	debugDraw->font.setFont(gdata.assets->getFont("purista-medium-14-white"));
+
+	world = new b2World(GRAVITY);
+	world->SetDebugDraw(debugDraw);
+	world->SetContactListener(&collisions);
+	gdata.world = world;
+
+	factory = PhysicsFactory(world);
+	gdata.factory = &factory;
+
+	manager.setPhysicsWorld(world);
+
+	bg.bg_image.setTexture(*gdata.assets->getTexture("background"));
+	bg.num_circles = 60;
+	bg.init();
+
+	input.init();
+	input.m_player = player;
+
+	loadLevel();
 
 	gdata.zoom = (gdata.settings->getScreenWidth() / 1900.f);
 
@@ -137,9 +128,6 @@ bool StateGame::initialise()
 
     }
 
-    cout << "=========================================================" << endl;
-    cout << "Loading Complete" << endl;
-    cout << "=========================================================" << endl;
     return true;
 }
 
@@ -162,6 +150,7 @@ void StateGame::update()
 void StateGame::draw()
 {
     gdata.window->clear(sf::Color(32,32,32,255));
+    //gdata.window->clear(sf::Color::Green);
 
     bg.draw();
 
@@ -211,14 +200,16 @@ void StateGame::draw()
         }
 
         Vector2 p = gdata.toScreenPixels(player->getAbsolutePosition());
-        string v = gz::toString(input.angle) + "*";
-        string a = gz::toString(input.power) + " units p/s";
+        string v = gz::toString(input.power) + "%";
+        string a = gz::toString(input.angle) + " degrees";
         fntPower.drawString(p.x + cx,p.y - 100,v);
         fntAngle.drawString(p.x + cx,p.y - 50,a);
     }
 
     fntIns.drawString(10,10,"Press R to restart level");
     fntLevel.drawString(130,110,"Level " + gz::toString(gdata.level));
+    //font->drawString(0,0,"Level " + gz::toString(gdata.level));
+
 
     //===========================================
     // DRAW A GRID
@@ -266,7 +257,6 @@ void StateGame::drawLine(Vector2 p1, Vector2 p2)
 
 void StateGame::freeResources()
 {
-    //assets.freeResources();
     manager.freeResources();
 
     delete world;
@@ -313,7 +303,7 @@ void StateGame::loadLevel()
 				float rotspeed  = atof(element->Attribute("rotationspeed"));
 
                 Wall* wall = new Wall();
-                wall->setPhysicsObject(factory.createObsticle(pos.x, pos.y, size.x, size.y, angle));
+                wall->setPhysicsObject(factory.createObsticle(pos.x, pos.y, size.x, size.y, angle, wall));
 
                 wall->m_moving	    = moving;
                 if (moving)
@@ -338,7 +328,7 @@ void StateGame::loadLevel()
 				float	angle	= atof(element->Attribute("rotation"));
 
 				Wall* wall = new Wall();
-				wall->setPhysicsObject(factory.createGround(pos.x, pos.y, size.x, size.y, angle));
+				wall->setPhysicsObject(factory.createGround(pos.x, pos.y, size.x, size.y, angle,wall));
 
 				manager.addObject(wall);
 
@@ -400,16 +390,14 @@ void StateGame::loadLevel()
 			}
 			else if (attribute_type == "bgcolor")
 			{
-//				int r = atoi(element->Attribute("r"));
-//				int g = atoi(element->Attribute("g"));
-//				int b = atoi(element->Attribute("b"));
-                int min = 0;
+				int min = 5;
                 int max = 50;
 
 				int r = utils::getRandom(min,max);
 				int g = utils::getRandom(min,max);
-				if (r < 20 && g < 20) min = 20;
+				if (r < 25 && g < 25) min = 25;
 				int b = utils::getRandom(min,max);
+
 				int lum = (r+r+b+g+g+g) / 6;
 				if (lum < 12)
                 {

@@ -9,10 +9,10 @@ Laser::Laser()
     emitter.size = 1;
     emitter.enabled = true;
 
-    beam.setTexture(*gdata.assets->getTexture("laser_beam"));
-    beam.setOrigin(0,7);
-    tip.setTexture(*gdata.assets->getTexture("laser_end"));
-    tip.setOrigin(0,7);
+    laser_beam.setTexture(*gdata.assets->getTexture("laser_beam"));
+    laser_beam.setOrigin(0,7);
+    laser_end.setTexture(*gdata.assets->getTexture("laser_end"));
+    laser_end.setOrigin(0,7);
 }
 
 Laser::~Laser()
@@ -143,30 +143,30 @@ void Laser::onUpdate()
 
 void Laser::onDraw()
 {
-    emitter.drawParticles();
-
     Vector2 s = gdata.toScreenPixels(laserPos.x,laserPos.y);
-    Vector2 e = laserPos + laser;
-    e = gdata.toScreenPixels(e);
+    Vector2 e = gdata.toScreenPixels(laserPos + laser);
 
     float length = laser.getMagnitude();
-    beam.setScale(length * gdata.zoom,1);
     float rot = (float)atan2(laser.y,laser.x);
     rot *= RADTODEG;
     rot *= -1;
 
-    beam.setRotation(rot);
-    beam.setPosition(s.x,s.y);
-    tip.setPosition(e.x,e.y);
-    tip.setRotation(rot);
+    laser_beam.setScale(length * gdata.zoom,gdata.zoom);
+    laser_beam.setRotation(rot);
+    laser_beam.setPosition(s.x,s.y);
+    laser_end.setScale(gdata.zoom,gdata.zoom);
+    laser_end.setPosition(e.x,e.y);
+    laser_end.setRotation(rot);
 
-    gdata.window->draw(beam);
-    gdata.window->draw(tip);
+    gdata.window->draw(laser_beam);
+    gdata.window->draw(laser_end);
 
+    emitter.drawParticles();
 }
 
 void Laser::freeResources()
 {
+    deletePhysicsObject();
     emitter.freeResources();
 }
 

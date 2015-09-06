@@ -15,7 +15,6 @@ class ObjectManager
         void initialise();
         void update();
         void draw();
-
         void freeResources();
 
         unsigned getValidID();

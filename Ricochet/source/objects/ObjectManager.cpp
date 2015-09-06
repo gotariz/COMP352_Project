@@ -15,6 +15,16 @@ void ObjectManager::initialise()
 
 }
 
+void ObjectManager::freeResources()
+{
+    for (int i = 0; i < m_objects.size(); ++i)
+    {
+        Object* obj = m_objects.at(i);
+        obj->freeResources();
+        delete obj;
+    }
+}
+
 void ObjectManager::setPhysicsWorld(b2World* physicsWorld)
 {
     physics_world = physicsWorld;
@@ -181,16 +191,4 @@ Object* ObjectManager::getObject(int id)
 
     return result;
 }
-
-void ObjectManager::freeResources()
-{
-    for (int i = 0; i < m_objects.size(); ++i)
-    {
-        Object* o = m_objects.at(i);
-        o->freeResources();
-        delete o;
-    }
-    m_objects.clear();
-}
-
 

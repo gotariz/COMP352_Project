@@ -52,9 +52,8 @@ void Engine::updateState()
             if (gdata.delay_reload)
             {
                 gdata.delay_reload = false;
-                sf::sleep(sf::milliseconds(1000));
+                //sf::sleep(sf::milliseconds(1000));
             }
-
             activeState->freeResources();
             delete activeState;
             activeState = nullptr;
@@ -80,12 +79,8 @@ void Engine::updateState()
 bool Engine::initialise()
 {
     running = true;
-
-    cout << "Loading Assets: ";
     assets.loadAssetList("data/assets.xml");
 	gdata.assets = &assets;
-	cout << "Complete" << endl;
-
     return true;
 }
 
@@ -100,13 +95,8 @@ void Engine::exit()
         activeState = nullptr;
     }
 
-    if (gdata.view != nullptr)
-    {
-        delete gdata.view;
-        gdata.view = nullptr;
-    }
-
     assets.freeResources();
+
 	//Destroy window
 	//SDL_DestroyWindow(gdata.window);
 

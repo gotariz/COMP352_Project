@@ -21,6 +21,7 @@ class ParticleEmitter
         virtual void update();
         virtual void freeResources();
         virtual void drawParticles();
+        static bool condition(IParticle* p);
 };
 
 #endif // PARTICLEEMITTER_H

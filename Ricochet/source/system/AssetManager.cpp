@@ -156,9 +156,7 @@ void AssetManager::freeResources()
         (*it).second->free();
         delete (*it).second;
     }
-    m_fonts.clear();
-
-    m_music.clear();
+    m_sounds.clear();
 }
 
 sf::Texture* AssetManager::getTexture(std::string name)

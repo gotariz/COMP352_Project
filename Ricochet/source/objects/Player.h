@@ -22,8 +22,6 @@ class Player : public gObject
         virtual void onPostPhysicsUpdate();
         virtual void onDraw();
 
-        virtual void freeResources();
-
         float maxSpeed = 30;
 		float minSpeed = 5;
 		float currentSpeed = 0;

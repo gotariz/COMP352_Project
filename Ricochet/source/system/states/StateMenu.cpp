@@ -12,8 +12,14 @@ StateMenu::~StateMenu()
 
 void StateMenu::load()
 {
+    assets.loadAssetList("data/assets.xml");
+	gdata.assets = &assets;
+
+ 	//gdata.window->setKeyRepeatEnabled(false);
+
+    //font = new sfFontRenderer(gdata.window);
     font.setWindow(gdata.window);
-    font.setFont(gdata.assets->getFont("purista-medium-14-white"));
+    font.setFont(assets.getFont("purista-medium-14-white"));
 
 	menuItems.push_back("Start");
 	menuItems.push_back("Achievements");
@@ -74,11 +80,6 @@ void StateMenu::load()
 	optionsItems.push_back("Fullscreen");
 	optionsItems.push_back("Resolution");
 	optionsItems.push_back("FPS Limit");
-
-    bg.bg_image.setTexture(*gdata.assets->getTexture("background"));
-    bg.bg_image.setColor(sf::Color(6,23,40,255));
-	bg.num_circles = 100;
-	bg.init();
 
     loading = false;
 }
@@ -309,27 +310,18 @@ void StateMenu::reset()
 
     gdata.settings->saveSettings();
 
-    // this is important to stop memory leaks
-    if (gdata.view != nullptr)
-    {
-        gdata.view = nullptr;
-    }
-
     gdata.window->setSize(sf::Vector2u(gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
     gdata.view = new sf::View(sf::FloatRect(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
     gdata.window->setView(*gdata.view);
     gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
 }
 
-void StateMenu::update()
-{
-    bg.update();
-}
+void StateMenu::update(){}
 
 void StateMenu::draw()
 {
     gdata.window->clear(sf::Color(64,64,64,255));
-    bg.draw();
+
     font.drawString(0,0,"Press 'R' to reset screen");
 
     // Menu animation sliding;

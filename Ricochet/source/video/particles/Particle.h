@@ -1,25 +1,19 @@
 #ifndef PARTICLE_H
 #define PARTICLE_H
 
-#include "general.h"
+#include "system/GameData.h"
 #include "IParticle.h"
-#include "objects/gObject.h"
 
-class Particle : public IParticle, public gObject
+class Particle : public IParticle
 {
     public:
-        Particle(){
-            m_type = PARTICLE;
-        }
+        Particle(){}
+        virtual ~Particle(){}
 
-        Vector2 pos;
-        int size = 0;
-
-        sf::Color c = sf::Color::Red;
-        virtual void particle_draw();
-        virtual void particle_create();
+        virtual void particle_draw() = 0;
+        virtual void particle_create() = 0;
         virtual void particle_update();
-        virtual void particle_destroy();
+        virtual void particle_destroy() = 0;
 };
 
 #endif // PARTICLE_H

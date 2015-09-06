@@ -40,7 +40,6 @@ class Object
         virtual void onEnterCollision(CollisionData cd){}
         virtual void onExitCollision(CollisionData cd){}
         virtual void onDraw(){}
-
         virtual void freeResources();
 
     public: // utilities

@@ -9,7 +9,8 @@
 class BounceParticle : public IParticle
 {
     public:
-        Vector2 pos;
+        BounceParticle(){}
+        virtual ~BounceParticle(){}
 
         sf::CircleShape c;
 

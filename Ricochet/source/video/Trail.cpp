@@ -101,6 +101,14 @@ void Trail::draw()
         last = point2;
 
         pairs.push_back(pair2);
+
+//        sf::Vertex dline[] =
+//        {
+//            sf::Vertex(sf::Vector2f(p1.x, p1.y)),
+//            sf::Vertex(sf::Vector2f(p2.x, p2.y))
+//        };
+//
+//        gdata.window->draw(dline, 2, sf::Lines);
     }
 
     for (int i = pairs.size() - 1; i > 0;i-=1)
@@ -120,6 +128,21 @@ void Trail::draw()
         convex.setFillColor(sf::Color(255,255,255,64));
         gdata.window->draw(convex);
     }
+
+//    sf::CircleShape circle(2);
+//    circle.setOrigin(1,1);
+//    for (int i = 0; i < pairs.size(); ++i)
+//    {
+//        Vector2 p = gdata.toPixels(pairs.at(i).left);
+//        circle.setPosition(p.x,p.y);
+//        circle.setFillColor(sf::Color::Green);
+//        gdata.window->draw(circle);
+//
+//        p = gdata.toPixels(pairs.at(i).right);
+//        circle.setPosition(p.x,p.y);
+//        circle.setFillColor(sf::Color::Blue);
+//        gdata.window->draw(circle);
+//    }
 }
 
 void Trail::setPlayerPosition(Vector2 position)
@@ -134,6 +157,8 @@ void Trail::setPlayerPosition(float x, float y)
 
 void Trail::setApart(Vector2& l, Vector2& r, float distance)
 {
+    //if (distance == 0) distance = 0.01;
+    // find the center point
     Vector2 center = l + ((r - l) / 2);
     Vector2 ld = l - center;
     Vector2 rd = r - center;

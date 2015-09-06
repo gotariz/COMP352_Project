@@ -33,10 +33,9 @@ class InputHandler
 
 		float pullbackDistance = 200;
 		int power = 0;
-		float angle = 0;
+		int angle = 0;
 		bool selecting = false;
 		bool launched = false;
-		bool locked = false;
 		Vector2 velocity;
 
     private:

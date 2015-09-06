@@ -1,6 +1,6 @@
 #include "sfFontRenderer.h"
 
-sfFontRenderer::sfFontRenderer(sf::RenderWindow* window) : m_window(window), m_font(nullptr)
+sfFontRenderer::sfFontRenderer()
 {
     //ctor
 }
@@ -8,11 +8,6 @@ sfFontRenderer::sfFontRenderer(sf::RenderWindow* window) : m_window(window), m_f
 sfFontRenderer::~sfFontRenderer()
 {
     //dtor
-}
-
-void sfFontRenderer::setWindow(sf::RenderWindow* window)
-{
-    m_window = window;
 }
 
 void sfFontRenderer::setFont(sfFont* font)
@@ -83,5 +78,11 @@ unsigned sfFontRenderer::getRenderedTextWidth(std::string text)
 
     return width;
 }
+
+void sfFontRenderer::setWindow(sf::RenderWindow* window)
+{
+    m_window = window;
+}
+
 
 

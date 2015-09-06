@@ -38,6 +38,7 @@ class GameData
 		bool            delay_reload = false;
 		bool            draw_debug = false;
 		bool            draw_grid = false;
+		//bool            has_focus = true;
 
 		//Object* player = nullptr;
 

@@ -1,3 +1,0 @@
-Changes for current commit
-==========================================
-fixwed the ball trail being out of position what moving the camera

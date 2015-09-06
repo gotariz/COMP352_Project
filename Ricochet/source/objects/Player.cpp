@@ -28,25 +28,18 @@ void Player::onEnterCollision(CollisionData cd)
 
 void Player::onCollision(Object* objectB)
 {
-    Vector2 vel = getVelocity();
-    if (vel.x != 0 && vel.y != 0)
-    {
-        vel.setMagnitude(currentSpeed);
-        setLinearVelocity(vel);
-    }
-
     if (objectB->m_type == WALL)
     {
         float speed = getVelocity().getMagnitude();
         speed /= maxSpeed;
-        int r = 108 * speed;
+        int r = 165 * speed;
         int g = 91 - (91 * speed);
-        int b = 255;
+        int b = 165;
 
         r = (r > 165) ? 165 : r;
         g = (g < 0) ? 0 : g;
 
-        color.setColor2(r,g,255,255);
+        color.setColor2(r,g,165,255);
         color.reset();
         color.start();
 
@@ -56,6 +49,12 @@ void Player::onCollision(Object* objectB)
 
 void Player::onPostPhysicsUpdate()
 {
+    Vector2 vel = getVelocity();
+    if (vel.x != 0 && vel.y != 0)
+    {
+        vel.setMagnitude(currentSpeed);
+        setLinearVelocity(vel);
+    }
 }
 
 void Player::onDraw()
@@ -73,16 +72,11 @@ void Player::onDraw()
         circle.setPosition(pos.x,pos.y);
         circle.setOrigin(circle.getRadius(),circle.getRadius());
 
-        circle.setOutlineThickness(2);
-        circle.setOutlineColor(sf::Color::White);
+        circle.setOutlineThickness(1);
+        circle.setOutlineColor(sf::Color::Black);
 
         gdata.window->draw(circle);
     }
-}
-
-void Player::freeResources()
-{
-    emitter.freeResources();
 }
 
 
