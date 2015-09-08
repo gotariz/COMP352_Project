@@ -6,6 +6,10 @@
 	<!-- LASERS -->
 	<object type="laser" position="5,0" laser_direction="-1,0" p1="18,0.75" p2="18,-9.25" moving="1" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
 	<object type="laser" position="0,0" laser_direction="-1,0" p1="18,-9.25" p2="18,0.75" moving="1" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
+
+	<object type="laser" position="-18,9" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
+	<object type="laser" position="-17.5,9.5" laser_direction="0,-1" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
+	<object type="laser" position="-18,-9" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="10" rotating="0" rotation_time="0" />
 	
 	<!-- PLAYER -->
 	<object type="player" position="3,5" />

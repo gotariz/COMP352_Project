@@ -17,10 +17,9 @@ void StateMenu::load()
 
     Camera c(0,0,0,0);
     gdata.camera = &c;
-    //bg.bg_image.setTexture(*gdata.assets->getTexture("background"));
     bg.num_circles = 60;
     bg.bubble_alpha_range.set(0,128);
-    bg.bubble_color = sf::Color(0,0,0,0);
+    bg.bubble_color = sf::Color(0,0,0,255);
     bg.init();
  	//gdata.window->setKeyRepeatEnabled(false);
 
