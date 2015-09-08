@@ -87,6 +87,30 @@ void StateMenu::load()
 	optionsItems.push_back("Resolution");
 	optionsItems.push_back("FPS Limit");
 
+    //count the amount of levels in the XML
+    try
+    {
+        while(true)
+        {
+            XMLDocument doc;
+            XMLError error = doc.LoadFile(  gz::toString(LEVEL_PATH + gz::toString(levelCount) + ".xml").c_str() );
+
+            if (error != XML_NO_ERROR)
+            {
+                levelCount -= 1;
+                break;
+            }
+            levelCount += 1;
+
+        }
+    }
+	catch (std::exception& ex)
+	{
+		gz::print_w("Exception Thrown:" + gz::toString(ex.what()));
+	}
+
+	cout << "Level count: " << levelCount << endl;
+
     mx = gdata.settings->getScreenWidth() - 400;
     tx = gdata.settings->getScreenWidth() + 10;
     y = gdata.settings->getScreenHeight() - 40 - (78 * 4);
@@ -153,7 +177,9 @@ void StateMenu::handleEvents()
             {
                 if(selected == 0) //Start
                 {
-                    gdata.gamestate = STATE_GAME;
+//                    gdata.gamestate = STATE_GAME;
+                    transitioning = true;
+                    pushMenu = MENU_LEVELS;
                 }
                 else if(selected == 1) //Achievements
                 {
@@ -269,11 +295,43 @@ void StateMenu::handleEvents()
                     selectedFPS = selectedOps[selectedOption];
             }
         }
+
         else if(menuState == MENU_AWARDS) //Handle events within the achievements menu screen
         {
             if(gdata.keys[sf::Keyboard::BackSpace].isKeyPressed)
             {
-                menuState = MENU_MAIN;
+//                menuState = MENU_MAIN;
+                transitioning = true;
+                pushMenu = MENU_MAIN;
+            }
+        }
+
+        else if(menuState == MENU_LEVELS) //Handle events within the level select menu screen
+        {
+            if(gdata.keys[sf::Keyboard::BackSpace].isKeyPressed)
+            {
+                transitioning = true;
+                pushMenu = MENU_MAIN;
+            }
+
+            else if (gdata.keys[sf::Keyboard::Right].isKeyPressed)
+            {
+                selectedLevel +=1;
+                if(selectedLevel > levelCount)
+                    selectedLevel = 1;
+            }
+
+            else if (gdata.keys[sf::Keyboard::Left].isKeyPressed)
+            {
+                selectedLevel -=1;
+                if(selectedLevel < 1)
+                    selectedLevel = levelCount;
+            }
+
+            else if (gdata.keys[sf::Keyboard::Return].isKeyPressed)
+            {
+                gdata.level = selectedLevel;
+                gdata.gamestate = STATE_GAME;
             }
         }
     }
@@ -368,7 +426,21 @@ void StateMenu::draw()
 
     else if(menuState == MENU_LEVELS)
     {
+        y = gdata.settings->getScreenHeight() - 40 - (78 * 4);
+        font.setColor(sf::Color::White);
 
+        rec.setPosition(x, y);
+        rec.setSize(sf::Vector2f(500,70));
+        rec.setFillColor(sf::Color::Red);
+        gdata.window->draw(rec);
+
+        font.drawString(x + 25, y, "Levels");
+
+        if(!transitioning)
+        {
+            font.setColor(sf::Color::Black);
+            font.drawString(x - 20, y, gz::toString(selectedLevel),sfLib::RIGHT);
+        }
     }
 
     else if(menuState == MENU_AWARDS)
