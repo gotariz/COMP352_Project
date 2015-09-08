@@ -331,10 +331,6 @@ void StateMenu::update()
             }
         }
     }
-        // (distance_to_move  time_to_move)
-
-        //100 * time
-        // distance_between x and tx * (gdata.m_timeDelta * transition durstion in seconds)
 }
 
 void StateMenu::draw()
