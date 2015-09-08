@@ -14,7 +14,7 @@ void Background::init()
         float dx = utils::getRandom(0,38);
         float dy = utils::getRandom(0,21);
         float r = utils::getRandom(10,100);
-        float alpha = utils::getRandom(1,32);
+        float alpha = utils::getRandom(bubble_alpha_range.x,bubble_alpha_range.y);
         float speed = utils::getRandom(1,10);
         speed /= 10.f;
         r /= 100;
@@ -35,10 +35,10 @@ void Background::init()
 
 void Background::draw()
 {
-    //Vector2 pos = gdata.toScreenPixels(position);
-    //bg_image.setPosition(pos.x,pos.y);
-    //bg_image.setScale(gdata.zoom,gdata.zoom);
-    //gdata.window->draw(bg_image);
+    Vector2 pos = gdata.toScreenPixels(position);
+    bg_image.setPosition(pos.x,pos.y);
+    bg_image.setScale(gdata.zoom,gdata.zoom);
+    gdata.window->draw(bg_image);
 
     for (int i = 0; i < circles.size(); ++i)
     {

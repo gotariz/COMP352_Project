@@ -13,6 +13,7 @@ class Background
 
         vector<bgCircle> circles;
         sf::Color bubble_color;
+        Vector2     bubble_alpha_range;
         void init();
         void draw();
         void update();

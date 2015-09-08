@@ -19,7 +19,8 @@ void StateMenu::load()
     gdata.camera = &c;
     //bg.bg_image.setTexture(*gdata.assets->getTexture("background"));
     bg.num_circles = 60;
-    bg.bubble_color = sf::Color::Red;
+    bg.bubble_alpha_range.set(0,128);
+    bg.bubble_color = sf::Color(0,0,0,0);
     bg.init();
  	//gdata.window->setKeyRepeatEnabled(false);
 
@@ -216,8 +217,11 @@ void StateMenu::handleEvents()
                      << gz::splitString(optionsSettings[2][selectedRes], 'x')[1] << "\n"
                      << "\tFPS Limit:\t\t\t" << gz::stringToUnsigned(optionsSettings[3][selectedFPS]) << endl;
 
+                mx = gdata.settings->getScreenWidth() - 400;
+                tx = gdata.settings->getScreenWidth() + 10;
+                y = gdata.settings->getScreenHeight() - 40 - (78 * 4);
                 x = mx;
-                //gdata.window->setPosition(sf::Vector2i(0,0));
+                gdata.window->setPosition(sf::Vector2i(0,0));
                 //menuState = MENU_MAIN;
             }
 
