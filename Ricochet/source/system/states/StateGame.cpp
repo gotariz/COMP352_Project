@@ -62,7 +62,6 @@ void StateGame::load()
 	manager.setPhysicsWorld(world);
 
     cout << "creating background:";
-	bg.bg_image.setTexture(*gdata.assets->getTexture("background"));
 	bg.bubble_alpha_range.set(0,8);
     bg.bubble_color = sf::Color(255,255,255,0);
 	bg.num_circles = 60;
@@ -84,7 +83,7 @@ void StateGame::load()
         b += 10;
     }
 
-    bg.bg_image.setColor(sf::Color(r,g,b,255));
+    bg.rec.setFillColor(sf::Color(r,g,b,255));
 	cout << "complete" << endl;
 
     cout << "initialising input:";
@@ -188,8 +187,8 @@ void StateGame::update()
 
 void StateGame::draw()
 {
-    gdata.window->clear(sf::Color(32,32,32,255));
-    //gdata.window->clear(sf::Color::Green);
+    //gdata.window->clear(sf::Color(32,32,32,255));
+    gdata.window->clear(sf::Color::Black);
 
     bg.draw();
 

@@ -8,8 +8,8 @@ class Background
 {
     public:
         Vector2     position;
-        sf::Sprite  bg_image;
         int         num_circles = 0;
+        sf::RectangleShape rec;
 
         vector<bgCircle> circles;
         sf::Color bubble_color;

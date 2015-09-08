@@ -2,10 +2,6 @@
 
 void Background::init()
 {
-    bg_image.setOrigin(960,540);
-    //bg_image.setColor( sf::Color(5,40,28,255) );
-
-
     for (int i = 0; i < num_circles; ++i)
     {
         bgCircle c;
@@ -36,9 +32,10 @@ void Background::init()
 void Background::draw()
 {
     Vector2 pos = gdata.toScreenPixels(position);
-    bg_image.setPosition(pos.x,pos.y);
-    bg_image.setScale(gdata.zoom,gdata.zoom);
-    gdata.window->draw(bg_image);
+    rec.setPosition(pos.x,pos.y);
+//    bg_image.setPosition(pos.x,pos.y);
+//    bg_image.setScale(gdata.zoom,gdata.zoom);
+    gdata.window->draw(rec);
 
     for (int i = 0; i < circles.size(); ++i)
     {
@@ -76,5 +73,8 @@ void Background::update()
             circle->pos += delta;
         }
     }
+
+    rec.setSize(sf::Vector2f(37.5 * WORLD_SCALE * gdata.zoom,20.5 * WORLD_SCALE * gdata.zoom));
+    rec.setOrigin(rec.getSize().x / 2,rec.getSize().y / 2);
 }
 
