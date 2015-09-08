@@ -5,6 +5,7 @@ void Background::init()
     bg_image.setOrigin(960,540);
     //bg_image.setColor( sf::Color(5,40,28,255) );
 
+
     for (int i = 0; i < num_circles; ++i)
     {
         bgCircle c;
@@ -13,7 +14,7 @@ void Background::init()
         float dx = utils::getRandom(0,38);
         float dy = utils::getRandom(0,21);
         float r = utils::getRandom(10,100);
-        float alpha = utils::getRandom(1,8);
+        float alpha = utils::getRandom(1,32);
         float speed = utils::getRandom(1,10);
         speed /= 10.f;
         r /= 100;
@@ -34,10 +35,10 @@ void Background::init()
 
 void Background::draw()
 {
-    Vector2 pos = gdata.toScreenPixels(position);
-    bg_image.setPosition(pos.x,pos.y);
-    bg_image.setScale(gdata.zoom,gdata.zoom);
-    gdata.window->draw(bg_image);
+    //Vector2 pos = gdata.toScreenPixels(position);
+    //bg_image.setPosition(pos.x,pos.y);
+    //bg_image.setScale(gdata.zoom,gdata.zoom);
+    //gdata.window->draw(bg_image);
 
     for (int i = 0; i < circles.size(); ++i)
     {
@@ -46,7 +47,7 @@ void Background::draw()
         Vector2 pos = gdata.toScreenPixels(circle->pos);
         circle->c.setRadius( circle->radius * WORLD_SCALE * gdata.zoom );
         circle->c.setPosition( pos.x,pos.y);
-        circle->c.setFillColor(sf::Color(255,255,255,circle->alpha));
+        circle->c.setFillColor(sf::Color(bubble_color.r,bubble_color.g,bubble_color.b,circle->alpha));
         gdata.window->draw(circle->c);
     }
 }

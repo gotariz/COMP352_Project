@@ -12,7 +12,7 @@ class Background
         int         num_circles = 0;
 
         vector<bgCircle> circles;
-
+        sf::Color bubble_color;
         void init();
         void draw();
         void update();

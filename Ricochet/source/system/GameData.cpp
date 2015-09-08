@@ -225,8 +225,8 @@ Vector2 GameData::toScreenPixels(Vector2 p)
     int pixel_x = window->getSize().x / 2 + (p.x * (WORLD_SCALE * zoom));
 	int pixel_y = window->getSize().y / 2 - (p.y * (WORLD_SCALE * zoom));
 
-	pixel_x -= camera->x * (WORLD_SCALE * gdata.zoom);
-	pixel_y -= -camera->y * (WORLD_SCALE * gdata.zoom);
+    pixel_x -= camera->x * (WORLD_SCALE * gdata.zoom);
+    pixel_y -= -camera->y * (WORLD_SCALE * gdata.zoom);
 
     return Vector2(pixel_x,pixel_y);
 }

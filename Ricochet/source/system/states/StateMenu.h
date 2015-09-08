@@ -12,6 +12,7 @@
 #include "system/InputHandler.h"
 
 #include "video/sfFontRenderer.h"
+#include "video/Background.h"
 
 class StateMenu : public IState
 {
@@ -27,6 +28,12 @@ class StateMenu : public IState
         virtual void draw();
         virtual void freeResources();
         virtual void start();
+
+        //This is the coloured rectangle around selected
+        sf::RectangleShape rec;
+        Background bg;
+
+        float dur = 0.25;
 
         //This is a list of items in the main menu (eg. start, awards, options, exit)
         vector<string> menuItems;
@@ -68,9 +75,21 @@ class StateMenu : public IState
 
         //main menu x
         float x = 0;
-        //options menu x
-        float ox = 0;
-        float y = 0;
+        //options menu y
+        int y = 0;
+
+        //pos for x to transit to
+        int tx = 0;
+        //pos for x on the menu screen
+        int mx = 0;
+
+        //whether or not the menus are changing state
+        bool transitioning = false;
+
+        bool slideIn = false;
+
+        //the menu you wish to transition to after transition animation has finished
+        int pushMenu = -1;
 
     public:
 
