@@ -4,7 +4,6 @@
 	<object type="hole" position="-7,6" />
 
 	<!-- LASERS -->
-	<object type="laser" position="-11.5,-7.4" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="360" rotation_duration="60" rotating="0" rotation_time="0"/>
 	
 	<!-- PLAYER -->
 	<object type="player" position="7,6" />
@@ -17,7 +16,6 @@
 	<object type="wall" position="0,-9.25" size="38,2.5" rotation="0"/>
 
 	<!-- PLATFORMS -->
-	<object type="platform" position="0,-5" size="3,1" rotation="0" moves="1" p1="-10,-6.5" p2="10,-6.5" duration="2" progress="0.84"/>
 	
 
 	

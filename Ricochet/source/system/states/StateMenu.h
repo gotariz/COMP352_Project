@@ -50,6 +50,8 @@ class StateMenu : public IState
         vector<string>  res;
         vector<string>  fps;
 
+        Camera c;
+
         //This is a way to track which option is selected (eg. the 3rd resolution is selected)
         vector<int>     selectedOps;
 

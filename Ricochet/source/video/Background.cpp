@@ -43,10 +43,9 @@ void Background::draw()
     for (int i = 0; i < circles.size(); ++i)
     {
         bgCircle* circle = &circles.at(i);
-
-        Vector2 pos = gdata.toScreenPixels(circle->pos);
+        Vector2 pos2 = gdata.toScreenPixels(circle->pos);
         circle->c.setRadius( circle->radius * WORLD_SCALE * gdata.zoom );
-        circle->c.setPosition( pos.x,pos.y);
+        circle->c.setPosition( pos2.x,pos2.y);
         circle->c.setFillColor(sf::Color(bubble_color.r,bubble_color.g,bubble_color.b,circle->alpha));
         gdata.window->draw(circle->c);
     }

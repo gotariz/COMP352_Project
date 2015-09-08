@@ -15,7 +15,6 @@ void StateMenu::load()
     assets.loadAssetList("data/assets.xml");
 	gdata.assets = &assets;
 
-    Camera c(0,0,0,0);
     gdata.camera = &c;
     bg.num_circles = 60;
     bg.bubble_alpha_range.set(0,128);
