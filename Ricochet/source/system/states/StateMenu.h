@@ -91,6 +91,11 @@ class StateMenu : public IState
         //the menu you wish to transition to after transition animation has finished
         int pushMenu = -1;
 
+        //count the levels for level select
+        int levelCount = 1;
+
+        int selectedLevel = 1;
+
     public:
 
 		AssetManager	    assets;
