@@ -141,26 +141,28 @@ void StateMenu::handleEvents()
         {
             gdata.running = false;
         }
+    }
 
-        else if(gdata.keys[sf::Keyboard::R].isKeyPressed)
+    //general keys for all menu
+    if(gdata.keys[sf::Keyboard:: Escape].isKeyPressed)
+    {
+        gdata.running = false;
+    }
+
+    else if(gdata.keys[sf::Keyboard::R].isKeyPressed)
+    {
+        if(event.key.code == sf::Keyboard::R)
         {
-            if(event.key.code == sf::Keyboard::R)
-            {
-                reset();
-            }
+            reset();
         }
     }
 
+    //specific keys for each sub-menu
     if(!transitioning)
     {
         if(menuState == MENU_MAIN)  //Handle events within the main menu screen
         {
-            if(gdata.keys[sf::Keyboard:: Escape].isKeyPressed)
-            {
-                gdata.running = false;
-            }
-
-            else if (gdata.keys[sf::Keyboard::Up].isKeyPressed)
+            if (gdata.keys[sf::Keyboard::Up].isKeyPressed)
             {
                 selected -= 1;
                 if(selected < 0)
@@ -389,10 +391,6 @@ void StateMenu::update()
             }
         }
     }
-        // (distance_to_move  time_to_move)
-
-        //100 * time
-        // distance_between x and tx * (gdata.m_timeDelta * transition durstion in seconds)
 }
 
 void StateMenu::draw()
@@ -450,7 +448,7 @@ void StateMenu::draw()
 
     }
 
-    else if(menuState == MENU_OPTIONS) //! NEED ANIMATIONS
+    else if(menuState == MENU_OPTIONS)
     {
         for (int i = 0; i < optionsItems.size(); i++)
         {
