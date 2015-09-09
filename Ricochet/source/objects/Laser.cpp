@@ -6,7 +6,7 @@ Laser::Laser()
     emitter.frequency = 60;
     emitter.duration = 375;
     emitter.speed = 5;
-    emitter.size = 2;
+    emitter.size = 1;
     emitter.enabled = true;
 
     laser_beam.setTexture(*gdata.assets->getTexture("laser_beam"));

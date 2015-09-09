@@ -63,13 +63,13 @@ void StateGame::load()
 
     cout << "creating background:";
 	bg.bg_image.setTexture(*gdata.assets->getTexture("background"));
-	bg.bubble_alpha_range.set(0,40);
+	bg.bubble_alpha_range.set(0,8);
     bg.bubble_color = sf::Color(255,255,255,0);
 	bg.num_circles = 60;
 	bg.init();
 
-	int min = 50;
-    int max = 150;
+	int min = 5;
+    int max = 50;
 
     int r = utils::getRandom(min,max);
     int g = utils::getRandom(min,max);
