@@ -85,85 +85,19 @@ void InputHandler::handleEvents()
     }
 }
 
-//void InputHandler::handlePlayerEvents()
-//{
-//    float h = 0;
-//    float v = 0;
-//
-//	if (gdata.keys[KEY_MOUSE_LEFT].isKeyPressed)
-//	{
-//	    if (!launched)
-//        {
-//            s_pos = gdata.toScreenPixels(m_player->getAbsolutePosition());
-//            s_pos.y = gdata.window->getSize().y - s_pos.y;
-//            Vector2 d = gdata.mouse - s_pos;
-//            if (d.getMagnitude() <= (0.5 * WORLD_SCALE * gdata.zoom))
-//            {
-//                selecting = true;
-//            }
-//        }
-//	}
-//
-//	if (gdata.keys[KEY_MOUSE_LEFT].isKeyDown)
-//	{
-//        if (selecting && !launched)
-//		{
-//		    e_pos = gdata.mouse;
-//            velocity = s_pos - e_pos;
-//            angle = velocity.getAngle();
-//
-//            float dist = velocity.getMagnitude();
-//            if (dist > pullbackDistance) dist = pullbackDistance;
-//
-//            power = static_cast<int>((dist / pullbackDistance) * 100);
-//            float percent = power / 100.f;
-//
-//            velocity.normalise();
-//            velocity.set(1,0);
-//            velocity.rotate(angle);
-//            velocity.setMagnitude( m_player->maxSpeed * percent );
-//		}
-//	}
-//
-//	if (gdata.keys[KEY_MOUSE_LEFT].isKeyReleased)
-//	{
-//	    if (selecting && !launched)
-//		{
-//		    velocity = s_pos - e_pos;
-//		    angle = velocity.getAngle();
-//
-//            float dist = velocity.getMagnitude();
-//            if (dist > pullbackDistance) dist = pullbackDistance;
-//
-//            power = static_cast<int>((dist / pullbackDistance) * 100);
-//            float percent = power / 100.f;
-//
-//            velocity.normalise();
-//            //angle = velocity.getAngle();
-//            velocity.set(1,0);
-//            velocity.rotate(angle);
-//            velocity.setMagnitude( m_player->maxSpeed * percent );
-//
-//
-//            m_player->currentSpeed = velocity.getMagnitude();
-//            m_player->trail.addPoint( m_player->getAbsolutePosition() );
-//            m_player->setLinearVelocity(velocity);
-//            m_player->trail.length = MAX_TAIL_LENGTH * (velocity.getMagnitude() / m_player->maxSpeed);
-//            selecting = false;
-//            launched = true;
-//		}
-//	}
-//}
-
 void InputHandler::handlePlayerEvents()
 {
     float h = 0;
     float v = 0;
 
-    angle_lock = gdata.keys[sf::Keyboard::Space].isKeyDown;
+    if (gdata.keys[sf::Keyboard::Space].isKeyPressed)
+    {
+        if (selecting && !launched)
+            angle_lock = !angle_lock;
+    }
 
-    if (gdata.keys[KEY_MOUSE_RIGHT].isKeyDown)  angle_snap = 1;
-    else                                        angle_snap = 0;
+    if (gdata.keys[KEY_MOUSE_RIGHT].isKeyPressed)
+        angle_snap = angle_snap == 1 ? 0 : 1;
 
 
 	if (gdata.keys[KEY_MOUSE_LEFT].isKeyPressed)

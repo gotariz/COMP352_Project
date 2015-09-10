@@ -62,29 +62,29 @@ void StateGame::load()
 	manager.setPhysicsWorld(world);
 
     cout << "creating background:";
-	bg.bg_image.setTexture(*gdata.assets->getTexture("background"));
 	bg.bubble_alpha_range.set(0,8);
     bg.bubble_color = sf::Color(255,255,255,0);
 	bg.num_circles = 60;
 	bg.init();
 
-	int min = 5;
-    int max = 50;
+	int min = 15;
+    int max = 30;
+    float brightness = 0.055f;
+    int s = utils::getRandom(1,3);
 
-    int r = utils::getRandom(min,max);
-    int g = utils::getRandom(min,max);
-    if (r < 25 && g < 25) min = 25;
-    int b = utils::getRandom(min,max);
+    int r = utils::getRandom(s == 1 ? 0 : min,s == 1 ? 5 : max);
+    int b = utils::getRandom(s == 2 ? 0 : min,s == 2 ? 5 : max);
+    int g = utils::getRandom(s == 3 ? 0 : min,s == 3 ? 5 : max);
 
-    int lum = (r+r+b+g+g+g) / 6;
-    if (lum < 12)
-    {
-        r += 10;
-        g += 10;
-        b += 10;
-    }
+    r += (255.f * brightness);
+    g += (255.f * brightness);
+    b += (255.f * brightness);
 
-    bg.bg_image.setColor(sf::Color(r,g,b,255));
+    r = r > 255 ? 255 : r;
+    g = g > 255 ? 255 : g;
+    b = b > 255 ? 255 : b;
+
+    bg.rec.setFillColor(sf::Color(r,g,b,255));
 	cout << "complete" << endl;
 
     cout << "initialising input:";
@@ -122,6 +122,8 @@ void StateGame::load()
     cout << "adjusting screen size:";
 	gdata.zoom = (gdata.settings->getScreenWidth() / 1900.f);
 	cout << "complete" << endl;
+
+    cout << "color:" << r << "-" << g << "-" << b << endl;
 
     cout << "===================================================" << endl;
     loading = false;
@@ -188,8 +190,7 @@ void StateGame::update()
 
 void StateGame::draw()
 {
-    gdata.window->clear(sf::Color(32,32,32,255));
-    //gdata.window->clear(sf::Color::Green);
+    gdata.window->clear(sf::Color::Black);
 
     bg.draw();
 
@@ -198,11 +199,10 @@ void StateGame::draw()
         // draw the line
         Vector2 start = player->getAbsolutePosition();
         Vector2 dir = input.vel;
-        float length = 50;
-        Vector2 e = raycast(start,dir,length);
+        dir.setMagnitude(50);
 
         Vector2 p = gdata.toScreenPixels(start);
-        Vector2 n = gdata.toScreenPixels(start + e);//gdata.toScreenPixels(player->getAbsolutePosition() + dir);
+        Vector2 n = gdata.toScreenPixels(start + dir);
         sf::Vertex line[] =
         {
             sf::Vertex(sf::Vector2f(p.x, p.y),sf::Color(255,255,255,32)),
@@ -210,8 +210,8 @@ void StateGame::draw()
         };
         gdata.window->draw(line, 2, sf::Lines);
 
-        e.setMagnitude( e.getMagnitude() * (static_cast<float>(input.power) / 100.f) );
-        Vector2 n2 = gdata.toScreenPixels(start + e);//gdata.toScreenPixels(player->getAbsolutePosition() + dir);
+        dir.setMagnitude( (static_cast<float>(input.power) / 100.f) * WORLD_SCALE * 0.4);
+        Vector2 n2 = gdata.toScreenPixels(start + dir);
         sf::Vertex line2[] =
         {
             sf::Vertex(sf::Vector2f(p.x, p.y),sf::Color::White),
@@ -255,15 +255,12 @@ void StateGame::draw()
         Vector2 p = gdata.toScreenPixels(player->getAbsolutePosition());
         string v = gz::toString(input.power) + "%";
         string a = gz::toString(input.angle) + " degrees";
-        //string v = gz::toString( input.s_pos.x) + "," + gz::toString( input.s_pos.y);
-        //string a = gz::toString( input.e_pos.x) + "," + gz::toString( input.e_pos.y);
         fntPower.drawString(p.x + cx,p.y - 100,v);
         fntAngle.drawString(p.x + cx,p.y - 50,a);
     }
 
     fntIns.drawString(10,10,"Press R to restart level");
     fntLevel.drawString(130,110,"Level " + gz::toString(gdata.level));
-    //font->drawString(0,0,"Level " + gz::toString(gdata.level));
 
 
     //===========================================

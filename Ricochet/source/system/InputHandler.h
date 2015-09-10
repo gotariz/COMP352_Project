@@ -38,7 +38,7 @@ class InputHandler
 		bool selecting = false;
 		bool launched = false;
 		bool angle_lock = false;
-		int  angle_snap = 5;
+		int  angle_snap = 0;
 		Vector2 vel;
 
     private:

@@ -51,7 +51,6 @@ void sfFontRenderer::drawString(int x, int y, std::string text, int horizontalPo
         sf::Sprite* sprite = m_font->getCharacter( text.at(i) );
         if (sprite)
         {
-            //cout << m_color.r << "," << m_color.g << "," << m_color.b << "," << m_color.a << endl;
             sprite->setColor(m_color);
             sprite->setPosition(x,y);
             x += sprite->getTexture()->getSize().x;
