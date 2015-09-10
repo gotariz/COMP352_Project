@@ -34,4 +34,7 @@
 	<asset type="font" path="media/fonts/purista-medium-14-white/" />
 	<asset type="font" path="media/fonts/segoe-ui-light-48/" />
 	<asset type="font" path="media/fonts/segoe-ui-light-20/" />
+	<asset type="music" path="media/music/music1.ogg" />
+	<asset type="music" path="media/music/music2.ogg" />
+	<asset type="music" path="media/music/music3.ogg" />
 </root>

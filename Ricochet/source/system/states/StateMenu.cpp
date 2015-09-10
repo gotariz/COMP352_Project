@@ -119,6 +119,12 @@ void StateMenu::load()
 
     x = mx;
 
+    music.stop();
+    music.setLoop(true);
+    music.openFromFile(gdata.assets->getMusic("music2"));
+    music.setVolume(50);
+    music.play();
+
     loading = false;
 }
 
@@ -330,6 +336,7 @@ void StateMenu::handleEvents()
             {
                 gdata.level = selectedLevel;
                 gdata.gamestate = STATE_GAME;
+                music.stop();
             }
         }
     }
@@ -362,6 +369,14 @@ void StateMenu::update()
     mx = gdata.settings->getScreenWidth() - 400;
     tx = gdata.settings->getScreenWidth() + 10;
     y = gdata.settings->getScreenHeight() - 40 - (78 * vec.size());
+
+    leftLevel = selectedLevel - 1;
+    if(leftLevel < 1)
+        leftLevel = levelCount;
+
+    rightLevel = selectedLevel + 1;
+    if(rightLevel > levelCount)
+        rightLevel = 1;
 
     // Menu animation sliding;
     if(transitioning)
@@ -424,13 +439,27 @@ void StateMenu::draw()
         font.setColor(sf::Color::White);
 
         //lvlShot.setFillColor(sf::Color::Black);
-        lvlShot.setTexture(gdata.assets->getTexture("Screencap_Level_1"), true);
-        lvlShot.setPosition(gdata.settings->getScreenWidth()/4, gdata.settings->getScreenHeight()/4);
+        lvlShot.setTexture(gdata.assets->getTexture("Screencap_Level_"+gz::toString(selectedLevel)), true);
         lvlShot.setSize(sf::Vector2f(gdata.settings->getScreenWidth(), gdata.settings->getScreenHeight()));
+        lvlShot.setPosition((gdata.settings->getScreenWidth()/2) - (lvlShot.getSize().x /4 ), gdata.settings->getScreenHeight()/4);
         lvlShot.setScale(0.5,0.5);
-        lvlShot.setOutlineThickness(2);
-        lvlShot.setOutlineColor(sf::Color::Black);
+
+        leftLvlShot.setTexture(gdata.assets->getTexture("Screencap_Level_"+gz::toString(leftLevel)), true);
+        leftLvlShot.setSize(sf::Vector2f(gdata.settings->getScreenWidth(), gdata.settings->getScreenHeight()));
+        leftLvlShot.setScale(0.2,0.2);
+        leftLvlShot.setPosition(20, (gdata.settings->getScreenHeight()/3));
+        leftLvlShot.setFillColor(sf::Color(150,150,150,200));
+
+        rightLvlShot.setTexture(gdata.assets->getTexture("Screencap_Level_"+gz::toString(rightLevel)), true);
+        rightLvlShot.setSize(sf::Vector2f(gdata.settings->getScreenWidth(), gdata.settings->getScreenHeight()));
+        rightLvlShot.setScale(0.2,0.2);
+        rightLvlShot.setPosition(gdata.settings->getScreenWidth() - (rightLvlShot.getSize().x * rightLvlShot.getScale().x) - 20,
+                                (gdata.settings->getScreenHeight()/3));
+        rightLvlShot.setFillColor(sf::Color(150,150,150,200));
+
         gdata.window->draw(lvlShot);
+        gdata.window->draw(leftLvlShot);
+        gdata.window->draw(rightLvlShot);
 
         rec.setPosition(x, y);
         rec.setSize(sf::Vector2f(500,70));
@@ -489,6 +518,7 @@ void StateMenu::draw()
 void StateMenu::freeResources()
 {
     gdata.camera = nullptr;
+    music.stop();
 }
 
 void StateMenu::start(){}

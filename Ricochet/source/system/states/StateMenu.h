@@ -34,6 +34,9 @@ class StateMenu : public IState
         Background bg;
 
         sf::RectangleShape lvlShot;
+        sf::RectangleShape leftLvlShot;
+        sf::RectangleShape rightLvlShot;
+        sf::RectangleShape bufferLvlShot;
 
         float dur = 0.25;
 
@@ -96,16 +99,11 @@ class StateMenu : public IState
         //count the levels for level select
         int levelCount = 1;
         int selectedLevel = 1;
+        int leftLevel = 0;
+        int rightLevel = 2;
+        int bufferLevel = 1;
 
-        sf::Texture lvlTex1 = *gdata.assets->getTexture("Screencap_Level_1");
-        sf::Texture lvlTex2;
-        sf::Texture lvlTex3;
-        sf::Texture lvlTex4;
-        sf::Texture lvlTex5;
-        sf::Texture lvlTex6;
-        sf::Texture lvlTex7;
-        sf::Texture lvlTex8;
-        sf::Texture lvlTex9;
+        sf::Music music;
 
     public:
 
