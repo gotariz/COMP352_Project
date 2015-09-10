@@ -22,6 +22,15 @@
 	<asset type="image" path="media/images/hole_on.png" />
 	<asset type="image" path="media/images/hole_off.png" />
 	<asset type="image" path="media/images/background.png" />
+	<asset type="image" path="media/images/Screencap_Level_1.png" />
+	<asset type="image" path="media/images/Screencap_Level_2.png" />
+	<asset type="image" path="media/images/Screencap_Level_3.png" />
+	<asset type="image" path="media/images/Screencap_Level_4.png" />
+	<asset type="image" path="media/images/Screencap_Level_5.png" />
+	<asset type="image" path="media/images/Screencap_Level_6.png" />
+	<asset type="image" path="media/images/Screencap_Level_7.png" />
+	<asset type="image" path="media/images/Screencap_Level_8.png" />
+	<asset type="image" path="media/images/Screencap_Level_9.png" />
 	<asset type="font" path="media/fonts/purista-medium-14-white/" />
 	<asset type="font" path="media/fonts/segoe-ui-light-48/" />
 	<asset type="font" path="media/fonts/segoe-ui-light-20/" />

@@ -93,7 +93,7 @@ void Settings::readSettings()
             std::string name = p.first;
             std::string value = p.second;
 
-            if (name == "fpsLimit")
+            if (name == "fps")
             {
                 m_fpsLimit = gz::toInt(value.c_str(),SETTINGS_DEFAULT_FPSLIMIT);
             }
@@ -115,7 +115,7 @@ void Settings::readSettings()
             }
         }
 
-        gz::print_value("fpsLimit:  ",m_fpsLimit);
+        gz::print_value("fps:  ",m_fpsLimit);
         gz::print_value("fullscreen:",m_fullscreen);
         gz::print_value("vsync:     ",m_vsync);
         gz::print_value("width:     ",m_resolution.w);

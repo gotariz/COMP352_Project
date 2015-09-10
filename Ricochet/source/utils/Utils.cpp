@@ -49,3 +49,13 @@ int utils::roundNearest(float num, int clip)
     else
         return roundDown(num,clip);
 }
+
+bool utils::fexists(const std::string& filename) {
+  ifstream ifile(filename.c_str());
+  return ifile;
+}
+
+bool utils::fexists(const char *filename) {
+  ifstream ifile(filename);
+  return ifile;
+}

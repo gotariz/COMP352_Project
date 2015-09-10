@@ -22,7 +22,6 @@ void StateMenu::load()
     bg.bubble_alpha_range.set(0,128);
     bg.bubble_color = sf::Color(0,0,0,0);
     bg.init();
- 	//gdata.window->setKeyRepeatEnabled(false);
 
     //font = new sfFontRenderer(gdata.window);
     font.setWindow(gdata.window);
@@ -59,6 +58,18 @@ void StateMenu::load()
 	selectedFs      = gdata.settings->getFullscreen();
 	selectedFPS     = gdata.settings->getFpsLimit();
 
+	//HARD CODED FPS FIX
+	if(selectedFPS == 60)
+	{
+        selectedFPS = 1;
+        cout << "FPS Fixed" << endl;
+	}
+	if(selectedFPS == 120)
+	{
+        selectedFPS = 2;
+        cout << "FPS Fixed" << endl;
+	}
+
     cout << "\n<----------------------SETTINGS LOADED-------------------------->\n"
          << "\tvSync:\t\t\t\t" << selectedVSync << "\n"
          << "\tFullscreen:\t\t\t" << selectedFs << "\n"
@@ -69,15 +80,12 @@ void StateMenu::load()
 
     fps.push_back(gz::toString(0));
     fps.push_back(gz::toString(60));
+    fps.push_back(gz::toString(120));
 
     optionsSettings.push_back(vSync);
     optionsSettings.push_back(fs);
     optionsSettings.push_back(res);
     optionsSettings.push_back(fps);
-
-    selectedVSync   = gdata.settings->getVsync();
-    selectedFs      = gdata.settings->getFullscreen();
-    selectedFPS     = gdata.settings->getFpsLimit();
 
     selectedOps.push_back(selectedVSync);
     selectedOps.push_back(selectedFs);
@@ -90,26 +98,18 @@ void StateMenu::load()
 	optionsItems.push_back("FPS Limit");
 
     //count the amount of levels in the XML
-    try
+	while(true)
     {
-        while(true)
+        if(utils::fexists(gz::toString(LEVEL_PATH + gz::toString(levelCount) + ".xml")))
         {
-            XMLDocument doc;
-            XMLError error = doc.LoadFile(  gz::toString(LEVEL_PATH + gz::toString(levelCount) + ".xml").c_str() );
-
-            if (error != XML_NO_ERROR)
-            {
-                levelCount -= 1;
-                break;
-            }
             levelCount += 1;
-
+        }
+        else
+        {
+            levelCount -= 1;
+            break;
         }
     }
-	catch (std::exception& ex)
-	{
-		gz::print_w("Exception Thrown:" + gz::toString(ex.what()));
-	}
 
 	cout << "Level count: " << levelCount << endl;
 
@@ -232,12 +232,6 @@ void StateMenu::handleEvents()
                 gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
                 gdata.window->setVerticalSyncEnabled(vSyncMode);
 
-    //            if(selectedFs != gdata.settings->getFullscreen())
-    //            {
-    //                gdata.window->close();
-    //                gdata.window->
-    //            }
-    //
                 cout << "\n<----------------------SETTINGS SAVED-------------------------->\n"
                      << "\tvSync:\t\t\t\t" << vSyncMode << "\n"
                      << "\tFullscreen:\t\t\t" << selectedFs << "\n"
@@ -358,6 +352,7 @@ void StateMenu::update()
 {
     bg.update();
 
+    //Correct position from the bottom of screen
     vector<string> vec;
     if (menuState == MENU_MAIN)
         vec = menuItems;
@@ -368,6 +363,7 @@ void StateMenu::update()
     tx = gdata.settings->getScreenWidth() + 10;
     y = gdata.settings->getScreenHeight() - 40 - (78 * vec.size());
 
+    // Menu animation sliding;
     if(transitioning)
     {
         if (slideIn)
@@ -396,10 +392,8 @@ void StateMenu::update()
 void StateMenu::draw()
 {
     gdata.window->clear(sf::Color(255,255,255,255));
-
     bg.draw();
 
-    // Menu animation sliding;
     if(menuState == MENU_MAIN)
     {
         for(int i = 0; i < menuItems.size(); i++)
@@ -428,6 +422,15 @@ void StateMenu::draw()
     {
         y = gdata.settings->getScreenHeight() - 40 - (78 * 4);
         font.setColor(sf::Color::White);
+
+        //lvlShot.setFillColor(sf::Color::Black);
+        lvlShot.setTexture(gdata.assets->getTexture("Screencap_Level_1"), true);
+        lvlShot.setPosition(gdata.settings->getScreenWidth()/4, gdata.settings->getScreenHeight()/4);
+        lvlShot.setSize(sf::Vector2f(gdata.settings->getScreenWidth(), gdata.settings->getScreenHeight()));
+        lvlShot.setScale(0.5,0.5);
+        lvlShot.setOutlineThickness(2);
+        lvlShot.setOutlineColor(sf::Color::Black);
+        gdata.window->draw(lvlShot);
 
         rec.setPosition(x, y);
         rec.setSize(sf::Vector2f(500,70));

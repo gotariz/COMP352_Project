@@ -23,6 +23,9 @@ class utils
 		static int roundUp(float num, int clip);
 		static int roundDown(float num, int clip);
 		static int roundNearest(float num, int clip);
+
+		static bool fexists(const std::string& filename);
+		static bool fexists(const char *filename);
 };
 
 #endif // UTILS_H

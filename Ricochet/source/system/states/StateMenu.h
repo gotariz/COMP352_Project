@@ -33,6 +33,8 @@ class StateMenu : public IState
         sf::RectangleShape rec;
         Background bg;
 
+        sf::RectangleShape lvlShot;
+
         float dur = 0.25;
 
         //This is a list of items in the main menu (eg. start, awards, options, exit)
@@ -93,8 +95,17 @@ class StateMenu : public IState
 
         //count the levels for level select
         int levelCount = 1;
-
         int selectedLevel = 1;
+
+        sf::Texture lvlTex1 = *gdata.assets->getTexture("Screencap_Level_1");
+        sf::Texture lvlTex2;
+        sf::Texture lvlTex3;
+        sf::Texture lvlTex4;
+        sf::Texture lvlTex5;
+        sf::Texture lvlTex6;
+        sf::Texture lvlTex7;
+        sf::Texture lvlTex8;
+        sf::Texture lvlTex9;
 
     public:
 
