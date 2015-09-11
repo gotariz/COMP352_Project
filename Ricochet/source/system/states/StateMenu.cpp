@@ -361,12 +361,14 @@ void StateMenu::handleEvents()
 
             else if (gdata.keys[sf::Keyboard::Right].isKeyPressed)
             {
-                slideLeft = true;
+                if(!slideLeft && !slideRight)
+                    slideLeft = true;
             }
 
             else if (gdata.keys[sf::Keyboard::Left].isKeyPressed)
             {
-                slideRight = true;
+                if(!slideLeft && !slideRight)
+                    slideRight = true;
             }
 
             else if (gdata.keys[sf::Keyboard::Return].isKeyPressed)
@@ -438,59 +440,54 @@ void StateMenu::update()
 
     if(slideLeft)
     {
+        //move the center shot to the left
         lvlShot.setPosition(lvlShot.getPosition().x - (cx - lx) *(gdata.m_timeDelta * (1/dur)),
                             lvlShot.getPosition().y - (cy - oy) *(gdata.m_timeDelta * (1/dur)));
-
         if(lvlShot.getScale().x > 0.2)
-        {
-            lvlShot.setScale(lvlShot.getScale().x - 0.02, lvlShot.getScale().y - 0.02);
-        }
-
+            lvlShot.setScale(lvlShot.getScale().x - ((0.5-0.2)*(gdata.m_timeDelta * (1/dur))),
+                             lvlShot.getScale().y - ((0.5-0.2)*(gdata.m_timeDelta * (1/dur))));
         if(lvlShot.getPosition().x <= lx )
-        {
             lvlShot.setPosition(lx, oy);
-        }
+        if(lvlShot.getFillColor().r > 150 )
+            lvlShot.setFillColor(sf::Color(lvlShot.getFillColor().r - (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                           lvlShot.getFillColor().g - (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                           lvlShot.getFillColor().b - (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                           lvlShot.getFillColor().a - (255-200)*(gdata.m_timeDelta * (1/dur))));
 
 
 
         rbLvlShot.setPosition(rbLvlShot.getPosition().x - (gdata.settings->getScreenWidth() +20 - (rx - (gdata.settings->getScreenWidth() * 0.2))) *(gdata.m_timeDelta * (1/dur)), oy);
         if(rbLvlShot.getScale().x < 0.2)
-        {
-            rbLvlShot.setScale(rbLvlShot.getScale().x + 0.01, rbLvlShot.getScale().y + 0.01);
-        }
-
+            rbLvlShot.setScale(rbLvlShot.getScale().x + ((0.2-0.1)*(gdata.m_timeDelta * (1/dur))),
+                               rbLvlShot.getScale().y + ((0.2-0.1)*(gdata.m_timeDelta * (1/dur))));
         if(rbLvlShot.getPosition().x <= (rx - (gdata.settings->getScreenWidth() * 0.2)))
-        {
             rbLvlShot.setPosition((rx - (gdata.settings->getScreenWidth() * 0.2)), oy);
-        }
 
 
 
         leftLvlShot.setPosition(leftLvlShot.getPosition().x - (gdata.settings->getScreenWidth() * 0.2) *(gdata.m_timeDelta * (1/dur)), oy);
-
         if(leftLvlShot.getScale().x > 0.1)
-        {
-            leftLvlShot.setScale(leftLvlShot.getScale().x - 0.02, leftLvlShot.getScale().y - 0.02);
-        }
-
+            leftLvlShot.setScale(leftLvlShot.getScale().x - ((0.2-0.1)*(gdata.m_timeDelta * (1/dur))),
+                                 leftLvlShot.getScale().y - ((0.2-0.1)*(gdata.m_timeDelta * (1/dur))));
         if(leftLvlShot.getPosition().x <= 0 - (gdata.settings->getScreenWidth() * 0.2) )
-        {
             leftLvlShot.setPosition(0 - (gdata.settings->getScreenWidth() * 0.2), oy);
-        }
+
 
 
         rightLvlShot.setPosition(rightLvlShot.getPosition().x - (rx - cx) *(gdata.m_timeDelta * (1/dur)),
                                  rightLvlShot.getPosition().y + (cy - oy) *(gdata.m_timeDelta * (1/dur)));
-
         if(rightLvlShot.getScale().x < 0.5)
-        {
-            rightLvlShot.setScale(rightLvlShot.getScale().x + 0.02, rightLvlShot.getScale().y + 0.02);
-        }
-
+            rightLvlShot.setScale(rightLvlShot.getScale().x + ((0.5-0.2)*(gdata.m_timeDelta * (1/dur))),
+                                  rightLvlShot.getScale().y + ((0.5-0.2)*(gdata.m_timeDelta * (1/dur))));
         if(rightLvlShot.getPosition().x <= cx - (gdata.settings->getScreenWidth() /2 * 0.5 ))
-        {
             rightLvlShot.setPosition(cx - (gdata.settings->getScreenWidth() /2 * 0.5 ), cy);
-        }
+        if(rightLvlShot.getFillColor().r < 255 )
+            rightLvlShot.setFillColor(sf::Color(rightLvlShot.getFillColor().r + (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                                rightLvlShot.getFillColor().g + (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                                rightLvlShot.getFillColor().b + (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                                rightLvlShot.getFillColor().a + (255-200)*(gdata.m_timeDelta * (1/dur))));
+
+
 
         if(rightLvlShot.getPosition() == sf::Vector2f(cx - (gdata.settings->getScreenWidth() /2 * 0.5 ), cy))
         {
@@ -533,57 +530,49 @@ void StateMenu::update()
     {
         lvlShot.setPosition(lvlShot.getPosition().x + (rx - (cx - (gdata.settings->getScreenWidth() /2 * 0.5 ))) *(gdata.m_timeDelta * (1/dur)),
                             lvlShot.getPosition().y - (cy - oy) *(gdata.m_timeDelta * (1/dur)));
-
         if(lvlShot.getScale().x > 0.2)
-        {
-            lvlShot.setScale(lvlShot.getScale().x - 0.02, lvlShot.getScale().y - 0.02);
-        }
-
+            lvlShot.setScale(lvlShot.getScale().x - ((0.5-0.2)*(gdata.m_timeDelta * (1/dur))),
+                             lvlShot.getScale().y - ((0.5-0.2)*(gdata.m_timeDelta * (1/dur))));
         if(lvlShot.getPosition().x >= (rx - (gdata.settings->getScreenWidth() * 0.2)))
-        {
             lvlShot.setPosition((rx - (gdata.settings->getScreenWidth() * 0.2)), oy);
-        }
+        if(lvlShot.getFillColor().r > 150 )
+            lvlShot.setFillColor(sf::Color(lvlShot.getFillColor().r - (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                           lvlShot.getFillColor().g - (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                           lvlShot.getFillColor().b - (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                           lvlShot.getFillColor().a - (255-200)*(gdata.m_timeDelta * (1/dur))));
 
 
 
         lbLvlShot.setPosition(lbLvlShot.getPosition().x + (gdata.settings->getScreenWidth() +20 - (rx - (gdata.settings->getScreenWidth() * 0.2))) *(gdata.m_timeDelta * (1/dur)), oy);
         if(lbLvlShot.getScale().x < 0.2)
-        {
-            lbLvlShot.setScale(lbLvlShot.getScale().x + 0.01, lbLvlShot.getScale().y + 0.01);
-        }
-
+            lbLvlShot.setScale(lbLvlShot.getScale().x + ((0.2-0.1)*(gdata.m_timeDelta * (1/dur))),
+                               lbLvlShot.getScale().y + ((0.2-0.1)*(gdata.m_timeDelta * (1/dur))));
         if(lbLvlShot.getPosition().x >= lx)
-        {
             lbLvlShot.setPosition(lx, oy);
-        }
 
 
 
         rightLvlShot.setPosition(rightLvlShot.getPosition().x + gdata.settings->getScreenWidth() *(gdata.m_timeDelta * (1/dur)), oy);
-
         if(rightLvlShot.getScale().x > 0.1)
-        {
-            rightLvlShot.setScale(rightLvlShot.getScale().x - 0.02, rightLvlShot.getScale().y - 0.02);
-        }
-
+            rightLvlShot.setScale(rightLvlShot.getScale().x - ((0.2-0.1)*(gdata.m_timeDelta * (1/dur))),
+                                  rightLvlShot.getScale().y - ((0.2-0.1)*(gdata.m_timeDelta * (1/dur))));
         if(rightLvlShot.getPosition().x >= gdata.settings->getScreenWidth())
-        {
             rightLvlShot.setPosition(gdata.settings->getScreenWidth(), oy);
-        }
 
 
         leftLvlShot.setPosition(leftLvlShot.getPosition().x + (cx - (gdata.settings->getScreenWidth() /2 * 0.5 ) - lx) *(gdata.m_timeDelta * (1/dur)),
                                 leftLvlShot.getPosition().y + (cy - oy) *(gdata.m_timeDelta * (1/dur)));
-
         if(leftLvlShot.getScale().x < 0.5)
-        {
-            leftLvlShot.setScale(leftLvlShot.getScale().x + 0.02, leftLvlShot.getScale().y + 0.02);
-        }
-
+            leftLvlShot.setScale(leftLvlShot.getScale().x + ((0.5-0.2)*(gdata.m_timeDelta * (1/dur))),
+                                 leftLvlShot.getScale().y + ((0.5-0.2)*(gdata.m_timeDelta * (1/dur))));
         if(leftLvlShot.getPosition().x >= cx - (gdata.settings->getScreenWidth() /2 * 0.5 ))
-        {
             leftLvlShot.setPosition(cx - (gdata.settings->getScreenWidth() /2 * 0.5 ), cy);
-        }
+        if(leftLvlShot.getFillColor().r < 255 )
+            leftLvlShot.setFillColor(sf::Color( leftLvlShot.getFillColor().r + (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                                leftLvlShot.getFillColor().g + (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                                leftLvlShot.getFillColor().b + (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                                leftLvlShot.getFillColor().a + (255-200)*(gdata.m_timeDelta * (1/dur))));
+
 
         if(leftLvlShot.getPosition() == sf::Vector2f(cx - (gdata.settings->getScreenWidth() /2 * 0.5 ), cy))
         {
