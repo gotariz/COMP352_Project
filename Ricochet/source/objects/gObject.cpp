@@ -54,10 +54,11 @@ void gObject::onDraw()
 {
     if (m_image.getTexture() != nullptr)
     {
-		Vector2 pos = getAbsolutePosition();
-		pos = gdata.toScreenPixels(pos.x, pos.y);
+		Vector2 pos = gdata.toScreenPixels(getAbsolutePosition());
+		m_image.setPosition(pos.x,pos.y);
 		m_image.setScale(gdata.zoom,gdata.zoom);
 		m_image.setRotation(getAbsoluteRotation());
+		m_image.setOrigin(m_image.getTexture()->getSize().x/2,m_image.getTexture()->getSize().y/2);
         gdata.window->draw(m_image);
     }
 }

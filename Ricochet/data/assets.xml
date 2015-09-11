@@ -17,11 +17,13 @@
 	<asset type="sound" path="media/sounds/god.wav" />
 	<asset type="music" path="media/music/enya.ogg" />-->
 	
+	<asset type="image" path="media/images/loading.png" />
 	<asset type="image" path="media/images/laser_beam.png" />
 	<asset type="image" path="media/images/laser_end.png" />
 	<asset type="image" path="media/images/hole_on.png" />
 	<asset type="image" path="media/images/hole_off.png" />
-	<asset type="image" path="media/images/background.png" />
+	<asset type="image" path="media/images/switch_off.png" />
+	<asset type="image" path="media/images/switch_on.png" />
 	<asset type="image" path="media/images/Screencap_Level_1.png" />
 	<asset type="image" path="media/images/Screencap_Level_2.png" />
 	<asset type="image" path="media/images/Screencap_Level_3.png" />
@@ -37,4 +39,5 @@
 	<asset type="music" path="media/music/music1.ogg" />
 	<asset type="music" path="media/music/music2.ogg" />
 	<asset type="music" path="media/music/music3.ogg" />
+	<asset type="sound" path="media/sounds/bounce.wav" />
 </root>

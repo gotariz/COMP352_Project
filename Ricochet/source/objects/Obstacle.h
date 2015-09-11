@@ -13,7 +13,7 @@ class Obstacle : public gObject
 
     public:
         virtual void onUpdate();
-        virtual void onDraw();
+        //virtual void onDraw();
 
         //Vector2     m_size;
 

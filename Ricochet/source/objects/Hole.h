@@ -12,7 +12,7 @@ class Hole : public Obstacle
         virtual ~Hole();
 
         virtual void onUpdate();
-        virtual void onDraw();
+        //virtual void onDraw();
         virtual void onEnterCollision(CollisionData cd);
 };
 

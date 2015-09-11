@@ -18,6 +18,7 @@
 #include "objects/Hole.h"
 #include "objects/Object.h"
 #include "objects/Wall.h"
+#include "objects/Toggle.h"
 #include "objects/ObjectManager.h"
 
 #include "video/Camera.h"
@@ -72,7 +73,6 @@ class StateGame : public IState
 
         Player*             player = nullptr;
         Background          bg;
-        //ParticleEmitter     pe;
 
 		// Box2D physics
 		b2World*			world = nullptr;

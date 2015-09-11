@@ -164,6 +164,9 @@ sf::Texture* AssetManager::getTexture(std::string name)
     sf::Texture* result = nullptr;
     if ( m_textures.find(name) != m_textures.end() )
         result = m_textures.at(name);
+    else
+        cout << "could not find texture " << name << " returning nullptr" << endl;
+
     return result;
 }
 
@@ -172,6 +175,9 @@ sf::SoundBuffer* AssetManager::getSound(std::string name)
     sf::SoundBuffer* result = nullptr;
     if ( m_sounds.find(name) != m_sounds.end() )
         result = m_sounds.at(name);
+    else
+        cout << "could not find sound " << name << " returning nullptr" << endl;
+
     return result;
 }
 
@@ -180,6 +186,9 @@ std::string AssetManager::getMusic(std::string name)
     std::string result = "";
     if ( m_music.find(name) != m_music.end() )
         result = m_music.at(name);
+    else
+        cout << "could not find music " << name << " returning \"\"" << endl;
+
     return result;
 }
 
@@ -188,6 +197,8 @@ sfFont* AssetManager::getFont(std::string name)
    sfFont* result = nullptr;
     if ( m_fonts.find(name) != m_fonts.end() )
         result = m_fonts.at(name);
+    else
+        cout << "could not find sfFont " << name << " returning nullptr" << endl;
     return result;
 }
 

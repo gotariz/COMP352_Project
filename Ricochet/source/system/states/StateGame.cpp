@@ -123,8 +123,6 @@ void StateGame::load()
 	gdata.zoom = (gdata.settings->getScreenWidth() / 1900.f);
 	cout << "complete" << endl;
 
-    cout << "color:" << r << "-" << g << "-" << b << endl;
-
     cout << "===================================================" << endl;
     loading = false;
 }
@@ -139,14 +137,11 @@ bool StateGame::initialise()
     gzClock clock;
 	float timedelta = clock.getDeltaSeconds();
     sf::Sprite sprite;
-    sf::Texture texture;
-    if (texture.loadFromFile("media/images/loading.png"))
-    {
-        texture.setSmooth(true);
-        sprite.setTexture(texture);
-        sprite.setOrigin(texture.getSize().x / 2,texture.getSize().y / 2);
-        sprite.setPosition( gdata.settings->getScreenWidth() / 2,gdata.settings->getScreenHeight() / 2 );
-    }
+    sf::Texture& texture = *gdata.assets->getTexture("loading");
+    sprite.setTexture(texture);
+    texture.setSmooth(true);
+    sprite.setOrigin(texture.getSize().x / 2,texture.getSize().y / 2);
+    sprite.setPosition( gdata.settings->getScreenWidth() / 2,gdata.settings->getScreenHeight() / 2 );
 
     while (loading)
     {
@@ -471,10 +466,25 @@ void StateGame::loadLevel()
 				Vector2 pos = Vector2(element->Attribute("position"));
 
 				Hole* hole = new Hole();
-				hole->setPhysicsObject(factory.createHole(pos.x,pos.y));
+				hole->setPhysicsObject(factory.createHole(pos.x,pos.y,hole));
 				hole->m_type = HOLE;
 				hole->m_image.setTexture(*gdata.assets->getTexture("hole_off"));
 				manager.addObject(hole);
+			}
+			else if (attribute_type == "switch")
+			{
+				Vector2 pos = Vector2(element->Attribute("position"));
+				int switch_type = atoi(element->Attribute("switch_type"));
+				float time = atof(element->Attribute("time"));
+
+				Toggle* tog = new Toggle();
+				tog->setPhysicsObject(factory.createSwitch(pos.x,pos.y,tog));
+				tog->m_image.setTexture(*gdata.assets->getTexture("switch_off"));
+				tog->on = gdata.assets->getTexture("switch_on");
+                tog->off = gdata.assets->getTexture("switch_off");
+				tog->switch_type = switch_type;
+				tog->max_time = time;
+				manager.addObject(tog);
 			}
 
 			element = element->NextSiblingElement("object");

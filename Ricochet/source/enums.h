@@ -10,6 +10,14 @@ enum ObjectType
     PARTICLE,
 };
 
+enum SwitchType
+{
+    TOGGLE      = 0,
+    TIMED       = 1,
+    CONTINUOUS  = 2,
+    SINGLE      = 3,
+};
+
 enum CollisionGroups
 {
     CF_PHYSICAL_OBJECT     = 0x0001,
@@ -18,7 +26,8 @@ enum CollisionGroups
     CF_WALL                = 0x0008,
 	CF_GROUND			   = 0x0010,
 	CF_HOLE                = 0x0020,
-	CF_PARTICLE            = 0x0040,
+	CF_SWITCH              = 0x0040,
+	CF_PARTICLE            = 0x0080,
     CF_ALL                 = 0xFFFF,
 };
 

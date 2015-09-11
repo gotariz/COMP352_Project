@@ -7,6 +7,7 @@
 #include "sfColor.h"
 #include "video/Trail.h"
 #include "video/particles/BounceEmitter.h"
+#include "system/AssetManager.h"
 
 class Player : public gObject
 {
@@ -29,6 +30,7 @@ class Player : public gObject
 
         sfColor color;
         Trail trail;
+        sf::Sound sfx;
 
         Vector2 reset_pos;
 };

@@ -89,6 +89,8 @@
 		<Unit filename="source/objects/Obstacle.h" />
 		<Unit filename="source/objects/Player.cpp" />
 		<Unit filename="source/objects/Player.h" />
+		<Unit filename="source/objects/Toggle.cpp" />
+		<Unit filename="source/objects/Toggle.h" />
 		<Unit filename="source/objects/Wall.cpp" />
 		<Unit filename="source/objects/Wall.h" />
 		<Unit filename="source/objects/gObject.cpp" />

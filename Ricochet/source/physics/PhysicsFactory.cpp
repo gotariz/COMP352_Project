@@ -116,6 +116,42 @@ b2Body* PhysicsFactory::createHole(float x, float y, void* userPointer)
 	return body;
 }
 
+b2Body* PhysicsFactory::createSwitch(float x, float y, void* userPointer)
+{
+    // create temp physics player
+    float hw = 1.28 / 2;
+	float hh = 1.28 / 2;
+	b2Vec2 h[4];
+	h[0].Set(-hw, -hh);
+	h[1].Set(hw, -hh);
+	h[2].Set(hw, hh);
+	h[3].Set(-hw, hh);
+
+	b2PolygonShape polygon_shape;
+	polygon_shape.Set(h, 4);
+
+	b2FixtureDef fixtureDef;
+	fixtureDef.shape		= &polygon_shape;
+	fixtureDef.density		= 1;
+	fixtureDef.restitution	= 1;
+	fixtureDef.friction	= 0;
+	fixtureDef.isSensor	= true;
+	fixtureDef.filter.categoryBits	= CF_HOLE;    // what the object is
+	fixtureDef.filter.maskBits		= CF_PLAYER;		// what the object collides with
+
+	b2BodyDef bodyDef;
+	bodyDef.type = b2_kinematicBody;
+	bodyDef.position.Set(x, y);
+	bodyDef.allowSleep = false;
+
+	b2Body* body = m_world->CreateBody(&bodyDef);
+	body->CreateFixture(&fixtureDef);
+	body->SetBullet(false);
+	body->SetUserData(userPointer);
+
+	return body;
+}
+
 b2Body* PhysicsFactory::createObsticle(float x, float y, float w, float h, float angle, void* userPointer)
 {
 	float hw = w / 2;
