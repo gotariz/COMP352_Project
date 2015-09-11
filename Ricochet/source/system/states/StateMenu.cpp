@@ -113,11 +113,44 @@ void StateMenu::load()
 
 	cout << "Level count: " << levelCount << endl;
 
+	leftLevel = levelCount;
+
     mx = gdata.settings->getScreenWidth() - 400;
     tx = gdata.settings->getScreenWidth() + 10;
     y = gdata.settings->getScreenHeight() - 40 - (78 * 4);
 
+    cx = gdata.settings->getScreenWidth()/2;
+    rx = gdata.settings->getScreenWidth() - 20;
+    lx = 20;
+
+    oy = gdata.settings->getScreenHeight()/3;
+    cy = gdata.settings->getScreenHeight()/4;
+
     x = mx;
+
+    lvlShot.setPosition(cx - (gdata.settings->getScreenWidth() /2 * 0.5 ), cy);
+    lvlShot.setScale(0.5,0.5);
+    lvlShot.setSize(sf::Vector2f(gdata.settings->getScreenWidth(), gdata.settings->getScreenHeight()));
+
+    leftLvlShot.setScale(0.2,0.2);
+    leftLvlShot.setPosition(lx, oy);
+    leftLvlShot.setFillColor(sf::Color(150,150,150,200));
+    leftLvlShot.setSize(sf::Vector2f(gdata.settings->getScreenWidth(), gdata.settings->getScreenHeight()));
+
+    rightLvlShot.setPosition(rx - (gdata.settings->getScreenWidth() * 0.2), oy);
+    rightLvlShot.setScale(0.2,0.2);
+    rightLvlShot.setFillColor(sf::Color(150,150,150,200));
+    rightLvlShot.setSize(sf::Vector2f(gdata.settings->getScreenWidth(), gdata.settings->getScreenHeight()));
+
+    rbLvlShot.setPosition(gdata.settings->getScreenWidth() + 20, oy);
+    rbLvlShot.setScale(0.1,0.1);
+    rbLvlShot.setFillColor(sf::Color(150,150,150,100));
+    rbLvlShot.setSize(sf::Vector2f(gdata.settings->getScreenWidth(), gdata.settings->getScreenHeight()));
+
+    lbLvlShot.setPosition(0 - (gdata.settings->getScreenWidth() * 0.2) - 20, oy);
+    lbLvlShot.setScale(0.1,0.1);
+    lbLvlShot.setFillColor(sf::Color(150,150,150,100));
+    lbLvlShot.setSize(sf::Vector2f(gdata.settings->getScreenWidth(), gdata.settings->getScreenHeight()));
 
     music.stop();
     music.setLoop(true);
@@ -225,9 +258,13 @@ void StateMenu::handleEvents()
                 gdata.settings->setVsync(vSyncMode);
                 gdata.settings->setFullscreen(selectedFs);
 
+                //reset window position
+                if((gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedRes], 'x')[0]) != gdata.settings->getScreenWidth())
+                   || gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedRes], 'x')[1]) != gdata.settings->getScreenHeight())
+                    gdata.window->setPosition(sf::Vector2i(0,0));
+
                 gdata.settings->setScreenWidth(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedRes], 'x')[0]));
                 gdata.settings->setScreenHeight(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedRes], 'x')[1]));
-
                 gdata.settings->setFpsLimit(gz::stringToUnsigned(optionsSettings[3][selectedFPS]));
 
                 gdata.settings->saveSettings();
@@ -249,7 +286,11 @@ void StateMenu::handleEvents()
                 tx = gdata.settings->getScreenWidth() + 10;
                 y = gdata.settings->getScreenHeight() - 40 - (78 * 4);
                 x = mx;
-                gdata.window->setPosition(sf::Vector2i(0,0));
+
+                cx = gdata.settings->getScreenWidth()/2;
+                rx = gdata.settings->getScreenWidth() - 20;
+                lx = 20;
+
                 //menuState = MENU_MAIN;
             }
 
@@ -320,16 +361,12 @@ void StateMenu::handleEvents()
 
             else if (gdata.keys[sf::Keyboard::Right].isKeyPressed)
             {
-                selectedLevel +=1;
-                if(selectedLevel > levelCount)
-                    selectedLevel = 1;
+                slideLeft = true;
             }
 
             else if (gdata.keys[sf::Keyboard::Left].isKeyPressed)
             {
-                selectedLevel -=1;
-                if(selectedLevel < 1)
-                    selectedLevel = levelCount;
+                slideRight = true;
             }
 
             else if (gdata.keys[sf::Keyboard::Return].isKeyPressed)
@@ -370,13 +407,9 @@ void StateMenu::update()
     tx = gdata.settings->getScreenWidth() + 10;
     y = gdata.settings->getScreenHeight() - 40 - (78 * vec.size());
 
-    leftLevel = selectedLevel - 1;
-    if(leftLevel < 1)
-        leftLevel = levelCount;
-
-    rightLevel = selectedLevel + 1;
-    if(rightLevel > levelCount)
-        rightLevel = 1;
+    cx = gdata.settings->getScreenWidth()/2;
+    rx = gdata.settings->getScreenWidth() - 20;
+//    lx = 20;
 
     // Menu animation sliding;
     if(transitioning)
@@ -402,12 +435,199 @@ void StateMenu::update()
             }
         }
     }
+
+    if(slideLeft)
+    {
+        lvlShot.setPosition(lvlShot.getPosition().x - (cx - lx) *(gdata.m_timeDelta * (1/dur)),
+                            lvlShot.getPosition().y - (cy - oy) *(gdata.m_timeDelta * (1/dur)));
+
+        if(lvlShot.getScale().x > 0.2)
+        {
+            lvlShot.setScale(lvlShot.getScale().x - 0.02, lvlShot.getScale().y - 0.02);
+        }
+
+        if(lvlShot.getPosition().x <= lx )
+        {
+            lvlShot.setPosition(lx, oy);
+        }
+
+
+
+        rbLvlShot.setPosition(rbLvlShot.getPosition().x - (gdata.settings->getScreenWidth() +20 - (rx - (gdata.settings->getScreenWidth() * 0.2))) *(gdata.m_timeDelta * (1/dur)), oy);
+        if(rbLvlShot.getScale().x < 0.2)
+        {
+            rbLvlShot.setScale(rbLvlShot.getScale().x + 0.01, rbLvlShot.getScale().y + 0.01);
+        }
+
+        if(rbLvlShot.getPosition().x <= (rx - (gdata.settings->getScreenWidth() * 0.2)))
+        {
+            rbLvlShot.setPosition((rx - (gdata.settings->getScreenWidth() * 0.2)), oy);
+        }
+
+
+
+        leftLvlShot.setPosition(leftLvlShot.getPosition().x - (gdata.settings->getScreenWidth() * 0.2) *(gdata.m_timeDelta * (1/dur)), oy);
+
+        if(leftLvlShot.getScale().x > 0.1)
+        {
+            leftLvlShot.setScale(leftLvlShot.getScale().x - 0.02, leftLvlShot.getScale().y - 0.02);
+        }
+
+        if(leftLvlShot.getPosition().x <= 0 - (gdata.settings->getScreenWidth() * 0.2) )
+        {
+            leftLvlShot.setPosition(0 - (gdata.settings->getScreenWidth() * 0.2), oy);
+        }
+
+
+        rightLvlShot.setPosition(rightLvlShot.getPosition().x - (rx - cx) *(gdata.m_timeDelta * (1/dur)),
+                                 rightLvlShot.getPosition().y + (cy - oy) *(gdata.m_timeDelta * (1/dur)));
+
+        if(rightLvlShot.getScale().x < 0.5)
+        {
+            rightLvlShot.setScale(rightLvlShot.getScale().x + 0.02, rightLvlShot.getScale().y + 0.02);
+        }
+
+        if(rightLvlShot.getPosition().x <= cx - (gdata.settings->getScreenWidth() /2 * 0.5 ))
+        {
+            rightLvlShot.setPosition(cx - (gdata.settings->getScreenWidth() /2 * 0.5 ), cy);
+        }
+
+        if(rightLvlShot.getPosition() == sf::Vector2f(cx - (gdata.settings->getScreenWidth() /2 * 0.5 ), cy))
+        {
+            slideLeft = false;
+
+            leftLvlShot = lvlShot;
+            lvlShot = rightLvlShot;
+            rightLvlShot = rbLvlShot;
+            rbLvlShot.setPosition(gdata.settings->getScreenWidth() + 20, oy);
+            rbLvlShot.setScale(0.1,0.1);
+
+            lvlShot.setFillColor(sf::Color(255,255,255,255));
+            leftLvlShot.setFillColor(sf::Color(150,150,150,200));
+            rightLvlShot.setFillColor(sf::Color(150,150,150,200));
+
+
+            selectedLevel += 1;
+            if(selectedLevel > levelCount)
+                selectedLevel = 1;
+
+            leftLevel = selectedLevel - 1;
+            if(leftLevel < 1)
+                leftLevel = levelCount;
+
+            rightLevel = selectedLevel + 1;
+            if(rightLevel > levelCount)
+                rightLevel = 1;
+
+            lbLevel = leftLevel - 1;
+            if(lbLevel < 1)
+                lbLevel = levelCount;
+
+            rbLevel = rightLevel + 1;
+            if(rbLevel > levelCount)
+                rbLevel = 1;
+        }
+    }
+
+    if(slideRight)
+    {
+        lvlShot.setPosition(lvlShot.getPosition().x + (rx - (cx - (gdata.settings->getScreenWidth() /2 * 0.5 ))) *(gdata.m_timeDelta * (1/dur)),
+                            lvlShot.getPosition().y - (cy - oy) *(gdata.m_timeDelta * (1/dur)));
+
+        if(lvlShot.getScale().x > 0.2)
+        {
+            lvlShot.setScale(lvlShot.getScale().x - 0.02, lvlShot.getScale().y - 0.02);
+        }
+
+        if(lvlShot.getPosition().x >= (rx - (gdata.settings->getScreenWidth() * 0.2)))
+        {
+            lvlShot.setPosition((rx - (gdata.settings->getScreenWidth() * 0.2)), oy);
+        }
+
+
+
+        lbLvlShot.setPosition(lbLvlShot.getPosition().x + (gdata.settings->getScreenWidth() +20 - (rx - (gdata.settings->getScreenWidth() * 0.2))) *(gdata.m_timeDelta * (1/dur)), oy);
+        if(lbLvlShot.getScale().x < 0.2)
+        {
+            lbLvlShot.setScale(lbLvlShot.getScale().x + 0.01, lbLvlShot.getScale().y + 0.01);
+        }
+
+        if(lbLvlShot.getPosition().x >= lx)
+        {
+            lbLvlShot.setPosition(lx, oy);
+        }
+
+
+
+        rightLvlShot.setPosition(rightLvlShot.getPosition().x + gdata.settings->getScreenWidth() *(gdata.m_timeDelta * (1/dur)), oy);
+
+        if(rightLvlShot.getScale().x > 0.1)
+        {
+            rightLvlShot.setScale(rightLvlShot.getScale().x - 0.02, rightLvlShot.getScale().y - 0.02);
+        }
+
+        if(rightLvlShot.getPosition().x >= gdata.settings->getScreenWidth())
+        {
+            rightLvlShot.setPosition(gdata.settings->getScreenWidth(), oy);
+        }
+
+
+        leftLvlShot.setPosition(leftLvlShot.getPosition().x + (cx - (gdata.settings->getScreenWidth() /2 * 0.5 ) - lx) *(gdata.m_timeDelta * (1/dur)),
+                                leftLvlShot.getPosition().y + (cy - oy) *(gdata.m_timeDelta * (1/dur)));
+
+        if(leftLvlShot.getScale().x < 0.5)
+        {
+            leftLvlShot.setScale(leftLvlShot.getScale().x + 0.02, leftLvlShot.getScale().y + 0.02);
+        }
+
+        if(leftLvlShot.getPosition().x >= cx - (gdata.settings->getScreenWidth() /2 * 0.5 ))
+        {
+            leftLvlShot.setPosition(cx - (gdata.settings->getScreenWidth() /2 * 0.5 ), cy);
+        }
+
+        if(leftLvlShot.getPosition() == sf::Vector2f(cx - (gdata.settings->getScreenWidth() /2 * 0.5 ), cy))
+        {
+            slideRight = false;
+
+            rightLvlShot = lvlShot;
+            lvlShot = leftLvlShot;
+            leftLvlShot = lbLvlShot;
+            lbLvlShot.setPosition(0 - (gdata.settings->getScreenWidth() /2 * 0.2 ), oy);
+            lbLvlShot.setScale(0.1,0.1);
+
+            lvlShot.setFillColor(sf::Color(255,255,255,255));
+            leftLvlShot.setFillColor(sf::Color(150,150,150,200));
+            rightLvlShot.setFillColor(sf::Color(150,150,150,200));
+
+            selectedLevel -=1;
+            if(selectedLevel < 1)
+                selectedLevel = levelCount;
+
+            leftLevel = selectedLevel - 1;
+            if(leftLevel < 1)
+                leftLevel = levelCount;
+
+            rightLevel = selectedLevel + 1;
+            if(rightLevel > levelCount)
+                rightLevel = 1;
+
+            lbLevel = leftLevel - 1;
+            if(lbLevel < 1)
+                lbLevel = levelCount;
+
+            rbLevel = rightLevel + 1;
+            if(rbLevel > levelCount)
+                rbLevel = 1;
+        }
+    }
 }
 
 void StateMenu::draw()
 {
     gdata.window->clear(sf::Color(255,255,255,255));
     bg.draw();
+
+//    font.drawString(10, 10, gz::toString(gdata.mouse.x) + " " + gz::toString(gdata.mouse.y));
 
     if(menuState == MENU_MAIN)
     {
@@ -438,25 +658,22 @@ void StateMenu::draw()
         y = gdata.settings->getScreenHeight() - 40 - (78 * 4);
         font.setColor(sf::Color::White);
 
-        //lvlShot.setFillColor(sf::Color::Black);
+//        rbLvlShot.setFillColor(sf::Color(0,0,255,100));     // BLUE
+//        lbLvlShot.setFillColor(sf::Color(255,255,0,100));   // YELLOW
+//        lvlShot.setFillColor(sf::Color(0,0,0,100));         // BLACK
+//        rightLvlShot.setFillColor(sf::Color(0,255,0,100));  // GREEN
+//        leftLvlShot.setFillColor(sf::Color(255,0,0,100));   // RED
+
         lvlShot.setTexture(gdata.assets->getTexture("Screencap_Level_"+gz::toString(selectedLevel)), true);
-        lvlShot.setSize(sf::Vector2f(gdata.settings->getScreenWidth(), gdata.settings->getScreenHeight()));
-        lvlShot.setPosition((gdata.settings->getScreenWidth()/2) - (lvlShot.getSize().x /4 ), gdata.settings->getScreenHeight()/4);
-        lvlShot.setScale(0.5,0.5);
-
         leftLvlShot.setTexture(gdata.assets->getTexture("Screencap_Level_"+gz::toString(leftLevel)), true);
-        leftLvlShot.setSize(sf::Vector2f(gdata.settings->getScreenWidth(), gdata.settings->getScreenHeight()));
-        leftLvlShot.setScale(0.2,0.2);
-        leftLvlShot.setPosition(20, (gdata.settings->getScreenHeight()/3));
-        leftLvlShot.setFillColor(sf::Color(150,150,150,200));
-
         rightLvlShot.setTexture(gdata.assets->getTexture("Screencap_Level_"+gz::toString(rightLevel)), true);
-        rightLvlShot.setSize(sf::Vector2f(gdata.settings->getScreenWidth(), gdata.settings->getScreenHeight()));
-        rightLvlShot.setScale(0.2,0.2);
-        rightLvlShot.setPosition(gdata.settings->getScreenWidth() - (rightLvlShot.getSize().x * rightLvlShot.getScale().x) - 20,
-                                (gdata.settings->getScreenHeight()/3));
-        rightLvlShot.setFillColor(sf::Color(150,150,150,200));
+        lbLvlShot.setTexture(gdata.assets->getTexture("Screencap_Level_"+gz::toString(lbLevel)), true);
+        rbLvlShot.setTexture(gdata.assets->getTexture("Screencap_Level_"+gz::toString(rbLevel)), true);
 
+        if(slideLeft)
+            gdata.window->draw(rbLvlShot);
+        if(slideRight)
+            gdata.window->draw(lbLvlShot);
         gdata.window->draw(lvlShot);
         gdata.window->draw(leftLvlShot);
         gdata.window->draw(rightLvlShot);
@@ -466,7 +683,7 @@ void StateMenu::draw()
         rec.setFillColor(sf::Color::Red);
         gdata.window->draw(rec);
 
-        font.drawString(x + 25, y, "Levels");
+        font.drawString(x + 25, y, "Level");
 
         if(!transitioning)
         {

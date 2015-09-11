@@ -36,7 +36,8 @@ class StateMenu : public IState
         sf::RectangleShape lvlShot;
         sf::RectangleShape leftLvlShot;
         sf::RectangleShape rightLvlShot;
-        sf::RectangleShape bufferLvlShot;
+        sf::RectangleShape lbLvlShot;
+        sf::RectangleShape rbLvlShot;
 
         float dur = 0.25;
 
@@ -101,7 +102,20 @@ class StateMenu : public IState
         int selectedLevel = 1;
         int leftLevel = 0;
         int rightLevel = 2;
-        int bufferLevel = 1;
+        int lbLevel = 1;
+        int rbLevel = 1;
+
+        //center, left and right x for level screenshots
+        float cx = 0;
+        float lx = 0;
+        float rx = 0;
+
+        //center and other y for level screenshots
+        float cy = 0;
+        float oy = 0;
+
+        bool slideLeft = false;
+        bool slideRight = false;
 
         sf::Music music;
 
