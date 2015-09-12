@@ -23,6 +23,6 @@
 	<object type="wall" position="5, -2" size="1,1" rotation="0"/>
 
 	<!-- PLATFORMS -->
-	<object type="block" position="0,0" size="2.5,1" rotation="0" moves="1" p1="-4,-5" p2="6,-5" duration="2" time="0" />
+	<object type="platform" position="0,0" size="2.5,1" rotation="0" moves="1" p1="-4,-5" p2="6,-5" duration="2" time="0" />
 	
 </root>

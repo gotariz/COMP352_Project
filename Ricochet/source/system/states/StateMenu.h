@@ -29,6 +29,9 @@ class StateMenu : public IState
         virtual void freeResources();
         virtual void start();
 
+        // the game title image
+        sf::Sprite title;
+
         //This is the coloured rectangle around selected
         sf::RectangleShape rec;
         Background bg;

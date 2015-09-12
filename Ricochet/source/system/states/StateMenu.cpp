@@ -158,6 +158,11 @@ void StateMenu::load()
     music.setVolume(50);
     music.play();
 
+    title.setTexture(*gdata.assets->getTexture("title"));
+    title.setOrigin(title.getTexture()->getSize().x/2,title.getTexture()->getSize().y/2);
+    title.setPosition(gdata.settings->getScreenWidth()/2,150);
+
+
     loading = false;
 }
 
@@ -617,6 +622,7 @@ void StateMenu::draw()
     bg.draw();
 
 //    font.drawString(10, 10, gz::toString(gdata.mouse.x) + " " + gz::toString(gdata.mouse.y));
+    gdata.window->draw(title);
 
     if(menuState == MENU_MAIN)
     {
