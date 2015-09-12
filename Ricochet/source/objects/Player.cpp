@@ -11,6 +11,7 @@ void Player::onCreate()
     {
         sfx.setBuffer(*b);
     }
+    sfx.setVolume(1);
 }
 
 void Player::onUpdate()
