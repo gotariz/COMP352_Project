@@ -34,6 +34,16 @@ unsigned Settings::getFpsLimit() const
     return m_fpsLimit;
 }
 
+unsigned Settings::getVolume() const
+{
+    return m_volume;
+}
+
+unsigned Settings::getSFX() const
+{
+    return m_sfx;
+}
+
 void Settings::setVsync(bool vsync)
 {
     m_vsync = vsync;
@@ -59,6 +69,16 @@ void Settings::setFpsLimit(int fps_limit)
     m_fpsLimit = fps_limit;
 }
 
+void Settings::setVolume(int volume)
+{
+    m_volume = volume;
+}
+
+void Settings::setSFX(int sfx)
+{
+    m_sfx = sfx;
+}
+
 
 void Settings::saveSettings()
 {
@@ -71,6 +91,8 @@ void Settings::saveSettings()
         s << "width=" << m_resolution.w << endl;;
         s << "height=" << m_resolution.h << endl;;
         s << "vsync=" << m_vsync << endl;;
+        s << "volume=" << m_volume << endl;;
+        s << "sfx=" << m_sfx << endl;;
         s.close();
     }
     else
@@ -105,6 +127,14 @@ void Settings::readSettings()
             {
                 m_vsync = gz::toBool(value.c_str());
             }
+            else if (name == "volume")
+            {
+                m_volume = gz::toInt(value.c_str(), SETTINGS_DEFAULT_VOLUME);
+            }
+            else if (name == "sfx")
+            {
+                m_sfx = gz::toInt(value.c_str(), SETTINGS_DEFAULT_SFX);
+            }
             else if (name == "width")
             {
                 m_resolution.w = gz::toInt(value.c_str(),SETTINGS_DEFAULT_WIDTH);
@@ -118,6 +148,8 @@ void Settings::readSettings()
         gz::print_value("fps:  ",m_fpsLimit);
         gz::print_value("fullscreen:",m_fullscreen);
         gz::print_value("vsync:     ",m_vsync);
+        gz::print_value("volume:     ",m_volume);
+        gz::print_value("sfx:     ",m_sfx);
         gz::print_value("width:     ",m_resolution.w);
         gz::print_value("height:    ",m_resolution.h);
 

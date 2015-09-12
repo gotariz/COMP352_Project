@@ -42,6 +42,15 @@ class StateMenu : public IState
         sf::Sprite lbLvlShot;
         sf::Sprite rbLvlShot;
 
+        sf::Texture lvlTex;
+        sf::Texture leftLvlTex;
+        sf::Texture rightLvlTex;
+        sf::Texture lbLvlTex;
+        sf::Texture rbLvlTex;
+
+        sf::Music music;
+
+
         float dur = 0.25;
 
         //This is a list of items in the main menu (eg. start, awards, options, exit)
@@ -58,6 +67,8 @@ class StateMenu : public IState
         vector<string>  fs;
         vector<string>  res;
         vector<string>  fps;
+        vector<string>  mus;
+        vector<string>  sfx;
 
         //This is a way to track which option is selected (eg. the 3rd resolution is selected)
         vector<int>     selectedOps;
@@ -73,6 +84,8 @@ class StateMenu : public IState
         int selectedFs = 0;
         int selectedRes = 0;
         int selectedFPS = 0;
+        int selectedMus = 0;
+        int selectedSFX = 0;
 
         //This sets the 1st state to the main menu screen
         int menuState = MENU_MAIN;
@@ -115,13 +128,13 @@ class StateMenu : public IState
         float rx = 0;
         float orx = 0;
 
-        //center and other y for level screenshots
+        //center y for level screenshots
         float cy = 0;
 
         bool slideLeft = false;
         bool slideRight = false;
 
-        sf::Music music;
+        bool locked = false;
 
     public:
 

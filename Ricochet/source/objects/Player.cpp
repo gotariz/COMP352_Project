@@ -12,6 +12,7 @@ void Player::onCreate()
         sfx.setBuffer(*b);
     }
     sfx.setVolume(1);
+//    sfx.setVolume(gdata.settings->getSFX());
 }
 
 void Player::onUpdate()
@@ -86,34 +87,3 @@ void Player::onDraw()
         gdata.window->draw(circle);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

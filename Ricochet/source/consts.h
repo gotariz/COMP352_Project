@@ -13,6 +13,8 @@ static const bool           SETTINGS_DEFAULT_VSYNC = false;
 static const bool           SETTINGS_DEFAULT_FULLSCREEN = false;
 static const unsigned       SETTINGS_DEFAULT_WIDTH = 800;
 static const unsigned       SETTINGS_DEFAULT_HEIGHT = 600;
+static const unsigned       SETTINGS_DEFAULT_VOLUME = 100;
+static const unsigned       SETTINGS_DEFAULT_SFX = 100;
 
 // level
 static const string			LEVEL_PATH = "data/levels/level_";

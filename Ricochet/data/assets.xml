@@ -34,6 +34,9 @@
 	<asset type="image" path="media/images/Screencap_Level_7.png" />
 	<asset type="image" path="media/images/Screencap_Level_8.png" />
 	<asset type="image" path="media/images/Screencap_Level_9.png" />
+	<asset type="image" path="media/images/Screencap_Level_10.png" />
+	<asset type="image" path="media/images/Screencap_Level_11.png" />
+	<asset type="image" path="media/images/Screencap_Level_12.png" />
 	<asset type="font" path="media/fonts/purista-medium-14-white/" />
 	<asset type="font" path="media/fonts/segoe-ui-light-48/" />
 	<asset type="font" path="media/fonts/segoe-ui-light-20/" />

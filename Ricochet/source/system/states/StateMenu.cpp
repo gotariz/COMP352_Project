@@ -40,6 +40,16 @@ void StateMenu::load()
     fs.push_back("Windowed");
     fs.push_back("Fullscreen");
 
+    for (int i = 0; i < 11; i++)
+    {
+        mus.push_back(gz::toString(i*10));
+    }
+
+    for (int i = 0; i < 11; i++)
+    {
+        sfx.push_back(gz::toString(i*10));
+    }
+
     vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
 	for (int i = 0; i < modes.size(); i++)
 	{
@@ -57,6 +67,8 @@ void StateMenu::load()
 	selectedVSync   = gdata.settings->getVsync();
 	selectedFs      = gdata.settings->getFullscreen();
 	selectedFPS     = gdata.settings->getFpsLimit();
+    selectedMus     = gdata.settings->getVolume()/10;
+    selectedSFX     = gdata.settings->getSFX()/10;
 
 	//HARD CODED FPS FIX
 	if(selectedFPS == 60)
@@ -86,16 +98,22 @@ void StateMenu::load()
     optionsSettings.push_back(fs);
     optionsSettings.push_back(res);
     optionsSettings.push_back(fps);
+    optionsSettings.push_back(mus);
+    optionsSettings.push_back(sfx);
 
     selectedOps.push_back(selectedVSync);
     selectedOps.push_back(selectedFs);
     selectedOps.push_back(selectedRes);
     selectedOps.push_back(selectedFPS);
+    selectedOps.push_back(selectedMus);
+    selectedOps.push_back(selectedSFX);
 
 	optionsItems.push_back("Vsync");
 	optionsItems.push_back("Fullscreen");
 	optionsItems.push_back("Resolution");
 	optionsItems.push_back("FPS Limit");
+	optionsItems.push_back("Volume");
+	optionsItems.push_back("Sound Effects");
 
     //count the amount of levels in the XML
 	while(true)
@@ -107,6 +125,7 @@ void StateMenu::load()
         else
         {
             levelCount -= 1;
+            levelCount += 3;
             break;
         }
     }
@@ -127,8 +146,8 @@ void StateMenu::load()
     rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(rbLevel)));
 
     cx = gdata.settings->getScreenWidth()/2;
-    rx = gdata.settings->getScreenWidth() - (rightLvlShot.getTexture()->getSize().x/4) - 20;
-    lx = 0 + (leftLvlShot.getTexture()->getSize().x/4) + 20;
+    rx = gdata.settings->getScreenWidth() - (rightLvlShot.getTexture()->getSize().x/5) - 20;
+    lx = 0 + (leftLvlShot.getTexture()->getSize().x/5) + 20;
     cy = gdata.settings->getScreenHeight()/2;
     olx = 0;
     orx = gdata.settings->getScreenWidth();
@@ -160,7 +179,7 @@ void StateMenu::load()
     music.stop();
     music.setLoop(true);
     music.openFromFile(gdata.assets->getMusic("music2"));
-    music.setVolume(50);
+    music.setVolume(gdata.settings->getVolume());
     music.play();
 
     title.setTexture(*gdata.assets->getTexture("title"));
@@ -277,6 +296,9 @@ void StateMenu::handleEvents()
                 gdata.settings->setScreenHeight(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedRes], 'x')[1]));
                 gdata.settings->setFpsLimit(gz::stringToUnsigned(optionsSettings[3][selectedFPS]));
 
+                gdata.settings->setVolume(gz::stringToUnsigned(optionsSettings[4][selectedMus]));
+                gdata.settings->setSFX(gz::stringToUnsigned(optionsSettings[5][selectedSFX]));
+
                 gdata.settings->saveSettings();
 
                 gdata.window->setSize(sf::Vector2u(gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
@@ -285,12 +307,16 @@ void StateMenu::handleEvents()
                 gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
                 gdata.window->setVerticalSyncEnabled(vSyncMode);
 
+                music.setVolume(gdata.settings->getVolume());
+
                 cout << "\n<----------------------SETTINGS SAVED-------------------------->\n"
                      << "\tvSync:\t\t\t\t" << vSyncMode << "\n"
                      << "\tFullscreen:\t\t\t" << selectedFs << "\n"
                      << "\tResolution:\t\t\t" << gz::splitString(optionsSettings[2][selectedRes], 'x')[0] << "x"
                      << gz::splitString(optionsSettings[2][selectedRes], 'x')[1] << "\n"
-                     << "\tFPS Limit:\t\t\t" << gz::stringToUnsigned(optionsSettings[3][selectedFPS]) << endl;
+                     << "\tFPS Limit:\t\t\t" << gz::stringToUnsigned(optionsSettings[3][selectedFPS]) << "\n"
+                     << "\tVolume:\t\t\t\t" << gz::stringToUnsigned(optionsSettings[4][selectedMus]) << "\n"
+                     << "\tSFX:\t\t\t\t" << gz::stringToUnsigned(optionsSettings[4][selectedSFX]) << endl;
 
                 mx = gdata.settings->getScreenWidth() - 400;
                 tx = gdata.settings->getScreenWidth() + 10;
@@ -298,8 +324,8 @@ void StateMenu::handleEvents()
                 x = mx;
 
                 cx = gdata.settings->getScreenWidth()/2;
-                rx = gdata.settings->getScreenWidth() - (rightLvlShot.getTexture()->getSize().x/4) - 20;
-                lx = 0 + (leftLvlShot.getTexture()->getSize().x/4) + 20;
+                rx = gdata.settings->getScreenWidth() - (rightLvlShot.getTexture()->getSize().x/5) - 20;
+                lx = 0 + (leftLvlShot.getTexture()->getSize().x/5) + 20;
                 cy = gdata.settings->getScreenHeight()/2;
                 olx = 0;
                 orx = gdata.settings->getScreenWidth();
@@ -334,6 +360,10 @@ void StateMenu::handleEvents()
                     selectedRes = selectedOps[selectedOption];
                 else if(selectedOption == 3)
                     selectedFPS = selectedOps[selectedOption];
+                else if(selectedOption == 4)
+                    selectedMus = selectedOps[selectedOption];
+                else if(selectedOption == 5)
+                    selectedSFX = selectedOps[selectedOption];
             }
 
             else if (gdata.keys[sf::Keyboard::Left].isKeyPressed)
@@ -350,6 +380,10 @@ void StateMenu::handleEvents()
                     selectedRes = selectedOps[selectedOption];
                 else if(selectedOption == 3)
                     selectedFPS = selectedOps[selectedOption];
+                else if(selectedOption == 4)
+                    selectedMus = selectedOps[selectedOption];
+                else if(selectedOption == 5)
+                    selectedSFX = selectedOps[selectedOption];
             }
         }
 
@@ -385,9 +419,12 @@ void StateMenu::handleEvents()
 
             else if (gdata.keys[sf::Keyboard::Return].isKeyPressed)
             {
-                gdata.level = selectedLevel;
-                gdata.gamestate = STATE_GAME;
-                music.stop();
+                if(!locked)
+                {
+                    gdata.level = selectedLevel;
+                    gdata.gamestate = STATE_GAME;
+                    music.stop();
+                }
             }
 
             else if (gdata.keys[sf::Keyboard::Space].isKeyPressed)
@@ -416,6 +453,10 @@ void StateMenu::reset()
 void StateMenu::update()
 {
     bg.update();
+    if(selectedLevel == levelCount - 1 || selectedLevel == levelCount - 2 || selectedLevel == levelCount)
+        locked = true;
+    else
+        locked = false;
 
     //Correct position from the bottom of screen
     vector<string> vec;
@@ -760,12 +801,12 @@ void StateMenu::draw()
         rec.setFillColor(sf::Color::Red);
         gdata.window->draw(rec);
 
-        font.drawString(x + 25, y, "Level");
+        font.drawString(x + 25, y, "Level   " + gz::toString(selectedLevel));
 
-        if(!transitioning)
+        if(locked)
         {
             font.setColor(sf::Color::Black);
-            font.drawString(x - 20, y, gz::toString(selectedLevel),sfLib::RIGHT);
+            font.drawString(cx, cy + (cy/2), "LEVEL LOCKED", sfLib::MIDDLE);
         }
     }
 
