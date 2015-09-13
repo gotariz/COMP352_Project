@@ -69,6 +69,7 @@ class Object
         virtual void setLinearVelocity(Vector2 linearVelocity);
         virtual void setAngularVelocity(float speed);
         virtual Vector2 getVelocity();
+        virtual float getAngularVelocity();
 
         // getters
         virtual Vector2 getPosition();

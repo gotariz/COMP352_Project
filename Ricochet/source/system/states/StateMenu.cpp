@@ -15,13 +15,12 @@ void StateMenu::load()
     assets.loadAssetList("data/assets.xml");
 	gdata.assets = &assets;
 
-    Camera c(0,0,0,0);
     gdata.camera = &c;
     //bg.bg_image.setTexture(*gdata.assets->getTexture("background"));
-    bg.num_circles = 60;
-    bg.bubble_alpha_range.set(0,128);
-    bg.bubble_color = sf::Color(0,0,0,0);
-    bg.init();
+    bg.bubble_alpha_range.set(0,64);
+    bg.bubble_color = sf::Color(0,0,0,255);
+	bg.num_circles = 60;
+	bg.init();
 
     //font = new sfFontRenderer(gdata.window);
     font.setWindow(gdata.window);

@@ -81,7 +81,18 @@ class StateGame : public IState
 		PhysicsFactory		factory;
 		bool                drawPhysicsDebug = true;
 
+		Obstacle*           plat = nullptr;
+
 		float cx = 20;
+
+        private:
+            void createPlatform(XMLElement* element,Toggle* t = nullptr);
+            void createWall(XMLElement* element);
+            void createPlayer(XMLElement* element);
+            void createHole(XMLElement* element);
+            void createSwitch(XMLElement* element);
+            void createLaser(XMLElement* element,Toggle* t = nullptr);
+
 };
 
 #endif // STATEGAME_H

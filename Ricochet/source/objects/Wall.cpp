@@ -13,7 +13,7 @@ Wall::~Wall()
 
 void Wall::onUpdate()
 {
-    if (m_moving)
+    if (m_enabledMovement && m_moving)
     {
         // determine if past destination
         float max_dist  = (m_point2 - m_point1).getMagnitude();
@@ -45,36 +45,34 @@ void Wall::onUpdate()
 
 void Wall::onDraw()
 {
-    if (m_physicsObject != nullptr)
+    if (!m_physicsObject || !m_enabled) return;
+
+    for (b2Fixture* f = m_physicsObject->GetFixtureList(); f; f = f->GetNext())
     {
+        b2Shape::Type shapeType = f->GetType();
 
-        for (b2Fixture* f = m_physicsObject->GetFixtureList(); f; f = f->GetNext())
+        if ( shapeType == b2Shape::e_polygon )
         {
-            b2Shape::Type shapeType = f->GetType();
+            b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
+            sf::ConvexShape convex;
+            convex.setPointCount(polygonShape->GetVertexCount());
 
-            if ( shapeType == b2Shape::e_polygon )
+            for (int i = 0; i < polygonShape->GetVertexCount(); ++i)
             {
-                b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
-                sf::ConvexShape convex;
-                convex.setPointCount(polygonShape->GetVertexCount());
 
-                for (int i = 0; i < polygonShape->GetVertexCount(); ++i)
-                {
+                Vector2 b2v = polygonShape->GetVertex(i);
+                b2v.rotate( getAbsoluteRotation() );
+                Vector2 v = getAbsolutePosition() + b2v;
 
-                    Vector2 b2v = polygonShape->GetVertex(i);
-                    b2v.rotate( getAbsoluteRotation() );
-                    Vector2 v = getAbsolutePosition() + b2v;
-
-                    v = gdata.toScreenPixels(v);
-                    convex.setPoint(i,sf::Vector2f(v.x,v.y));
-                }
-
-                convex.setFillColor(sf::Color::Black);
-                gdata.window->draw(convex);
-
+                v = gdata.toScreenPixels(v);
+                convex.setPoint(i,sf::Vector2f(v.x,v.y));
             }
-        }
 
+            convex.setFillColor(sf::Color::Black);
+            gdata.window->draw(convex);
+
+        }
     }
+
 }
 

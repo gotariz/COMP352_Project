@@ -29,6 +29,9 @@ class StateMenu : public IState
         virtual void freeResources();
         virtual void start();
 
+        // the cemra at 0,0
+        Camera c;
+
         // the game title image
         sf::Sprite title;
 

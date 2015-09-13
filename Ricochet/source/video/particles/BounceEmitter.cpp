@@ -3,7 +3,7 @@
 void BounceEmitter::createParticle()
 {
     if (spawn)
-   {
+    {
         BounceParticle* p = new BounceParticle();
         p->pos = pos;
         p->particle_dur = 500;

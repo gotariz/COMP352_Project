@@ -24,6 +24,6 @@
 	<object type="wall" position="-6,-7" size="9,1" rotation="0"/>
 
 	<!-- PLATFORMS -->
-	<object type="platform" position="0,0" size="1,3" rotation="-45" moves="1" p1="-5,7" p2="-11,1" duration="2" time="0" />
+	<object type="platform" position="0,0" size="1,3" rotation="-45" moves="1" p1="-5,7" p2="-11,1" duration="2" time="0" rotationspeed="0"/>
 	
 </root>

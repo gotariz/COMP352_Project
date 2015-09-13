@@ -92,7 +92,7 @@ void StateGame::load()
 	input.m_player = player;
 	cout << "complete" << endl;
 
-    cout << "initialising input:";
+    cout << "loading level:";
     loadLevel();
 	cout << "complete" << endl;
 
@@ -175,6 +175,17 @@ void StateGame::start()
 void StateGame::handleEvents()
 {
 	input.handleEvents();
+
+	if (gdata.keys[sf::Keyboard::M].isKeyPressed)
+    {
+        if (plat)
+        {
+            plat->enableRotation(!plat->getEnabledRotation());
+            plat->enableMovement(!plat->getEnabledMovement());
+            plat->enable(!plat->getEnabled());
+            cout << "here" << endl;
+        }
+    }
 }
 
 void StateGame::update()
@@ -373,119 +384,12 @@ void StateGame::loadLevel()
 		{
 			std::string attribute_type = element->Attribute("type");
 
-			if (attribute_type == "platform")
-			{
-				Vector2 pos		= Vector2(element->Attribute("position"));
-				Vector2 size	= Vector2(element->Attribute("size"));
-				Vector2 p1		= Vector2(element->Attribute("p1"));
-				Vector2 p2		= Vector2(element->Attribute("p2"));
-				bool moving		= atoi(element->Attribute("moves"));
-				float duration	= atof(element->Attribute("duration"));
-				float progress	= atof(element->Attribute("progress"));
-				float angle		= atof(element->Attribute("rotation"));
-				float rotspeed  = atof(element->Attribute("rotationspeed"));
-
-                Wall* platform = new Wall();
-                platform->setPhysicsObject(factory.createObsticle(pos.x, pos.y, size.x, size.y, angle, platform));
-
-                platform->m_moving	    = moving;
-                if (moving)
-                {
-                    platform->setPosition( p1 + ((p2 - p1) * progress));
-                    platform->m_duration    = duration;
-                    platform->m_point1	    = p1;
-                    platform->m_point2	    = p2;
-                    platform->m_dest        = p2;
-
-                    platform->setAngularVelocity(rotspeed * DEGTORAD);
-                    platform->setLinearVelocity( (p2 - p1) / duration);
-                }
-
-                manager.addObject(platform);
-
-			}
-			else if (attribute_type == "wall")
-			{
-				Vector2 pos		= Vector2(element->Attribute("position"));
-				Vector2 size	= Vector2(element->Attribute("size"));
-				float	angle	= atof(element->Attribute("rotation"));
-
-				Wall* wall = new Wall();
-				wall->setPhysicsObject(factory.createGround(pos.x, pos.y, size.x, size.y, angle,wall));
-
-				manager.addObject(wall);
-
-			}
-			else if (attribute_type == "player")
-			{
-				Vector2 pos = Vector2(element->Attribute("position"));
-
-				player = new Player();
-				player->setPhysicsObject(factory.createPlayer(pos.x, pos.y, player));
-				player->m_name = "Object: player";
-				player->reset_pos = pos;
-				manager.addObject(player);
-				input.m_player = player;
-			}
-			else if (attribute_type == "laser")
-			{
-				Vector2 pos			= Vector2(element->Attribute("position"));
-				Vector2 laser_dir	= Vector2(element->Attribute("laser_direction"));
-				Vector2 p1			= Vector2(element->Attribute("p1"));
-				Vector2 p2			= Vector2(element->Attribute("p2"));
-				bool moving			= atoi(element->Attribute("moving"));
-				float move_duration = atof(element->Attribute("duration"));
-				float move_time		= atof(element->Attribute("time"));
-
-				float start_angle	= atof(element->Attribute("start_angle"));
-				float delta_angle	= atof(element->Attribute("delta_angle"));
-				float rot_dur		= atof(element->Attribute("rotation_duration"));
-				bool rotating		= atoi(element->Attribute("rotating"));
-				float rot_time		= atof(element->Attribute("rotation_time"));
-
-				Laser* l = new Laser();
-				l->laserPos = pos;
-				l->laser_dir = laser_dir;
-				l->m_point1 = p1;
-				l->m_point2 = p2;
-				l->m_dest = p2;
-				l->m_moving = moving;
-				l->m_duration = move_duration;
-				l->m_time = move_time;
-
-				l->start_angle = start_angle;
-				l->delta_angle = delta_angle;
-				l->r_duration = rot_dur;
-				l->rotating = rotating;
-				l->r_time = rot_time;
-
-				manager.addObject(l);
-			}
-			else if (attribute_type == "hole")
-			{
-				Vector2 pos = Vector2(element->Attribute("position"));
-
-				Hole* hole = new Hole();
-				hole->setPhysicsObject(factory.createHole(pos.x,pos.y,hole));
-				hole->m_type = HOLE;
-				hole->m_image.setTexture(*gdata.assets->getTexture("hole_off"));
-				manager.addObject(hole);
-			}
-			else if (attribute_type == "switch")
-			{
-				Vector2 pos = Vector2(element->Attribute("position"));
-				int switch_type = atoi(element->Attribute("switch_type"));
-				float time = atof(element->Attribute("time"));
-
-				Toggle* tog = new Toggle();
-				tog->setPhysicsObject(factory.createSwitch(pos.x,pos.y,tog));
-				tog->m_image.setTexture(*gdata.assets->getTexture("switch_off"));
-				tog->on = gdata.assets->getTexture("switch_on");
-                tog->off = gdata.assets->getTexture("switch_off");
-				tog->switch_type = switch_type;
-				tog->max_time = time;
-				manager.addObject(tog);
-			}
+			if (attribute_type == "platform")       createPlatform(element);
+			else if (attribute_type == "wall")      createWall(element);
+			else if (attribute_type == "player")    createPlayer(element);
+			else if (attribute_type == "laser")     createLaser(element);
+			else if (attribute_type == "hole")      createHole(element);
+			else if (attribute_type == "switch")    createSwitch(element);
 
 			element = element->NextSiblingElement("object");
 		}
@@ -498,3 +402,186 @@ void StateGame::loadLevel()
 		gz::print_w("Exception Thrown:" + gz::toString(ex.what()));
 	}
 }
+
+void StateGame::createLaser(XMLElement* element,Toggle* t)
+{
+    Vector2 pos			= Vector2(element->Attribute("position"));
+    Vector2 laser_dir	= Vector2(element->Attribute("laser_direction"));
+    Vector2 p1			= Vector2(element->Attribute("p1"));
+    Vector2 p2			= Vector2(element->Attribute("p2"));
+    bool moving			= atoi(element->Attribute("moving"));
+    float move_duration = atof(element->Attribute("duration"));
+    float move_time		= atof(element->Attribute("time"));
+
+    float start_angle	= atof(element->Attribute("start_angle"));
+    float delta_angle	= atof(element->Attribute("delta_angle"));
+    float rot_dur		= atof(element->Attribute("rotation_duration"));
+    bool rotating		= atoi(element->Attribute("rotating"));
+    float rot_time		= atof(element->Attribute("rotation_time"));
+
+    int switch_bits     = atoi(element->Attribute("switch_bits"));
+    bool disabled        = atoi(element->Attribute("disabled"));
+    bool mov_disabled    = atoi(element->Attribute("disabled_mov"));
+    bool rot_disabled    = atoi(element->Attribute("disabled_rot"));
+
+    Laser* l = new Laser();
+    l->laserPos = pos;
+    l->laser_dir = laser_dir;
+    l->m_point1 = p1;
+    l->m_point2 = p2;
+    l->m_dest = p2;
+    l->m_moving = moving;
+    l->m_duration = move_duration;
+    l->m_time = move_time;
+
+    l->start_angle = start_angle;
+    l->delta_angle = delta_angle;
+    l->r_duration = rot_dur;
+    l->rotating = rotating;
+    l->r_time = rot_time;
+
+    l->switch_mask = switch_bits;
+    l->enable(!disabled);
+    l->enableMovement(!mov_disabled);
+    l->enableRotation(!rot_disabled);
+
+    if (t) t->obs.push_back(l);
+
+    manager.addObject(l);
+}
+
+void StateGame::createPlatform(XMLElement* element,Toggle* t)
+{
+    Vector2 pos		= Vector2(element->Attribute("position"));
+    Vector2 size	= Vector2(element->Attribute("size"));
+    Vector2 p1		= Vector2(element->Attribute("p1"));
+    Vector2 p2		= Vector2(element->Attribute("p2"));
+    bool moving		= atoi(element->Attribute("moves"));
+    float duration	= atof(element->Attribute("duration"));
+    float progress	= atof(element->Attribute("progress"));
+    float angle		= atof(element->Attribute("rotation"));
+    float rotspeed  = atof(element->Attribute("rotationspeed"));
+
+    int switch_bits     = atoi(element->Attribute("switch_bits"));
+    bool disabled        = atoi(element->Attribute("disabled"));
+    bool mov_disabled    = atoi(element->Attribute("disabled_mov"));
+    bool rot_disabled    = atoi(element->Attribute("disabled_rot"));
+
+    Wall* platform = new Wall();
+    platform->setPhysicsObject(factory.createObsticle(pos.x, pos.y, size.x, size.y, angle, platform));
+
+    platform->m_moving	    = moving;
+    if (moving)
+    {
+        platform->setPosition( p1 + ((p2 - p1) * progress));
+        platform->m_duration    = duration;
+        platform->m_point1	    = p1;
+        platform->m_point2	    = p2;
+        platform->m_dest        = p2;
+        platform->setLinearVelocity( (p2 - p1) / duration);
+    }
+
+    platform->setAngularVelocity(rotspeed * DEGTORAD);
+
+    platform->switch_mask = switch_bits;
+    if (disabled) {
+        platform->enable(false);
+    } else {
+        if (mov_disabled)   platform->enableMovement(false);
+        if (rot_disabled)   platform->enableRotation(false);
+    }
+
+    if (t) t->obs.push_back(platform);
+
+    manager.addObject(platform);
+}
+
+void StateGame::createWall(XMLElement* element)
+{
+    Vector2 pos		= Vector2(element->Attribute("position"));
+    Vector2 size	= Vector2(element->Attribute("size"));
+    float	angle	= atof(element->Attribute("rotation"));
+
+    Wall* wall = new Wall();
+    wall->setPhysicsObject(factory.createGround(pos.x, pos.y, size.x, size.y, angle,wall));
+
+    manager.addObject(wall);
+}
+
+void StateGame::createPlayer(XMLElement* element)
+{
+    Vector2 pos = Vector2(element->Attribute("position"));
+    player = new Player();
+    player->setPhysicsObject(factory.createPlayer(pos.x, pos.y, player));
+    player->m_name = "Object: player";
+    player->reset_pos = pos;
+    manager.addObject(player);
+    input.m_player = player;
+}
+
+void StateGame::createHole(XMLElement* element)
+{
+    Vector2 pos = Vector2(element->Attribute("position"));
+    Hole* hole = new Hole();
+    hole->setPhysicsObject(factory.createHole(pos.x,pos.y,hole));
+    hole->m_type = HOLE;
+    hole->m_image.setTexture(*gdata.assets->getTexture("hole_off"));
+    manager.addObject(hole);
+}
+
+void StateGame::createSwitch(XMLElement* element)
+{
+    Vector2 pos = Vector2(element->Attribute("position"));
+    int switch_type = atoi(element->Attribute("switch_type"));
+    float time = atof(element->Attribute("time"));
+    Toggle* tog = new Toggle();
+    tog->setPhysicsObject(factory.createSwitch(pos.x,pos.y,tog));
+    tog->m_image.setTexture(*gdata.assets->getTexture("switch_off"));
+    tog->on = gdata.assets->getTexture("switch_on");
+    tog->off = gdata.assets->getTexture("switch_off");
+    tog->switch_type = switch_type;
+    tog->max_time = time;
+    manager.addObject(tog);
+
+    XMLElement* child = element->FirstChildElement("object");
+    while (child)
+    {
+        std::string attribute_type = child->Attribute("type");
+
+        if (attribute_type == "platform")       createPlatform(child,tog);
+        else if (attribute_type == "wall")      createWall(child);
+        else if (attribute_type == "player")    createPlayer(child);
+        else if (attribute_type == "laser")     createLaser(child,tog);
+        else if (attribute_type == "hole")      createHole(child);
+        else if (attribute_type == "switch")    createSwitch(child);
+
+        child = child->NextSiblingElement("object");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

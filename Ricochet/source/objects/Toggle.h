@@ -26,6 +26,10 @@ class Toggle : public Obstacle
         virtual void onCollision(Object* objectB);
         virtual void onEnterCollision(CollisionData cd);
         virtual void onExitCollision(CollisionData cd);
+
+
+        void toggleObstacles();
+        vector<Obstacle*> obs;
 };
 
 #endif // SWITCH_H

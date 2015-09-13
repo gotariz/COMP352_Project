@@ -18,8 +18,16 @@ enum SwitchType
     SINGLE      = 3,
 };
 
+enum SwitchBits
+{
+    SW_MOV = 0x0001,
+    SW_ROT = 0x0002,
+    SW_ENB = 0x0004,
+};
+
 enum CollisionGroups
 {
+    CF_NONE                = 0x0000,
     CF_PHYSICAL_OBJECT     = 0x0001,
     CF_SENSOR              = 0x0002,
     CF_PLAYER              = 0x0004,

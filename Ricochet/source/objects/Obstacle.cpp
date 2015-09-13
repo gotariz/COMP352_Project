@@ -10,9 +10,94 @@ Obstacle::~Obstacle()
     //dtor
 }
 
+bool Obstacle::getEnabled()
+{
+    return m_enabled;
+}
+
+bool Obstacle::getEnabledMovement()
+{
+    return m_enabledMovement;
+}
+
+bool Obstacle::getEnabledRotation()
+{
+    return m_enabledRotation;
+}
+
+
+void Obstacle::enable(bool enable)
+{
+    m_enabled = enable;
+    if (m_physicsObject)
+    {
+        if (m_enabled)
+        {
+            b2Fixture* f = m_physicsObject->GetFixtureList();
+            while (f)
+            {
+                b2Filter filter;
+                filter.categoryBits = m_colCat;
+                filter.maskBits = m_colMask;
+
+                f->SetFilterData(filter);
+                f = f->GetNext();
+            }
+        }
+        else
+        {
+            b2Fixture* f = m_physicsObject->GetFixtureList();
+            while (f)
+            {
+                m_colCat = f->GetFilterData().categoryBits;
+                m_colMask = f->GetFilterData().maskBits;
+
+                b2Filter filter;
+                filter.categoryBits = CF_NONE;
+                filter.maskBits = CF_NONE;
+
+                f->SetFilterData(filter);
+                f = f->GetNext();
+            }
+        }
+
+    }
+}
+
+void Obstacle::enableMovement(bool enable)
+{
+    if (enable)
+    {
+       setLinearVelocity(m_vel) ;
+    }
+    else
+    {
+        m_vel = getVelocity();
+        setLinearVelocity(Vector2(0,0));
+    }
+
+    m_enabledMovement = enable;
+
+}
+
+void Obstacle::enableRotation(bool enable)
+{
+    if (enable)
+    {
+       setAngularVelocity(m_rotVel) ;
+    }
+    else
+    {
+        m_rotVel = getAngularVelocity();
+        setAngularVelocity(0);
+    }
+
+    m_enabledRotation = enable;
+}
+
 void Obstacle::onUpdate()
 {
-	if (m_moving)
+	if (m_enabledMovement && m_moving)
 	{
 		Vector2 delta;
 		Vector2 dist_v = m_point1 - m_point2;

@@ -25,17 +25,20 @@ void Laser::rotateLaser()
     if (!rotating) return;
 
     float unit_time = (r_time / r_duration);
-    if (increasing) {
-        r_time += gdata.m_timeDelta;
-        if (unit_time >= 1) {
-            unit_time = 1;
-            increasing = false;
-        }
-    } else {
-        r_time -= gdata.m_timeDelta;
-        if (unit_time <= 0) {
-            unit_time = 0;
-            increasing = true;
+    if (m_enabledRotation)
+    {
+        if (increasing) {
+            r_time += gdata.m_timeDelta;
+            if (unit_time >= 1) {
+                unit_time = 1;
+                increasing = false;
+            }
+        } else {
+            r_time -= gdata.m_timeDelta;
+            if (unit_time <= 0) {
+                unit_time = 0;
+                increasing = true;
+            }
         }
     }
 
@@ -47,7 +50,7 @@ void Laser::rotateLaser()
 
 void Laser::moveLaser()
 {
-    if (!m_moving) return;
+    if (!m_enabledMovement || !m_moving) return;
 
     Vector2 delta;
     Vector2 dist_v = m_point2 - m_point1;
@@ -97,7 +100,9 @@ void Laser::raycast()
 	{
 		for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
 		{
-		    if (f->GetFilterData().categoryBits != CF_PARTICLE && !f->IsSensor())
+		    int categoryBits = f->GetFilterData().categoryBits;
+
+		    if (categoryBits != CF_PARTICLE && categoryBits != CF_NONE && !f->IsSensor())
 			{
 			    b2RayCastOutput output;
                 if (!f->RayCast(&output, input, 0)) continue;
@@ -135,31 +140,39 @@ void Laser::onUpdate()
     rotated_laser = laser_dir;
     rotateLaser();
     moveLaser();
-    raycast();
+
+    if (m_enabled)
+    {
+        raycast();
+    }
 
     emitter.pos = laserPos + laser;
     emitter.update();
+    emitter.enabled = m_enabled;
 }
 
 void Laser::onDraw()
 {
-    Vector2 s = gdata.toScreenPixels(laserPos.x,laserPos.y);
-    Vector2 e = gdata.toScreenPixels(laserPos + laser);
+    if (m_enabled)
+    {
+        Vector2 s = gdata.toScreenPixels(laserPos.x,laserPos.y);
+        Vector2 e = gdata.toScreenPixels(laserPos + laser);
 
-    float length = laser.getMagnitude();
-    float rot = (float)atan2(laser.y,laser.x);
-    rot *= RADTODEG;
-    rot *= -1;
+        float length = laser.getMagnitude();
+        float rot = (float)atan2(laser.y,laser.x);
+        rot *= RADTODEG;
+        rot *= -1;
 
-    laser_beam.setScale(length * gdata.zoom,gdata.zoom);
-    laser_beam.setRotation(rot);
-    laser_beam.setPosition(s.x,s.y);
-    laser_end.setScale(gdata.zoom,gdata.zoom);
-    laser_end.setPosition(e.x,e.y);
-    laser_end.setRotation(rot);
+        laser_beam.setScale(length * gdata.zoom,gdata.zoom);
+        laser_beam.setRotation(rot);
+        laser_beam.setPosition(s.x,s.y);
+        laser_end.setScale(gdata.zoom,gdata.zoom);
+        laser_end.setPosition(e.x,e.y);
+        laser_end.setRotation(rot);
 
-    gdata.window->draw(laser_beam);
-    gdata.window->draw(laser_end);
+        gdata.window->draw(laser_beam);
+        gdata.window->draw(laser_end);
+    }
 
     emitter.drawParticles();
 }

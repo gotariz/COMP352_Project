@@ -171,6 +171,15 @@ void Object::setAngularVelocity(float speed)
     }
 }
 
+float Object::getAngularVelocity()
+{
+    if (m_physicsObject)
+    {
+        return m_physicsObject->GetAngularVelocity();
+    }
+
+    return 0;
+}
 
 //================================================================================
 

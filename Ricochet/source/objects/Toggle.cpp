@@ -21,6 +21,27 @@ void Toggle::onDestroy()
 
 }
 
+void Toggle::toggleObstacles()
+{
+    // loop through obstacles and enable/disable accordingly
+    for (int i = 0; i < obs.size(); ++i)
+    {
+        Obstacle& o = *obs.at(i);
+        if (o.switch_mask & SW_ENB)
+        {
+            o.enable(!o.getEnabled());
+            o.enableRotation(!o.getEnabledRotation());
+            o.enableMovement(!o.getEnabledMovement());
+        }
+        else
+        {
+            if (o.switch_mask & SW_ROT)     o.enableRotation(!o.getEnabledRotation());
+            if (o.switch_mask & SW_MOV)     o.enableMovement(!o.getEnabledMovement());
+        }
+    }
+}
+
+
 void Toggle::onUpdate()
 {
     if (switch_type == TIMED)
@@ -28,11 +49,10 @@ void Toggle::onUpdate()
         if (active)
         {
             time += gdata.m_timeDelta;
-            cout << time << endl;
             if (time >= max_time)
             {
                 m_image.setTexture(*off);
-                // deactivate
+                toggleObstacles();
                 time = 0;
                 active = false;
             }
@@ -44,12 +64,6 @@ void Toggle::onUpdate()
 void Toggle::onCollision(Object* objectB)
 {
     if (!objectB) return;
-
-    if (switch_type == TIMED && !active)
-    {
-        m_image.setTexture(*on);
-        active = true;
-    }
 }
 
 void Toggle::onEnterCollision(CollisionData cd)
@@ -61,10 +75,10 @@ void Toggle::onEnterCollision(CollisionData cd)
         if (active)
         {
             m_image.setTexture(*off);
-            // deactivate
+            toggleObstacles();
         } else {
             m_image.setTexture(*on);
-            // activate
+            toggleObstacles();
         }
         active = !active;
     }
@@ -75,6 +89,7 @@ void Toggle::onEnterCollision(CollisionData cd)
             active = true;
             m_image.setTexture(*on);
             // activate if not already active
+            toggleObstacles();
         }
     }
     else if (switch_type == TIMED)
@@ -84,6 +99,7 @@ void Toggle::onEnterCollision(CollisionData cd)
             active = true;
             m_image.setTexture(*on);
             // activate if not already active
+            toggleObstacles();
         }
     }
 }
@@ -97,6 +113,7 @@ void Toggle::onExitCollision(CollisionData cd)
         active = false;
         m_image.setTexture(*off);
         // deactivate
+        toggleObstacles();
     }
 }
 

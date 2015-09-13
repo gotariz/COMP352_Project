@@ -3,7 +3,11 @@
 
 void ParticleEmitter::update()
 {
-    accumelator += gdata.m_timeDelta;
+    if (enabled)
+    {
+        createParticle();
+        accumelator += gdata.m_timeDelta;
+    }
 
     vector<IParticle*> live_particles;
 
@@ -27,8 +31,6 @@ void ParticleEmitter::update()
     {
         particles.at(i)->particle_update();
     }
-
-    if (enabled)    createParticle();
 
 }
 
