@@ -69,6 +69,7 @@ class StateMenu : public IState
         vector<string>  fps;
         vector<string>  mus;
         vector<string>  sfx;
+        vector<string>  save;
 
         //This is a way to track which option is selected (eg. the 3rd resolution is selected)
         vector<int>     selectedOps;
@@ -86,6 +87,7 @@ class StateMenu : public IState
         int selectedFPS = 0;
         int selectedMus = 0;
         int selectedSFX = 0;
+        int selectedSave = 0;
 
         //This sets the 1st state to the main menu screen
         int menuState = MENU_MAIN;
