@@ -50,15 +50,13 @@ void InputHandler::handleEvents()
 
 	if(gdata.keys[sf::Keyboard::Comma].isKeyPressed)
     {
-        if(gdata.level > 1)
-            gdata.level -= 1;
+        gdata.level -= 1;
         gdata.reload = true;
     }
 
     if(gdata.keys[sf::Keyboard::Period].isKeyPressed)
     {
-        if(gdata.level < 9) //HARD CODED IN - NEED TO FIX
-            gdata.level += 1;
+        gdata.level += 1;
         gdata.reload = true;
     }
 
