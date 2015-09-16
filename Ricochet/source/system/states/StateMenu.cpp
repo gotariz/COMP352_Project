@@ -144,12 +144,18 @@ void StateMenu::load()
     tx = gdata.settings->getScreenWidth() + 10;
     y = gdata.settings->getScreenHeight() - 40 - (78 * 4);
     x = mx;
+//
+//    lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(selectedLevel)));
+//    leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(leftLevel)));
+//    rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(rightLevel)));
+//    lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(lbLevel)));
+//    rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(rbLevel)));
 
-    lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(selectedLevel)));
-    leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(leftLevel)));
-    rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(rightLevel)));
-    lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(lbLevel)));
-    rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(rbLevel)));
+    lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
+    leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
+    rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
+    lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
+    rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
 
     cx = gdata.settings->getScreenWidth()/2;
     rx = gdata.settings->getScreenWidth() - (rightLvlShot.getTexture()->getSize().x/5) - 20;
@@ -697,11 +703,16 @@ void StateMenu::update()
             if(rbLevel > levelCount)
                 rbLevel = 1;
 
-            lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(selectedLevel)));
-            leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(leftLevel)));
-            rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(rightLevel)));
-            lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(lbLevel)));
-            rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(rbLevel)));
+//            lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(selectedLevel)));
+//            leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(leftLevel)));
+//            rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(rightLevel)));
+//            lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(lbLevel)));
+//            rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(rbLevel)));
+            lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
+            leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
+            rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
+            lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
+            rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
         }
     }
 
@@ -798,12 +809,17 @@ void StateMenu::update()
             rbLevel = rightLevel + 1;
             if(rbLevel > levelCount)
                 rbLevel = 1;
-
-            lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(selectedLevel)));
-            leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(leftLevel)));
-            rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(rightLevel)));
-            lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(lbLevel)));
-            rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(rbLevel)));
+//
+//            lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(selectedLevel)));
+//            leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(leftLevel)));
+//            rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(rightLevel)));
+//            lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(lbLevel)));
+//            rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(rbLevel)));
+            lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
+            leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
+            rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
+            lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
+            rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
         }
     }
 }
