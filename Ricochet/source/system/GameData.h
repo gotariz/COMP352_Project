@@ -9,6 +9,7 @@ class Settings;
 class AssetManager;
 class Object;
 class PhysicsFactory;
+class AudioManager;
 
 class GameData
 {
@@ -26,6 +27,7 @@ class GameData
 		Camera*			    camera = nullptr;
 		b2World*		    world = nullptr;
 		PhysicsFactory*     factory = nullptr;
+		AudioManager*       audio = nullptr;
 
 		float			zoom = 1.0;
 		double			m_timeDelta = 0;

@@ -43,5 +43,6 @@
 	<asset type="music" path="media/music/music1.ogg" />
 	<asset type="music" path="media/music/music2.ogg" />
 	<asset type="music" path="media/music/music3.ogg" />
+	<asset type="music" path="media/music/AirHockey.ogg" />
 	<asset type="sound" path="media/sounds/bounce.wav" />
 </root>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<root>
+	<!-- HOLE -->
+	<object type="hole" position="13, 6" />
+
+	<!-- LASERS -->
+	<object type="laser" position="-9.5,-2" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="-9.5,-1" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="-9.5,0" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="-9.5,1" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	
+	<object type="laser" position="0.5, 8.5" laser_direction="0,-1" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="2, 8.5" laser_direction="0,-1" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="3.5, 8.5" laser_direction="0,-1" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="5, 8.5" laser_direction="0,-1" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="6.5, 8.5" laser_direction="0,-1" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	
+	<!-- switches -->
+	<object type="switch" switch_type="3" time="3" position="-7,-4">
+		<object type="platform" position="0,0" size="1,2" rotation="0" moves="1" p1="-8.5,-2.5" p2="-8.5, 1.5" duration="2" progress="0" switch_bits="1" disabled_mov="1"/>
+	</object>
+	
+	<object type="switch" switch_type="3" time="3" position="-1.5, 6">
+		<object type="platform" position="0,0" size="2,1" rotation="0" moves="1" p1="0.5,7.5" p2="6.5, 7.5" duration="2" progress="0" switch_bits="1" disabled_mov="1"/>
+	</object>
+	
+	<!-- PLAYER -->
+	<object type="player" position="-13,-6" />
+
+	<!-- OUTER FRAME OF THE WALLS - starting from top, working clockwise-->
+	<object type="wall" position="2.5, 9" size="26, 1" rotation="0"/>
+	<object type="wall" position="15,6" size="1,5" rotation="0"/>
+	<object type="wall" position="6.75, 3" size="17.5, 1" rotation="0"/>
+	<object type="wall" position="-2.65,2.14" size="2.77,1" rotation="45"/>	
+	<object type="wall" position="-3.5,-3.75" size="1, 10.5" rotation="0"/>
+	<object type="wall" position="-9.25,-8.5" size="10.5, 1" rotation="0"/>
+	<object type="wall" position="-15,-6.5" size="1,5" rotation="0"/>
+	<object type="wall" position="-13,-3.5" size="5,1" rotation="0"/>
+	<object type="wall" position="-10, 2.25" size="1,12.5" rotation="0"/>
+	<object type="wall" position="-7.5,6.5" size="7,1" rotation="45"/>	
+	
+	
+	
+
+	<!-- PLATFORMS -->
+	
+	
+</root>

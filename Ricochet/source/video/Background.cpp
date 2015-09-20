@@ -18,7 +18,7 @@ void Background::init()
         float r = utils::getRandom(10,100);
         float alpha = utils::getRandom(bubble_alpha_range.x,bubble_alpha_range.y);
         float speed = utils::getRandom(1,10);
-        speed /= 10.f;
+        speed /= 20.f;
         r /= 100;
         x -= 18;
         y -= 10.5;

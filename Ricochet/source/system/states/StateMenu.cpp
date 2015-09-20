@@ -189,19 +189,19 @@ void StateMenu::load()
     lbLvlShot.setOrigin(lbLvlShot.getTexture()->getSize().x / 2, lbLvlShot.getTexture()->getSize().y / 2);
 
 //    int rMus = utils::getRandom(0,3);
-    int rMus = 2;
-    cout << "RMUS: " << rMus << endl;
-
-    music.stop();
-    music.setLoop(true);
-    if(rMus == 1)
-        music.openFromFile(gdata.assets->getMusic("music1"));
-    if(rMus == 2)
-        music.openFromFile(gdata.assets->getMusic("music2"));
-    if(rMus == 3)
-        music.openFromFile(gdata.assets->getMusic("music3"));
-    music.setVolume(gdata.settings->getVolume());
-    music.play();
+//    int rMus = 2;
+//    cout << "RMUS: " << rMus << endl;
+//
+//    music.stop();
+//    music.setLoop(true);
+//    if(rMus == 1)
+//        music.openFromFile(gdata.assets->getMusic("music1"));
+//    if(rMus == 2)
+//        music.openFromFile(gdata.assets->getMusic("music2"));
+//    if(rMus == 3)
+//        music.openFromFile(gdata.assets->getMusic("music3"));
+//    music.setVolume(gdata.settings->getVolume());
+//    music.play();
 
     title.setTexture(*gdata.assets->getTexture("title"));
     title.setOrigin(title.getTexture()->getSize().x/2,title.getTexture()->getSize().y/2);

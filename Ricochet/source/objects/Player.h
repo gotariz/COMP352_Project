@@ -8,6 +8,7 @@
 #include "video/Trail.h"
 #include "video/particles/BounceEmitter.h"
 #include "system/AssetManager.h"
+#include "system/AudioManager.h"
 
 class Player : public gObject
 {

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<root>
+	<!-- HOLE -->
+	<object type="hole" position="10.25, 6" />
+
+	<!-- switches -->
+	<object type="switch" switch_type="3" time="3" position="6.5, -4.5">
+		<object type="laser" position="8,4.5" laser_direction="1,-1" switch_bits="4" disabled="0"/>
+		<object type="laser" position="12.5,4.5" laser_direction="-1,-1" switch_bits="4" disabled="0"/>
+	</object>
+
+	<!-- LASERS -->
+	
+	<!-- PLAYER -->
+	<object type="player" position="-13.25, -6" />
+
+	<!-- OUTER FRAME OF THE WALLS - starting far left, working clockwise-->
+	<object type="wall" position="-16, -2" size="1,13" rotation="0"/>
+	<object type="wall" position="-14.5, 2.5" size="7,1" rotation="45"/>
+	<object type="wall" position="-9.25, 4" size="12.5,1" rotation="0"/>
+	<object type="wall" position="0.75,1.75" size="9.24,1" rotation="-30"/>
+	<object type="wall" position="5.75,-0.5" size="2.5, 1" rotation="0"/>
+	<object type="wall" position="7.5, 3.5" size="1, 9" rotation="0"/>
+	<object type="wall" position="10.25,7.5" size="4.5, 1" rotation="0"/>
+	<object type="wall" position="13, 0.25" size="1, 15.5" rotation="0"/>
+	<object type="wall" position="11.5, -6.5" size="7,1" rotation="45"/>
+	<object type="wall" position="8.86, -8" size="9.28, 1" rotation="0"/>
+	<object type="wall" position="-0.38,-5.24" size="11.23, 1" rotation="-30"/>
+	<object type="wall" position="-8,-2.5" size="6, 1" rotation="0"/>
+	<object type="wall" position="-10.5,-5.75" size="1, 5.5" rotation="0"/>
+	<object type="wall" position="-13.25, -8" size="4.5, 1" rotation="0"/>
+	
+	
+
+	<!-- PLATFORMS -->
+	
+
+	
+
+	
+	
+</root>

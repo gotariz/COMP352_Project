@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<root>
+	<!-- HOLE -->
+	<object type="hole" position="0,5" />
+
+	<!-- switches -->
+	<object type="switch" switch_type="3" time="3" position="-6.5,5.5">
+		<object type="laser" position="-3,3" laser_direction="1,0" switch_bits="4" disabled="0"/>
+	</object>
+	
+	<object type="switch" switch_type="3" time="3" position="6.5,5.5">
+		<object type="laser" position="3,3" laser_direction="-1,0" switch_bits="4" disabled="0"/>
+	</object>
+
+	<!-- LASERS -->
+	
+	<!-- PLAYER -->
+	<object type="player" position="0,1" />
+
+	<!-- OUTER FRAME OF THE WALLS - starting from top, working clockwise-->
+	<object type="wall" position="0,7" size="6,1" rotation="0"/>
+	<object type="wall" position="3.5,3.4" size="1,8.15" rotation="0"/>
+	<object type="wall" position="4.03,-0.96" size="2,1" rotation="-45"/>
+	<object type="wall" position="6.55,-1.5" size="4.4,1" rotation="0"/>
+	<object type="wall" position="8.25,1.25" size="1,4.5" rotation="0"/>
+	<object type="wall" position="6.125,3" size="3.25,1" rotation="0"/>
+	<object type="wall" position="5,5.5" size="1,4" rotation="0"/>
+	<object type="wall" position="9.625,8" size="10.25,1" rotation="0"/>
+	<object type="wall" position="14.25,0.25" size="1,14.5" rotation="0"/>
+	<object type="wall" position="0,-7.5" size="29.5,1" rotation="0"/>
+	
+	<object type="wall" position="0,-6.25" size="2.64,1.5" rotation="0"/>
+	<object type="wall" position="2.02, -6.9" size="3,1" rotation="-45"/>
+	<object type="wall" position="-2.02, -6.9" size="3,1" rotation="45"/>
+	
+	<object type="wall" position="-14.25,0.25" size="1,14.5" rotation="0"/>
+	<object type="wall" position="-9.625,8" size="10.25,1" rotation="0"/>
+	<object type="wall" position="-5,5.5" size="1,4" rotation="0"/>
+	<object type="wall" position="-6.125,3" size="3.25,1" rotation="0"/>
+	<object type="wall" position="-8.25,1.25" size="1,4.5" rotation="0"/>
+	<object type="wall" position="-6.55,-1.5" size="4.4,1" rotation="0"/>
+	<object type="wall" position="-4.03,-0.96" size="2,1" rotation="45"/>
+	<object type="wall" position="-3.5,3.4" size="1,8.15" rotation="0"/>
+
+	<!-- PLATFORMS -->
+	
+</root>

@@ -12,35 +12,42 @@ Engine::~Engine()
 
 void Engine::run()
 {
-	gzClock clock;
 	clock.getDeltaSeconds();
     // check to switch states
     while(running)
     {
-		double delta = clock.getDeltaSeconds();
-
-		// calculate fps
-		delta = (delta > 1.f /60) ? 1.f / 60 : delta;
-		double fps = 1.f / delta;
-		string title = "fps" + gz::toString(fps);
-		gdata.window->setTitle( title.c_str() );
-		gdata.m_timeDelta = delta;
-
-        // update mouse position
-        sf::Vector2i mp = sf::Mouse::getPosition(*gdata.window);
-        gdata.mouse.x = mp.x;
-        gdata.mouse.y = gdata.window->getSize().y - mp.y;
-        gdata.mouse_raw.x = mp.x;
-        gdata.mouse_raw.y = mp.y;
-
-        updateState();
-
+        updateEngine();
         activeState->handleEvents();
         activeState->update();
         activeState->draw();
         running = gdata.running;
     }
 }
+
+void Engine::updateEngine()
+{
+    time_delta = clock.getDeltaSeconds();
+    fps_delta = time_delta;
+
+    // calculate fps
+    time_delta = (time_delta > 1.f /60) ? 1.f / 60 : time_delta;
+    double fps = 1.f / fps_delta;
+    string title = "fps" + gz::toString(fps);
+    gdata.window->setTitle( title.c_str() );
+    gdata.m_timeDelta = time_delta;
+
+    // update mouse position
+    sf::Vector2i mp = sf::Mouse::getPosition(*gdata.window);
+    gdata.mouse.x = mp.x;
+    gdata.mouse.y = gdata.window->getSize().y - mp.y;
+    gdata.mouse_raw.x = mp.x;
+    gdata.mouse_raw.y = mp.y;
+
+    audio.update();
+
+    updateState();
+}
+
 
 void Engine::updateState()
 {
@@ -81,6 +88,8 @@ bool Engine::initialise()
     running = true;
     assets.loadAssetList("data/assets.xml");
 	gdata.assets = &assets;
+	gdata.audio = &audio;
+	audio.playMusic("AirHockey");
     return true;
 }
 
@@ -96,6 +105,7 @@ void Engine::exit()
     }
 
     assets.freeResources();
+    audio.freeResources();
 
 	//Destroy window
 	//SDL_DestroyWindow(gdata.window);

@@ -5,14 +5,6 @@ void Player::onCreate()
     color.setColor(5,91,165,255);
     color.setTime(0.5f);
     emitter.enabled = true;
-
-    sf::SoundBuffer* b = gdata.assets->getSound("bounce");
-    if (b)
-    {
-        sfx.setBuffer(*b);
-    }
-    sfx.setVolume(1);
-//    sfx.setVolume(gdata.settings->getSFX());
 }
 
 void Player::onUpdate()
@@ -38,7 +30,8 @@ void Player::onCollision(Object* objectB)
 {
     if (objectB->m_type == WALL)
     {
-        sfx.play();
+        gdata.audio->playSound("bounce");
+
         float speed = getVelocity().getMagnitude();
         speed /= maxSpeed;
         int r = 165 * speed;

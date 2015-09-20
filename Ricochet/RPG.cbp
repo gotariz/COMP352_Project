@@ -21,6 +21,8 @@
 					<Add directory="source/video" />
 					<Add directory="source/objects" />
 					<Add directory="source/video/particles" />
+					<Add directory="source/system" />
+					<Add directory="source/utils" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-audio-2" />
@@ -48,6 +50,8 @@
 					<Add directory="source/system/states" />
 					<Add directory="source/video" />
 					<Add directory="source/video/particles" />
+					<Add directory="source/system" />
+					<Add directory="source/utils" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -104,6 +108,8 @@
 		<Unit filename="source/structs.h" />
 		<Unit filename="source/system/AssetManager.cpp" />
 		<Unit filename="source/system/AssetManager.h" />
+		<Unit filename="source/system/AudioManager.cpp" />
+		<Unit filename="source/system/AudioManager.h" />
 		<Unit filename="source/system/Engine.cpp" />
 		<Unit filename="source/system/Engine.h">
 			<Option virtualFolder="source/system/" />
@@ -119,6 +125,8 @@
 		<Unit filename="source/system/states/StateGame.h" />
 		<Unit filename="source/system/states/StateMenu.cpp" />
 		<Unit filename="source/system/states/StateMenu.h" />
+		<Unit filename="source/utils/LinkedList.cpp" />
+		<Unit filename="source/utils/LinkedList.h" />
 		<Unit filename="source/utils/Utils.cpp" />
 		<Unit filename="source/utils/Utils.h" />
 		<Unit filename="source/utils/Vector2.cpp" />
