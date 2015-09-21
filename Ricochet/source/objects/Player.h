@@ -7,6 +7,7 @@
 #include "sfColor.h"
 #include "video/Trail.h"
 #include "video/particles/BounceEmitter.h"
+#include "video/particles/ExplodeEmitter.h"
 #include "system/AssetManager.h"
 #include "system/AudioManager.h"
 
@@ -22,12 +23,16 @@ class Player : public gObject
         virtual void onCollision(Object* objectB);
         virtual void onEnterCollision(CollisionData cd);
         virtual void onPostPhysicsUpdate();
+        virtual void onDestroy();
         virtual void onDraw();
 
         float maxSpeed = 30;
 		float currentSpeed = 0;
 
-		BounceEmitter emitter;
+		BounceEmitter   emitter;
+		ExplodeEmitter  explode_emitter;
+
+		bool draw_player = true;
 
         sfColor color;
         Trail trail;

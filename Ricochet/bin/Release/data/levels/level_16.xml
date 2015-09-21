@@ -4,16 +4,16 @@
 	<object type="hole" position="13, 6" />
 
 	<!-- LASERS -->
-	<object type="laser" position="-9.5,-2" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
-	<object type="laser" position="-9.5,-1" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
-	<object type="laser" position="-9.5,0" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
-	<object type="laser" position="-9.5,1" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="-9.5,-2" rotation="0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="-9.5,-1" rotation="0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="-9.5,0" rotation="0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="-9.5,1" rotation="0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
 	
-	<object type="laser" position="0.5, 8.5" laser_direction="0,-1" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
-	<object type="laser" position="2, 8.5" laser_direction="0,-1" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
-	<object type="laser" position="3.5, 8.5" laser_direction="0,-1" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
-	<object type="laser" position="5, 8.5" laser_direction="0,-1" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
-	<object type="laser" position="6.5, 8.5" laser_direction="0,-1" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="0.5, 8.5" rotation="270" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="2, 8.5" rotation="270" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="3.5, 8.5" rotation="270" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="5, 8.5" rotation="270" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="6.5, 8.5" rotation="270" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
 	
 	<!-- switches -->
 	<object type="switch" switch_type="3" time="3" position="-7,-4">
@@ -38,11 +38,14 @@
 	<object type="wall" position="-13,-3.5" size="5,1" rotation="0"/>
 	<object type="wall" position="-10, 2.25" size="1,12.5" rotation="0"/>
 	<object type="wall" position="-7.5,6.5" size="7,1" rotation="45"/>	
-	
-	
-	
 
 	<!-- PLATFORMS -->
+
+	<!-- BORDER -->
+	<object type="wall" position="0,13" size="38,5" rotation="0"/> 		<!-- top -->
+	<object type="wall" position="0,-13" size="38,5" rotation="0"/> 	<!-- bottom -->
+	<object type="wall" position="-21.5,0" size="5,31" rotation="0"/> 	<!-- left -->
+	<object type="wall" position="21.5,0" size="5,31" rotation="0"/> 	<!-- right -->
 	
 	
 </root>

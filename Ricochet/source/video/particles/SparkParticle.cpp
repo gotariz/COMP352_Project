@@ -14,15 +14,14 @@ SparkParticle::~SparkParticle()
 void SparkParticle::particle_draw()
 {
     Vector2 p = gdata.toScreenPixels(getAbsolutePosition());
-    sf::RectangleShape r(sf::Vector2f(size,size));
     r.setPosition(p.x,p.y);
-    r.setFillColor(c);
     gdata.window->draw(r);
 }
 
 void SparkParticle::particle_create()
 {
-
+    r.setSize(sf::Vector2f(size,size));
+    r.setFillColor(c);
 }
 
 void SparkParticle::particle_update()

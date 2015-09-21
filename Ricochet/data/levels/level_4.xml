@@ -4,8 +4,8 @@
 	<object type="hole" position="11.7,5" />
 
 	<!-- LASERS -->
-	<object type="laser" position="-3.65,-3.65" laser_direction="1,1" />
-	<object type="laser" position="3.65,3.65" laser_direction="-1,-1" />
+	<object type="laser" position="-3.65,-3.65" rotation="45" />
+	<object type="laser" position="3.65,3.65" rotation="225" />
 	
 	<!-- PLAYER -->
 	<object type="player" position="-11.7,-5" />
@@ -40,4 +40,11 @@
 	<object type="wall" position="-1.5,-1.5" size="1,1" rotation="45"/>
 
 	<!-- PLATFORMS -->
+
+	<!-- BORDER -->
+	<object type="wall" position="0,13" size="38,5" rotation="0"/> 		<!-- top -->
+	<object type="wall" position="0,-13" size="38,5" rotation="0"/> 	<!-- bottom -->
+	<object type="wall" position="-21.5,0" size="5,31" rotation="0"/> 	<!-- left -->
+	<object type="wall" position="21.5,0" size="5,31" rotation="0"/> 	<!-- right -->
+	
 </root>

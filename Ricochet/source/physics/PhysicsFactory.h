@@ -22,6 +22,7 @@ class PhysicsFactory
 		b2Body* createGround(float x, float y, float width, float height, float angle, void* userPointer);
 		b2Body* createObsticle(float x, float y, float w, float h, float angle, void* userPointer);
 		b2Body* createParticle(float x, float y, void* userPointer);
+		b2Body* createParticle(float x, float y, float size, void* userPointer);
 
 		b2Body* createSwitch(float x, float y, void* userPointer);
 };

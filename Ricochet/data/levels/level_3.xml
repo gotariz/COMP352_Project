@@ -4,9 +4,9 @@
 	<object type="hole" position="6,3" />
 
 	<!-- LASERS -->
-	<object type="laser" position="-18,9" laser_direction="1,0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
-	<object type="laser" position="-17.5,9.5" laser_direction="0,-1" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
-	<object type="laser" position="-3.5,9.5" laser_direction="-1,-1" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="10" rotating="0" rotation_time="0" />
+	<object type="laser" position="-18,9" rotation="0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
+	<object type="laser" position="-17.5,9.5" rotation="-90" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="1" rotating="0" rotation_time="0" />
+	<object type="laser" position="-3.75,9.5" rotation="225" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="0" delta_angle="45" rotation_duration="10" rotating="0" rotation_time="0" />
 	
 	<!-- PLAYER -->
 	<object type="player" position="-6,-5" />
@@ -25,5 +25,11 @@
 
 	<!-- PLATFORMS -->
 	<object type="platform" position="0,0" size="1,3" rotation="-45" moves="1" p1="-5,7" p2="-11,1" duration="2" time="0" rotationspeed="0"/>
+
+	<!-- BORDER -->
+	<object type="wall" position="0,13" size="38,5" rotation="0"/> 		<!-- top -->
+	<object type="wall" position="0,-13" size="38,5" rotation="0"/> 	<!-- bottom -->
+	<object type="wall" position="-21.5,0" size="5,31" rotation="0"/> 	<!-- left -->
+	<object type="wall" position="21.5,0" size="5,31" rotation="0"/> 	<!-- right -->
 	
 </root>

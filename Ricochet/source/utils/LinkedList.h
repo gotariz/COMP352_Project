@@ -31,7 +31,7 @@ class LinkedList
             return size;
         }
 
-        void add(T data)
+        Node<T>* add(T data)
         {
             // add a new node to the end of the list
             Node<T>* node = new Node<T>;
@@ -52,11 +52,12 @@ class LinkedList
             }
 
             ++size;
+            return node;
         }
 
-        void insertBefore(Node<T>* n, T data)
+        Node<T>* insertBefore(Node<T>* n, T data)
         {
-            if (!n) return;
+            if (!n) return nullptr;
             Node<T>* previous = n->prev;
 
             Node<T>* node = new Node<T>;
@@ -71,11 +72,12 @@ class LinkedList
             if (n == root) root = node;
 
             ++size;
+            return node;
         }
 
-        void insertAfter(Node<T>* n, T data)
+        Node<T>* insertAfter(Node<T>* n, T data)
         {
-            if (!n) return;
+            if (!n) return nullptr;
 
             Node<T>* next = n->next;
 
@@ -91,6 +93,8 @@ class LinkedList
             if (n == last)  last = node;
 
             ++size;
+
+            return node;
         }
 
         void remove(Node<T>* n)

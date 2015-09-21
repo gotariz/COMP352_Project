@@ -15,6 +15,7 @@ class SparkParticle : public Particle, public gObject
 
         int size = 0;
         sf::Color c = sf::Color::Red;
+        sf::RectangleShape r;
 
         virtual void particle_draw();
         virtual void particle_create();

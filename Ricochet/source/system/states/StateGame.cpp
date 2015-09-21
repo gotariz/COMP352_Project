@@ -101,14 +101,13 @@ void StateGame::load()
     font.setFont(gdata.assets->getFont("purista-medium-14-white"));
     font.setColor(sf::Color::Red);
 
-    sf::Color purple = sf::Color(135,0,135);
     fntPower.setWindow(gdata.window);
     fntPower.setFont(gdata.assets->getFont("segoe-ui-light-48"));
-    fntPower.setColor(purple);
+    fntPower.setColor(sf::Color::White);
 
     fntAngle.setWindow(gdata.window);
     fntAngle.setFont(gdata.assets->getFont("segoe-ui-light-20"));
-    fntAngle.setColor(purple);
+    fntAngle.setColor(sf::Color::White);
 
     fntIns.setWindow(gdata.window);
     fntIns.setFont(gdata.assets->getFont("segoe-ui-light-20"));
@@ -122,6 +121,8 @@ void StateGame::load()
     cout << "adjusting screen size:";
 	gdata.zoom = (gdata.settings->getScreenWidth() / 1900.f);
 	cout << "complete" << endl;
+
+    gdata.countdown = 0;
 
     cout << "===================================================" << endl;
     loading = false;
@@ -197,6 +198,7 @@ void StateGame::update()
 void StateGame::draw()
 {
     gdata.window->clear(sf::Color::Black);
+    //gdata.window->clear(sf::Color::Blue);
 
     bg.draw();
 
@@ -205,7 +207,7 @@ void StateGame::draw()
         // draw the line
         Vector2 start = player->getAbsolutePosition();
         Vector2 dir = input.vel;
-        dir.setMagnitude(50);
+        dir.setMagnitude(30);
 
         Vector2 p = gdata.toScreenPixels(start);
         Vector2 n = gdata.toScreenPixels(start + dir);
@@ -279,9 +281,12 @@ void StateGame::draw()
             Vector2 p1(x,10.5);
             Vector2 p2(x,-10.5);
 
+            sf::Color c = sf::Color::White;
+            if (x == 0) c = sf::Color::Red;
+
             p1 = gdata.toScreenPixels(p1);
             p2 = gdata.toScreenPixels(p2);
-            drawLine(p1,p2);
+            drawLine(p1,p2,c);
         }
 
         for (int y = -10; y <= 10; ++y)
@@ -289,9 +294,12 @@ void StateGame::draw()
             Vector2 p1(-19,y);
             Vector2 p2(19,y);
 
+            sf::Color c = sf::Color::White;
+            if (y == 0) c = sf::Color::Blue;
+
             p1 = gdata.toScreenPixels(p1);
             p2 = gdata.toScreenPixels(p2);
-            drawLine(p1,p2);
+            drawLine(p1,p2,c);
         }
     }
     //===========================================
@@ -339,12 +347,12 @@ Vector2 StateGame::raycast(Vector2 start, Vector2 dir, float length)
 	return (delta);
 }
 
-void StateGame::drawLine(Vector2 p1, Vector2 p2)
+void StateGame::drawLine(Vector2 p1, Vector2 p2, sf::Color c)
 {
     sf::Vertex line[] =
     {
-        sf::Vertex(sf::Vector2f(p1.x, p1.y),sf::Color(255,255,255,128)),
-        sf::Vertex(sf::Vector2f(p2.x, p2.y),sf::Color(255,255,255,128))
+        sf::Vertex(sf::Vector2f(p1.x, p1.y),c),
+        sf::Vertex(sf::Vector2f(p2.x, p2.y),c)
     };
     gdata.window->draw(line, 2, sf::Lines);
 }
@@ -406,9 +414,10 @@ void StateGame::loadLevel()
 void StateGame::createLaser(XMLElement* element,Toggle* t)
 {
     Vector2 pos			= Vector2(element->Attribute("position"));
-    Vector2 laser_dir	= Vector2(element->Attribute("laser_direction"));
     Vector2 p1			= Vector2(element->Attribute("p1"));
     Vector2 p2			= Vector2(element->Attribute("p2"));
+    float rot	        = atof(element->Attribute("rotation"));
+    float stand_rot	    = atof(element->Attribute("stand_rotation"));
     bool moving			= atoi(element->Attribute("moving"));
     float move_duration = atof(element->Attribute("duration"));
     float move_time		= atof(element->Attribute("time"));
@@ -426,7 +435,8 @@ void StateGame::createLaser(XMLElement* element,Toggle* t)
 
     Laser* l = new Laser();
     l->laserPos = pos;
-    l->laser_dir = laser_dir;
+    l->rotation = rot;
+    l->stand_rotation = stand_rot;
     l->m_point1 = p1;
     l->m_point2 = p2;
     l->m_dest = p2;
@@ -439,6 +449,9 @@ void StateGame::createLaser(XMLElement* element,Toggle* t)
     l->r_duration = rot_dur;
     l->rotating = rotating;
     l->r_time = rot_time;
+
+    l->laser_head.setTexture(*gdata.assets->getTexture("laser_head"));
+    l->laser_head.setOrigin(8,6);
 
     l->switch_mask = switch_bits;
     l->enable(!disabled);

@@ -45,16 +45,6 @@ void ParticleEmitter::freeResources()
     particles.clear();
 }
 
-bool ParticleEmitter::condition(IParticle* p)
-{
-    bool del = (p->particle_age >= p->particle_dur);
-    if (del)
-    {
-        p->particle_destroy();
-    }
-    return del;
-}
-
 void ParticleEmitter::drawParticles()
 {
     for (int i = 0; i < particles.size(); ++i)

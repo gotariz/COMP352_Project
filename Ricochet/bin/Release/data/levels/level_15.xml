@@ -17,9 +17,9 @@
 	</object>
 
 	<!-- LASERS -->
-	<object type="laser" position="4.5,1" laser_direction="0,-1" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
-	<object type="laser" position="0,1" laser_direction="0,-1" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
-	<object type="laser" position="-4.5,1" laser_direction="0,-1" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="4.5,1" rotation="270" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="0,1" rotation="270" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="-4.5,1" rotation="270" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
 	
 	<!-- PLAYER -->
 	<object type="player" position="10.5, 6" />
@@ -36,17 +36,13 @@
 	<object type="wall" position="0,-8" size="28, 1" rotation="0"/>
 	<object type="wall" position="11.5,-5.5" size="9.75, 1" rotation="30"/>
 	<object type="wall" position="-14.5,0" size="1, 17" rotation="0"/>
-	
-	
-	
 
 	<!-- PLATFORMS -->
-	<!-- <object type="platform" position="0,0" size="0.5,1.5" rotation="0" moves="1" p1="-4,-1" p2="-4, 6.5" duration="2" progress="0"/> -->
-	
-	
 
-	
-
-	
+	<!-- BORDER -->
+	<object type="wall" position="0,13" size="38,5" rotation="0"/> 		<!-- top -->
+	<object type="wall" position="0,-13" size="38,5" rotation="0"/> 	<!-- bottom -->
+	<object type="wall" position="-21.5,0" size="5,31" rotation="0"/> 	<!-- left -->
+	<object type="wall" position="21.5,0" size="5,31" rotation="0"/> 	<!-- right -->
 	
 </root>

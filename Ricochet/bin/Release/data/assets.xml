@@ -1,26 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-	<!--<asset type="image" path="media/images/player.png" />
-	<asset type="image" path="media/images/background.png" />
-	<asset type="image" path="media/images/placeholders/ph_grass.png" />
-	<asset type="image" path="media/images/logotemp.png" />
-	<asset type="image" path="media/images/arrowActive.png" />
-	<asset type="image" path="media/images/arrowInactive.png" />
-	<asset type="image" path="media/fonts/purista-medium-14-white/35.png" />
-	
-	<asset type="image" path="media/images/animation/frame_0.png" />
-	<asset type="image" path="media/images/animation/frame_1.png" />
-	<asset type="image" path="media/images/animation/frame_2.png" />
-	<asset type="image" path="media/images/animation/frame_3.png" />
-	<asset type="image" path="media/images/animation/frame_4.png" />
-	
-	<asset type="sound" path="media/sounds/god.wav" />
-	<asset type="music" path="media/music/enya.ogg" />-->
-	
+	<!-- IMAGES -->
 	<asset type="image" path="media/images/title.png" />
 	<asset type="image" path="media/images/loading.png" />
 	<asset type="image" path="media/images/laser_beam.png" />
 	<asset type="image" path="media/images/laser_end.png" />
+	<asset type="image" path="media/images/laser_head.png" />
+	<asset type="image" path="media/images/laser_stand.png" />
 	<asset type="image" path="media/images/hole_on.png" />
 	<asset type="image" path="media/images/hole_off.png" />
 	<asset type="image" path="media/images/switch_off.png" />
@@ -37,11 +23,19 @@
 	<asset type="image" path="media/images/Screencap_Level_10.png" />
 	<asset type="image" path="media/images/Screencap_Level_11.png" />
 	<asset type="image" path="media/images/Screencap_Level_12.png" />
-	<asset type="font" path="media/fonts/purista-medium-14-white/" />
-	<asset type="font" path="media/fonts/segoe-ui-light-48/" />
-	<asset type="font" path="media/fonts/segoe-ui-light-20/" />
+
+	<!-- SOUNDS -->
+	<asset type="sound" path="media/sounds/bounce.wav" />
+
+	<!-- MUSIC -->
 	<asset type="music" path="media/music/music1.ogg" />
 	<asset type="music" path="media/music/music2.ogg" />
 	<asset type="music" path="media/music/music3.ogg" />
-	<asset type="sound" path="media/sounds/bounce.wav" />
+	<asset type="music" path="media/music/AirHockey.ogg" />
+	<asset type="music" path="media/music/Divider.ogg" />
+
+	<!-- FONTS -->
+	<asset type="font" path="media/fonts/purista-medium-14-white/" />
+	<asset type="font" path="media/fonts/segoe-ui-light-48/" />
+	<asset type="font" path="media/fonts/segoe-ui-light-20/" />
 </root>

@@ -13,6 +13,8 @@ Laser::Laser()
     laser_beam.setOrigin(0,7);
     laser_end.setTexture(*gdata.assets->getTexture("laser_end"));
     laser_end.setOrigin(0,7);
+
+    laser_dir.set(1,0);
 }
 
 Laser::~Laser()
@@ -45,6 +47,7 @@ void Laser::rotateLaser()
     float new_angle = start_angle + (delta_angle * unit_time);
     rotated_laser = laser_dir;
     rotated_laser.rotate(new_angle);
+    rotation = new_angle;
 
 }
 
@@ -124,9 +127,12 @@ void Laser::raycast()
 
 		if (body->GetUserData() != nullptr && p->m_type == PLAYER)
 		{
-			cout << "you died" << endl;
-			gdata.reload = true;
-			gdata.delay_reload = true;
+		    if (gdata.countdown <= 0)
+			{
+			    cout << "you died" << endl;
+                static_cast<Object*>(body->GetUserData())->onDestroy();
+                gdata.countdown = 1.f;
+			}
 		}
 	}
 
@@ -138,6 +144,7 @@ void Laser::raycast()
 void Laser::onUpdate()
 {
     rotated_laser = laser_dir;
+    rotated_laser.rotate(rotation);
     rotateLaser();
     moveLaser();
 
@@ -172,6 +179,12 @@ void Laser::onDraw()
 
         gdata.window->draw(laser_beam);
         gdata.window->draw(laser_end);
+
+        laser_head.setRotation(-rotation);
+        laser_head.setPosition(s.x,s.y);
+        laser_head.setScale(gdata.zoom,gdata.zoom);
+
+        gdata.window->draw(laser_head);
     }
 
     emitter.drawParticles();

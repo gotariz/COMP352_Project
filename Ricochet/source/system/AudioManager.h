@@ -6,6 +6,78 @@
 #include "general.h"
 #include "utils/LinkedList.h"
 
+struct MusicHandle
+{
+    Node<MusicHandle*>*     node = nullptr;
+    sf::Music               music;
+
+    void play()
+    {
+        music.play();
+    }
+
+    void stop()
+    {
+        music.stop();
+    }
+
+    void pause()
+    {
+        music.pause();
+    }
+
+    void loop(bool loop)
+    {
+        music.setLoop(loop);
+    }
+
+    void volume(float volume)
+    {
+        music.setVolume(volume);
+    }
+
+    bool isFinished()
+    {
+        return (music.getStatus() == sf::Music::Stopped);
+    }
+};
+
+struct SoundHandle
+{
+    Node<SoundHandle*>*     node = nullptr;
+    sf::Sound               sound;
+
+    void play()
+    {
+        sound.play();
+    }
+
+    void stop()
+    {
+        sound.stop();
+    }
+
+    void pause()
+    {
+        sound.pause();
+    }
+
+    void loop(bool loop)
+    {
+        sound.setLoop(loop);
+    }
+
+    void volume(float volume)
+    {
+        sound.setVolume(volume);
+    }
+
+    bool isFinished()
+    {
+        return (sound.getStatus() == sf::Sound::Stopped);
+    }
+};
+
 class AudioManager
 {
     public:
@@ -22,8 +94,8 @@ class AudioManager
         void playSound(string name, bool destroy_old = false);
         void playMusic(string name, bool destroy_old = false);
 
-        sf::Sound* addSound(string name);
-        sf::Music* addMusic(string name);
+        SoundHandle* addSound(string name, bool destroy_old = false);
+        MusicHandle* addMusic(string name, bool destroy_old = false);
 
         void freeResources();
 
@@ -31,17 +103,17 @@ class AudioManager
         void updateVolumeSFX();
         void updateVolumeMusic();
     protected:
-        LinkedList<sf::Sound*>  unused_sound;
-        LinkedList<sf::Music*>  unused_music;
+        LinkedList<SoundHandle*>    unused_sound;
+        LinkedList<MusicHandle*>    unused_music;
 
+        LinkedList<SoundHandle*>    sfx_temp;      // sfx that will be automatically deleted when finished
+        LinkedList<SoundHandle*>    sfx_perm;
 
+        LinkedList<MusicHandle*>    music_temp;    // music that will be automatically deleted when finished
+        LinkedList<MusicHandle*>    music_perm;
 
-        LinkedList<sf::Sound*> sfx_temp;      // sfx that will be automatically deleted when finished
-        LinkedList<sf::Music*> music_temp;    // music that will be automatically deleted when finished
-
-        vector<sf::Sound*> sfx_perm;      // sfx that lasts until it is removed
-        vector<sf::Music*> music_perm;    // music that lasts until it is removed
-
+        void removeTempSound();
+        void removeTempMusic();
 };
 
 #endif // AUDIOMANAGER_H

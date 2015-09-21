@@ -36,6 +36,7 @@ enum CollisionGroups
 	CF_HOLE                = 0x0020,
 	CF_SWITCH              = 0x0040,
 	CF_PARTICLE            = 0x0080,
+	CF_EPARTICLE            = 0x0100,
     CF_ALL                 = 0xFFFF,
 };
 

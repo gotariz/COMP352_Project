@@ -5,12 +5,28 @@ void Player::onCreate()
     color.setColor(5,91,165,255);
     color.setTime(0.5f);
     emitter.enabled = true;
+
+    explode_emitter.num_particles = 200;
+    explode_emitter.min_size = 0.05;
+    explode_emitter.max_size = 0.15;
 }
 
 void Player::onUpdate()
 {
     color.update(gdata.m_timeDelta);
+    explode_emitter.c = color.getCurrentColor();
     emitter.update();
+    explode_emitter.update();
+}
+
+void Player::onDestroy()
+{
+    explode_emitter.pos = getAbsolutePosition();
+    explode_emitter.enabled = true;
+    explode_emitter.v = getVelocity();
+    draw_player = false;
+
+    deletePhysicsObject();
 }
 
 void Player::onEnterCollision(CollisionData cd)
@@ -62,11 +78,12 @@ void Player::onPostPhysicsUpdate()
 void Player::onDraw()
 {
     emitter.drawParticles();
-    trail.setPlayerPosition(getAbsolutePosition());
-    trail.draw();
 
-    if (m_physicsObject != nullptr)
+    if (m_physicsObject != nullptr && draw_player)
     {
+        trail.setPlayerPosition(getAbsolutePosition());
+        trail.draw();
+
 		Vector2 pos = getAbsolutePosition();
 		pos = gdata.toScreenPixels(pos.x, pos.y);
 		sf::CircleShape circle((0.5 * WORLD_SCALE) * gdata.zoom);
@@ -74,9 +91,8 @@ void Player::onDraw()
         circle.setPosition(pos.x,pos.y);
         circle.setOrigin(circle.getRadius(),circle.getRadius());
 
-        circle.setOutlineThickness(1);
-        circle.setOutlineColor(sf::Color::Black);
-
         gdata.window->draw(circle);
     }
+
+    explode_emitter.drawParticles();
 }

@@ -5,11 +5,11 @@
 
 	<!-- switches -->
 	<object type="switch" switch_type="3" time="3" position="-6.5,5.5">
-		<object type="laser" position="-3,3" laser_direction="1,0" switch_bits="4" disabled="0"/>
+		<object type="laser" position="-3,2.5" rotation="0" switch_bits="4" disabled="0"/>
 	</object>
 	
 	<object type="switch" switch_type="3" time="3" position="6.5,5.5">
-		<object type="laser" position="3,3" laser_direction="-1,0" switch_bits="4" disabled="0"/>
+		<object type="laser" position="3,3.5" rotation="180" switch_bits="4" disabled="0"/>
 	</object>
 
 	<!-- LASERS -->
@@ -43,5 +43,11 @@
 	<object type="wall" position="-3.5,3.4" size="1,8.15" rotation="0"/>
 
 	<!-- PLATFORMS -->
+
+	<!-- BORDER -->
+	<object type="wall" position="0,13" size="38,5" rotation="0"/> 		<!-- top -->
+	<object type="wall" position="0,-13" size="38,5" rotation="0"/> 	<!-- bottom -->
+	<object type="wall" position="-21.5,0" size="5,31" rotation="0"/> 	<!-- left -->
+	<object type="wall" position="21.5,0" size="5,31" rotation="0"/> 	<!-- right -->
 	
 </root>

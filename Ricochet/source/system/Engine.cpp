@@ -45,6 +45,16 @@ void Engine::updateEngine()
 
     audio.update();
 
+    if (gdata.countdown > 0)
+    {
+        gdata.countdown -= time_delta;
+        if (gdata.countdown <= 0)
+        {
+            gdata.countdown = 0;
+            gdata.reload = true;
+        }
+    }
+
     updateState();
 }
 
@@ -56,16 +66,10 @@ void Engine::updateState()
 
         if (gdata.reload && activeState) // delete the active state then create the new one
         {
-            if (gdata.delay_reload)
-            {
-                gdata.delay_reload = false;
-                sf::sleep(sf::milliseconds(1000));
-            }
             activeState->freeResources();
             delete activeState;
             activeState = nullptr;
         }
-
         gdata.reload = false;
 
         if (gdata.gamestate == RunState::STATE_GAME)
@@ -89,7 +93,8 @@ bool Engine::initialise()
     assets.loadAssetList("data/assets.xml");
 	gdata.assets = &assets;
 	gdata.audio = &audio;
-	audio.playMusic("AirHockey");
+	MusicHandle* bg_music = audio.addMusic("Divider");
+	bg_music->loop(true);
     return true;
 }
 
@@ -106,12 +111,6 @@ void Engine::exit()
 
     assets.freeResources();
     audio.freeResources();
-
-	//Destroy window
-	//SDL_DestroyWindow(gdata.window);
-
-	//Quit SDL subsystems
-	//SDL_Quit();
 }
 
 

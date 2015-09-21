@@ -21,14 +21,13 @@
 	<object type="wall" position="-7,-1" size="13,1" rotation="0"/>
 	<object type="wall" position="0,3.5" size="1,10" rotation="0"/>
 	<object type="wall" position="7.75, -3.25" size="2.5,9.5" rotation="0"/>
-	
-	
 
 	<!-- PLATFORMS -->
-	
 
-	
-
-	
+	<!-- BORDER -->
+	<object type="wall" position="0,13" size="38,5" rotation="0"/> 		<!-- top -->
+	<object type="wall" position="0,-13" size="38,5" rotation="0"/> 	<!-- bottom -->
+	<object type="wall" position="-21.5,0" size="5,31" rotation="0"/> 	<!-- left -->
+	<object type="wall" position="21.5,0" size="5,31" rotation="0"/> 	<!-- right -->
 	
 </root>

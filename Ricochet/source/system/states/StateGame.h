@@ -57,7 +57,7 @@ class StateGame : public IState
 
         void reInit();
 
-        void drawLine(Vector2 p1, Vector2 p2);
+        void drawLine(Vector2 p1, Vector2 p2, sf::Color c = sf::Color::White);
 
     public:
 
