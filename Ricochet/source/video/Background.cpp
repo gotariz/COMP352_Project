@@ -30,7 +30,7 @@ void Background::init()
         c.pos.set(x,y);
         c.radius= r;
         c.alpha = alpha;
-        c.c.setPointCount(360);
+        c.c.setPointCount(90);
         circles.push_back(c);
     }
 }

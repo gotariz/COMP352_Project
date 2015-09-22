@@ -28,7 +28,7 @@ void ExplodeEmitter::createParticle()
 
         //0.01 - (0.5 - r)
         float d = utils::getRandom(1,(0.5 - r) * 100);
-        float velocity = utils::getRandom(50,500);
+        float velocity = utils::getRandom(10,200);
         velocity /= 100;
         d /= 100;
 

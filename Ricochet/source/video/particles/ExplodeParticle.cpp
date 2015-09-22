@@ -19,6 +19,7 @@ void ExplodeParticle::particle_draw()
 void ExplodeParticle::particle_create()
 {
     circle.setFillColor(c);
+    circle.setPointCount(8);
 }
 
 void ExplodeParticle::particle_update()

@@ -228,7 +228,7 @@ b2Body* PhysicsFactory::createParticle(float x, float y, float size, void* userP
     b2FixtureDef fixtureDef;
     fixtureDef.shape        = &shape;
     fixtureDef.density      = 0.00001;
-    fixtureDef.restitution  = 0.75f;
+    fixtureDef.restitution  = 0.2f;
 	fixtureDef.friction     = 0;
 
 	fixtureDef.filter.categoryBits = CF_EPARTICLE;			// what the object is
@@ -244,7 +244,7 @@ b2Body* PhysicsFactory::createParticle(float x, float y, float size, void* userP
 	body->CreateFixture(&fixtureDef);
 	body->SetBullet(false);
 	body->SetSleepingAllowed(false);
-	body->SetLinearDamping(0.2f);
+	body->SetLinearDamping(0.4f);
 	body->SetUserData(userPointer);
 
 	return body;

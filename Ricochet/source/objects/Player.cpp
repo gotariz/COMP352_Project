@@ -1,5 +1,11 @@
 #include "Player.h"
 
+void Player::freeResources()
+{
+    emitter.freeResources();
+    explode_emitter.freeResources();
+}
+
 void Player::onCreate()
 {
     color.setColor(5,91,165,255);

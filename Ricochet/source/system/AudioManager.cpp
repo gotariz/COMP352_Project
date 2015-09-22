@@ -10,6 +10,41 @@ AudioManager::~AudioManager()
     //dtor
 }
 
+void AudioManager::setVolumeSFX(float volume)
+{
+    Node<SoundHandle*>* node = sfx_temp.getRoot();
+    while (node)
+    {
+        node->data->volume(volume);
+        node = node->next;
+    }
+
+    node = sfx_perm.getRoot();
+    while (node)
+    {
+        node->data->volume(volume);
+        node = node->next;
+    }
+}
+
+void AudioManager::setVolumeMusic(float volume)
+{
+    Node<MusicHandle*>* node = music_temp.getRoot();
+    while (node)
+    {
+        node->data->volume(volume);
+        node = node->next;
+    }
+
+    node = music_perm.getRoot();
+    while (node)
+    {
+        node->data->volume(volume);
+        node = node->next;
+    }
+}
+
+
 void AudioManager::update()
 {
 

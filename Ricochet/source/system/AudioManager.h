@@ -91,6 +91,9 @@ class AudioManager
         int volume_sfx = 100;
         int volume_music = 100;
 
+        void setVolumeSFX(float volume);
+        void setVolumeMusic(float volume);
+
         void playSound(string name, bool destroy_old = false);
         void playMusic(string name, bool destroy_old = false);
 
@@ -99,9 +102,6 @@ class AudioManager
 
         void freeResources();
 
-        //
-        void updateVolumeSFX();
-        void updateVolumeMusic();
     protected:
         LinkedList<SoundHandle*>    unused_sound;
         LinkedList<MusicHandle*>    unused_music;
