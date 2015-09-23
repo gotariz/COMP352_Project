@@ -203,6 +203,9 @@ void StateMenu::load()
 //    music.setVolume(gdata.settings->getVolume());
 //    music.play();
 
+	gdata.audio->setVolumeMusic(gdata.settings->getVolume());
+	gdata.audio->setVolumeSFX(gdata.settings->getSFX());
+
     title.setTexture(*gdata.assets->getTexture("title"));
     title.setOrigin(title.getTexture()->getSize().x/2,title.getTexture()->getSize().y/2);
     title.setPosition(gdata.settings->getScreenWidth()/2,150);
@@ -330,7 +333,8 @@ void StateMenu::handleEvents()
                     gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
                     gdata.window->setVerticalSyncEnabled(vSyncMode);
 
-                    music.setVolume(gdata.settings->getVolume());
+                    gdata.audio->setVolumeMusic(gdata.settings->getVolume());
+                    gdata.audio->setVolumeSFX(gdata.settings->getSFX());
 
                     cout << "\n<----------------------SETTINGS SAVED-------------------------->\n"
                          << "\tvSync:\t\t\t\t" << vSyncMode << "\n"
@@ -352,6 +356,7 @@ void StateMenu::handleEvents()
                     cy = gdata.settings->getScreenHeight()/2;
                     olx = 0;
                     orx = gdata.settings->getScreenWidth();
+
                     transitioning = true;
                     pushMenu = MENU_MAIN;
                 }
@@ -463,7 +468,6 @@ void StateMenu::handleEvents()
                 {
                     gdata.level = selectedLevel;
                     gdata.gamestate = STATE_GAME;
-                    music.stop();
                 }
             }
 
@@ -926,7 +930,6 @@ void StateMenu::draw()
 void StateMenu::freeResources()
 {
     gdata.camera = nullptr;
-    music.stop();
 }
 
 void StateMenu::start(){}
