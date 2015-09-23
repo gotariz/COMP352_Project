@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
 	<!-- IMAGES -->
+	<asset type="image" path="media/images/explosion.png" />
 	<asset type="image" path="media/images/title.png" />
 	<asset type="image" path="media/images/loading.png" />
 	<asset type="image" path="media/images/laser_beam.png" />
 	<asset type="image" path="media/images/laser_end.png" />
 	<asset type="image" path="media/images/laser_head.png" />
-	<asset type="image" path="media/images/laser_stand.png" />
 	<asset type="image" path="media/images/hole_on.png" />
 	<asset type="image" path="media/images/hole_off.png" />
 	<asset type="image" path="media/images/switch_off.png" />
@@ -26,6 +26,7 @@
 
 	<!-- SOUNDS -->
 	<asset type="sound" path="media/sounds/bounce.wav" />
+	<asset type="sound" path="media/sounds/explosion.wav" />
 
 	<!-- MUSIC -->
 	<asset type="music" path="media/music/music1.ogg" />

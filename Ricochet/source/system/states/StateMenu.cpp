@@ -203,6 +203,7 @@ void StateMenu::load()
 //    music.setVolume(gdata.settings->getVolume());
 //    music.play();
 
+    cout << gdata.settings->getVolume() << endl;
 	gdata.audio->setVolumeMusic(gdata.settings->getVolume());
 	gdata.audio->setVolumeSFX(gdata.settings->getSFX());
 
@@ -210,6 +211,8 @@ void StateMenu::load()
     title.setOrigin(title.getTexture()->getSize().x/2,title.getTexture()->getSize().y/2);
     title.setPosition(gdata.settings->getScreenWidth()/2,150);
 
+    MusicHandle* bg_music = gdata.audio->addMusic("Divider");
+	bg_music->loop(true);
 
     loading = false;
 }

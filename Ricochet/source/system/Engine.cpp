@@ -93,8 +93,6 @@ bool Engine::initialise()
     assets.loadAssetList("data/assets.xml");
 	gdata.assets = &assets;
 	gdata.audio = &audio;
-	MusicHandle* bg_music = audio.addMusic("Divider");
-	bg_music->loop(true);
     return true;
 }
 

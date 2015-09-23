@@ -25,6 +25,8 @@ void AudioManager::setVolumeSFX(float volume)
         node->data->volume(volume);
         node = node->next;
     }
+
+    volume_sfx = volume;
 }
 
 void AudioManager::setVolumeMusic(float volume)
@@ -42,6 +44,8 @@ void AudioManager::setVolumeMusic(float volume)
         node->data->volume(volume);
         node = node->next;
     }
+
+    volume_music = volume;
 }
 
 
@@ -252,6 +256,7 @@ MusicHandle* AudioManager::addMusic(string name, bool destroy_old)
     {
         handle->loop(false);
         handle->volume(volume_music);
+        cout << "playing  music at " << volume_music << endl;
         handle->play();
         Node<MusicHandle*>* node = music_perm.add(handle);
         handle->node = node;
