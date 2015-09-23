@@ -3,7 +3,7 @@
 
 #include "AssetManager.h"
 #include "ParticleEmitter.h"
-#include "ExplosionParticle.h"
+#include "ExplodeParticle.h"
 
 
 class ExplodeEmitter : public ParticleEmitter
