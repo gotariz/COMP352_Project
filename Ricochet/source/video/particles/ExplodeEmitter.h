@@ -1,8 +1,9 @@
 #ifndef EXPLODEEMITTER_H
 #define EXPLODEEMITTER_H
 
+#include "AssetManager.h"
 #include "ParticleEmitter.h"
-#include "ExplodeParticle.h"
+#include "ExplosionParticle.h"
 
 
 class ExplodeEmitter : public ParticleEmitter

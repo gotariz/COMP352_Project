@@ -149,6 +149,8 @@
 		<Unit filename="source/video/particles/ExplodeEmitter.h" />
 		<Unit filename="source/video/particles/ExplodeParticle.cpp" />
 		<Unit filename="source/video/particles/ExplodeParticle.h" />
+		<Unit filename="source/video/particles/ExplosionParticle.cpp" />
+		<Unit filename="source/video/particles/ExplosionParticle.h" />
 		<Unit filename="source/video/particles/IParticle.h" />
 		<Unit filename="source/video/particles/Particle.cpp" />
 		<Unit filename="source/video/particles/Particle.h" />

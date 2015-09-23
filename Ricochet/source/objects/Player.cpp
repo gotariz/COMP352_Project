@@ -27,6 +27,7 @@ void Player::onUpdate()
 
 void Player::onDestroy()
 {
+    gdata.audio->playSound("explosion");
     explode_emitter.pos = getAbsolutePosition();
     explode_emitter.enabled = true;
     explode_emitter.v = getVelocity();
