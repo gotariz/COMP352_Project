@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!-- BLENDER LEVEL 3.1 AUTHOR ANDREW DIGGINS -->
+<root>
+	<!-- HOLE -->
+	<object type="hole" position="2.75,8" />
+
+	<!-- switches -->
+
+	<!-- LASERS -->
+	<object type="laser" position="0,-3.5" rotation="0" />
+	<object type="laser" position="8,3" rotation="270" />
+	<object type="laser" position="-15.3,3" rotation="270" />
+	
+	<!-- PLAYER -->
+	<object type="player" position="-14, 0" />
+
+	<!-- OUTER FRAME OF THE WALLS - starting from top left, working clockwise-->
+	<object type="wall" position="-8.25, 3.5" size="16.5,1" rotation="0"/>
+	<object type="wall" position="-0.5,6" size="1,8" rotation="0"/>
+	<object type="wall" position="2.75, 9.5" size="5.5,1" rotation="0"/>
+	<object type="wall" position="6,7" size="1,6" rotation="0"/>
+	<object type="wall" position="10.5,3.5" size="10,1" rotation="0"/>
+	<object type="wall" position="15,0" size="1,6" rotation="0"/>
+	<object type="wall" position="11.5, -3.5" size="8,1" rotation="0"/>
+	<object type="wall" position="5.1,-6.1" size="7.77,1" rotation="45"/>
+	<object type="wall" position="-1.125, -9" size="7.75,1" rotation="0"/>
+	<object type="wall" position="-2.6,-5.9" size="6.35,1" rotation="45"/>
+	<object type="wall" position="-0.5,-2.5" size="1,1" rotation="0"/>
+	<object type="wall" position="-8.25,-3.5" size="16.5,1" rotation="0"/>
+	<object type="wall" position="-16,0" size="1,6" rotation="0"/>
+
+	<!-- PLATFORMS -->
+	<object type="platform" position="3.7,0" size="1,4" rotation="0" rotating="1" rotationspeed="50"/>
+	
+
+	<!-- BORDER -->
+	<object type="wall" position="0,13" size="38,5" rotation="0"/> 		<!-- top -->
+	<object type="wall" position="0,-13" size="38,5" rotation="0"/> 	<!-- bottom -->
+	<object type="wall" position="-21.5,0" size="5,31" rotation="0"/> 	<!-- left -->
+	<object type="wall" position="21.5,0" size="5,31" rotation="0"/> 	<!-- right -->
+	
+</root>

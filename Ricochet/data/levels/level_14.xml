@@ -20,14 +20,16 @@
 	<object type="player" position="0, -5.75" />
 
 	<!-- OUTER FRAME OF THE WALLS - starting from top, working clockwise-->
-	<object type="wall" position="0, 8" size="12, 1" rotation="0"/>
-	<object type="wall" position="5.5, 1.75" size="1, 11.5" rotation="0"/>
-	<object type="wall" position="7.75, -3" size="9.5, 2" rotation="0"/>
-	<object type="wall" position="12, -5.75" size="1, 3.5" rotation="0"/>
-	<object type="wall" position="0, -8" size="25, 1" rotation="0"/>
-	<object type="wall" position="-12, -5.75" size="1, 3.5" rotation="0"/>
-	<object type="wall" position="-7.75, -3" size="9.5, 2" rotation="0"/>
-	<object type="wall" position="-5.5, 1.75" size="1, 11.5" rotation="0"/>	
+	
+	<object type="wall" position="0, 9" size="10, 3" rotation="0"/>
+	<object type="wall" position="12, 3.25" size="14, 14.5" rotation="0"/>
+	<object type="wall" position="4, -3" size="2, 2" rotation="0"/>
+	<object type="wall" position="15.25, -5.75" size="7.5, 3.5" rotation="0"/>
+	<object type="wall" position="0, -9" size="38, 3" rotation="0"/>
+	<object type="wall" position="-15.25, -5.75" size="7.5, 3.5" rotation="0"/>
+	
+	<object type="wall" position="-4, -3" size="2, 2" rotation="0"/>
+	<object type="wall" position="-12, 3.25" size="14, 14.5" rotation="0"/>
 
 	<!-- PLATFORMS -->
 

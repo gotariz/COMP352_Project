@@ -14,12 +14,12 @@
 	<object type="player" position="3,6" />
 
 	<!-- OUTER FRAME OF THE WALLS - starting top, working clockwise-->
-	<object type="wall" position="7,9" size="15,1" rotation="0"/>
-	<object type="wall" position="15,0.25" size="1,18.5" rotation="0"/>
-	<object type="wall" position="0.5,-8.5" size="28,1" rotation="0"/>
-	<object type="wall" position="-14,-4.75" size="1,8.5" rotation="0"/>
-	<object type="wall" position="-7,-1" size="13,1" rotation="0"/>
-	<object type="wall" position="0,3.5" size="1,10" rotation="0"/>
+	<object type="wall" position="0,9.5" size="38,3" rotation="0"/>
+	<object type="wall" position="17," size="6,16" rotation="0"/>
+	<object type="wall" position="0,-9.5" size="38,3" rotation="0"/>
+	<object type="wall" position="-16.5,-4.75" size="5,6.5" rotation="0"/>
+	<object type="wall" position="-9.5,3.25" size="20,9.5" rotation="0"/>
+	
 	<object type="wall" position="7.75, -3.25" size="2.5,9.5" rotation="0"/>
 
 	<!-- PLATFORMS -->

@@ -28,16 +28,17 @@
 	<object type="player" position="-13,-6" />
 
 	<!-- OUTER FRAME OF THE WALLS - starting from top, working clockwise-->
-	<object type="wall" position="2.5, 9" size="26, 1" rotation="0"/>
-	<object type="wall" position="15,6" size="1,5" rotation="0"/>
-	<object type="wall" position="6.75, 3" size="17.5, 1" rotation="0"/>
-	<object type="wall" position="-2.65,2.14" size="2.77,1" rotation="45"/>	
-	<object type="wall" position="-3.5,-3.75" size="1, 10.5" rotation="0"/>
-	<object type="wall" position="-9.25,-8.5" size="10.5, 1" rotation="0"/>
-	<object type="wall" position="-15,-6.5" size="1,5" rotation="0"/>
-	<object type="wall" position="-13,-3.5" size="5,1" rotation="0"/>
-	<object type="wall" position="-10, 2.25" size="1,12.5" rotation="0"/>
-	<object type="wall" position="-7.5,6.5" size="7,1" rotation="45"/>	
+	<object type="wall" position="4.75, 9.5" size="28.5, 2" rotation="0"/>
+	<object type="wall" position="17.5,6" size="3,5" rotation="0"/>
+	<object type="wall" position="8.5, -3.5" size="21, 14" rotation="0"/>
+		<object type="wall" position="-2.65,2.14" size="2.77,1" rotation="45"/>	
+		<object type="wall" position="-2,2" size="2.77,1" rotation="45"/>
+	<object type="wall" position="-3,-4.5" size="2, 12" rotation="0"/>
+	<object type="wall" position="-11.5,-9.25" size="15, 2.5" rotation="0"/>
+	<object type="wall" position="-16.75,-6" size="4.5,4" rotation="0"/>
+	<object type="wall" position="-14.25,3.25" size="9.5, 14.5" rotation="0"/>
+		<object type="wall" position="-7.5,6.5" size="7,1" rotation="45"/>
+		<object type="wall" position="-8.5,7.5" size="7, 3" rotation="45"/>
 
 	<!-- PLATFORMS -->
 
