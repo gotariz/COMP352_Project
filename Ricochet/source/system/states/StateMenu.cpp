@@ -886,7 +886,7 @@ void StateMenu::draw()
         if(locked)
         {
             font.setColor(sf::Color::Black);
-            font.drawString(cx, cy + (cy/2), "LEVEL LOCKED", sfLib::MIDDLE);
+            font.drawString(cx, cy + (cy/2), "LEVEL LOCKED", Align::MIDDLE);
         }
     }
 
@@ -911,7 +911,7 @@ void StateMenu::draw()
                 if(!transitioning)
                 {
                     font.setColor(sf::Color::Black);
-                    font.drawString(x - 20, y + (78*i),optionsSettings[i][selectedOps[i]],sfLib::RIGHT);
+                    font.drawString(x - 20, y + (78*i),optionsSettings[i][selectedOps[i]],Align::RIGHT);
                 }
             }
             else
@@ -921,7 +921,7 @@ void StateMenu::draw()
                 if(!transitioning)
                 {
                     font.setColor(sf::Color(210,210,210,255));
-                    font.drawString(x - 20, y + (78*i),optionsSettings[i][selectedOps[i]],sfLib::RIGHT);
+                    font.drawString(x - 20, y + (78*i),optionsSettings[i][selectedOps[i]],Align::RIGHT);
                 }
             }
         }

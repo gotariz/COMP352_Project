@@ -5,18 +5,6 @@
 #include "general.h"
 #include <string>
 
-namespace sfLib
-{
-    enum sfAlign
-    {
-        LEFT,
-        RIGHT,
-        TOP,
-        BOTTOM,
-        MIDDLE,
-    };
-}
-
 class sfFontRenderer
 {
     public:
@@ -26,7 +14,7 @@ class sfFontRenderer
     public:
         void setFont(sfFont* font);
         void setColor(sf::Color c);
-        void drawString(int x, int y, std::string text, int horizontalPosition = sfLib::sfAlign::LEFT, int verticalPosition = sfLib::sfAlign::TOP);
+        void drawString(int x, int y, std::string text, int horizontalPosition = Align::LEFT, int verticalPosition = Align::TOP);
         void setWindow(sf::RenderWindow* window);
 
         unsigned getRenderedTextWidth(std::string text);

@@ -27,19 +27,19 @@ void sfFontRenderer::drawString(int x, int y, std::string text, int horizontalPo
     unsigned renderedTextHeight = m_font->getHeight();
 
 
-    if (horizontalPosition == sfLib::sfAlign::MIDDLE)
+    if (horizontalPosition == Align::MIDDLE)
     {
         x -= renderedTextWidth / 2;
     }
-    else if (horizontalPosition == sfLib::sfAlign::RIGHT)
+    else if (horizontalPosition == Align::RIGHT)
     {
         x -= renderedTextWidth;
     }
-    if (verticalPosition == sfLib::sfAlign::MIDDLE)
+    if (verticalPosition == Align::MIDDLE)
     {
         y -= renderedTextHeight / 2;
     }
-    else if (verticalPosition == sfLib::sfAlign::BOTTOM)
+    else if (verticalPosition == Align::BOTTOM)
     {
         y -= renderedTextHeight;
     }

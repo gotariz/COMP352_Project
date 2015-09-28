@@ -43,7 +43,11 @@ class GameData
 		bool            draw_grid = false;
 		//bool            has_focus = true;
 
-		//Object* player = nullptr;
+        float           t_x = 0;
+        float           t_y = 0;
+        bool            play_slidein    = false;
+        bool            play_slideout   = false;
+        float           slideout_time   = 0;
 
     public:
 

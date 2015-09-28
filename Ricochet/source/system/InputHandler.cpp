@@ -46,24 +46,32 @@ void InputHandler::handleEvents()
 	if (gdata.keys[sf::Keyboard::R].isKeyPressed)
 	{
 		gdata.reload = true;
+		gdata.play_slidein = false;
+		gdata.play_slideout = false;
 	}
 
 	if(gdata.keys[sf::Keyboard::Comma].isKeyPressed)
     {
         gdata.level -= 1;
-        gdata.reload = true;
+        //gdata.reload = true;
+        gdata.play_slidein  = true;
+        gdata.play_slideout = true;
+        gdata.slideout_time = 0;
     }
 
     if(gdata.keys[sf::Keyboard::Period].isKeyPressed)
     {
         gdata.level += 1;
-        gdata.reload = true;
+        //gdata.reload = true;
+        gdata.play_slidein  = true;
+        gdata.play_slideout = true;
+        gdata.slideout_time = 0;
     }
 
     if(gdata.keys[sf::Keyboard::BackSpace].isKeyPressed)
     {
         gdata.gamestate = STATE_MENU;
-        gdata.reload = true;
+        //gdata.reload = true;
         cout << "Back to menu"<< endl;
     }
 

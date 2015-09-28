@@ -24,8 +24,12 @@ void Hole::onEnterCollision(CollisionData cd)
         {
             cout << "you won" << endl;
             m_image.setTexture(*gdata.assets->getTexture("hole_on"));
-            gdata.level += 1;
-            gdata.countdown = 1.f;
+//            gdata.level += 1;
+//            gdata.countdown = 1.f;
+            gdata.play_slideout = true;
+            gdata.play_slidein = true;
+            gdata.slideout_time = 1;
+            ++gdata.level;
             cd.objectB->setLinearVelocity(Vector2(0,0));
         }
         //gdata.delay_reload = true;

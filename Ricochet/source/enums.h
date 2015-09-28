@@ -1,6 +1,16 @@
 #ifndef ENUMS_H_INCLUDED
 #define ENUMS_H_INCLUDED
 
+enum Align
+{
+    LEFT,
+    RIGHT,
+    TOP,
+    BOTTOM,
+    MIDDLE,
+};
+
+
 enum ObjectType
 {
     NONE,
