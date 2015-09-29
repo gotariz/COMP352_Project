@@ -30,6 +30,7 @@ void Hole::onEnterCollision(CollisionData cd)
             gdata.play_slidein = true;
             gdata.slideout_time = 1;
             ++gdata.level;
+            gdata.t_p2.x = 38;
             cd.objectB->setLinearVelocity(Vector2(0,0));
         }
         //gdata.delay_reload = true;

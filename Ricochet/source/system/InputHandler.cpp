@@ -57,6 +57,7 @@ void InputHandler::handleEvents()
         gdata.play_slidein  = true;
         gdata.play_slideout = true;
         gdata.slideout_time = 0;
+        gdata.t_p2.x = -38;
     }
 
     if(gdata.keys[sf::Keyboard::Period].isKeyPressed)
@@ -66,6 +67,7 @@ void InputHandler::handleEvents()
         gdata.play_slidein  = true;
         gdata.play_slideout = true;
         gdata.slideout_time = 0;
+        gdata.t_p2.x = 38;
     }
 
     if(gdata.keys[sf::Keyboard::BackSpace].isKeyPressed)

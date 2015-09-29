@@ -43,8 +43,8 @@ class GameData
 		bool            draw_grid = false;
 		//bool            has_focus = true;
 
-        float           t_x = 0;
-        float           t_y = 0;
+        Vector2         t_p1;
+        Vector2         t_p2;
         bool            play_slidein    = false;
         bool            play_slideout   = false;
         float           slideout_time   = 0;

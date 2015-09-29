@@ -125,40 +125,40 @@ void StateGame::load()
     gdata.countdown = 0;
 
     // select transition direction
-    int d = utils::getRandom(1,100);
-    int n = utils::getRandom(1,100);
-
-    if (d > 50)
-    {
-        if (n > 50) gdata.t_x = 38;
-        else        gdata.t_x = -38;
-
-        gdata.t_y = 0;
-    }
-    else
-    {
-        if (n > 50) gdata.t_y = 21;
-        else        gdata.t_y = -21;
-
-        gdata.t_x = 0;
-    }
-
-    int dir     = utils::getRandom(1,100);
-    int side    = utils::getRandom(1,100);
-    if (dir > 50)
-    {
-        if (side > 50)  exit_pos.x = 38;
-        else            exit_pos.x = -38;
-
-        exit_pos.y = 0;
-    }
-    else
-    {
-        if (side > 50)  exit_pos.y = 21;
-        else            exit_pos.y = -21;
-
-        exit_pos.x = 0;
-    }
+//    int d = utils::getRandom(1,100);
+//    int n = utils::getRandom(1,100);
+//
+//    if (d > 50)
+//    {
+//        if (n > 50) gdata.t_x = 38;
+//        else        gdata.t_x = -38;
+//
+//        gdata.t_y = 0;
+//    }
+//    else
+//    {
+//        if (n > 50) gdata.t_y = 21;
+//        else        gdata.t_y = -21;
+//
+//        gdata.t_x = 0;
+//    }
+//
+//    int dir     = utils::getRandom(1,100);
+//    int side    = utils::getRandom(1,100);
+//    if (dir > 50)
+//    {
+//        if (side > 50)  exit_pos.x = 38;
+//        else            exit_pos.x = -38;
+//
+//        exit_pos.y = 0;
+//    }
+//    else
+//    {
+//        if (side > 50)  exit_pos.y = 21;
+//        else            exit_pos.y = -21;
+//
+//        exit_pos.x = 0;
+//    }
 
     slide_in = gdata.play_slidein;
 
@@ -224,7 +224,8 @@ void StateGame::update()
 	bg.update();
 
 	// update the camera slide
-	if (gdata.play_slideout)
+
+    if (gdata.play_slideout)
     {
             slide_in = false;
             slide_out = true;
@@ -242,8 +243,9 @@ void StateGame::update()
 
 void StateGame::playSlideIn()
 {
+
     t_delta += gdata.m_timeDelta;
-    float time = 1.f;
+    float time = 0.25f;
     float percent = t_delta / time;
     if (percent > 1.f)
     {
@@ -251,8 +253,9 @@ void StateGame::playSlideIn()
         slide_in = false;
     }
 
-    gdata.camera->x = gdata.t_x - (gdata.t_x * percent);
-    gdata.camera->y = gdata.t_y - (gdata.t_y * percent);
+    Vector2 newpos = (gdata.t_p2 - (gdata.t_p2 * percent)) * -1;
+    gdata.camera->x = newpos.x;
+    gdata.camera->y = newpos.y;
 }
 
 void StateGame::playSlideOut()
@@ -265,7 +268,7 @@ void StateGame::playSlideOut()
 
 
     t_delta += gdata.m_timeDelta;
-    float time = 1.f;
+    float time = 0.25f;
     float percent = t_delta / time;
     if (percent > 1.f)
     {
@@ -274,8 +277,9 @@ void StateGame::playSlideOut()
         slide_out = false;
     }
 
-    gdata.camera->x = exit_pos.x * percent;
-    gdata.camera->y = exit_pos.y * percent;
+    Vector2 newpos = gdata.t_p2 * percent;
+    gdata.camera->x = newpos.x;
+    gdata.camera->y = newpos.y;
 }
 
 
@@ -351,7 +355,7 @@ void StateGame::draw()
         fntAngle.drawString(p.x + cx,p.y - 50,a);
     }
 
-    fntIns.drawString(10,10,"Press R to restart level");
+    fntIns.drawString(gdata.settings->getScreenWidth() / 2,gdata.settings->getScreenHeight() - 10,"Press R to restart level",Align::MIDDLE,Align::BOTTOM);
     fntLevel.drawString(gdata.settings->getScreenWidth() - 20,gdata.settings->getScreenHeight() - 20,"Level " + gz::toString(gdata.level),Align::RIGHT,Align::BOTTOM);
 
 
