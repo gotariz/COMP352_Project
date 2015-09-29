@@ -658,7 +658,7 @@ void StateMenu::update()
         if(rightLvlShot.getPosition().x > cx)
             rightLvlShot.setPosition(rightLvlShot.getPosition().x - (rx - cx) *(gdata.m_timeDelta * (1/dur)),cy);
         if(rightLvlShot.getScale().x < 0.5)
-            rightLvlShot.setScale(rightLvlShot.getScale().x + ((0.5-0.2)*(gdata.m_timeDelta * (1/dur))),
+        rightLvlShot.setScale(rightLvlShot.getScale().x + ((0.5-0.2)*(gdata.m_timeDelta * (1/dur))),
                                   rightLvlShot.getScale().y + ((0.5-0.2)*(gdata.m_timeDelta * (1/dur))));
         if(rightLvlShot.getColor().r < 255 )
             rightLvlShot.setColor(sf::Color(rightLvlShot.getColor().r + (255-150)*(gdata.m_timeDelta * (1/dur)),

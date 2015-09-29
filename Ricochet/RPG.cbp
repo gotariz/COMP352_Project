@@ -126,6 +126,8 @@
 		<Unit filename="source/system/states/StateGame.h" />
 		<Unit filename="source/system/states/StateMenu.cpp" />
 		<Unit filename="source/system/states/StateMenu.h" />
+		<Unit filename="source/utils/Interpolator.cpp" />
+		<Unit filename="source/utils/Interpolator.h" />
 		<Unit filename="source/utils/LinkedList.cpp" />
 		<Unit filename="source/utils/LinkedList.h" />
 		<Unit filename="source/utils/Utils.cpp" />
