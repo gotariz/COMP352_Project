@@ -30,6 +30,14 @@ void InputHandler::handleEvents()
         {
             gdata.running = false;
         }
+        else if (event.type == sf::Event::MouseWheelMoved)
+        {
+            power += event.mouseWheel.delta;
+
+            if (power > 100)        power = 100;
+            else if (power < 10)    power = 10;
+
+        }
     }
 
 	// update bound keys
@@ -46,28 +54,18 @@ void InputHandler::handleEvents()
 	if (gdata.keys[sf::Keyboard::R].isKeyPressed)
 	{
 		gdata.reload = true;
-		gdata.play_slidein = false;
-		gdata.play_slideout = false;
 	}
 
 	if(gdata.keys[sf::Keyboard::Comma].isKeyPressed)
     {
         gdata.level -= 1;
-        //gdata.reload = true;
-        gdata.play_slidein  = true;
-        gdata.play_slideout = true;
-        gdata.slideout_time = 0;
-        gdata.t_p2.x = -38;
+        gdata.reload = true;
     }
 
     if(gdata.keys[sf::Keyboard::Period].isKeyPressed)
     {
         gdata.level += 1;
-        //gdata.reload = true;
-        gdata.play_slidein  = true;
-        gdata.play_slideout = true;
-        gdata.slideout_time = 0;
-        gdata.t_p2.x = 38;
+        gdata.reload = true;
     }
 
     if(gdata.keys[sf::Keyboard::BackSpace].isKeyPressed)
@@ -98,14 +96,17 @@ void InputHandler::handlePlayerEvents()
     float h = 0;
     float v = 0;
 
-    if (gdata.keys[sf::Keyboard::Space].isKeyPressed)
+    if (gdata.keys[KEY_MOUSE_RIGHT].isKeyPressed)
     {
         if (selecting && !launched)
             angle_lock = !angle_lock;
     }
 
-    if (gdata.keys[KEY_MOUSE_RIGHT].isKeyPressed)
+    if (gdata.keys[sf::Keyboard::Space].isKeyPressed)
+    {
         angle_snap = angle_snap == 1 ? 0 : 1;
+        gdata.angle_snap = angle_snap;
+    }
 
 
 	if (gdata.keys[KEY_MOUSE_LEFT].isKeyPressed)
@@ -119,6 +120,7 @@ void InputHandler::handlePlayerEvents()
             if (d.getMagnitude() <= (0.5 * WORLD_SCALE * gdata.zoom))
             {
                 selecting = true;
+                //power = 10;
             }
         }
 	}
@@ -152,6 +154,8 @@ void InputHandler::handlePlayerEvents()
 
 
                 power = utils::roundNearest(vel_percent*100,1);
+                //cout << "power percent:" << m_player->maxSpeed * (power / 100.f) << endl;
+                //vel.setMagnitude(  )
                 angle = vel.getAngle();
             }
             else
@@ -176,6 +180,8 @@ void InputHandler::handlePlayerEvents()
 	    if (selecting && !launched)
 		{
 		    m_player->currentSpeed = vel.getMagnitude();
+		    //m_player->currentSpeed = m_player->maxSpeed * (power / 100.f);
+		    //vel.setMagnitude( m_player->currentSpeed );
             m_player->trail.addPoint( m_player->getAbsolutePosition() );
             m_player->setLinearVelocity(vel);
             m_player->trail.length = MAX_TAIL_LENGTH * (vel.getMagnitude() / m_player->maxSpeed);

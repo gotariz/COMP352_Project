@@ -42,15 +42,15 @@ void Interpolator::update(float delta)
     percent = elapsed / duration;
 }
 
-void Interpolator::getPosition()
+Vector2 Interpolator::getPosition()
 {
-    Vector delta = d;
+    Vector2 delta = d;
     delta *= percent;
     return p1 + delta;
 
 }
 
-void Interpolator::getPositionDelta()
+Vector2 Interpolator::getPositionDelta()
 {
     Vector2 delta = d;
     delta *= percent;

@@ -13,10 +13,10 @@ class Interpolator
 
         void set(Vector2 _p1, Vector2 _p2);
         void setP1(Vector2 _p1);
-        void setP2(Vector2 _p2)
+        void setP2(Vector2 _p2);
         void update(float delta);
-        void getPosition();
-        void getPositionDelta();
+        Vector2 getPosition();
+        Vector2 getPositionDelta();
 
     public:
         float duration = 0;

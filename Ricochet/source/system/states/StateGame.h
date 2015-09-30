@@ -81,12 +81,6 @@ class StateGame : public IState
 		PhysicsFactory		factory;
 		bool                drawPhysicsDebug = true;
 
-		bool                slide_in = true;
-		bool                slide_out = false;
-		Vector2             exit_pos;
-		float               t_delta = 0;
-		float               count_down = 1;
-
 		float cx = 20;
 
         private:
@@ -96,9 +90,6 @@ class StateGame : public IState
             void createHole(XMLElement* element);
             void createSwitch(XMLElement* element);
             void createLaser(XMLElement* element,Toggle* t = nullptr);
-
-            void playSlideIn();
-            void playSlideOut();
 
 };
 

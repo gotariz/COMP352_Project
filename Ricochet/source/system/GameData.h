@@ -10,6 +10,7 @@ class AssetManager;
 class Object;
 class PhysicsFactory;
 class AudioManager;
+class MusicHandle;
 
 class GameData
 {
@@ -39,15 +40,13 @@ class GameData
 		bool            reload = false;
 		float           countdown = 0;
 
+
+        bool angle_snap = 1;
+        MusicHandle*    bg_music = nullptr;
+
 		bool            draw_debug = false;
 		bool            draw_grid = false;
 		//bool            has_focus = true;
-
-        Vector2         t_p1;
-        Vector2         t_p2;
-        bool            play_slidein    = false;
-        bool            play_slideout   = false;
-        float           slideout_time   = 0;
 
     public:
 

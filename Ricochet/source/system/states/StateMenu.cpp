@@ -211,8 +211,11 @@ void StateMenu::load()
     title.setOrigin(title.getTexture()->getSize().x/2,title.getTexture()->getSize().y/2);
     title.setPosition(gdata.settings->getScreenWidth()/2,150);
 
-    MusicHandle* bg_music = gdata.audio->addMusic("Divider");
-	bg_music->loop(true);
+    if (!gdata.bg_music)
+    {
+        gdata.bg_music = gdata.audio->addMusic("Divider");
+        gdata.bg_music->loop(true);
+    }
 
     loading = false;
 }
@@ -876,17 +879,22 @@ void StateMenu::draw()
         gdata.window->draw(leftLvlShot);
         gdata.window->draw(rightLvlShot);
 
-        rec.setPosition(x, y);
-        rec.setSize(sf::Vector2f(500,70));
-        rec.setFillColor(sf::Color::Red);
-        gdata.window->draw(rec);
-
-        font.drawString(x + 25, y, "Level   " + gz::toString(selectedLevel));
+//        rec.setPosition(x, y);
+//        rec.setSize(sf::Vector2f(500,70));
+//        rec.setFillColor(sf::Color::Red);
+//        gdata.window->draw(rec);
+//
+//        font.drawString(x + 25, y, "Level   " + gz::toString(selectedLevel));
 
         if(locked)
         {
             font.setColor(sf::Color::Black);
             font.drawString(cx, cy + (cy/2), "LEVEL LOCKED", Align::MIDDLE);
+        }
+        else
+        {
+            font.setColor(sf::Color::Black);
+            font.drawString(cx, cy + (cy/2), "LEVEL " + gz::toString(selectedLevel), Align::MIDDLE);
         }
     }
 

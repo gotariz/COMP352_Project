@@ -89,6 +89,7 @@ void StateGame::load()
 
     cout << "initialising input:";
 	input.init();
+	input.angle_snap = gdata.angle_snap;
 	input.m_player = player;
 	cout << "complete" << endl;
 
@@ -124,45 +125,6 @@ void StateGame::load()
 
     gdata.countdown = 0;
 
-    // select transition direction
-//    int d = utils::getRandom(1,100);
-//    int n = utils::getRandom(1,100);
-//
-//    if (d > 50)
-//    {
-//        if (n > 50) gdata.t_x = 38;
-//        else        gdata.t_x = -38;
-//
-//        gdata.t_y = 0;
-//    }
-//    else
-//    {
-//        if (n > 50) gdata.t_y = 21;
-//        else        gdata.t_y = -21;
-//
-//        gdata.t_x = 0;
-//    }
-//
-//    int dir     = utils::getRandom(1,100);
-//    int side    = utils::getRandom(1,100);
-//    if (dir > 50)
-//    {
-//        if (side > 50)  exit_pos.x = 38;
-//        else            exit_pos.x = -38;
-//
-//        exit_pos.y = 0;
-//    }
-//    else
-//    {
-//        if (side > 50)  exit_pos.y = 21;
-//        else            exit_pos.y = -21;
-//
-//        exit_pos.x = 0;
-//    }
-
-    slide_in = gdata.play_slidein;
-
-
     cout << "===================================================" << endl;
     loading = false;
 }
@@ -174,33 +136,33 @@ bool StateGame::initialise()
     loading_thread.launch();
 
     // loading screen data
-//    gzClock clock;
-//	float timedelta = clock.getDeltaSeconds();
-//    sf::Sprite sprite;
-//    sf::Texture& texture = *gdata.assets->getTexture("loading");
-//    sprite.setTexture(texture);
-//    texture.setSmooth(true);
-//    sprite.setOrigin(texture.getSize().x / 2,texture.getSize().y / 2);
-//    sprite.setPosition( gdata.settings->getScreenWidth() / 2,gdata.settings->getScreenHeight() / 2 );
+    gzClock clock;
+	float timedelta = clock.getDeltaSeconds();
+    sf::Sprite sprite;
+    sf::Texture& texture = *gdata.assets->getTexture("loading");
+    sprite.setTexture(texture);
+    texture.setSmooth(true);
+    sprite.setOrigin(texture.getSize().x / 2,texture.getSize().y / 2);
+    sprite.setPosition( gdata.settings->getScreenWidth() / 2,gdata.settings->getScreenHeight() / 2 );
 
     while (loading)
     {
-//        timedelta = clock.getDeltaSeconds();
-//        sf::Event event;
-//        while (gdata.window->pollEvent(event))
-//        {
-//            if (event.type == sf::Event::Closed)
-//            {
-//                gdata.running = false;
-//            }
-//        }
-//
-//        // draw
-//        gdata.window->clear(sf::Color(0,0,0,255));
-//        gdata.window->draw(sprite);
-//        gdata.window->display();
-//
-//        sprite.rotate( 90.f * timedelta );
+        timedelta = clock.getDeltaSeconds();
+        sf::Event event;
+        while (gdata.window->pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                gdata.running = false;
+            }
+        }
+
+        // draw
+        gdata.window->clear(sf::Color(0,0,0,255));
+        gdata.window->draw(sprite);
+        gdata.window->display();
+
+        sprite.rotate( 90.f * timedelta );
         sf::sleep(sf::milliseconds(10));
 
     }
@@ -222,66 +184,7 @@ void StateGame::update()
 {
 	manager.update();
 	bg.update();
-
-	// update the camera slide
-
-    if (gdata.play_slideout)
-    {
-            slide_in = false;
-            slide_out = true;
-
-            gdata.camera->x = 0;
-            gdata.camera->y = 0;
-            t_delta = 0;
-            gdata.play_slideout = false;
-            count_down = gdata.slideout_time;
-    }
-
-    if (slide_in)       playSlideIn();
-    else if (slide_out) playSlideOut();
 }
-
-void StateGame::playSlideIn()
-{
-
-    t_delta += gdata.m_timeDelta;
-    float time = 0.25f;
-    float percent = t_delta / time;
-    if (percent > 1.f)
-    {
-        percent = 1;
-        slide_in = false;
-    }
-
-    Vector2 newpos = (gdata.t_p2 - (gdata.t_p2 * percent)) * -1;
-    gdata.camera->x = newpos.x;
-    gdata.camera->y = newpos.y;
-}
-
-void StateGame::playSlideOut()
-{
-    if (count_down > 0)
-    {
-        count_down -= gdata.m_timeDelta;
-        return;
-    }
-
-
-    t_delta += gdata.m_timeDelta;
-    float time = 0.25f;
-    float percent = t_delta / time;
-    if (percent > 1.f)
-    {
-        percent = 1;
-        gdata.reload = true;
-        slide_out = false;
-    }
-
-    Vector2 newpos = gdata.t_p2 * percent;
-    gdata.camera->x = newpos.x;
-    gdata.camera->y = newpos.y;
-}
-
 
 void StateGame::draw()
 {

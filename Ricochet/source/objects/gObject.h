@@ -6,6 +6,7 @@
 
 #include "system/GameData.h"
 #include "video/Camera.h"
+#include "system/AudioManager.h"
 
 class gObject : public Object
 {
