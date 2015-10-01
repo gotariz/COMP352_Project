@@ -17,11 +17,11 @@
 	
 	<!-- switches -->
 	<object type="switch" switch_type="3" time="3" position="-7,-4">
-		<object type="platform" position="0,0" size="1,2" rotation="0" moves="1" p1="-8.5,-2.5" p2="-8.5, 1.5" duration="2" progress="0" switch_bits="1" disabled_mov="1"/>
+		<object type="platform" position="0,0" size="0.5,2.5" rotation="0" moves="1" p1="-9,-2.5" p2="-9, 1.5" duration="2" progress="0" switch_bits="1" disabled_mov="1"/>
 	</object>
 	
 	<object type="switch" switch_type="3" time="3" position="-1.5, 6">
-		<object type="platform" position="0,0" size="2,1" rotation="0" moves="1" p1="0.5,7.5" p2="6.5, 7.5" duration="2" progress="0" switch_bits="1" disabled_mov="1"/>
+		<object type="platform" position="0,0" size="3,0.5" rotation="0" moves="1" p1="-1.5,8" p2="6.5, 8" duration="2" progress="0" switch_bits="1" disabled_mov="1"/>
 	</object>
 	
 	<!-- PLAYER -->
