@@ -18,6 +18,10 @@ class Background
         void draw();
         void update();
 
+        void drawLine(Vector2 p1, Vector2 p2,sf::Color c);
+
+
+
 };
 
 #endif // BACKGROUND_H

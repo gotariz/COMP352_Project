@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <root>
+	<object type="color" r="64" g="32" b="32" />
 	<!-- HOLE -->
 	<object type="hole" position="-7,6" />
 

@@ -39,6 +39,29 @@ void Background::draw()
 {
     gdata.window->draw(rec);
 
+    sf::Color c = sf::Color::White;
+    c.a = 8;
+
+     for (int x = -19; x <= 19; ++x)
+    {
+        Vector2 p1(x,10.5);
+        Vector2 p2(x,-10.5);
+
+        p1 = gdata.toScreenPixels(p1);
+        p2 = gdata.toScreenPixels(p2);
+        drawLine(p1,p2,c);
+    }
+
+    for (int y = -10; y <= 10; ++y)
+    {
+        Vector2 p1(-19,y);
+        Vector2 p2(19,y);
+
+        p1 = gdata.toScreenPixels(p1);
+        p2 = gdata.toScreenPixels(p2);
+        drawLine(p1,p2,c);
+    }
+
 
     for (int i = 0; i < circles.size(); ++i)
     {
@@ -82,5 +105,15 @@ void Background::update()
             circle->pos += delta;
         }
     }
+}
+
+void Background::drawLine(Vector2 p1, Vector2 p2, sf::Color c)
+{
+    sf::Vertex line[] =
+    {
+        sf::Vertex(sf::Vector2f(p1.x, p1.y),c),
+        sf::Vertex(sf::Vector2f(p2.x, p2.y),c)
+    };
+    gdata.window->draw(line, 2, sf::Lines);
 }
 

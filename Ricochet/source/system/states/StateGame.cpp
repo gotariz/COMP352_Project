@@ -87,6 +87,11 @@ void StateGame::load()
     bg.rec.setFillColor(sf::Color(r,g,b,255));
 	cout << "complete" << endl;
 
+	cout << "Color:" << endl;
+    cout << "R:" << r << endl;
+    cout << "G:" << g << endl;
+    cout << "B:" << b << endl;
+
     cout << "initialising input:";
 	input.init();
 	input.angle_snap = gdata.angle_snap;
@@ -389,6 +394,14 @@ void StateGame::loadLevel()
 			else if (attribute_type == "laser")     createLaser(element);
 			else if (attribute_type == "hole")      createHole(element);
 			else if (attribute_type == "switch")    createSwitch(element);
+			else if (attribute_type == "color")
+            {
+                int r = atoi(element->Attribute("r"));
+                int g = atoi(element->Attribute("g"));
+                int b = atoi(element->Attribute("b"));
+
+                bg.rec.setFillColor( sf::Color(r,g,b) );
+            }
 
 			element = element->NextSiblingElement("object");
 		}
