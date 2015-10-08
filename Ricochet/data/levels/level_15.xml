@@ -1,4 +1,6 @@
 <?xml version="1.0"?>
+ <!-- BLENDER LEVEL 2.6 AUTHOR ANDREW DIGGINS -->
+ <!-- ORIGINAL LEVEL 15-->
 <root>
 	<!-- HOLE -->
 	<object type="hole" position="-10.5, 6" />

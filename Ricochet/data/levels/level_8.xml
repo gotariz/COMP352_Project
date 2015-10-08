@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
+<!-- BLENDER LEVEL 8 - AUTHOR ANDREW DIGGINS -->
+<!-- ORIGINAL LEVEL 8 -->
 <root>
 	<!-- HOLE -->
+	
 	<object type="hole" position="-7,7" />
 
 	<!-- LASERS -->

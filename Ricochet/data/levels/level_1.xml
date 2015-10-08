@@ -1,6 +1,7 @@
-<?xml version="1.0"?>
+<?xml version="1.0"?>	
+<!-- NO BLENDER LEVEL - AUTHOR ANDREW DIGGINS -->
+<!-- ORIGINAL LEVEL 1 -->
 <root>
-	<object type="color" r="64" g="32" b="32" />
 	<!-- HOLE -->
 	<object type="hole" position="-7,6" />
 
