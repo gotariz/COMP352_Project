@@ -74,6 +74,9 @@ class StateMenu : public IState
         vector<string>  sfx;
         vector<string>  save;
 
+        vector<vector<int>> world;
+        vector<int> levelsInWorld;
+
         //This is a way to track which option is selected (eg. the 3rd resolution is selected)
         vector<int>     selectedOps;
 

@@ -131,12 +131,38 @@ void StateMenu::load()
         else
         {
             levelCount -= 1;
-            levelCount += 3;
+            //levelCount += 3;
             break;
         }
     }
 
 	cout << "Level count: " << levelCount << endl;
+
+    //! CHANGE THIS WHEN MORE LEVELS ADDED !//
+    for (int j = 0; j < 3 ; j++ )
+    {
+        // 9 levels per world
+        int counter = 10;
+        if(j == 2)
+            counter = 9;
+
+        for (int i = 1; i < counter ; i++ )
+        {
+            levelsInWorld.push_back(i + (j*9));
+        }
+        world.push_back(levelsInWorld);
+        levelsInWorld.clear();
+    }
+
+    for (int i=0; i < world.size(); i++)
+    {
+        cout << "World: " << i << " Levels: ";
+            for (int j =0; j < world[i].size(); j++)
+            {
+                cout << world[i][j] << ", ";
+            }
+        cout << endl;
+    }
 
 	leftLevel = levelCount;
 
@@ -526,9 +552,9 @@ void StateMenu::reset()
 void StateMenu::update()
 {
     bg.update();
-    if(selectedLevel == levelCount - 1 || selectedLevel == levelCount - 2 || selectedLevel == levelCount)
-        locked = true;
-    else
+//    if(selectedLevel == levelCount - 1 || selectedLevel == levelCount - 2 || selectedLevel == levelCount)
+//        locked = true;
+//    else
         locked = false;
 
     //Correct position from the bottom of screen
