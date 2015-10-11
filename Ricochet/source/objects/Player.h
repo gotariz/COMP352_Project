@@ -37,8 +37,6 @@ class Player : public gObject
 
         sfColor color;
         Trail trail;
-        sf::Sound sfx;
-
         Vector2 reset_pos;
 };
 

@@ -107,8 +107,8 @@ void Engine::exit()
         activeState = nullptr;
     }
 
-    assets.freeResources();
     audio.freeResources();
+    assets.freeResources();
 }
 
 

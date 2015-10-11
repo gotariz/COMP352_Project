@@ -58,6 +58,8 @@ class StateGame : public IState
         void reInit();
 
         void drawLine(Vector2 p1, Vector2 p2, sf::Color c = sf::Color::White);
+        void drawLine(Vector2 p1, Vector2 p2, int thickness, sf::Color c = sf::Color::White);
+        sf::RectangleShape rec;
 
     public:
 

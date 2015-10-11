@@ -207,12 +207,13 @@ void StateGame::draw()
 
         Vector2 p = gdata.toScreenPixels(start);
         Vector2 n = gdata.toScreenPixels(start + dir);
-        sf::Vertex line[] =
-        {
-            sf::Vertex(sf::Vector2f(p.x, p.y),sf::Color(255,255,255,32)),
-            sf::Vertex(sf::Vector2f(n.x, n.y),sf::Color(255,255,255,32))
-        };
-        gdata.window->draw(line, 2, sf::Lines);
+//        sf::Vertex line[] =
+//        {
+//            sf::Vertex(sf::Vector2f(p.x, p.y),sf::Color(255,255,255,32)),
+//            sf::Vertex(sf::Vector2f(n.x, n.y),sf::Color(255,255,255,32))
+//        };
+//        gdata.window->draw(line, 2, sf::Lines);
+        drawLine(p,n,50 * gdata.zoom,sf::Color(255,255,255,16));
 
         dir.setMagnitude( (static_cast<float>(input.power) / 100.f) * WORLD_SCALE * 0.4);
         Vector2 n2 = gdata.toScreenPixels(start + dir);
@@ -222,6 +223,7 @@ void StateGame::draw()
             sf::Vertex(sf::Vector2f(n2.x, n2.y),sf::Color::White)
         };
         gdata.window->draw(line2, 2, sf::Lines);
+        //drawLine(p,n2,50 * gdata.zoom);
 
     }
 
@@ -352,6 +354,23 @@ void StateGame::drawLine(Vector2 p1, Vector2 p2, sf::Color c)
     };
     gdata.window->draw(line, 2, sf::Lines);
 }
+
+void StateGame::drawLine(Vector2 p1, Vector2 p2, int thickness, sf::Color c)
+{
+    Vector2 delta = p2 - p1;
+    float angle = delta.getAngle();
+    float length = delta.getMagnitude();
+
+    rec.setSize(sf::Vector2f(length,thickness));
+    rec.setRotation(angle);
+    rec.setPosition(p1.x,p1.y);
+    rec.setFillColor(c);
+
+    rec.setOrigin(0,thickness / 2);
+
+    gdata.window->draw(rec);
+}
+
 
 void StateGame::freeResources()
 {

@@ -109,167 +109,171 @@ void AudioManager::removeTempMusic()
 
 void AudioManager::playSound(string name, bool destroy_old)
 {
-    // check number of sounds
-    int total_sounds = sfx_temp.getSize() + music_temp.getSize();
-
-    // if max decide to destroy old sound or not
-    if (total_sounds >= max_sounds && destroy_old)  removeTempSound();
-    else if (total_sounds >= max_sounds)            return;
-
-
-    // if not max create new sound or recycle expired
-    SoundHandle* handle = nullptr;
-    if (unused_sound.getSize() > 0)
-    {
-        handle = unused_sound.getLast()->data;
-        unused_sound.remove(unused_sound.getLast());
-    }
-    else
-    {
-        cout << "creating sound" << endl;
-        handle = new SoundHandle;
-    }
-
-    // set sound properties
-    sf::SoundBuffer* buffer = gdata.assets->getSound(name);
-
-    if (buffer)
-    {
-        handle->sound.setBuffer(*buffer);
-        handle->loop(false);
-        handle->volume(volume_sfx);
-        handle->play();
-        Node<SoundHandle*>* node = sfx_temp.add(handle);      // if success ad to sfx_temp
-        handle->node = node;
-    }
-    else
-    {
-        unused_sound.add(handle);
-        cout << "error retriving sound: " << name << endl;
-        return;
-    }
+//    // check number of sounds
+//    int total_sounds = sfx_temp.getSize() + music_temp.getSize() + sfx_perm.getSize() + music_perm.getSize();
+//    cout << "total sounds" << total_sounds << endl;
+//
+//    // if max decide to destroy old sound or not
+//    if (total_sounds >= max_sounds && destroy_old)  removeTempSound();
+//    else if (total_sounds >= max_sounds)            return;
+//
+//
+//    // if not max create new sound or recycle expired
+//    SoundHandle* handle = nullptr;
+//    if (unused_sound.getSize() > 0)
+//    {
+//        handle = unused_sound.getLast()->data;
+//        unused_sound.remove(unused_sound.getLast());
+//    }
+//    else
+//    {
+//        cout << "creating sound" << endl;
+//        handle = new SoundHandle;
+//    }
+//
+//    // set sound properties
+//    sf::SoundBuffer* buffer = gdata.assets->getSound(name);
+//
+//    if (buffer)
+//    {
+//        handle->sound.setBuffer(*buffer);
+//        handle->loop(false);
+//        handle->volume(volume_sfx);
+//        handle->play();
+//        Node<SoundHandle*>* node = sfx_temp.add(handle);      // if success ad to sfx_temp
+//        handle->node = node;
+//    }
+//    else
+//    {
+//        unused_sound.add(handle);
+//        cout << "error retriving sound: " << name << endl;
+//        return;
+//    }
 }
 
 void AudioManager::playMusic(string name, bool destroy_old)
 {
-    // check number of sounds
-    int total_sounds = sfx_temp.getSize() + music_temp.getSize();
-
-    // if max decide to destroy old sound or not
-    if (total_sounds >= max_sounds && destroy_old)  removeTempMusic();
-    else if (total_sounds >= max_sounds)            return; // not going to play the sound
-
-    // if not max create new music or recycle expired
-    MusicHandle* handle = nullptr;
-    if (unused_music.getSize() > 0)
-    {
-        handle = unused_music.getLast()->data;
-        unused_music.remove(unused_music.getLast());
-    }
-    else
-    {
-        handle = new MusicHandle;
-    }
-
-    string audio_file = gdata.assets->getMusic(name);
-    if (handle->music.openFromFile(audio_file))
-    {
-        handle->loop(false);
-        handle->volume(volume_music);
-        handle->play();
-        Node<MusicHandle*>* node = music_temp.add(handle);
-        handle->node = node;
-    }
-    else
-    {
-        unused_music.add(handle);
-        cout << "error loading music file: " << audio_file << endl;
-        return;
-    }
+//    // check number of sounds
+//    int total_sounds = sfx_temp.getSize() + music_temp.getSize() + sfx_perm.getSize() + music_perm.getSize();
+//    cout << "total sounds" << total_sounds << endl;
+//
+//    // if max decide to destroy old sound or not
+//    if (total_sounds >= max_sounds && destroy_old)  removeTempMusic();
+//    else if (total_sounds >= max_sounds)            return; // not going to play the sound
+//
+//    // if not max create new music or recycle expired
+//    MusicHandle* handle = nullptr;
+//    if (unused_music.getSize() > 0)
+//    {
+//        handle = unused_music.getLast()->data;
+//        unused_music.remove(unused_music.getLast());
+//    }
+//    else
+//    {
+//        handle = new MusicHandle;
+//    }
+//
+//    string audio_file = gdata.assets->getMusic(name);
+//    if (handle->music.openFromFile(audio_file))
+//    {
+//        handle->loop(false);
+//        handle->volume(volume_music);
+//        handle->play();
+//        Node<MusicHandle*>* node = music_temp.add(handle);
+//        handle->node = node;
+//    }
+//    else
+//    {
+//        unused_music.add(handle);
+//        cout << "error loading music file: " << audio_file << endl;
+//        return;
+//    }
 }
 
 SoundHandle* AudioManager::addSound(string name, bool destroy_old)
 {
-    // check number of sounds
-    int total_sounds = sfx_temp.getSize() + music_temp.getSize();
-
-    // if max decide to destroy old sound or not
-    if (total_sounds >= max_sounds && destroy_old)  removeTempSound();
-    else if (total_sounds >= max_sounds)            return nullptr; // not going to play the sound
-
-    // if not max create new sound or recycle expired
-    SoundHandle* handle = nullptr;
-    if (unused_sound.getSize() > 0)
-    {
-        handle = unused_sound.getLast()->data;
-        unused_sound.remove(unused_sound.getLast());
-    }
-    else
-    {
-        cout << "creating sound" << endl;
-        handle = new SoundHandle;
-    }
-
-    // set sound properties
-    sf::SoundBuffer* buffer = gdata.assets->getSound(name);
-
-    if (buffer)
-    {
-        handle->sound.setBuffer(*buffer);
-        handle->loop(false);
-        handle->volume(volume_sfx);
-        handle->play();
-        Node<SoundHandle*>* node = sfx_temp.add(handle);      // if success ad to sfx_temp
-        handle->node = node;
-    }
-    else
-    {
-        unused_sound.add(handle);
-        cout << "error retriving sound: " << name << endl;
-        return nullptr;
-    }
+//    // check number of sounds
+//    int total_sounds = sfx_temp.getSize() + music_temp.getSize() + sfx_perm.getSize() + music_perm.getSize();
+//    cout << "total sounds" << total_sounds << endl;
+//
+//    // if max decide to destroy old sound or not
+//    if (total_sounds >= max_sounds && destroy_old)  removeTempSound();
+//    else if (total_sounds >= max_sounds)            return nullptr; // not going to play the sound
+//
+//    // if not max create new sound or recycle expired
+//    SoundHandle* handle = nullptr;
+//    if (unused_sound.getSize() > 0)
+//    {
+//        handle = unused_sound.getLast()->data;
+//        unused_sound.remove(unused_sound.getLast());
+//    }
+//    else
+//    {
+//        cout << "creating sound" << endl;
+//        handle = new SoundHandle;
+//    }
+//
+//    // set sound properties
+//    sf::SoundBuffer* buffer = gdata.assets->getSound(name);
+//
+//    if (buffer)
+//    {
+//        handle->sound.setBuffer(*buffer);
+//        handle->loop(false);
+//        handle->volume(volume_sfx);
+//        handle->play();
+//        Node<SoundHandle*>* node = sfx_temp.add(handle);      // if success ad to sfx_temp
+//        handle->node = node;
+//        return handle;
+//    }
+//    else
+//    {
+//        unused_sound.add(handle);
+//        cout << "error retriving sound: " << name << endl;
+//        return nullptr;
+//    }
 }
 
 MusicHandle* AudioManager::addMusic(string name, bool destroy_old)
 {
-    // check number of sounds
-    int total_sounds = sfx_temp.getSize() + music_temp.getSize();
-
-    // if max decide to destroy old sound or not
-    if (total_sounds >= max_sounds && destroy_old)  removeTempMusic();
-    else if (total_sounds >= max_sounds)            return nullptr; // not going to play the sound
-
-    // if not max create new music or recycle expired
-    MusicHandle* handle = nullptr;
-    if (unused_music.getSize() > 0)
-    {
-        handle = unused_music.getLast()->data;
-        unused_music.remove(unused_music.getLast());
-    }
-    else
-    {
-        handle = new MusicHandle;
-    }
-
-    string audio_file = gdata.assets->getMusic(name);
-    if (handle->music.openFromFile(audio_file))
-    {
-        handle->loop(false);
-        handle->volume(volume_music);
-        cout << "playing  music at " << volume_music << endl;
-        handle->play();
-        Node<MusicHandle*>* node = music_perm.add(handle);
-        handle->node = node;
-
-        return handle;
-    }
-    else
-    {
-        unused_music.add(handle);
-        cout << "error loading music file: " << audio_file << endl;
-        return nullptr;
-    }
-
+//    // check number of sounds
+//    int total_sounds = sfx_temp.getSize() + music_temp.getSize() + sfx_perm.getSize() + music_perm.getSize();
+//    cout << "total sounds" << total_sounds << endl;
+//
+//    // if max decide to destroy old sound or not
+//    if (total_sounds >= max_sounds && destroy_old)  removeTempMusic();
+//    else if (total_sounds >= max_sounds)            return nullptr; // not going to play the sound
+//
+//    // if not max create new music or recycle expired
+//    MusicHandle* handle = nullptr;
+//    if (unused_music.getSize() > 0)
+//    {
+//        handle = unused_music.getLast()->data;
+//        unused_music.remove(unused_music.getLast());
+//    }
+//    else
+//    {
+//        handle = new MusicHandle;
+//    }
+//
+//    string audio_file = gdata.assets->getMusic(name);
+//    if (handle->music.openFromFile(audio_file))
+//    {
+//        handle->loop(false);
+//        handle->volume(volume_music);
+//        cout << "playing  music at " << volume_music << endl;
+//        handle->play();
+//        Node<MusicHandle*>* node = music_perm.add(handle);
+//        handle->node = node;
+//
+//        return handle;
+//    }
+//    else
+//    {
+//        unused_music.add(handle);
+//        cout << "error loading music file: " << audio_file << endl;
+//        return nullptr;
+//    }
 }
 
 void AudioManager::freeResources()

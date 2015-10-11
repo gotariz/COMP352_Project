@@ -51,9 +51,6 @@ class StateMenu : public IState
         sf::Texture lbLvlTex;
         sf::Texture rbLvlTex;
 
-        sf::Music music;
-
-
         float dur = 0.25;
 
         //This is a list of items in the main menu (eg. start, awards, options, exit)
