@@ -164,7 +164,8 @@ void StateMenu::load()
         cout << endl;
     }
 
-	leftLevel = levelCount;
+	leftLevel = world[selectedWorld].size()-1;
+
 
     mx = gdata.settings->getScreenWidth() - 400;
     tx = gdata.settings->getScreenWidth() + 10;
@@ -213,21 +214,6 @@ void StateMenu::load()
     lbLvlShot.setScale(0.1,0.1);
     lbLvlShot.setColor(sf::Color(100,100,100,100));
     lbLvlShot.setOrigin(lbLvlShot.getTexture()->getSize().x / 2, lbLvlShot.getTexture()->getSize().y / 2);
-
-//    int rMus = utils::getRandom(0,3);
-//    int rMus = 2;
-//    cout << "RMUS: " << rMus << endl;
-//
-//    music.stop();
-//    music.setLoop(true);
-//    if(rMus == 1)
-//        music.openFromFile(gdata.assets->getMusic("music1"));
-//    if(rMus == 2)
-//        music.openFromFile(gdata.assets->getMusic("music2"));
-//    if(rMus == 3)
-//        music.openFromFile(gdata.assets->getMusic("music3"));
-//    music.setVolume(gdata.settings->getVolume());
-//    music.play();
 
     cout << gdata.settings->getVolume() << endl;
 	gdata.audio->setVolumeMusic(gdata.settings->getVolume());
@@ -494,6 +480,34 @@ void StateMenu::handleEvents()
                     slideRight = true;
             }
 
+            else if (gdata.keys[sf::Keyboard::Down].isKeyPressed)
+            {
+                if(!slideLeft && !slideRight)
+                {
+                    if(selectedWorld < world.size()-1)
+                        selectedWorld += 1;
+                    else
+                        selectedWorld = 0;
+
+                    selectedLevel = 0;
+                }
+                refreshTextures();
+            }
+
+            else if (gdata.keys[sf::Keyboard::Up].isKeyPressed)
+            {
+                if(!slideLeft && !slideRight)
+                {
+                    if(selectedWorld > 0)
+                        selectedWorld -= 1;
+                    else
+                        selectedWorld = world.size() -1;
+
+                    selectedLevel = 0;
+                }
+                refreshTextures();
+            }
+
             else if (gdata.keys[sf::Keyboard::Return].isKeyPressed)
             {
                 if(!locked)
@@ -644,6 +658,7 @@ void StateMenu::update()
         }
     }
 
+    //RIGHT KEY PRESSED
     if(slideLeft)
     {
         //MOVE cx to the lx
@@ -720,38 +735,30 @@ void StateMenu::update()
             rbLvlShot.setColor(sf::Color(100,100,100,100));
 
             selectedLevel += 1;
-            if(selectedLevel > levelCount)
-                selectedLevel = 1;
+            if(selectedLevel > world[selectedWorld].size()-1)
+                selectedLevel = 0;
 
             leftLevel = selectedLevel - 1;
-            if(leftLevel < 1)
-                leftLevel = levelCount;
+            if(leftLevel < 0)
+                leftLevel = world[selectedWorld].size()-1;
 
             rightLevel = selectedLevel + 1;
-            if(rightLevel > levelCount)
-                rightLevel = 1;
+            if(rightLevel > world[selectedWorld].size()-1)
+                rightLevel = 0;
 
             lbLevel = leftLevel - 1;
-            if(lbLevel < 1)
-                lbLevel = levelCount;
+            if(lbLevel < 0)
+                lbLevel = world[selectedWorld].size()-1;
 
             rbLevel = rightLevel + 1;
-            if(rbLevel > levelCount)
-                rbLevel = 1;
+            if(rbLevel > world[selectedWorld].size()-1)
+                rbLevel = 0;
 
-//            lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(selectedLevel)));
-//            leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(leftLevel)));
-//            rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(rightLevel)));
-//            lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(lbLevel)));
-//            rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(rbLevel)));
-            lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
-            leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
-            rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
-            lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
-            rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
+            refreshTextures();
         }
     }
 
+    //LEFT KEY PRESSED
     if(slideRight)
     {
         //MOVE cx to rx
@@ -827,37 +834,42 @@ void StateMenu::update()
             rbLvlShot.setColor(sf::Color(100,100,100,100));
 
             selectedLevel -=1;
-            if(selectedLevel < 1)
-                selectedLevel = levelCount;
+            if(selectedLevel < 0)
+                selectedLevel = world[selectedWorld].size()-1;
 
             leftLevel = selectedLevel - 1;
-            if(leftLevel < 1)
-                leftLevel = levelCount;
+            if(leftLevel < 0)
+                leftLevel = world[selectedWorld].size()-1;
 
             rightLevel = selectedLevel + 1;
-            if(rightLevel > levelCount)
-                rightLevel = 1;
+            if(rightLevel > world[selectedWorld].size()-1)
+                rightLevel = 0;
 
             lbLevel = leftLevel - 1;
-            if(lbLevel < 1)
-                lbLevel = levelCount;
+            if(lbLevel < 0)
+                lbLevel = world[selectedWorld].size()-1;
 
             rbLevel = rightLevel + 1;
-            if(rbLevel > levelCount)
-                rbLevel = 1;
-//
-//            lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(selectedLevel)));
-//            leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(leftLevel)));
-//            rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(rightLevel)));
-//            lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(lbLevel)));
-//            rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(rbLevel)));
-            lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
-            leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
-            rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
-            lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
-            rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
+            if(rbLevel > world[selectedWorld].size()-1)
+                rbLevel = 0;
+
+            refreshTextures();
         }
     }
+}
+
+void StateMenu::refreshTextures()
+{
+//            lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][selectedLevel])));
+//            leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][leftLevel])));
+//            rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][rightLevel])));
+//            lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][lbLevel])));
+//            rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][rbLevel])));
+            lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
+            leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
+            rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
+            lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
+            rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
 }
 
 void StateMenu::draw()
@@ -920,7 +932,8 @@ void StateMenu::draw()
         else
         {
             font.setColor(sf::Color::Black);
-            font.drawString(cx, cy + (cy/2), "LEVEL " + gz::toString(selectedLevel), Align::MIDDLE);
+            font.drawString(cx, cy + (cy/2), "WORLD " + gz::toString(selectedWorld + 1), Align::MIDDLE);
+            font.drawString(cx, cy + (cy/1.5), "LEVEL " + gz::toString(world[selectedWorld][selectedLevel]), Align::MIDDLE);
         }
     }
 

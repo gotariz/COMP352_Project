@@ -91,6 +91,7 @@ class StateMenu : public IState
         int selectedMus = 0;
         int selectedSFX = 0;
         int selectedSave = 0;
+        int selectedWorld = 0;
 
         //This sets the 1st state to the main menu screen
         int menuState = MENU_MAIN;
@@ -98,7 +99,11 @@ class StateMenu : public IState
         int fsMode;
         int vSyncMode;
 
+        //Resets display settings
         void reset();
+
+        //Refresh the level select tile textures
+        void refreshTextures();
 
         //main menu x
         float x = 0;
@@ -119,12 +124,12 @@ class StateMenu : public IState
         int pushMenu = -1;
 
         //count the levels for level select
-        int levelCount = 1;
-        int selectedLevel = 1;
+        int levelCount = 0;
+        int selectedLevel = 0;
         int leftLevel = 0;
-        int rightLevel = 2;
-        int lbLevel = 1;
-        int rbLevel = 1;
+        int rightLevel = 1;
+        int lbLevel = 0;
+        int rbLevel = 0;
 
         //center, left and right x for level screenshots
         float cx = 0;
