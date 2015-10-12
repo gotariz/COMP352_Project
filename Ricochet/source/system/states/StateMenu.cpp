@@ -512,7 +512,7 @@ void StateMenu::handleEvents()
             {
                 if(!locked)
                 {
-                    gdata.level = selectedLevel;
+                    gdata.level = world[selectedWorld][selectedLevel];
                     gdata.gamestate = STATE_GAME;
                 }
             }
