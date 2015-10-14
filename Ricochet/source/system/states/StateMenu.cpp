@@ -12,9 +12,6 @@ StateMenu::~StateMenu()
 
 void StateMenu::load()
 {
-    assets.loadAssetList("data/assets.xml");
-	gdata.assets = &assets;
-
     gdata.camera = &c;
     //bg.bg_image.setTexture(*gdata.assets->getTexture("background"));
     bg.bubble_alpha_range.set(0,64);
@@ -24,7 +21,7 @@ void StateMenu::load()
 
     //font = new sfFontRenderer(gdata.window);
     font.setWindow(gdata.window);
-    font.setFont(assets.getFont("segoe-ui-light-48"));
+    font.setFont(gdata.assets->getFont("segoe-ui-light-48"));
 
 	menuItems.push_back("Start");
 	menuItems.push_back("Achievements");

@@ -20,6 +20,8 @@ class AssetManager
         std::string         getMusic(std::string name);
         sfFont*             getFont(std::string name);
 
+        sf::SoundBuffer* snd = nullptr;
+
     private:
         std::map<std::string,sf::Texture*>      m_textures;
         std::map<std::string,sf::SoundBuffer*>  m_sounds;

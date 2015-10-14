@@ -98,7 +98,8 @@ bool Engine::initialise()
 
 void Engine::exit()
 {
-    gdata.window->close();
+    audio.freeResources();
+    assets.freeResources();
 
     if (activeState)
     {
@@ -107,8 +108,7 @@ void Engine::exit()
         activeState = nullptr;
     }
 
-    audio.freeResources();
-    assets.freeResources();
+    gdata.window->close();
 }
 
 

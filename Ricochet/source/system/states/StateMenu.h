@@ -148,8 +148,6 @@ class StateMenu : public IState
 
     public:
 
-		AssetManager	    assets;
-
         sfFontRenderer     font;
 };
 

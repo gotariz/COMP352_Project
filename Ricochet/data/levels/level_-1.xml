@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!-- BLENDER LEVEL 3.5 AUTHOR ANDREW DIGGINS -->
+ <!-- ORIGINAL LEVEL 23-->
+ 
+ <!-- once the top of the platform on the most right the 8th line from the top at angle 256 at power 82 -->
+<root>
+	<!-- HOLE -->
+	<object type="hole" position="-16,0" />
+
+	<!-- switches -->
+
+	<!-- LASERS. - starting top left, working clockwise -->
+	<object type="laser" position="-12,9.5" rotation="-90" />
+	<object type="laser" position="-8,-9.5" rotation="90" />
+	<!--<object type="laser" position="-4,9.5" rotation="-90" />
+	<object type="laser" position="-0,-9.5" rotation="90" />
+	<object type="laser" position="4,9.5" rotation="-90" />-->
+	<object type="laser" position="8,-9.5" rotation="90" />
+	<object type="laser" position="12,9.5" rotation="-90" />
+	
+	<!-- PLAYER -->
+	<object type="player" position="16,0" />
+
+	<!-- BACKGROUND WALLS - starting top, working clockwise -->	
+	<object type="wall" position="0, 0" size="1,1" rotation="0"/>
+	
+	<object type="wall" position="0, 10" size="38,1" rotation="0"/>
+	<object type="wall" position="18.5, 0" size="1,21" rotation="0"/>
+	<object type="wall" position="0, -10" size="38,1" rotation="0"/>
+	<object type="wall" position="-18.5, 0" size="1,21" rotation="0"/>
+	
+	
+	<!-- PLATFORMS -->
+	<object type="platform" size="1,3" moves="1" p1="-12,7" p2="-12,-7" duration="2" progress="0"/>
+	<object type="platform" size="1,3" moves="1" p1="-8,7" p2="-8,-7" duration="2" progress="1"/>
+	<!--<object type="platform" size="1,3" moves="1" p1="-4,7" p2="-4,-7" duration="2" progress="0"/>
+	<object type="platform" size="1,3" moves="1" p1="0,7" p2="0,-7" duration="2" progress="1"/>
+	<object type="platform" size="1,3" moves="1" p1="4,7" p2="4,-7" duration="2" progress="0"/>-->
+	<object type="platform" size="1,3" moves="1" p1="8,7" p2="8,-7" duration="2" progress="1"/>
+	<object type="platform" size="1,3" moves="1" p1="12,7" p2="12,-7" duration="2" progress="0"/>
+
+	<!-- BORDER -->
+	<object type="wall" position="0,13" size="38,5" rotation="0"/> 		<!-- top -->
+	<object type="wall" position="0,-13" size="38,5" rotation="0"/> 	<!-- bottom -->
+	<object type="wall" position="-21.5,0" size="5,31" rotation="0"/> 	<!-- left -->
+	<object type="wall" position="21.5,0" size="5,31" rotation="0"/> 	<!-- right -->
+	
+</root>
