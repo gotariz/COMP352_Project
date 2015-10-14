@@ -46,6 +46,12 @@ class GameData
 
 		bool            draw_debug = false;
 		bool            draw_grid = false;
+
+        bool            draw_last = true;
+		bool            first_shot = true;
+		bool            last_angle = 0;
+		Vector2         p1;
+		Vector2         p2;
 		//bool            has_focus = true;
 
     public:

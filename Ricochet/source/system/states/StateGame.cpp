@@ -194,9 +194,18 @@ void StateGame::update()
 void StateGame::draw()
 {
     gdata.window->clear(sf::Color::Black);
-    //gdata.window->clear(sf::Color::Blue);
 
     bg.draw();
+
+    if (gdata.keys[sf::Keyboard::S].isKeyDown && !gdata.first_shot)
+    {
+
+        Vector2 p1 = gdata.toScreenPixels(gdata.p1);
+        Vector2 p2 = gdata.toScreenPixels(gdata.p2);
+
+        drawLine(p1,p2,1,sf::Color(255,255,255,64));
+    }
+
 
     if (input.selecting)
     {
@@ -207,23 +216,11 @@ void StateGame::draw()
 
         Vector2 p = gdata.toScreenPixels(start);
         Vector2 n = gdata.toScreenPixels(start + dir);
-//        sf::Vertex line[] =
-//        {
-//            sf::Vertex(sf::Vector2f(p.x, p.y),sf::Color(255,255,255,32)),
-//            sf::Vertex(sf::Vector2f(n.x, n.y),sf::Color(255,255,255,32))
-//        };
-//        gdata.window->draw(line, 2, sf::Lines);
         drawLine(p,n,50 * gdata.zoom,sf::Color(255,255,255,16));
 
         dir.setMagnitude( (static_cast<float>(input.power) / 100.f) * WORLD_SCALE * 0.4);
         Vector2 n2 = gdata.toScreenPixels(start + dir);
-        sf::Vertex line2[] =
-        {
-            sf::Vertex(sf::Vector2f(p.x, p.y),sf::Color::White),
-            sf::Vertex(sf::Vector2f(n2.x, n2.y),sf::Color::White)
-        };
-        gdata.window->draw(line2, 2, sf::Lines);
-        //drawLine(p,n2,50 * gdata.zoom);
+        drawLine(p,n2,1,sf::Color::White);
 
     }
 

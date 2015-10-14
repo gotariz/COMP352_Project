@@ -29,6 +29,7 @@ void Hole::onEnterCollision(CollisionData cd)
             gdata.countdown = 3.f;
             ++gdata.level;
             cd.objectB->setLinearVelocity(Vector2(0,0));
+            gdata.first_shot = true;
         }
         //gdata.delay_reload = true;
     }

@@ -2,7 +2,7 @@
  <!-- BLENDER LEVEL 2.1 AUTHOR ANDREW DIGGINS -->
  <!-- ORIGINAL LEVEL 10-->
 <root>
-	
+	<object type="color" r="14" g="57" b="30" />
 	<!-- HOLE -->
 	<object type="hole" position="10,0" />
 

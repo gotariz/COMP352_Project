@@ -93,6 +93,8 @@ void InputHandler::handleEvents()
 
 void InputHandler::handlePlayerEvents()
 {
+    if (!m_player) return;
+
     float h = 0;
     float v = 0;
 
@@ -188,6 +190,13 @@ void InputHandler::handlePlayerEvents()
 
 		    launched = true;
 		    selecting = false;
+		    gdata.last_angle = vel.getAngle();
+		    gdata.first_shot = false;
+
+		    Vector2 dir(50,0);
+		    dir.rotate(vel.getAngle());
+		    gdata.p1 = m_player->getAbsolutePosition();
+		    gdata.p2 = gdata.p1 + dir;
 		}
 	}
 }

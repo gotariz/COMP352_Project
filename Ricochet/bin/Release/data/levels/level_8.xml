@@ -2,6 +2,7 @@
 <!-- BLENDER LEVEL 8 - AUTHOR ANDREW DIGGINS -->
 <!-- ORIGINAL LEVEL 8 -->
 <root>
+	<object type="color" r="16" g="33" b="57" />
 	<!-- HOLE -->
 	
 	<object type="hole" position="-7,7" />

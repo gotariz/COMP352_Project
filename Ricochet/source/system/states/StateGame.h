@@ -83,6 +83,7 @@ class StateGame : public IState
 		PhysicsFactory		factory;
 		bool                drawPhysicsDebug = true;
 
+
 		float cx = 20;
 
         private:

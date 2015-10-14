@@ -111,7 +111,6 @@ void AudioManager::playSound(string name, bool destroy_old)
 {
     // check number of sounds
     int total_sounds = sfx_temp.getSize() + music_temp.getSize() + sfx_perm.getSize() + music_perm.getSize();
-    cout << "total sounds" << total_sounds << endl;
 
     // if max decide to destroy old sound or not
     if (total_sounds >= max_sounds && destroy_old)  removeTempSound();
@@ -127,7 +126,6 @@ void AudioManager::playSound(string name, bool destroy_old)
     }
     else
     {
-        cout << "creating sound" << endl;
         handle = new SoundHandle;
     }
 
@@ -155,7 +153,6 @@ void AudioManager::playMusic(string name, bool destroy_old)
 {
     // check number of sounds
     int total_sounds = sfx_temp.getSize() + music_temp.getSize() + sfx_perm.getSize() + music_perm.getSize();
-    cout << "total sounds" << total_sounds << endl;
 
     // if max decide to destroy old sound or not
     if (total_sounds >= max_sounds && destroy_old)  removeTempMusic();
@@ -194,7 +191,6 @@ SoundHandle* AudioManager::addSound(string name, bool destroy_old)
 {
     // check number of sounds
     int total_sounds = sfx_temp.getSize() + music_temp.getSize() + sfx_perm.getSize() + music_perm.getSize();
-    cout << "total sounds" << total_sounds << endl;
 
     // if max decide to destroy old sound or not
     if (total_sounds >= max_sounds && destroy_old)  removeTempSound();
@@ -209,7 +205,6 @@ SoundHandle* AudioManager::addSound(string name, bool destroy_old)
     }
     else
     {
-        cout << "creating sound" << endl;
         handle = new SoundHandle;
     }
 
@@ -238,7 +233,6 @@ MusicHandle* AudioManager::addMusic(string name, bool destroy_old)
 {
     // check number of sounds
     int total_sounds = sfx_temp.getSize() + music_temp.getSize() + sfx_perm.getSize() + music_perm.getSize();
-    cout << "total sounds" << total_sounds << endl;
 
     // if max decide to destroy old sound or not
     if (total_sounds >= max_sounds && destroy_old)  removeTempMusic();
@@ -261,7 +255,6 @@ MusicHandle* AudioManager::addMusic(string name, bool destroy_old)
     {
         handle->loop(false);
         handle->volume(volume_music);
-        cout << "playing  music at " << volume_music << endl;
         handle->play();
         Node<MusicHandle*>* node = music_perm.add(handle);
         handle->node = node;

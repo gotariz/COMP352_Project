@@ -4,6 +4,7 @@
  
  <!-- once the top of the platform on the most right the 8th line from the top at angle 256 at power 82 -->
 <root>
+	<object type="color" r="16" g="33" b="57" />
 	<!-- HOLE -->
 	<object type="hole" position="-16,0" />
 
