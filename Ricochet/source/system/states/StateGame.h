@@ -25,6 +25,7 @@
 #include "video/sfFontRenderer.h"
 #include "video/particles/ParticleEmitter.h"
 #include "video/Background.h"
+#include "video/ProgressScreen.h"
 
 
 /////////////////////////////////////////////////////////
@@ -82,6 +83,8 @@ class StateGame : public IState
 		ContactListener		collisions;
 		PhysicsFactory		factory;
 		bool                drawPhysicsDebug = true;
+
+		ProgressScreen      ps;
 
 
 		float cx = 20;

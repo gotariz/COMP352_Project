@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
 	<!-- IMAGES -->
-	<asset type="image" path="media/images/explosion.png" />
 	<asset type="image" path="media/images/title.png" />
+	<asset type="image" path="media/images/glow.png" />
+	<asset type="image" path="media/images/thumbs.png" />
+	<asset type="image" path="media/images/star_bg.png" />
+	<asset type="image" path="media/images/stars.png" />
 	<asset type="image" path="media/images/loading.png" />
 	<asset type="image" path="media/images/laser_beam.png" />
 	<asset type="image" path="media/images/laser_end.png" />
@@ -28,6 +31,7 @@
 	<asset type="sound" path="media/sounds/bounce.wav" />
 	<asset type="sound" path="media/sounds/explosion.wav" />
 	<asset type="sound" path="media/sounds/victory.wav" />
+	<asset type="sound" path="media/sounds/click.wav" />
 
 	<!-- MUSIC -->
 	<asset type="music" path="media/music/music1.ogg" />

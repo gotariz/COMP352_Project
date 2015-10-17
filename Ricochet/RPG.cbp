@@ -142,6 +142,8 @@
 		<Unit filename="source/video/Background.h" />
 		<Unit filename="source/video/Camera.cpp" />
 		<Unit filename="source/video/Camera.h" />
+		<Unit filename="source/video/ProgressScreen.cpp" />
+		<Unit filename="source/video/ProgressScreen.h" />
 		<Unit filename="source/video/Trail.cpp" />
 		<Unit filename="source/video/Trail.h" />
 		<Unit filename="source/video/particles/BounceEmitter.cpp" />

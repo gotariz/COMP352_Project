@@ -25,11 +25,8 @@ void Hole::onEnterCollision(CollisionData cd)
             cout << "you won" << endl;
             gdata.audio->playSound("victory");
             m_image.setTexture(*gdata.assets->getTexture("hole_on"));
-//            gdata.level += 1;
-            gdata.countdown = 3.f;
-            ++gdata.level;
             cd.objectB->setLinearVelocity(Vector2(0,0));
-            gdata.first_shot = true;
+            gdata.show_progress = true;
         }
         //gdata.delay_reload = true;
     }

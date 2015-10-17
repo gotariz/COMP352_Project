@@ -23,6 +23,7 @@ void Toggle::onDestroy()
 
 void Toggle::toggleObstacles()
 {
+    gdata.audio->playSound("click");
     // loop through obstacles and enable/disable accordingly
     for (int i = 0; i < obs.size(); ++i)
     {

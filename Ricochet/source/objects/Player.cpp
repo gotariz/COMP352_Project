@@ -33,11 +33,14 @@ void Player::onDestroy()
     explode_emitter.v = getVelocity();
     draw_player = false;
 
+    if (!gdata.show_progress)    {gdata.countdown = 2.f;} // a bit dodgey but oh well
+
     deletePhysicsObject();
 }
 
 void Player::onEnterCollision(CollisionData cd)
 {
+
     if (cd.points.size() > 0)
     {
         if (cd.objectB->m_type != PARTICLE)

@@ -131,7 +131,6 @@ void Laser::raycast()
 			{
 			    cout << "you died" << endl;
                 static_cast<Object*>(body->GetUserData())->onDestroy();
-                gdata.countdown = 5.f;
 			}
 		}
 	}

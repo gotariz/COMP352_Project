@@ -129,6 +129,7 @@ void StateGame::load()
 	cout << "complete" << endl;
 
     gdata.countdown = 0;
+    ps.init();
 
     cout << "===================================================" << endl;
     loading = false;
@@ -183,12 +184,17 @@ void StateGame::start()
 void StateGame::handleEvents()
 {
 	input.handleEvents();
+	if (gdata.show_progress)
+	{
+	    ps.handleEvents();
+	}
 }
 
 void StateGame::update()
 {
 	manager.update();
 	bg.update();
+	ps.update();
 }
 
 void StateGame::draw()
@@ -299,7 +305,10 @@ void StateGame::draw()
     }
     //===========================================
 
-
+    if (gdata.show_progress)
+    {
+        ps.draw();
+    }
 
 
 	// flip the buffer

@@ -30,20 +30,12 @@ void InputHandler::handleEvents()
         {
             gdata.running = false;
         }
-        else if (event.type == sf::Event::MouseWheelMoved)
-        {
-            power += event.mouseWheel.delta;
-
-            if (power > 100)        power = 100;
-            else if (power < 10)    power = 10;
-
-        }
     }
+
+    if (!gdata.window->hasFocus()) return;
 
 	// update bound keys
 	gdata.updateKeys();
-
-	if (!gdata.window->hasFocus()) return;
 
     handlePlayerEvents();
     handleMouseEvents();
@@ -54,25 +46,21 @@ void InputHandler::handleEvents()
 	if (gdata.keys[sf::Keyboard::R].isKeyPressed)
 	{
 		gdata.reload = true;
+		gdata.show_progress = false;
 	}
 
 	if(gdata.keys[sf::Keyboard::Comma].isKeyPressed)
     {
         gdata.level -= 1;
         gdata.reload = true;
+        gdata.show_progress = false;
     }
 
     if(gdata.keys[sf::Keyboard::Period].isKeyPressed)
     {
         gdata.level += 1;
         gdata.reload = true;
-    }
-
-    if(gdata.keys[sf::Keyboard::BackSpace].isKeyPressed)
-    {
-        gdata.gamestate = STATE_MENU;
-        //gdata.reload = true;
-        cout << "Back to menu"<< endl;
+        gdata.show_progress = false;
     }
 
     if(gdata.keys[sf::Keyboard::D].isKeyPressed)
@@ -86,8 +74,8 @@ void InputHandler::handleEvents()
 
     if(gdata.keys[sf::Keyboard::Escape].isKeyPressed)
     {
-        cout << "Exit Game"<< endl;
-        gdata.running = false;
+        gdata.gamestate = STATE_MENU;
+        cout << "Back to menu"<< endl;
     }
 }
 

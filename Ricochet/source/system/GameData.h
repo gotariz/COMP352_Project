@@ -52,6 +52,7 @@ class GameData
 		bool            last_angle = 0;
 		Vector2         p1;
 		Vector2         p2;
+		bool            show_progress = false;
 		//bool            has_focus = true;
 
     public:

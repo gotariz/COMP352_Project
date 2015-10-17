@@ -15,6 +15,7 @@ void StateMenu::load()
     gdata.camera = &c;
     //bg.bg_image.setTexture(*gdata.assets->getTexture("background"));
     bg.bubble_alpha_range.set(0,64);
+    bg.rec.setFillColor(sf::Color(16,33,57));
     bg.bubble_color = sf::Color(0,0,0,255);
 	bg.num_circles = 60;
 	bg.init();
@@ -577,7 +578,7 @@ void StateMenu::update()
 
     mx = gdata.settings->getScreenWidth() - 400;
     tx = gdata.settings->getScreenWidth() + 10;
-    y = gdata.settings->getScreenHeight() - 40 - (78 * vec.size());
+    y = gdata.settings->getScreenHeight() - 100 - (78 * vec.size());
 //    olx = 0;
 //    orx = gdata.settings->getScreenWidth();
 //    lx = 20;
@@ -883,11 +884,11 @@ void StateMenu::draw()
         {
             if(selected == i)
             {
-                font.setColor(sf::Color::White);
+                font.setColor(sf::Color::Black);
 
                 rec.setPosition(x, y + (78*i));
                 rec.setSize(sf::Vector2f(500,70));
-                rec.setFillColor(sf::Color::Red);
+                rec.setFillColor(sf::Color::White);
                 gdata.window->draw(rec);
 
                 font.drawString(x + 25, y + (78*i), menuItems[i]);
@@ -895,7 +896,7 @@ void StateMenu::draw()
             }
             else
             {
-                font.setColor(sf::Color::Black);
+                font.setColor(sf::Color::White);
                 font.drawString(x, y + (78*i), menuItems[i]);
             }
         }
@@ -970,6 +971,20 @@ void StateMenu::draw()
             }
         }
     }
+
+
+    sf::RectangleShape t_bar(sf::Vector2f(gdata.settings->getScreenWidth(),75));
+    t_bar.setFillColor(sf::Color::Black);
+    t_bar.setPosition(0,0);
+    t_bar.setOrigin(0,0);
+
+    sf::RectangleShape b_bar(sf::Vector2f(gdata.settings->getScreenWidth(),75));
+    b_bar.setFillColor(sf::Color::Black);
+    b_bar.setPosition(0,gdata.settings->getScreenHeight() - 75);
+    b_bar.setOrigin(0,0);
+
+    gdata.window->draw(t_bar);
+    gdata.window->draw(b_bar);
 
 	gdata.window->display();
 }
