@@ -10,6 +10,17 @@ StateMenu::~StateMenu()
     //dtor
 }
 
+bool StateMenu::isTouching(Vector2 point, sf::RectangleShape mRec)
+{
+    if (point.x < mRec.getPosition().x) return false;
+    if (point.y < mRec.getPosition().y) return false;
+
+    if (point.x > mRec.getPosition().x + mRec.getSize().x - 1) return false;
+    if (point.y > mRec.getPosition().y + mRec.getSize().y - 1) return false;
+
+    return true;
+}
+
 void StateMenu::load()
 {
     gdata.camera = &c;
@@ -270,6 +281,32 @@ void StateMenu::handleEvents()
     {
         if(menuState == MENU_MAIN)  //Handle events within the main menu screen
         {
+
+            if(gdata.keys[KEY_MOUSE_LEFT].isKeyPressed)
+            {
+                if(isTouching(gdata.mouse_raw, startBox))
+                {
+                    transitioning = true;
+                    pushMenu = MENU_LEVELS;
+                }
+                else if(isTouching(gdata.mouse_raw, achBox))
+                {
+                    transitioning = true;
+                    pushMenu = MENU_AWARDS;
+                }
+                else if(isTouching(gdata.mouse_raw, optionsBox))
+                {
+                    transitioning = true;
+                    pushMenu = MENU_OPTIONS;
+                }
+
+                else if(isTouching(gdata.mouse_raw, exitBox))
+                {
+                    gdata.running = false;
+                }
+
+            }
+
             if (gdata.keys[sf::Keyboard::Up].isKeyPressed)
             {
                 selected -= 1;
@@ -572,16 +609,33 @@ void StateMenu::update()
     //Correct position from the bottom of screen
     vector<string> vec;
     if (menuState == MENU_MAIN)
+    {
         vec = menuItems;
+        if(isTouching(gdata.mouse_raw, startBox))
+        {
+            selected = 0;
+        }
+        else if(isTouching(gdata.mouse_raw, achBox))
+        {
+            selected = 1;
+        }
+        else if(isTouching(gdata.mouse_raw, optionsBox))
+        {
+            selected = 2;
+        }
+
+        else if(isTouching(gdata.mouse_raw, exitBox))
+        {
+            selected = 3;
+        }
+    }
     else if (menuState == MENU_OPTIONS)
         vec = optionsItems;
 
     mx = gdata.settings->getScreenWidth() - 400;
     tx = gdata.settings->getScreenWidth() + 10;
     y = gdata.settings->getScreenHeight() - 100 - (78 * vec.size());
-//    olx = 0;
-//    orx = gdata.settings->getScreenWidth();
-//    lx = 20;
+
 
     // Menu animation sliding;
     if(transitioning)
@@ -870,6 +924,25 @@ void StateMenu::refreshTextures()
             rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
 }
 
+void StateMenu::updateMenuBox()
+{
+    startBox.setSize(sf::Vector2f(500, 70));
+    startBox.setPosition(x, y + (78*0));
+    startBox.setFillColor(sf::Color::Transparent);
+
+    achBox.setSize(sf::Vector2f(500, 70));
+    achBox.setPosition(x, y + (78*1));
+    achBox.setFillColor(sf::Color::Transparent);
+
+    optionsBox.setSize(sf::Vector2f(500, 70));
+    optionsBox.setPosition(x, y + (78*2));
+    optionsBox.setFillColor(sf::Color::Transparent);
+
+    exitBox.setSize(sf::Vector2f(500, 70));
+    exitBox.setPosition(x, y + (78*3));
+    exitBox.setFillColor(sf::Color::Transparent);
+}
+
 void StateMenu::draw()
 {
     gdata.window->clear(sf::Color(255,255,255,255));
@@ -880,6 +953,12 @@ void StateMenu::draw()
 
     if(menuState == MENU_MAIN)
     {
+        updateMenuBox();
+        gdata.window->draw(exitBox);
+        gdata.window->draw(achBox);
+        gdata.window->draw(optionsBox);
+        gdata.window->draw(startBox);
+
         for(int i = 0; i < menuItems.size(); i++)
         {
             if(selected == i)
@@ -924,12 +1003,12 @@ void StateMenu::draw()
 
         if(locked)
         {
-            font.setColor(sf::Color::Black);
+            font.setColor(sf::Color::White);
             font.drawString(cx, cy + (cy/2), "LEVEL LOCKED", Align::MIDDLE);
         }
         else
         {
-            font.setColor(sf::Color::Black);
+            font.setColor(sf::Color::White);
             font.drawString(cx, cy + (cy/2), "WORLD " + gz::toString(selectedWorld + 1), Align::MIDDLE);
             font.drawString(cx, cy + (cy/1.5), "LEVEL " + gz::toString(world[selectedWorld][selectedLevel]), Align::MIDDLE);
         }
@@ -955,13 +1034,13 @@ void StateMenu::draw()
                 font.drawString(x + 25, y + (78*i), optionsItems[i]);
                 if(!transitioning)
                 {
-                    font.setColor(sf::Color::Black);
+                    font.setColor(sf::Color::White);
                     font.drawString(x - 20, y + (78*i),optionsSettings[i][selectedOps[i]],Align::RIGHT);
                 }
             }
             else
             {
-                font.setColor(sf::Color::Black);
+                font.setColor(sf::Color::White);
                 font.drawString(x, y + (78*i), optionsItems[i]);
                 if(!transitioning)
                 {

@@ -29,6 +29,10 @@ class StateMenu : public IState
         virtual void freeResources();
         virtual void start();
 
+        bool isTouching(Vector2 point, sf::RectangleShape mRec);
+
+        void updateMenuBox();
+
         // the cemra at 0,0
         Camera c;
 
@@ -38,6 +42,10 @@ class StateMenu : public IState
         //This is the coloured rectangle around selected
         sf::RectangleShape rec;
         Background bg;
+        sf::RectangleShape startBox;
+        sf::RectangleShape optionsBox;
+        sf::RectangleShape achBox;
+        sf::RectangleShape exitBox;
 
         sf::Sprite lvlShot;
         sf::Sprite leftLvlShot;
