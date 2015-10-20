@@ -28,23 +28,23 @@ void StateMenu::load()
     bg.bubble_alpha_range.set(0,64);
     bg.rec.setFillColor(sf::Color(16,33,57));
     bg.bubble_color = sf::Color(0,0,0,255);
-	bg.num_circles = 60;
-	bg.init();
+    bg.num_circles = 60;
+    bg.init();
 
     //font = new sfFontRenderer(gdata.window);
     font.setWindow(gdata.window);
     font.setFont(gdata.assets->getFont("segoe-ui-light-48"));
 
-	menuItems.push_back("Start");
-	menuItems.push_back("Achievements");
-	menuItems.push_back("Options");
-	menuItems.push_back("Exit");
+    menuItems.push_back("Start");
+    menuItems.push_back("Achievements");
+    menuItems.push_back("Options");
+    menuItems.push_back("Exit");
 
     fsMode = gdata.settings->getFullscreen();
     vSyncMode = gdata.settings->getVsync();
 
-	vSync.push_back("Off");
-	vSync.push_back("On");
+    vSync.push_back("Off");
+    vSync.push_back("On");
     fs.push_back("Windowed");
     fs.push_back("Fullscreen");
     save.push_back("Accept");
@@ -62,37 +62,37 @@ void StateMenu::load()
     }
 
     vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
-	for (int i = 0; i < modes.size(); i++)
-	{
-	    sf::VideoMode mode = modes[i];
-	    res.push_back(gz::toString(mode.width) + "x" + gz::toString(mode.height));
+    for (int i = 0; i < modes.size(); i++)
+    {
+        sf::VideoMode mode = modes[i];
+        res.push_back(gz::toString(mode.width) + "x" + gz::toString(mode.height));
 
-	    if(mode.width == gdata.settings->getScreenWidth() && mode.height == gdata.settings->getScreenHeight())
+        if(mode.width == gdata.settings->getScreenWidth() && mode.height == gdata.settings->getScreenHeight())
         {
             selectedRes = (modes.size() - 1) - i;
             cout << "selectedRes = " << i << endl;
         }
-	}
-	reverse(res.begin(),res.end());
+    }
+    reverse(res.begin(),res.end());
 
-	selectedVSync   = gdata.settings->getVsync();
-	selectedFs      = gdata.settings->getFullscreen();
-	selectedFPS     = gdata.settings->getFpsLimit();
+    selectedVSync   = gdata.settings->getVsync();
+    selectedFs      = gdata.settings->getFullscreen();
+    selectedFPS     = gdata.settings->getFpsLimit();
     selectedMus     = gdata.settings->getVolume()/10;
     selectedSFX     = gdata.settings->getSFX()/10;
     selectedSave    = 0;
 
-	//HARD CODED FPS FIX
-	if(selectedFPS == 60)
-	{
+    //HARD CODED FPS FIX
+    if(selectedFPS == 60)
+    {
         selectedFPS = 1;
         cout << "FPS Fixed" << endl;
-	}
-	if(selectedFPS == 120)
-	{
+    }
+    if(selectedFPS == 120)
+    {
         selectedFPS = 2;
         cout << "FPS Fixed" << endl;
-	}
+    }
 
     cout << "\n<----------------------SETTINGS LOADED-------------------------->\n"
          << "\tvSync:\t\t\t\t" << selectedVSync << "\n"
@@ -122,16 +122,16 @@ void StateMenu::load()
     selectedOps.push_back(selectedSFX);
     selectedOps.push_back(selectedSave);
 
-	optionsItems.push_back("Vsync");
-	optionsItems.push_back("Fullscreen");
-	optionsItems.push_back("Resolution");
-	optionsItems.push_back("FPS Limit");
-	optionsItems.push_back("Volume");
-	optionsItems.push_back("Sound Effects");
-	optionsItems.push_back("Save Settings");
+    optionsItems.push_back("Vsync");
+    optionsItems.push_back("Fullscreen");
+    optionsItems.push_back("Resolution");
+    optionsItems.push_back("FPS Limit");
+    optionsItems.push_back("Volume");
+    optionsItems.push_back("Sound Effects");
+    optionsItems.push_back("Save Settings");
 
     //count the amount of levels in the XML
-	while(true)
+    while(true)
     {
         if(utils::fexists(gz::toString(LEVEL_PATH + gz::toString(levelCount) + ".xml")))
         {
@@ -145,7 +145,7 @@ void StateMenu::load()
         }
     }
 
-	cout << "Level count: " << levelCount << endl;
+    cout << "Level count: " << levelCount << endl;
 
     //! CHANGE THIS WHEN MORE LEVELS ADDED !//
     for (int j = 0; j < 3 ; j++ )
@@ -166,14 +166,14 @@ void StateMenu::load()
     for (int i=0; i < world.size(); i++)
     {
         cout << "World: " << i << " Levels: ";
-            for (int j =0; j < world[i].size(); j++)
-            {
-                cout << world[i][j] << ", ";
-            }
+        for (int j =0; j < world[i].size(); j++)
+        {
+            cout << world[i][j] << ", ";
+        }
         cout << endl;
     }
 
-	leftLevel = world[selectedWorld].size()-1;
+    leftLevel = world[selectedWorld].size()-1;
 
 
     mx = gdata.settings->getScreenWidth() - 400;
@@ -225,8 +225,8 @@ void StateMenu::load()
     lbLvlShot.setOrigin(lbLvlShot.getTexture()->getSize().x / 2, lbLvlShot.getTexture()->getSize().y / 2);
 
     cout << gdata.settings->getVolume() << endl;
-	gdata.audio->setVolumeMusic(gdata.settings->getVolume());
-	gdata.audio->setVolumeSFX(gdata.settings->getSFX());
+    gdata.audio->setVolumeMusic(gdata.settings->getVolume());
+    gdata.audio->setVolumeSFX(gdata.settings->getSFX());
 
     title.setTexture(*gdata.assets->getTexture("title"));
     title.setOrigin(title.getTexture()->getSize().x/2,title.getTexture()->getSize().y/2);
@@ -244,7 +244,7 @@ void StateMenu::load()
 bool StateMenu::initialise()
 {
     loading = true;
-	load();
+    load();
 
     return true;
 }
@@ -263,9 +263,16 @@ void StateMenu::handleEvents()
     }
 
     //general keys for all menu
-    if(gdata.keys[sf::Keyboard:: Escape].isKeyPressed)
+    if(gdata.keys[sf::Keyboard::Escape].isKeyPressed)
     {
-        gdata.running = false;
+        if(menuState == MENU_MAIN)
+            gdata.running = false;
+        else
+        {
+            transitioning = true;
+            pushMenu = MENU_MAIN;
+        }
+
     }
 
     else if(gdata.keys[sf::Keyboard::R].isKeyPressed)
@@ -355,6 +362,173 @@ void StateMenu::handleEvents()
                 pushMenu = MENU_MAIN;
             }
 
+            else if(gdata.keys[KEY_MOUSE_RIGHT].isKeyPressed)
+            {
+
+                if(isTouching(gdata.mouse_raw, opsBox1))
+                {
+                    selectedOps[selectedOption] -= 1;
+                    if(selectedOps[selectedOption] < 0 )
+                        selectedOps[selectedOption] = optionsSettings[selectedOption].size()-1;
+                    selectedVSync = selectedOps[selectedOption];
+                }
+                else if(isTouching(gdata.mouse_raw, opsBox2))
+                {
+                    selectedOps[selectedOption] -= 1;
+                    if(selectedOps[selectedOption] < 0 )
+                        selectedOps[selectedOption] = optionsSettings[selectedOption].size()-1;
+                    selectedFs = selectedOps[selectedOption];
+                }
+                else if(isTouching(gdata.mouse_raw, opsBox3))
+                {
+                    selectedOps[selectedOption] -= 1;
+                    if(selectedOps[selectedOption] < 0 )
+                        selectedOps[selectedOption] = optionsSettings[selectedOption].size()-1;
+                    selectedRes = selectedOps[selectedOption];
+                }
+                else if(isTouching(gdata.mouse_raw, opsBox4))
+                {
+                    selectedOps[selectedOption] -= 1;
+                    if(selectedOps[selectedOption] < 0 )
+                        selectedOps[selectedOption] = optionsSettings[selectedOption].size()-1;
+                    selectedFPS = selectedOps[selectedOption];
+                }
+                else if(isTouching(gdata.mouse_raw, opsBox5))
+                {
+                    selectedOps[selectedOption] -= 1;
+                    if(selectedOps[selectedOption] < 0 )
+                        selectedOps[selectedOption] = optionsSettings[selectedOption].size()-1;
+                    selectedMus = selectedOps[selectedOption];
+                }
+                else if(isTouching(gdata.mouse_raw, opsBox6))
+                {
+                    selectedOps[selectedOption] -= 1;
+                    if(selectedOps[selectedOption] < 0 )
+                        selectedOps[selectedOption] = optionsSettings[selectedOption].size()-1;
+                    selectedSFX = selectedOps[selectedOption];
+                }
+                else if(isTouching(gdata.mouse_raw, opsBox7))
+                {
+                    selectedOps[selectedOption] += 1;
+                    if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
+                        selectedOps[selectedOption] = 0;
+                    selectedSave = selectedOps[selectedOption];
+                }
+            }
+            else if(gdata.keys[KEY_MOUSE_LEFT].isKeyPressed)
+            {
+                if(isTouching(gdata.mouse_raw, opsBox1))
+                {
+                    selectedOps[selectedOption] += 1;
+                    if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
+                        selectedOps[selectedOption] = 0;
+                    selectedVSync = selectedOps[selectedOption];
+                }
+                else if(isTouching(gdata.mouse_raw, opsBox2))
+                {
+                    selectedOps[selectedOption] += 1;
+                    if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
+                        selectedOps[selectedOption] = 0;
+                    selectedFs = selectedOps[selectedOption];
+                }
+                else if(isTouching(gdata.mouse_raw, opsBox3))
+                {
+                    selectedOps[selectedOption] += 1;
+                    if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
+                        selectedOps[selectedOption] = 0;
+                    selectedRes = selectedOps[selectedOption];
+                }
+                else if(isTouching(gdata.mouse_raw, opsBox4))
+                {
+                    selectedOps[selectedOption] += 1;
+                    if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
+                        selectedOps[selectedOption] = 0;
+                    selectedFPS = selectedOps[selectedOption];
+                }
+                else if(isTouching(gdata.mouse_raw, opsBox5))
+                {
+                    selectedOps[selectedOption] += 1;
+                    if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
+                        selectedOps[selectedOption] = 0;
+                    selectedMus = selectedOps[selectedOption];
+                }
+                else if(isTouching(gdata.mouse_raw, opsBox6))
+                {
+                    selectedOps[selectedOption] += 1;
+                    if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
+                        selectedOps[selectedOption] = 0;
+                    selectedSFX = selectedOps[selectedOption];
+                }
+                else if(isTouching(gdata.mouse_raw, opsBox7))
+                {
+                    if(selectedOption == 6 && selectedSave == 0)//save
+                    {
+                        vSyncMode = selectedOps[0];
+                        selectedFs = selectedOps[1];
+
+                        gdata.settings->setVsync(vSyncMode);
+                        gdata.settings->setFullscreen(selectedFs);
+
+                        //reset window position
+                        if((gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedRes], 'x')[0]) != gdata.settings->getScreenWidth())
+                                || gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedRes], 'x')[1]) != gdata.settings->getScreenHeight())
+                            gdata.window->setPosition(sf::Vector2i(0,0));
+
+                        gdata.settings->setScreenWidth(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedRes], 'x')[0]));
+                        gdata.settings->setScreenHeight(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedRes], 'x')[1]));
+                        gdata.settings->setFpsLimit(gz::stringToUnsigned(optionsSettings[3][selectedFPS]));
+
+                        gdata.settings->setVolume(gz::stringToUnsigned(optionsSettings[4][selectedMus]));
+                        gdata.settings->setSFX(gz::stringToUnsigned(optionsSettings[5][selectedSFX]));
+
+                        gdata.settings->saveSettings();
+
+                        gdata.window->setSize(sf::Vector2u(gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
+                        gdata.view = new sf::View(sf::FloatRect(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
+                        gdata.window->setView(*gdata.view);
+                        gdata.window->setFramerateLimit(gdata.settings->getFpsLimit());
+                        gdata.window->setVerticalSyncEnabled(vSyncMode);
+
+                        gdata.audio->setVolumeMusic(gdata.settings->getVolume());
+                        gdata.audio->setVolumeSFX(gdata.settings->getSFX());
+
+                        cout << "\n<----------------------SETTINGS SAVED-------------------------->\n"
+                             << "\tvSync:\t\t\t\t" << vSyncMode << "\n"
+                             << "\tFullscreen:\t\t\t" << selectedFs << "\n"
+                             << "\tResolution:\t\t\t" << gz::splitString(optionsSettings[2][selectedRes], 'x')[0] << "x"
+                             << gz::splitString(optionsSettings[2][selectedRes], 'x')[1] << "\n"
+                             << "\tFPS Limit:\t\t\t" << gz::stringToUnsigned(optionsSettings[3][selectedFPS]) << "\n"
+                             << "\tVolume:\t\t\t\t" << gz::stringToUnsigned(optionsSettings[4][selectedMus]) << "\n"
+                             << "\tSFX:\t\t\t\t" << gz::stringToUnsigned(optionsSettings[4][selectedSFX]) << endl;
+
+                        mx = gdata.settings->getScreenWidth() - 400;
+                        tx = gdata.settings->getScreenWidth() + 10;
+                        y = gdata.settings->getScreenHeight() - 40 - (78 * 4);
+                        x = mx;
+
+                        cx = gdata.settings->getScreenWidth()/2;
+                        rx = gdata.settings->getScreenWidth() - (rightLvlShot.getTexture()->getSize().x/5) - 20;
+                        lx = 0 + (leftLvlShot.getTexture()->getSize().x/5) + 20;
+                        cy = gdata.settings->getScreenHeight()/2;
+                        olx = 0;
+                        orx = gdata.settings->getScreenWidth();
+
+                        transitioning = true;
+                        pushMenu = MENU_MAIN;
+                    }
+                    else if(selectedOption == 6 && selectedSave == 1) //cancel
+                    {
+                        transitioning = true;
+                        pushMenu = MENU_MAIN;
+                    }
+                    else if(selectedOption == 6 && selectedSave == 2) //default
+                    {
+                        reset();
+                        transitioning = true;
+                        pushMenu = MENU_MAIN;
+                    }
+                }
+            }
 
             else if (gdata.keys[sf::Keyboard::Return].isKeyPressed)
             {
@@ -368,7 +542,7 @@ void StateMenu::handleEvents()
 
                     //reset window position
                     if((gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedRes], 'x')[0]) != gdata.settings->getScreenWidth())
-                       || gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedRes], 'x')[1]) != gdata.settings->getScreenHeight())
+                            || gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedRes], 'x')[1]) != gdata.settings->getScreenHeight())
                         gdata.window->setPosition(sf::Vector2i(0,0));
 
                     gdata.settings->setScreenWidth(gz::stringToUnsigned(gz::splitString(optionsSettings[2][selectedRes], 'x')[0]));
@@ -576,21 +750,21 @@ void StateMenu::reset()
     gdata.settings->saveSettings();
 
     vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
-	for (int i = 0; i < modes.size(); i++)
-	{
-	    sf::VideoMode mode = modes[i];
-	    if(mode.width == gdata.settings->getScreenWidth() && mode.height == gdata.settings->getScreenHeight())
+    for (int i = 0; i < modes.size(); i++)
+    {
+        sf::VideoMode mode = modes[i];
+        if(mode.width == gdata.settings->getScreenWidth() && mode.height == gdata.settings->getScreenHeight())
         {
             selectedRes = (modes.size() - 1) - i;
             cout << "selectedRes = " << i << endl;
         }
-	}
+    }
     selectedOps[0] = 0;
-	selectedOps[1] = 0;
-	selectedOps[2] = selectedRes;
-	selectedOps[3] = 0;
-	selectedOps[4] = 10;
-	selectedOps[5] = 10;
+    selectedOps[1] = 0;
+    selectedOps[2] = selectedRes;
+    selectedOps[3] = 0;
+    selectedOps[4] = 10;
+    selectedOps[5] = 10;
 
     gdata.window->setSize(sf::Vector2u(gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
     gdata.view = new sf::View(sf::FloatRect(0,0,gdata.settings->getScreenWidth(),gdata.settings->getScreenHeight()));
@@ -604,7 +778,7 @@ void StateMenu::update()
 //    if(selectedLevel == levelCount - 1 || selectedLevel == levelCount - 2 || selectedLevel == levelCount)
 //        locked = true;
 //    else
-        locked = false;
+    locked = false;
 
     //Correct position from the bottom of screen
     vector<string> vec;
@@ -623,14 +797,43 @@ void StateMenu::update()
         {
             selected = 2;
         }
-
         else if(isTouching(gdata.mouse_raw, exitBox))
         {
             selected = 3;
         }
     }
     else if (menuState == MENU_OPTIONS)
+    {
         vec = optionsItems;
+        if(isTouching(gdata.mouse_raw, opsBox1))
+        {
+            selectedOption = 0;
+        }
+        else if(isTouching(gdata.mouse_raw, opsBox2))
+        {
+            selectedOption = 1;
+        }
+        else if(isTouching(gdata.mouse_raw, opsBox3))
+        {
+            selectedOption = 2;
+        }
+        else if(isTouching(gdata.mouse_raw, opsBox4))
+        {
+            selectedOption = 3;
+        }
+        else if(isTouching(gdata.mouse_raw, opsBox5))
+        {
+            selectedOption = 4;
+        }
+        else if(isTouching(gdata.mouse_raw, opsBox6))
+        {
+            selectedOption = 5;
+        }
+        else if(isTouching(gdata.mouse_raw, opsBox7))
+        {
+            selectedOption = 6;
+        }
+    }
 
     mx = gdata.settings->getScreenWidth() - 400;
     tx = gdata.settings->getScreenWidth() + 10;
@@ -721,9 +924,9 @@ void StateMenu::update()
                              lvlShot.getScale().y - ((0.5-0.2)*(gdata.m_timeDelta * (1/dur))));
         if(lvlShot.getColor().r > 150 )
             lvlShot.setColor(sf::Color(lvlShot.getColor().r - (255-150)*(gdata.m_timeDelta * (1/dur)),
-                                           lvlShot.getColor().g - (255-150)*(gdata.m_timeDelta * (1/dur)),
-                                           lvlShot.getColor().b - (255-150)*(gdata.m_timeDelta * (1/dur)),
-                                           lvlShot.getColor().a - (255-200)*(gdata.m_timeDelta * (1/dur))));
+                                       lvlShot.getColor().g - (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                       lvlShot.getColor().b - (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                       lvlShot.getColor().a - (255-200)*(gdata.m_timeDelta * (1/dur))));
 
         //MOVE orx to rx
         if(rbLvlShot.getPosition().x > rx)
@@ -733,9 +936,9 @@ void StateMenu::update()
                                rbLvlShot.getScale().y + ((0.2-0.1)*(gdata.m_timeDelta * (1/dur))));
         if(rbLvlShot.getColor().r < 150 )
             rbLvlShot.setColor(sf::Color(rbLvlShot.getColor().r + (150-100)*(gdata.m_timeDelta * (1/dur)),
-                                           rbLvlShot.getColor().g + (150-100)*(gdata.m_timeDelta * (1/dur)),
-                                           rbLvlShot.getColor().b + (150-100)*(gdata.m_timeDelta * (1/dur)),
-                                           rbLvlShot.getColor().a + (200-100)*(gdata.m_timeDelta * (1/dur))));
+                                         rbLvlShot.getColor().g + (150-100)*(gdata.m_timeDelta * (1/dur)),
+                                         rbLvlShot.getColor().b + (150-100)*(gdata.m_timeDelta * (1/dur)),
+                                         rbLvlShot.getColor().a + (200-100)*(gdata.m_timeDelta * (1/dur))));
 
 
         //MOVE lx to olx
@@ -754,13 +957,13 @@ void StateMenu::update()
         if(rightLvlShot.getPosition().x > cx)
             rightLvlShot.setPosition(rightLvlShot.getPosition().x - (rx - cx) *(gdata.m_timeDelta * (1/dur)),cy);
         if(rightLvlShot.getScale().x < 0.5)
-        rightLvlShot.setScale(rightLvlShot.getScale().x + ((0.5-0.2)*(gdata.m_timeDelta * (1/dur))),
+            rightLvlShot.setScale(rightLvlShot.getScale().x + ((0.5-0.2)*(gdata.m_timeDelta * (1/dur))),
                                   rightLvlShot.getScale().y + ((0.5-0.2)*(gdata.m_timeDelta * (1/dur))));
         if(rightLvlShot.getColor().r < 255 )
             rightLvlShot.setColor(sf::Color(rightLvlShot.getColor().r + (255-150)*(gdata.m_timeDelta * (1/dur)),
-                                                rightLvlShot.getColor().g + (255-150)*(gdata.m_timeDelta * (1/dur)),
-                                                rightLvlShot.getColor().b + (255-150)*(gdata.m_timeDelta * (1/dur)),
-                                                rightLvlShot.getColor().a + (255-200)*(gdata.m_timeDelta * (1/dur))));
+                                            rightLvlShot.getColor().g + (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                            rightLvlShot.getColor().b + (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                            rightLvlShot.getColor().a + (255-200)*(gdata.m_timeDelta * (1/dur))));
 
 
 
@@ -821,9 +1024,9 @@ void StateMenu::update()
                              lvlShot.getScale().y - ((0.5-0.2)*(gdata.m_timeDelta * (1/dur))));
         if(lvlShot.getColor().r > 150 )
             lvlShot.setColor(sf::Color(lvlShot.getColor().r - (255-150)*(gdata.m_timeDelta * (1/dur)),
-                                           lvlShot.getColor().g - (255-150)*(gdata.m_timeDelta * (1/dur)),
-                                           lvlShot.getColor().b - (255-150)*(gdata.m_timeDelta * (1/dur)),
-                                           lvlShot.getColor().a - (255-200)*(gdata.m_timeDelta * (1/dur))));
+                                       lvlShot.getColor().g - (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                       lvlShot.getColor().b - (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                       lvlShot.getColor().a - (255-200)*(gdata.m_timeDelta * (1/dur))));
 
         //MOVE olx to lx
         if(lbLvlShot.getPosition().x < lx)
@@ -858,9 +1061,9 @@ void StateMenu::update()
                                  leftLvlShot.getScale().y + ((0.5-0.2)*(gdata.m_timeDelta * (1/dur))));
         if(leftLvlShot.getColor().r < 255 )
             leftLvlShot.setColor(sf::Color( leftLvlShot.getColor().r + (255-150)*(gdata.m_timeDelta * (1/dur)),
-                                                leftLvlShot.getColor().g + (255-150)*(gdata.m_timeDelta * (1/dur)),
-                                                leftLvlShot.getColor().b + (255-150)*(gdata.m_timeDelta * (1/dur)),
-                                                leftLvlShot.getColor().a + (255-200)*(gdata.m_timeDelta * (1/dur))));
+                                            leftLvlShot.getColor().g + (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                            leftLvlShot.getColor().b + (255-150)*(gdata.m_timeDelta * (1/dur)),
+                                            leftLvlShot.getColor().a + (255-200)*(gdata.m_timeDelta * (1/dur))));
 
 
         if(leftLvlShot.getPosition().x > cx)
@@ -917,11 +1120,11 @@ void StateMenu::refreshTextures()
 //            rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][rightLevel])));
 //            lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][lbLevel])));
 //            rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][rbLevel])));
-            lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
-            leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
-            rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
-            lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
-            rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
+    lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
+    leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
+    rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
+    lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
+    rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
 }
 
 void StateMenu::updateMenuBox()
@@ -941,6 +1144,38 @@ void StateMenu::updateMenuBox()
     exitBox.setSize(sf::Vector2f(500, 70));
     exitBox.setPosition(x, y + (78*3));
     exitBox.setFillColor(sf::Color::Transparent);
+}
+
+void StateMenu::updateOpsBox()
+{
+    opsBox1.setSize(sf::Vector2f(500, 70));
+    opsBox1.setPosition(x, y + (78*0));
+    opsBox1.setFillColor(sf::Color::Transparent);
+
+    opsBox2.setSize(sf::Vector2f(500, 70));
+    opsBox2.setPosition(x, y + (78*1));
+    opsBox2.setFillColor(sf::Color::Transparent);
+
+    opsBox3.setSize(sf::Vector2f(500, 70));
+    opsBox3.setPosition(x, y + (78*2));
+    opsBox3.setFillColor(sf::Color::Transparent);
+
+    opsBox4.setSize(sf::Vector2f(500, 70));
+    opsBox4.setPosition(x, y + (78*3));
+    opsBox4.setFillColor(sf::Color::Transparent);
+
+    opsBox5.setSize(sf::Vector2f(500, 70));
+    opsBox5.setPosition(x, y + (78*4));
+    opsBox5.setFillColor(sf::Color::Transparent);
+
+    opsBox6.setSize(sf::Vector2f(500, 70));
+    opsBox6.setPosition(x, y + (78*5));
+    opsBox6.setFillColor(sf::Color::Transparent);
+
+    opsBox7.setSize(sf::Vector2f(500, 70));
+    opsBox7.setPosition(x, y + (78*6));
+    opsBox7.setFillColor(sf::Color::Transparent);
+
 }
 
 void StateMenu::draw()
@@ -1021,16 +1256,25 @@ void StateMenu::draw()
 
     else if(menuState == MENU_OPTIONS)
     {
+        updateOpsBox();
+        gdata.window->draw(opsBox1);
+        gdata.window->draw(opsBox2);
+        gdata.window->draw(opsBox3);
+        gdata.window->draw(opsBox4);
+        gdata.window->draw(opsBox5);
+        gdata.window->draw(opsBox6);
+        gdata.window->draw(opsBox7);
+
         for (int i = 0; i < optionsItems.size(); i++)
         {
             if(selectedOption == i)
             {
                 rec.setPosition(x, y + (78*i));
                 rec.setSize(sf::Vector2f(500,70));
-                rec.setFillColor(sf::Color::Red);
+                rec.setFillColor(sf::Color::White);
                 gdata.window->draw(rec);
 
-                font.setColor(sf::Color::White);
+                font.setColor(sf::Color::Black);
                 font.drawString(x + 25, y + (78*i), optionsItems[i]);
                 if(!transitioning)
                 {
@@ -1065,7 +1309,7 @@ void StateMenu::draw()
     gdata.window->draw(t_bar);
     gdata.window->draw(b_bar);
 
-	gdata.window->display();
+    gdata.window->display();
 }
 
 void StateMenu::freeResources()
@@ -1073,4 +1317,4 @@ void StateMenu::freeResources()
     gdata.camera = nullptr;
 }
 
-void StateMenu::start(){}
+void StateMenu::start() {}
