@@ -3,9 +3,7 @@
 	<!-- IMAGES -->
 	<asset type="image" path="media/images/title.png" />
 	<asset type="image" path="media/images/glow.png" />
-	<asset type="image" path="media/images/thumbs.png" />
-	<asset type="image" path="media/images/star_bg.png" />
-	<asset type="image" path="media/images/stars.png" />
+	<asset type="image" path="media/images/star.png" />
 	<asset type="image" path="media/images/loading.png" />
 	<asset type="image" path="media/images/laser_beam.png" />
 	<asset type="image" path="media/images/laser_end.png" />
@@ -32,6 +30,7 @@
 	<asset type="sound" path="media/sounds/explosion.wav" />
 	<asset type="sound" path="media/sounds/victory.wav" />
 	<asset type="sound" path="media/sounds/click.wav" />
+	<asset type="sound" path="media/sounds/menu_click.wav" />
 
 	<!-- MUSIC -->
 	<asset type="music" path="media/music/music1.ogg" />
@@ -41,7 +40,8 @@
 	<asset type="music" path="media/music/Divider.ogg" />
 
 	<!-- FONTS -->
-	<asset type="font" path="media/fonts/purista-medium-14-white/" />
+	<asset type="font" path="media/fonts/purista-medium-14/" />
+	<asset type="font" path="media/fonts/elemental-end-30/" />
 	<asset type="font" path="media/fonts/segoe-ui-light-48/" />
 	<asset type="font" path="media/fonts/segoe-ui-light-20/" />
 </root>

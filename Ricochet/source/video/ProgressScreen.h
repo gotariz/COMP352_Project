@@ -22,6 +22,9 @@ class Button{
         sf::Color c_idle;
         sf::Color c_hover;
 
+        sf::Color b_idle;
+        sf::Color b_hover;
+
         void init();
         void handleEvents();
         void draw();
@@ -46,13 +49,12 @@ class ProgressScreen
         bool fading = true;
 
     protected:
-        sf::Sprite starbg;
-        sf::Sprite stars;
-        sf::Sprite thumbs;
+        sf::Sprite star;
         sf::Sprite glow;
 
         Button btn_redo;
         Button btn_next;
+        Button btn_menu;
 
         sfFontRenderer  txt;
 };

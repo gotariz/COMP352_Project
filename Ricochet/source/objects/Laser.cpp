@@ -26,28 +26,41 @@ void Laser::rotateLaser()
 {
     if (!rotating) return;
 
-    float unit_time = (r_time / r_duration);
-    if (m_enabledRotation)
+    if (rotation_speed  != 0)
     {
-        if (increasing) {
-            r_time += gdata.m_timeDelta;
-            if (unit_time >= 1) {
-                unit_time = 1;
-                increasing = false;
-            }
-        } else {
-            r_time -= gdata.m_timeDelta;
-            if (unit_time <= 0) {
-                unit_time = 0;
-                increasing = true;
+        float r_delta = rotation_speed * gdata.m_timeDelta;
+        rotated_laser.rotate(r_delta);
+
+        rotation += r_delta;
+
+        if (rotation >= 360)        rotation -= 360;
+        else if (rotation <= -360)  rotation += 360;
+    }
+    else
+    {
+        float unit_time = (r_time / r_duration);
+        if (m_enabledRotation)
+        {
+            if (increasing) {
+                r_time += gdata.m_timeDelta;
+                if (unit_time >= 1) {
+                    unit_time = 1;
+                    increasing = false;
+                }
+            } else {
+                r_time -= gdata.m_timeDelta;
+                if (unit_time <= 0) {
+                    unit_time = 0;
+                    increasing = true;
+                }
             }
         }
-    }
 
-    float new_angle = start_angle + (delta_angle * unit_time);
-    rotated_laser = laser_dir;
-    rotated_laser.rotate(new_angle);
-    rotation = new_angle;
+        float new_angle = start_angle + (delta_angle * unit_time);
+        rotated_laser = laser_dir;
+        rotated_laser.rotate(new_angle);
+        rotation = new_angle;
+    }
 
 }
 

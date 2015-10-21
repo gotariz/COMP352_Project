@@ -457,6 +457,8 @@ void StateGame::createLaser(XMLElement* element,Toggle* t)
     bool rotating		= atoi(element->Attribute("rotating"));
     float rot_time		= atof(element->Attribute("rotation_time"));
 
+    float rot_speed		= atof(element->Attribute("rotation_speed"));
+
     int switch_bits     = atoi(element->Attribute("switch_bits"));
     bool disabled        = atoi(element->Attribute("disabled"));
     bool mov_disabled    = atoi(element->Attribute("disabled_mov"));
@@ -472,12 +474,14 @@ void StateGame::createLaser(XMLElement* element,Toggle* t)
     l->m_moving = moving;
     l->m_duration = move_duration;
     l->m_time = move_time;
+    l->rotation_speed = rot_speed;
 
     l->start_angle = start_angle;
     l->delta_angle = delta_angle;
     l->r_duration = rot_dur;
     l->rotating = rotating;
     l->r_time = rot_time;
+    l->rotation_speed = rot_speed;
 
     l->laser_head.setTexture(*gdata.assets->getTexture("laser_head"));
     l->laser_head.setOrigin(8,6);

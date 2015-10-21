@@ -3,8 +3,21 @@
 void Button::init()
 {
     txt.setWindow(gdata.window);
-    txt.setFont(gdata.assets->getFont("segoe-ui-light-48"));
+    txt.setFont(gdata.assets->getFont("purista-medium-14"));
     txt.setColor(sf::Color::Black);
+
+    rec.setOutlineThickness(1);
+
+    b_idle = c_idle;
+    b_hover = c_hover;
+
+    b_idle.r -= 40;
+    b_idle.g -= 40;
+    b_idle.b -= 40;
+
+    b_hover.r -= 20;
+    b_hover.g -= 20;
+    b_hover.b -= 20;
 }
 
 void Button::handleEvents()
@@ -12,6 +25,7 @@ void Button::handleEvents()
     if (isTouching(gdata.mouse_raw))
     {
         rec.setFillColor(c_hover);
+        rec.setOutlineColor(b_hover);
         if (gdata.keys[KEY_MOUSE_LEFT].isKeyPressed)
         {
             clicked = true;
@@ -20,6 +34,7 @@ void Button::handleEvents()
     else
     {
         rec.setFillColor(c_idle);
+        rec.setOutlineColor(b_idle);
     }
 }
 
@@ -70,46 +85,55 @@ void ProgressScreen::init()
     int sw = gdata.settings->getScreenWidth();
     int sh = gdata.settings->getScreenHeight();
 
-    btn_redo.c_idle = sf::Color(196,196,196);
-    btn_redo.c_hover = sf::Color(175,175,175);
+    btn_redo.c_idle = sf::Color(210,210,210);
+    btn_redo.c_hover = sf::Color(25,155,240);
 
-    btn_redo.setSize(250,90);
-    btn_redo.setPosition((sw / 2) - 250,(sh / 2) + 110);
+    btn_redo.setSize(140,45);
+    btn_redo.setPosition((sw / 2) - 220,(sh / 2) + 145);
     btn_redo.init();
     btn_redo.name = "REDO";
 
-    btn_next.c_idle = sf::Color(196,196,196);
-    btn_next.c_hover = sf::Color(175,175,175);
+    btn_next.c_idle = sf::Color(210,210,210);
+    btn_next.c_hover = sf::Color(25,155,240);
 
-    btn_next.setSize(250,90);
-    btn_next.setPosition((sw / 2) + 1,(sh / 2) + 110);
+    btn_next.setSize(140,45);
+    btn_next.setPosition((sw / 2) + 80,(sh / 2) + 145);
     btn_next.init();
     btn_next.name = "NEXT";
 
-    starbg.setTexture( *gdata.assets->getTexture("star_bg") );
-    stars.setTexture( *gdata.assets->getTexture("stars") );
-    thumbs.setTexture( *gdata.assets->getTexture("thumbs") );
+    btn_menu.c_idle = sf::Color(210,210,210);
+    btn_menu.c_hover = sf::Color(25,155,240);
+
+    btn_menu.setSize(140,45);
+    btn_menu.setPosition((sw / 2) - 70,(sh / 2) + 145);
+    btn_menu.init();
+    btn_menu.name = "MAIN MENU";
+
+    star.setTexture( *gdata.assets->getTexture("star") );
     glow.setTexture( *gdata.assets->getTexture("glow") );
 
-    starbg.setPosition((sw / 2) - 250,(sh / 2) + 25);
-    stars.setPosition((sw / 2) - 250,(sh / 2) + 25);
-    thumbs.setOrigin(87,74);
-    thumbs.setPosition(sw/2,sh/2 - 55);
-    glow.setOrigin(437,437);
-    glow.setPosition(sw/2,sh/2 - 13);
+    star.setPosition(sw / 2,sh / 2);
+    star.setOrigin(230,200);
+
+    glow.setOrigin( glow.getTexture()->getSize().x/2,glow.getTexture()->getSize().y/2);
+    glow.setPosition(sw/2,sh/2);
 
     txt.setWindow(gdata.window);
-    txt.setFont(gdata.assets->getFont("segoe-ui-light-48"));
+    txt.setFont(gdata.assets->getFont("elemental-end-30"));
     txt.setColor(sf::Color::Black);
+
+    setStars(3);
 }
 
 void ProgressScreen::setStars(int n)
 {
-    int x = 501;
-    if (n == 1)         x = 205;
-    else if (n == 2)    x = 290;
-
-    stars.setTextureRect(sf::IntRect(0,0,x,81));
+    if (n == 1)
+        star.setColor(sf::Color(255,205,0));
+    else if (n == 2)
+        star.setColor(sf::Color(255,255,255));
+    else if (n == 3)
+        star.setColor(sf::Color(255,255,0));
+    //stars.setTextureRect(sf::IntRect(0,0,x,81));
 }
 
 void ProgressScreen::update()
@@ -145,37 +169,36 @@ void ProgressScreen::draw()
 
     gdata.window->draw(glow);
 
-    sf::RectangleShape rec(sf::Vector2f(501,400));
-    rec.setFillColor(sf::Color(217,217,217));
-    rec.setPosition((sw / 2) - 250, (sh / 2) - 200);
+    sf::RectangleShape rec(sf::Vector2f(460,400));
+    rec.setFillColor(sf::Color(255,255,255));
+    rec.setPosition((sw / 2) - 230, (sh / 2) - 200);
 
-    sf::RectangleShape  seperator(sf::Vector2f(1,60));
-    seperator.setFillColor(sf::Color(96,96,96));
-    seperator.setPosition(sw/2, sh/2 + 125);
+    sf::RectangleShape  seperator(sf::Vector2f(460,1));
+    seperator.setFillColor(sf::Color(200,200,200));
+    seperator.setPosition((sw/2) - 230, sh/2 + 134);
 
-    sf::RectangleShape buttons(sf::Vector2f(501,90));
-    buttons.setFillColor(sf::Color(196,196,196));
-    buttons.setPosition((sw / 2) - 250,(sh / 2) + 110);
-
+    sf::RectangleShape  b_section(sf::Vector2f(460,65));
+    b_section.setFillColor(sf::Color(230,230,230));
+    b_section.setPosition((sw/2) - 230, sh/2 + 135);
 
     gdata.window->draw(rec);
-    gdata.window->draw(buttons);
+    gdata.window->draw(b_section);
     gdata.window->draw(seperator);
 
-    txt.drawString((sw / 2), (sh / 2) - 165,"Level " + gz::toString(gdata.level) + " Complete!",Align::MIDDLE,Align::MIDDLE );
+    txt.drawString((sw / 2), (sh / 2) + 115,"Level " + gz::toString(gdata.level) + " Complete!",Align::MIDDLE,Align::MIDDLE );
 
-    gdata.window->draw(starbg);
-    gdata.window->draw(stars);
-    gdata.window->draw(thumbs);
+    gdata.window->draw(star);
 
     btn_redo.draw();
     btn_next.draw();
+    btn_menu.draw();
 }
 
 void ProgressScreen::handleEvents()
 {
     btn_next.handleEvents();
     btn_redo.handleEvents();
+    btn_menu.handleEvents();
 
     if (btn_next.clicked)
     {
@@ -192,6 +215,15 @@ void ProgressScreen::handleEvents()
         gdata.reload = true;
         gdata.first_shot = true;
         btn_redo.clicked = false;
+        gdata.show_progress = false;
+        gdata.audio->playSound("click");
+    }
+
+    if (btn_menu.clicked)
+    {
+        // go back to main menu
+        gdata.gamestate = STATE_MENU;
+        btn_menu.clicked = false;
         gdata.show_progress = false;
         gdata.audio->playSound("click");
     }

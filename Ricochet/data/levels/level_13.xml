@@ -1,42 +1,49 @@
-<?xml version="1.0"?>
- <!-- BLENDER LEVEL 2.4 AUTHOR ANDREW DIGGINS -->
- <!-- ORIGINAL LEVEL 13-->
+<?xml version="1.0"?>	
+<!-- BLENDER LEVEL 4 - AUTHOR ANDREW DIGGINS -->
+<!-- ORIGINAL LEVEL 4 -->
 <root>
-	<object type="color" r="14" g="57" b="30" />
+	<object type="color" r="16" g="33" b="57" />
 	<!-- HOLE -->
-	<object type="hole" position="10.25, 6" />
-
-	<!-- switches -->
-	<object type="switch" switch_type="3" time="3" position="6.5, -4.5">
-		<object type="laser" position="8,4.5" rotation="315" switch_bits="4" disabled="1"/>
-		<object type="laser" position="12.5,4.5" rotation="225" switch_bits="4" disabled="1"/>
-	</object>
+	<object type="hole" position="11.7,5" />
 
 	<!-- LASERS -->
+	<object type="laser" position="-3.65,-3.65" rotation="45" />
+	<object type="laser" position="3.65,3.65" rotation="225" />
 	
 	<!-- PLAYER -->
-	<object type="player" position="-13.25, -6" />
+	<object type="player" position="-11.7,-5" />
+	
+	<!-- WALLS -->
+	<!-- WALLS ON THE EDGE OF THE SCREEN -->
+	<object type="wall" position="-19,0" size="1,22" rotation="0"/>
+	<object type="wall" position="19,0" size="1,22" rotation="0"/>
+	<object type="wall" position="0,-10.5" size="37,1" rotation="0"/>
+	<object type="wall" position="0,10.5" size="37,1" rotation="0"/>
 
-	<!-- OUTER FRAME OF THE WALLS - starting far left, working clockwise-->
-	<object type="wall" position="-17.25, 0" size="3.5,21" rotation="0"/>
-		<object type="wall" position="-14.5, 2.5" size="7,1" rotation="45"/>
-			<object type="wall" position="-14.5, 3.5" size="7,2" rotation="45"/>
-	<object type="wall" position="-5.5, 7" size="20,7" rotation="0"/>
-		<object type="wall" position="0.75,1.75" size="9.24,1" rotation="-30"/>
-			<object type="wall" position="2.75,2.75" size="9.24,3.2" rotation="-30"/>
-	<object type="wall" position="6.25,4.775" size="3.5, 11.5" rotation="0"/>
-	<object type="wall" position="13.5,9.25" size="11, 3.5" rotation="0"/>
-	<object type="wall" position="15.75, -1.5" size="6.5, 18" rotation="0"/>
-		<object type="wall" position="11.5, -6.5" size="7,1" rotation="45"/>
-			<object type="wall" position="13, -7.5" size="5,3" rotation="45"/>
-	<object type="wall" position="3.75, -9" size="17.5, 3" rotation="0"/>
-		<object type="wall" position="-0.38,-5.24" size="11.23, 1" rotation="-30"/>
-			<object type="wall" position="-1.88,-7.24" size="11.23, 5" rotation="-30"/>
-	<object type="wall" position="-8,-6.5" size="6, 9" rotation="0"/>
-	<object type="wall" position="-13.25, -9" size="4.5, 3" rotation="0"/>
+	<!-- BACKGROUND BARRIERS -->
+	<object type="wall" position="-15.1,6.7" size="21.7,11" rotation="45"/>
+	<object type="wall" position="5,9.3" size="11.5,8" rotation="-45"/>
+	<object type="wall" position="18.1,9.6" size="13.8,11.5" rotation="-45"/>
+	<object type="wall" position="14.1,-8" size="19.2,11.6" rotation="45"/>
+	<object type="wall" position="-5,-9.2" size="11.4,7.8" rotation="-45"/>
+	<object type="wall" position="-17,-10.3" size="11,11" rotation="-45"/>
+	
+	<!-- OUTER FRAME, clockwise starting top left -->
+	<object type="wall" position="-9.8,3.7" size="19.3,1" rotation="45"/>
+	<object type="wall" position="1.7,6.3" size="12,1" rotation="-45"/>
+	<object type="wall" position="9,4.5" size="8.8,1" rotation="45"/>
+	<object type="wall" position="14,5" size="6,1" rotation="-45"/>
+	<object type="wall" position="9.8,-3.7" size="19.3,1" rotation="45"/>
+	<object type="wall" position="-1.7,-6.3" size="12,1" rotation="-45"/>
+	<object type="wall" position="-9,-4.5" size="8.8,1" rotation="45"/>
+	<object type="wall" position="-14,-5" size="6,1" rotation="-45"/>
+	
+	<!-- CENTER BARRIERS + Lasers-->
+	<object type="wall" position="1.5,1.5" size="1,1" rotation="45"/>
+	<object type="wall" position="-1.5,-1.5" size="1,1" rotation="45"/>
 
 	<!-- PLATFORMS -->
-	
+
 	<!-- BORDER -->
 	<object type="wall" position="0,13" size="38,5" rotation="0"/> 		<!-- top -->
 	<object type="wall" position="0,-13" size="38,5" rotation="0"/> 	<!-- bottom -->

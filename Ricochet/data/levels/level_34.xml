@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!-- BLENDER LEVEL 3.6 AUTHOR ANDREW DIGGINS -->
+ <!-- ORIGINAL LEVEL 24-->
+<root>
+	<object type="color" r="35" g="18" b="57" />
+	<!-- HOLE -->
+	<object type="hole" position="8,6.5" />
+
+	<!-- switches -->
+
+	<!-- LASERS -->
+	<object type="laser" position="-10,-1" rotation="25" />
+	<object type="laser" position="11.5,5.5" rotation="270" />
+	<object type="laser" position="-14,-6.5" rotation="0" />
+	
+	<!-- PLAYER -->
+	<object type="player" position="-15,-4" />
+
+	<!-- OUTER FRAME OF THE WALLS - bottom frame then top-->
+	<object type="wall" position="-15,-6.5" size="2,1" rotation="0"/>
+	<object type="wall" position="-16.5,-4" size="1,6" rotation="0"/>
+	<object type="wall" position="-13,-1.5" size="6,1" rotation="0"/>
+	
+	<object type="wall" position="4.5,7" size="1,3" rotation="0"/>
+	<object type="wall" position="8,8" size="6,1" rotation="0"/>
+	<object type="wall" position="11.5,7" size="1,3" rotation="0"/>
+	
+	<object type="wall" position="9.73,-4.73" size="8,1" rotation="45"/>
+	
+	<!-- BACKGROUND WALLS - starting top, working bottom -->
+	<object type="wall" position="-7.5, 8" size="23,5" rotation="0"/>
+	<object type="wall" position="-4.5, 5.5" size="17,5.25" rotation="25"/>
+	<object type="wall" position="11.5, 9.5" size="15,2" rotation="0"/>
+	<object type="wall" position="15.5, -1" size="7,19" rotation="0"/>
+	<object type="wall" position="11.5, -6.4" size="8,4" rotation="45"/>
+	<object type="wall" position="-3.5, -8.75" size="31,3.5" rotation="0"/>
+	<object type="wall" position="-18, -0.75" size="2,12.5" rotation="0"/>
+	<object type="wall" position="-13.5, 2.25" size="7,7" rotation="0"/>
+
+	<!-- PLATFORMS -->
+	<object type="platform" position="6,-1" size="0.5,7" rotation="0" rotating="1" rotationspeed="130"/>
+	<object type="platform" position="6,-1" size="7,0.5" rotation="0" rotating="1" rotationspeed="130"/>
+	
+
+	<!-- BORDER -->
+	<object type="wall" position="0,13" size="38,5" rotation="0"/> 		<!-- top -->
+	<object type="wall" position="0,-13" size="38,5" rotation="0"/> 	<!-- bottom -->
+	<object type="wall" position="-21.5,0" size="5,31" rotation="0"/> 	<!-- left -->
+	<object type="wall" position="21.5,0" size="5,31" rotation="0"/> 	<!-- right -->
+	
+</root>

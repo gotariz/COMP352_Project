@@ -74,7 +74,8 @@ void InputHandler::handleEvents()
 
     if(gdata.keys[sf::Keyboard::Escape].isKeyPressed)
     {
-        gdata.gamestate = STATE_MENU;
+        gdata.gamestate = STATE_MENU;\
+        gdata.show_progress = false;
         cout << "Back to menu"<< endl;
     }
 }

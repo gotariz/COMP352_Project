@@ -27,6 +27,8 @@ class Laser : public Obstacle
         bool increasing = false;
         bool rotating = false;
 
+        float rotation_speed = 0;
+
         float rotation = 0;
         float stand_rotation = 0;
 

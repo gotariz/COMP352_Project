@@ -1,48 +1,65 @@
-<?xml version="1.0"?>
- <!-- BLENDER LEVEL 2.6 AUTHOR ANDREW DIGGINS -->
- <!-- ORIGINAL LEVEL 15-->
+<?xml version="1.0"?>	
+<!-- NO BLENDER LEVEL - AUTHOR THOMAS SKOWRON -->
+<!-- ORIGINAL LEVEL 2 -->
 <root>
-	<object type="color" r="14" g="57" b="30" />
+	<object type="color" r="16" g="33" b="57" />
 	<!-- HOLE -->
-	<object type="hole" position="-10.5, 6" />
-
-	<!-- switches -->
-	<object type="switch" switch_type="3" time="3" position="5, -6">
-		<object type="platform" position="4.375,-0.25" size="3.25,0.5" switch_bits="4" disabled="1"/>
-	</object>
-	
-	<object type="switch" switch_type="3" time="3" position="0.5, -6">
-		<object type="platform" position="0,-0.25" size="4,0.5" switch_bits="4" disabled="0"/>
-	</object>
-	
-	<object type="switch" switch_type="3" time="3" position="-4, -6">
-		<object type="platform" position="-4.375,-0.25" size="3.25,0.5" switch_bits="4" disabled="1"/>
-	</object>
+	<object type="hole" position="-14,0" />
 
 	<!-- LASERS -->
-	<object type="laser" position="4.5,1" rotation="270" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
-	<object type="laser" position="0,1" rotation="270" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
-	<object type="laser" position="-4.5,1" rotation="270" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="18.5,4.5" stand_rotation="-90" rotation="-90" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="250" delta_angle="40" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="-18.5,4.5" stand_rotation="-90" rotation="-90" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="250" delta_angle="40" rotation_duration="1" rotating="0" rotation_time="0"/>
 	
 	<!-- PLAYER -->
-	<object type="player" position="10.5, 6" />
-
-	<!-- OUTER FRAME OF THE WALLS - starting from top, working clockwise-->
-	<object type="wall" position="0, 9" size="28, 3" rotation="0"/>
-		<object type="wall" position="0, 4.25" size="14, 6.5" rotation="0"/>
-		<object type="wall" position="-6.5, 0.25" size="1, 1.5" rotation="0"/>
-		<object type="wall" position="-2.5, 0.25" size="1, 1.5" rotation="0"/>
-		<object type="wall" position="2.5, 0.25" size="1, 1.5" rotation="0"/>
-		<object type="wall" position="6.5, 0.25" size="1, 1.5" rotation="0"/>
-	<object type="wall" position="16.5,0" size="5, 21" rotation="0"/>
-		<object type="wall" position="-11.5,-5.5" size="9.75, 1" rotation="-30"/>
-			<object type="wall" position="-11.5,-7.5" size="9.75, 3" rotation="-30"/>
-	<object type="wall" position="0,-9" size="28, 3" rotation="0"/>
-		<object type="wall" position="11.5,-5.5" size="9.75, 1" rotation="30"/>
-			<object type="wall" position="11.5,-7.5" size="9.75, 3" rotation="30"/>
-	<object type="wall" position="-16.5,0" size="5, 21" rotation="0"/>
+	<object type="player" position="14,0" />
+	
+	<!-- WALLS -->
+	<object type="wall" position="0,7.5" size="38,6" rotation="0"/>
+	<object type="wall" position="0,-7.5" size="38,6" rotation="0"/>
 
 	<!-- PLATFORMS -->
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-10.25,3.5" p2="-10.25,-3.5" duration="2" progress="0.2"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-9.75,3.5" p2="-9.75,-3.5" duration="2" progress="0.24"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-9.25,3.5" p2="-9.25,-3.5" duration="2" progress="0.28"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-8.75,3.5" p2="-8.75,-3.5" duration="2" progress="0.32"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-8.25,3.5" p2="-8.25,-3.5" duration="2" progress="0.36"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-7.75,3.5" p2="-7.75,-3.5" duration="2" progress="0.4"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-7.25,3.5" p2="-7.25,-3.5" duration="2" progress="0.44"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-6.75,3.5" p2="-6.75,-3.5" duration="2" progress="0.48"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-6.25,3.5" p2="-6.25,-3.5" duration="2" progress="0.52"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-5.75,3.5" p2="-5.75,-3.5" duration="2" progress="0.56"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-5.25,3.5" p2="-5.25,-3.5" duration="2" progress="0.6"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-4.75,3.5" p2="-4.75,-3.5" duration="2" progress="0.64"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-4.25,3.5" p2="-4.25,-3.5" duration="2" progress="0.68"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-3.75,3.5" p2="-3.75,-3.5" duration="2" progress="0.72"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-3.25,3.5" p2="-3.25,-3.5" duration="2" progress="0.76"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-2.75,3.5" p2="-2.75,-3.5" duration="2" progress="0.8"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-2.25,3.5" p2="-2.25,-3.5" duration="2" progress="0.84"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-1.75,3.5" p2="-1.75,-3.5" duration="2" progress="0.88"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-1.25,3.5" p2="-1.25,-3.5" duration="2" progress="0.92"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-0.75,3.5" p2="-0.75,-3.5" duration="2" progress="0.96"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="-0.25,3.5" p2="-0.25,-3.5" duration="2" progress="1"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="0.25,3.5" p2="0.25,-3.5" duration="2" progress="0.96"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="0.75,3.5" p2="0.75,-3.5" duration="2" progress="0.92"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="1.25,3.5" p2="1.25,-3.5" duration="2" progress="0.88"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="1.75,3.5" p2="1.75,-3.5" duration="2" progress="0.84"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="2.25,3.5" p2="2.25,-3.5" duration="2" progress="0.8"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="2.75,3.5" p2="2.75,-3.5" duration="2" progress="0.76"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="3.25,3.5" p2="3.25,-3.5" duration="2" progress="0.72"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="3.75,3.5" p2="3.75,-3.5" duration="2" progress="0.68"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="4.25,3.5" p2="4.25,-3.5" duration="2" progress="0.64"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="4.75,3.5" p2="4.75,-3.5" duration="2" progress="0.6"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="5.25,3.5" p2="5.25,-3.5" duration="2" progress="0.56"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="5.75,3.5" p2="5.75,-3.5" duration="2" progress="0.52"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="6.25,3.5" p2="6.25,-3.5" duration="2" progress="0.48"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="6.75,3.5" p2="6.75,-3.5" duration="2" progress="0.44"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="7.25,3.5" p2="7.25,-3.5" duration="2" progress="0.4"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="7.75,3.5" p2="7.75,-3.5" duration="2" progress="0.36"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="8.25,3.5" p2="8.25,-3.5" duration="2" progress="0.32"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="8.75,3.5" p2="8.75,-3.5" duration="2" progress="0.28"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="9.25,3.5" p2="9.25,-3.5" duration="2" progress="0.24"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="9.75,3.5" p2="9.75,-3.5" duration="2" progress="0.2"/>
+	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="10.25,3.5" p2="10.25,-3.5" duration="2" progress="0.16"/>
 
 	<!-- BORDER -->
 	<object type="wall" position="0,13" size="38,5" rotation="0"/> 		<!-- top -->
