@@ -32,6 +32,7 @@
 	<asset type="sound" path="media/sounds/explosion.wav" />
 	<asset type="sound" path="media/sounds/victory.wav" />
 	<asset type="sound" path="media/sounds/click.wav" />
+	<asset type="sound" path="media/sounds/menu_click.wav" />
 
 	<!-- MUSIC -->
 	<asset type="music" path="media/music/music1.ogg" />

@@ -293,22 +293,26 @@ void StateMenu::handleEvents()
             {
                 if(isTouching(gdata.mouse_raw, startBox))
                 {
+                    gdata.audio->playSound("click");
                     transitioning = true;
                     pushMenu = MENU_LEVELS;
                 }
                 else if(isTouching(gdata.mouse_raw, achBox))
                 {
+                    gdata.audio->playSound("click");
                     transitioning = true;
                     pushMenu = MENU_AWARDS;
                 }
                 else if(isTouching(gdata.mouse_raw, optionsBox))
                 {
+                    gdata.audio->playSound("click");
                     transitioning = true;
                     pushMenu = MENU_OPTIONS;
                 }
 
                 else if(isTouching(gdata.mouse_raw, exitBox))
                 {
+                    gdata.audio->playSound("click");
                     gdata.running = false;
                 }
 
@@ -331,6 +335,7 @@ void StateMenu::handleEvents()
 
             else if(event.key.code == sf::Keyboard::Return)
             {
+                gdata.audio->playSound("click");
                 if(selected == 0) //Start
                 {
 //                    gdata.gamestate = STATE_GAME;
@@ -788,18 +793,22 @@ void StateMenu::update()
         if(isTouching(gdata.mouse_raw, startBox))
         {
             selected = 0;
+            gdata.audio->playSound("menu_click");
         }
         else if(isTouching(gdata.mouse_raw, achBox))
         {
             selected = 1;
+            gdata.audio->playSound("menu_click");
         }
         else if(isTouching(gdata.mouse_raw, optionsBox))
         {
             selected = 2;
+            gdata.audio->playSound("menu_click");
         }
         else if(isTouching(gdata.mouse_raw, exitBox))
         {
             selected = 3;
+            gdata.audio->playSound("menu_click");
         }
     }
     else if (menuState == MENU_OPTIONS)
