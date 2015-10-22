@@ -2,6 +2,7 @@
 <!-- BLENDER LEVEL 4.7 AUTHOR ANDREW DIGGINS -->
  <!-- ORIGINAL LEVEL -unassigned- -->
 <root>
+	<object type="text" pos="-10.5,-5.7" rotation="0" text="Level 8" r="255" g="255" b="255" a="32" font="segoe-ui-light-48" h_align="left" v_align="bottom" />
 	<!-- HOLE -->
 	<object type="hole" position="11,0" />
 
