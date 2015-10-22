@@ -119,9 +119,7 @@ void StateGame::load()
     fntIns.setFont(gdata.assets->getFont("segoe-ui-light-20"));
     fntIns.setColor(sf::Color::White);
 
-    fntLevel.setWindow(gdata.window);
-    fntLevel.setFont(gdata.assets->getFont("segoe-ui-light-48"));
-    fntLevel.setColor(sf::Color::White);
+    text_renderer.setWindow(gdata.window);
     cout << "complete" << endl;
 
     cout << "adjusting screen size:";
@@ -269,8 +267,6 @@ void StateGame::draw()
     }
 
     fntIns.drawString(gdata.settings->getScreenWidth() / 2,gdata.settings->getScreenHeight() - 10,"Press R to restart level",Align::MIDDLE,Align::BOTTOM);
-    fntLevel.drawString(gdata.settings->getScreenWidth() - 20,gdata.settings->getScreenHeight() - 20,"Level " + gz::toString(gdata.level),Align::RIGHT,Align::BOTTOM);
-
 
     //===========================================
     // DRAW A GRID
@@ -305,6 +301,8 @@ void StateGame::draw()
     }
     //===========================================
 
+    render_texts();
+
     if (gdata.show_progress)
     {
         ps.draw();
@@ -314,6 +312,23 @@ void StateGame::draw()
 	// flip the buffer
 	gdata.window->display();
 }
+
+void StateGame::render_texts()
+{
+    for (int i = 0; i < text_data.size(); ++i)
+    {
+        TextData& td = text_data.at(i);
+
+        Vector2 sp = gdata.toScreenPixels(td.pos);
+
+        text_renderer.setTransparency( td.transparency );
+        text_renderer.setFont(gdata.assets->getFont(td.font));
+        text_renderer.setRotation(td.rotation);
+        text_renderer.setColor(td.color);
+        text_renderer.drawString(sp.x,sp.y,td.text,td.h_align,td.v_align);
+    }
+}
+
 
 Vector2 StateGame::raycast(Vector2 start, Vector2 dir, float length)
 {
@@ -419,6 +434,7 @@ void StateGame::loadLevel()
 			else if (attribute_type == "laser")     createLaser(element);
 			else if (attribute_type == "hole")      createHole(element);
 			else if (attribute_type == "switch")    createSwitch(element);
+			else if (attribute_type == "text")      createText(element);
 			else if (attribute_type == "color")
             {
                 int r = atoi(element->Attribute("r"));
@@ -604,6 +620,47 @@ void StateGame::createSwitch(XMLElement* element)
         child = child->NextSiblingElement("object");
     }
 }
+
+void StateGame::createText(XMLElement* element)
+{
+    string text	    = element->Attribute("text");
+    string font	    = element->Attribute("font");
+    Vector2 pos		= Vector2(element->Attribute("pos"));
+    float rotation	= atof(element->Attribute("rotation"));
+
+    int r		    = atoi(element->Attribute("r"));
+    int g		    = atoi(element->Attribute("g"));
+    int b		    = atoi(element->Attribute("b"));
+    int a		    = atoi(element->Attribute("a"));
+
+    int h_align = 0;
+    int v_align = 0;
+
+    string h = element->Attribute("h_align");
+    string v = element->Attribute("v_align");
+
+    if (h == "right")       h_align = Align::RIGHT;
+    else if (h == "middle") h_align = Align::MIDDLE;
+    else                    h_align = Align::LEFT;
+
+    if (v == "bottom")      v_align = Align::BOTTOM;
+    else if (v == "middle") v_align = Align::MIDDLE;
+    else                    v_align = Align::TOP;
+
+    TextData td;
+
+    td.text = text;
+    td.font = font;
+    td.pos = pos;
+    td.rotation = rotation;
+    td.color = sf::Color(r,g,b,a);
+    td.transparency = a;
+    td.h_align = h_align;
+    td.v_align = v_align;
+
+    text_data.push_back(td);
+}
+
 
 
 

@@ -19,10 +19,18 @@ class sfFontRenderer
 
         unsigned getRenderedTextWidth(std::string text);
 
+        void setRotation(float rotation);
+        float getRotation();
+
+        void setTransparency(float transparency);
+        float getTransparency();
+
     private:
         sf::RenderWindow*   m_window = nullptr;
         sfFont*             m_font = nullptr;
         sf::Color           m_color = sf::Color::White;
+        float               m_transparency = 255;
+        float               m_rotation = 0;
 };
 
 #endif // SFFONTRENDERER_H

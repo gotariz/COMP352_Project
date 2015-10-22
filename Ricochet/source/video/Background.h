@@ -3,6 +3,7 @@
 
 #include "general.h"
 #include "system/GameData.h"
+#include "system/Settings.h"
 
 class Background
 {

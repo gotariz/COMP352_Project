@@ -7,6 +7,20 @@ class Object;
 #include "utils/Vector2.h"
 #include "dependencies.h"
 
+struct TextData
+{
+    string text = "";
+    string font = "";
+
+    Vector2 pos;
+    float rotation = 0;
+    sf::Color color = sf::Color::Black;
+    float transparency = 255;
+
+    int h_align = 0;
+    int v_align = 0;
+};
+
 struct bgCircle
 {
     sf::CircleShape c;

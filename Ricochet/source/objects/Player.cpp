@@ -94,8 +94,9 @@ void Player::onDraw()
         trail.setPlayerPosition(getAbsolutePosition());
         trail.draw();
 
-		Vector2 pos = getAbsolutePosition();
+        Vector2 pos = getAbsolutePosition();
 		pos = gdata.toScreenPixels(pos.x, pos.y);
+
 		sf::CircleShape circle((0.5 * WORLD_SCALE) * gdata.zoom);
         circle.setFillColor(color.getCurrentColor());
         circle.setPosition(pos.x,pos.y);

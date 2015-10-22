@@ -72,7 +72,6 @@ class StateGame : public IState
         sfFontRenderer     fntPower;
         sfFontRenderer     fntAngle;
         sfFontRenderer     fntIns;
-        sfFontRenderer     fntLevel;
 
         Player*             player = nullptr;
         Background          bg;
@@ -86,6 +85,11 @@ class StateGame : public IState
 
 		ProgressScreen      ps;
 
+		vector<TextData>    text_data;
+		sfFontRenderer      text_renderer;
+
+		void render_texts();
+
 
 		float cx = 20;
 
@@ -96,6 +100,7 @@ class StateGame : public IState
             void createHole(XMLElement* element);
             void createSwitch(XMLElement* element);
             void createLaser(XMLElement* element,Toggle* t = nullptr);
+            void createText(XMLElement* element);
 
 };
 
