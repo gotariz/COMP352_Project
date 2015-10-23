@@ -11,6 +11,7 @@ class Object;
 class PhysicsFactory;
 class AudioManager;
 class MusicHandle;
+class AchievementBar;
 
 class GameData
 {
@@ -53,7 +54,10 @@ class GameData
 		Vector2         p1;
 		Vector2         p2;
 		bool            show_progress = false;
-		//bool            has_focus = true;
+
+		int             bounce_counter = 0;
+
+		vector<AchievementBar*> achieves;
 
     public:
 

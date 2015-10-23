@@ -7,6 +7,7 @@
 #include "system/GameData.h"
 #include "video/Camera.h"
 #include "system/AudioManager.h"
+#include "video/AchievementBar.h"
 
 class gObject : public Object
 {

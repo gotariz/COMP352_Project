@@ -26,6 +26,7 @@
 #include "video/particles/ParticleEmitter.h"
 #include "video/Background.h"
 #include "video/ProgressScreen.h"
+#include "video/AchievementBar.h"
 
 
 /////////////////////////////////////////////////////////

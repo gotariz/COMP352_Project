@@ -9,6 +9,7 @@
 #include "system/states/StateGame.h"
 #include "system/states/StateMenu.h"
 #include "System/AudioManager.h"
+#include "video/AchievementBar.h"
 
 class Engine
 {
@@ -35,6 +36,7 @@ class Engine
         bool initialise();
         void updateState();
         void exit();
+        void draw();
 };
 
 #endif // ENGINE_H

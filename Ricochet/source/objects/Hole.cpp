@@ -27,6 +27,14 @@ void Hole::onEnterCollision(CollisionData cd)
             m_image.setTexture(*gdata.assets->getTexture("hole_on"));
             cd.objectB->setLinearVelocity(Vector2(0,0));
             gdata.show_progress = true;
+
+            if (gdata.bounce_counter >= 20)
+            {
+                AchievementBar* a = new AchievementBar;
+                a->init();
+                a->setText("Complete a level while getting at least 20 bounces");
+                gdata.achieves.push_back(a);
+            }
         }
         //gdata.delay_reload = true;
     }

@@ -4,6 +4,8 @@
 	<asset type="image" path="media/images/title.png" />
 	<asset type="image" path="media/images/glow.png" />
 	<asset type="image" path="media/images/star.png" />
+	<asset type="image" path="media/images/trophey.png" />
+	<asset type="image" path="media/images/achieve_glow.png" />
 	<asset type="image" path="media/images/loading.png" />
 	<asset type="image" path="media/images/laser_beam.png" />
 	<asset type="image" path="media/images/laser_end.png" />
@@ -26,6 +28,7 @@
 	<asset type="image" path="media/images/Screencap_Level_12.png" />
 
 	<!-- SOUNDS -->
+	<asset type="sound" path="media/sounds/AchievementUnlocked.wav" />
 	<asset type="sound" path="media/sounds/bounce.wav" />
 	<asset type="sound" path="media/sounds/explosion.wav" />
 	<asset type="sound" path="media/sounds/shoot.wav" />

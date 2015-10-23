@@ -2,17 +2,17 @@
 <!-- BLENDER LEVEL 4.5 AUTHOR ANDREW DIGGINS -->
  <!-- ORIGINAL LEVEL -unassigned- -->
 <root>
-	<object type="text" pos="-9.5,9.2" rotation="270" text="Level 10" r="255" g="255" b="255" a="32" font="segoe-ui-light-48" h_align="left" v_align="bottom" />
+	<object type="text" pos="-9.1,8.3" rotation="270" text="Level 10" r="255" g="255" b="255" a="32" font="segoe-ui-light-48" h_align="left" v_align="bottom" />
 	<!-- HOLE -->
 	<object type="hole" position="-6,-3.5" />
 
 	<!-- switches -->
 
 	<!-- LASERS - starting top left, working clockwise -->
-	<object type="laser" position="-9.5,9.4" rotation="0" />
-	<object type="laser" position="-9.4,9.5" rotation="270" />
-	<object type="laser" position="9.5,-9.4" rotation="180" />
-	<object type="laser" position="9.4,-9.5" rotation="90" />
+	<object type="laser" position="-8.5,9" rotation="0" />
+	<object type="laser" position="-9,8.5" rotation="270" />
+	<object type="laser" position="8.5,-9" rotation="180" />
+	<object type="laser" position="9,-8.5" rotation="90" />
 	
 	<!-- PLAYER -->
 	<object type="player" position="-6,0" />
@@ -28,6 +28,11 @@
 	<object type="wall" position="14.25,0" size="9.5,21" rotation="0"/>
 	<object type="wall" position="0,-10" size="19,1" rotation="0"/>
 	<object type="wall" position="-14.25,0" size="9.5,21" rotation="0"/>
+	
+	<object type="wall" position="-9,9" size="1,1" rotation="0"/>
+	<object type="wall" position="-9,-9" size="1,1" rotation="0"/>
+	<object type="wall" position="9,-9" size="1,1" rotation="0"/>
+	<object type="wall" position="9,9" size="1,1" rotation="0"/>
 	
 	
 	<!-- PLATFORMS -->

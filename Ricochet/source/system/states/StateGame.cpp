@@ -127,6 +127,7 @@ void StateGame::load()
 	cout << "complete" << endl;
 
     gdata.countdown = 0;
+    gdata.bounce_counter = 0;
     ps.init();
 
     cout << "===================================================" << endl;
@@ -193,12 +194,18 @@ void StateGame::update()
 	manager.update();
 	bg.update();
 	ps.update();
+
+	if (gdata.keys[sf::Keyboard::A].isKeyPressed)
+    {
+        AchievementBar* achieve = new AchievementBar;
+        achieve->init();
+        achieve->setText("This is a test achievemet, hooray!");
+        gdata.achieves.push_back(achieve);
+    }
 }
 
 void StateGame::draw()
 {
-    gdata.window->clear(sf::Color::Black);
-
     bg.draw();
 
     if (gdata.keys[sf::Keyboard::S].isKeyDown && !gdata.first_shot)
@@ -303,14 +310,12 @@ void StateGame::draw()
 
     render_texts();
 
+    fntIns.drawString(10,10,"Bounes: " + gz::toString(gdata.bounce_counter));
+
     if (gdata.show_progress)
     {
         ps.draw();
     }
-
-
-	// flip the buffer
-	gdata.window->display();
 }
 
 void StateGame::render_texts()

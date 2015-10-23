@@ -138,6 +138,8 @@
 		<Unit filename="source/utils/gzClock.h" />
 		<Unit filename="source/utils/tinyxml2.cpp" />
 		<Unit filename="source/utils/tinyxml2.h" />
+		<Unit filename="source/video/AchievementBar.cpp" />
+		<Unit filename="source/video/AchievementBar.h" />
 		<Unit filename="source/video/Background.cpp" />
 		<Unit filename="source/video/Background.h" />
 		<Unit filename="source/video/Camera.cpp" />

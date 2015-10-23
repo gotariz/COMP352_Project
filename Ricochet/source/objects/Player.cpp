@@ -33,7 +33,17 @@ void Player::onDestroy()
     explode_emitter.v = getVelocity();
     draw_player = false;
 
-    if (!gdata.show_progress)    {gdata.countdown = 2.f;} // a bit dodgey but oh well
+    if (!gdata.show_progress)
+    {
+            gdata.countdown = 2.f;
+    } // a bit dodgey but oh well
+    else
+    {
+        AchievementBar* a = new AchievementBar;
+        a->init();
+        a->setText("Die after completing a level");
+        gdata.achieves.push_back(a);
+    }
 
     deletePhysicsObject();
 }
@@ -45,9 +55,18 @@ void Player::onEnterCollision(CollisionData cd)
     {
         if (cd.objectB->m_type != PARTICLE)
         {
+            ++gdata.bounce_counter;
             emitter.spawn = true;
             emitter.pos = cd.points.at(0);
             trail.addPoint(getAbsolutePosition());
+
+            if (gdata.bounce_counter == 100)
+            {
+                AchievementBar* a = new AchievementBar;
+                a->init();
+                a->setText("Get 100 bounces in any level");
+                gdata.achieves.push_back(a);
+            }
         }
     }
 }

@@ -19,8 +19,19 @@ void Engine::run()
         updateEngine();
         activeState->handleEvents();
         activeState->update();
+        gdata.window->clear(sf::Color::Black);
         activeState->draw();
+        draw();
+        gdata.window->display();
         running = gdata.running;
+    }
+}
+
+void Engine::draw()
+{
+    for (int i =0; i < gdata.achieves.size(); ++i)
+    {
+        gdata.achieves.at(i)->draw(10,(gdata.settings->getScreenHeight() - 60) - (60 * i) );
     }
 }
 
@@ -52,6 +63,17 @@ void Engine::updateEngine()
         {
             gdata.countdown = 0;
             gdata.reload = true;
+        }
+    }
+
+    for (int i =0; i < gdata.achieves.size(); ++i)
+    {
+        gdata.achieves.at(i)->update();
+        if (gdata.achieves.at(i)->age >= 5)
+        {
+            delete gdata.achieves.at(i);
+            gdata.achieves.erase(gdata.achieves.begin() + i);
+            --i;
         }
     }
 
