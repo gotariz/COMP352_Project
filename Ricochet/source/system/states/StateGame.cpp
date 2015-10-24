@@ -314,6 +314,10 @@ void StateGame::draw()
 
     if (gdata.show_progress)
     {
+        if (gdata.bounce_counter <= gold)           ps.setStars(3,gdata.bounce_counter,gold);
+        else if (gdata.bounce_counter <= silver)    ps.setStars(2,gdata.bounce_counter,gold);
+        else                                        ps.setStars(1,gdata.bounce_counter,gold);
+
         ps.draw();
     }
 }
@@ -447,6 +451,11 @@ void StateGame::loadLevel()
                 int b = atoi(element->Attribute("b"));
 
                 bg.rec.setFillColor( sf::Color(r,g,b) );
+            }
+            else if (attribute_type == "score")
+            {
+                gold = atoi(element->Attribute("gold"));
+                silver = atoi(element->Attribute("silver"));
             }
 
 			element = element->NextSiblingElement("object");

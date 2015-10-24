@@ -91,6 +91,9 @@ class StateGame : public IState
 
 		void render_texts();
 
+		int silver = 0;
+		int gold = 0;
+
 
 		float cx = 20;
 

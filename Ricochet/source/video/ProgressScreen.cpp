@@ -85,6 +85,9 @@ void ProgressScreen::init()
     int sw = gdata.settings->getScreenWidth();
     int sh = gdata.settings->getScreenHeight();
 
+    int cx = sw / 2;
+    int cy = sh / 2;
+
     btn_redo.c_idle = sf::Color(210,210,210);
     btn_redo.c_hover = sf::Color(25,155,240);
 
@@ -113,7 +116,7 @@ void ProgressScreen::init()
     glow.setTexture( *gdata.assets->getTexture("glow") );
 
     star.setPosition(sw / 2,sh / 2);
-    star.setOrigin(230,200);
+    star.setOrigin(68,63);
 
     glow.setOrigin( glow.getTexture()->getSize().x/2,glow.getTexture()->getSize().y/2);
     glow.setPosition(sw/2,sh/2);
@@ -121,19 +124,16 @@ void ProgressScreen::init()
     txt.setWindow(gdata.window);
     txt.setFont(gdata.assets->getFont("elemental-end-30"));
     txt.setColor(sf::Color::Black);
-
-    setStars(3);
 }
 
-void ProgressScreen::setStars(int n)
+void ProgressScreen::setStars(int n, int b, int min_b)
 {
-    if (n == 1)
-        star.setColor(sf::Color(255,205,0));
-    else if (n == 2)
-        star.setColor(sf::Color(255,255,255));
-    else if (n == 3)
-        star.setColor(sf::Color(255,255,0));
-    //stars.setTextureRect(sf::IntRect(0,0,x,81));
+    stars = n;
+    bounces = b;
+    min_bounces = min_b;
+//    if (n == 1)
+//    else if (n == 2)
+//    else if (n == 3)
 }
 
 void ProgressScreen::update()
@@ -164,30 +164,68 @@ void ProgressScreen::update()
 
 void ProgressScreen::draw()
 {
-    int sw = gdata.settings->getScreenWidth();
-    int sh = gdata.settings->getScreenHeight();
+    int cx = gdata.settings->getScreenWidth() / 2;
+    int cy = gdata.settings->getScreenHeight() / 2;
 
     gdata.window->draw(glow);
 
     sf::RectangleShape rec(sf::Vector2f(460,400));
     rec.setFillColor(sf::Color(255,255,255));
-    rec.setPosition((sw / 2) - 230, (sh / 2) - 200);
+    rec.setPosition(cx - 230, cy - 200);
 
     sf::RectangleShape  seperator(sf::Vector2f(460,1));
     seperator.setFillColor(sf::Color(200,200,200));
-    seperator.setPosition((sw/2) - 230, sh/2 + 134);
+    seperator.setPosition(cx - 230, cy + 134);
 
     sf::RectangleShape  b_section(sf::Vector2f(460,65));
     b_section.setFillColor(sf::Color(230,230,230));
-    b_section.setPosition((sw/2) - 230, sh/2 + 135);
+    b_section.setPosition(cx - 230, cy + 135);
 
     gdata.window->draw(rec);
     gdata.window->draw(b_section);
     gdata.window->draw(seperator);
 
-    txt.drawString((sw / 2), (sh / 2) + 115,"Level " + gz::toString(gdata.level) + " Complete!",Align::MIDDLE,Align::MIDDLE );
+    txt.setFont(gdata.assets->getFont("elemental-end-30"));
+    txt.setColor(sf::Color::Black);
+    txt.drawString(cx, cy - 170,"Level " + gz::toString(gdata.level) + " Complete!",Align::MIDDLE,Align::MIDDLE );
 
-    gdata.window->draw(star);
+    int sy = cy + 50;
+    if (stars == 1)
+    {
+        star.setPosition(cx,sy);
+        gdata.window->draw(star);
+    }
+    else if (stars == 2)
+    {
+        // left
+        star.setPosition(cx - 75,sy);
+        gdata.window->draw(star);
+
+        // right
+        star.setPosition(cx + 75,sy);
+        gdata.window->draw(star);
+    }
+    else if (stars == 3)
+    {
+        // left
+        star.setPosition(cx - 145,sy);
+        gdata.window->draw(star);
+
+        // center
+        star.setPosition(cx,sy);
+        gdata.window->draw(star);
+
+        // right
+        star.setPosition(cx + 145,sy);
+        gdata.window->draw(star);
+    }
+
+    //txt.setFont(gdata.assets->getFont("segoe-ui-light-48"));
+
+    txt.setColor(sf::Color(128,128,128));
+    txt.drawString(cx, cy - 120,gz::toString(bounces) + (bounces == 1 ? " bounce" : " bounces"),Align::MIDDLE);
+    txt.drawString(cx, cy - 90,"3 star = " + gz::toString(min_bounces),Align::MIDDLE);
+
 
     btn_redo.draw();
     btn_next.draw();
