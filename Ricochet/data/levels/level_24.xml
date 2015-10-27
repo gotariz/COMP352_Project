@@ -2,6 +2,8 @@
  <!-- BLENDER LEVEL 2.6 AUTHOR ANDREW DIGGINS -->
  <!-- ORIGINAL LEVEL 15-->
 <root>
+	<object type="score" gold="5" silver="8" />
+	<object type="text" pos="10,-5.9" rotation="30" text="LVL 24 | PAR 5" r="255" g="255" b="255" a="100" font="segoe-ui-light-48" h_align="middle" v_align="bottom" />
 	<object type="color" r="14" g="57" b="30" />
 	<!-- HOLE -->
 	<object type="hole" position="-10.5, 6" />

@@ -2,8 +2,9 @@
 <!-- BLENDER LEVEL 6 - AUTHOR THOMAS SKOWRON -->
 <!-- ORIGINAL LEVEL 6 -->
 <root>
-	<object type="text" pos="8.9,-5.1" rotation="0" text="Level 7" r="255" g="255" b="255" a="32" font="segoe-ui-light-48" h_align="right" v_align="bottom" />
-	<object type="color" r="16" g="33" b="57" />
+	<object type="score" gold="0" silver="1" />
+	<object type="text" pos="8.9,-5.1" rotation="0" text="LVL 7 | PAR 0" r="255" g="255" b="255" a="100" font="segoe-ui-light-48" h_align="right" v_align="bottom" />
+	<object type="color" r="55" g="18" b="23" />
 	<!-- HOLE -->
 	<object type="hole" position="0,8" />
 

@@ -2,6 +2,8 @@
  <!-- BLENDER LEVEL 2.9 AUTHOR ANDREW DIGGINS -->
  <!-- ORIGINAL LEVEL 18-->
 <root>
+	<object type="score" gold="32" silver="40" />
+	<object type="text" pos="0,-7.1" rotation="0" text="LVL 25 | PAR 32" r="255" g="255" b="255" a="100" font="segoe-ui-light-48" h_align="middle" v_align="bottom" />
 	<object type="color" r="14" g="57" b="30" />
 	<!-- HOLE -->
 	<object type="hole" position="0,5" />
@@ -29,7 +31,7 @@
 	<object type="wall" position="0,-8.75" size="38,3.5" rotation="0"/>
 	
 	<object type="wall" position="6.55,0.75" size="4.4,5.5" rotation="0"/>
-		<object type="wall" position="4.03,-0.96" size="2,1" rotation="-45"/>
+		<object type="wall" position="4.02,-0.98" size="1.9,1" rotation="-45"/>
 	<object type="wall" position="4.25,3.5" size="2.5,8.35" rotation="0"/>
 	
 	
@@ -38,7 +40,7 @@
 		<object type="wall" position="17.25,0.25" size="5,14.5" rotation="0"/>
 		
 	<object type="wall" position="-6.55,0.75" size="4.4,5.5" rotation="0"/>
-		<object type="wall" position="-4.03,-0.96" size="2,1" rotation="45"/>
+		<object type="wall" position="-4.02,-0.98" size="1.9,1" rotation="45"/>
 	<object type="wall" position="-4.25,3.5" size="2.5,8.35" rotation="0"/>
 	
 	

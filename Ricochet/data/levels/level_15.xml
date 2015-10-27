@@ -2,6 +2,8 @@
 <!-- NO BLENDER LEVEL - AUTHOR THOMAS SKOWRON -->
 <!-- ORIGINAL LEVEL 2 -->
 <root>
+	<object type="score" gold="1" silver="3" />
+	<object type="text" pos="-14,-4.6" rotation="0" text="LVL 15 | PAR 1" r="255" g="255" b="255" a="100" font="segoe-ui-light-48" h_align="middle" v_align="bottom" />
 	<object type="color" r="16" g="33" b="57" />
 	<!-- HOLE -->
 	<object type="hole" position="-14,0" />
@@ -60,6 +62,8 @@
 	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="9.25,3.5" p2="9.25,-3.5" duration="2" progress="0.24"/>
 	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="9.75,3.5" p2="9.75,-3.5" duration="2" progress="0.2"/>
 	<object type="platform" position="0,0" size="0.5,2" rotation="0" moves="1" p1="10.25,3.5" p2="10.25,-3.5" duration="2" progress="0.16"/>
+	
+	
 
 	<!-- BORDER -->
 	<object type="wall" position="0,13" size="38,5" rotation="0"/> 		<!-- top -->

@@ -2,8 +2,9 @@
 <!-- BLENDER LEVEL 8 - AUTHOR ANDREW DIGGINS -->
 <!-- ORIGINAL LEVEL 8 -->
 <root>
-	<object type="text" pos="-10,-8.2" rotation="0" text="Level 9" r="255" g="255" b="255" a="32" font="segoe-ui-light-48" h_align="left" v_align="bottom" />
-	<object type="color" r="16" g="33" b="57" />
+	<object type="score" gold="7" silver="10" />
+	<object type="text" pos="-9.9,-8.1" rotation="0" text="LVL 9 | PAR 7" r="255" g="255" b="255" a="100" font="segoe-ui-light-48" h_align="left" v_align="bottom" />
+	<object type="color" r="55" g="18" b="23" />
 	<!-- HOLE -->
 	
 	<object type="hole" position="-7,7" />
