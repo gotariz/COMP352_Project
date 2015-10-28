@@ -126,11 +126,10 @@ void ProgressScreen::init()
     txt.setColor(sf::Color::Black);
 }
 
-void ProgressScreen::setStars(int n, int b, int min_b)
+void ProgressScreen::setStars(int n, int b)
 {
     stars = n;
     bounces = b;
-    min_bounces = min_b;
 //    if (n == 1)
 //    else if (n == 2)
 //    else if (n == 3)
@@ -220,11 +219,23 @@ void ProgressScreen::draw()
         gdata.window->draw(star);
     }
 
-    //txt.setFont(gdata.assets->getFont("segoe-ui-light-48"));
+    txt.setFont(gdata.assets->getFont("segoe-ui-light-20"));
+    txt.setColor(sf::Color(64,64,64));
 
-    txt.setColor(sf::Color(128,128,128));
-    txt.drawString(cx, cy - 120,gz::toString(bounces) + (bounces == 1 ? " bounce" : " bounces"),Align::MIDDLE);
-    txt.drawString(cx, cy - 90,"3 star = " + gz::toString(min_bounces),Align::MIDDLE);
+    txt.drawString(cx - 100, cy - 140,"Bounces:",Align::LEFT);
+    txt.drawString(cx + 100, cy - 140,gz::toString(bounces),Align::RIGHT);
+
+    txt.drawString(cx - 100, cy - 100,"3 stars:",Align::LEFT);
+    txt.drawString(cx + 100, cy - 100,gz::toString(one_star),Align::RIGHT);
+
+    txt.drawString(cx - 100, cy - 80,"2 stars:",Align::LEFT);
+    txt.drawString(cx + 100, cy - 80,gz::toString(two_star),Align::RIGHT);
+
+    txt.drawString(cx - 100, cy - 60,"1 star:",Align::LEFT);
+    txt.drawString(cx + 100, cy - 60,"+" + gz::toString(two_star),Align::RIGHT);
+    //txt.drawString(cx - 100, cy - 120,gz::toString(bounces) + " on par " + gz::toString(min_bounces),Align::LEFT);
+    //txt.drawString(cx - 100, cy - 120,gz::toString(bounces) + " on par " + gz::toString(min_bounces),Align::LEFT);
+    //txt.drawString(cx, cy - 90,"3 star = " + gz::toString(min_bounces),Align::MIDDLE);
 
 
     btn_redo.draw();

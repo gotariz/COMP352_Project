@@ -48,7 +48,7 @@ void StateGame::load()
 	debugDraw = new VisualDebugger();
 	debugDraw->SetFlags(b2Draw::e_shapeBit | b2Draw::e_jointBit | b2Draw::e_pairBit | b2Draw::e_centerOfMassBit);
 	debugDraw->cam = &camera;
-	debugDraw->font.setFont(gdata.assets->getFont("purista-medium-14-white"));
+	debugDraw->font.setFont(gdata.assets->getFont("purista-medium-14"));
 
 	world = new b2World(GRAVITY);
 	world->SetDebugDraw(debugDraw);
@@ -60,37 +60,6 @@ void StateGame::load()
 	cout << "complete" << endl;
 
 	manager.setPhysicsWorld(world);
-
-    cout << "creating background:";
-	bg.bubble_alpha_range.set(0,8);
-    bg.bubble_color = sf::Color(255,255,255,0);
-	bg.num_circles = 60;
-	bg.init();
-
-	int min = 15;
-    int max = 30;
-    float brightness = 0.055f;
-    int s = utils::getRandom(1,3);
-
-    int r = utils::getRandom(s == 1 ? 0 : min,s == 1 ? 5 : max);
-    int b = utils::getRandom(s == 2 ? 0 : min,s == 2 ? 5 : max);
-    int g = utils::getRandom(s == 3 ? 0 : min,s == 3 ? 5 : max);
-
-    r += (255.f * brightness);
-    g += (255.f * brightness);
-    b += (255.f * brightness);
-
-    r = r > 255 ? 255 : r;
-    g = g > 255 ? 255 : g;
-    b = b > 255 ? 255 : b;
-
-    bg.rec.setFillColor(sf::Color(r,g,b,255));
-	cout << "complete" << endl;
-
-	cout << "Color:" << endl;
-    cout << "R:" << r << endl;
-    cout << "G:" << g << endl;
-    cout << "B:" << b << endl;
 
     cout << "initialising input:";
 	input.init();
@@ -104,7 +73,7 @@ void StateGame::load()
 
 	cout << "createing fonts:";
     font.setWindow(gdata.window);
-    font.setFont(gdata.assets->getFont("purista-medium-14-white"));
+    font.setFont(gdata.assets->getFont("purista-medium-14"));
     font.setColor(sf::Color::Red);
 
     fntPower.setWindow(gdata.window);
@@ -126,10 +95,48 @@ void StateGame::load()
 	gdata.zoom = (gdata.settings->getScreenWidth() / 1900.f);
 	cout << "complete" << endl;
 
+    cout << "creating background:";
+	bg.bubble_alpha_range.set(0,8);
+    bg.bubble_color = sf::Color(255,255,255,0);
+	bg.num_circles = 60;
+	bg.init();
+
+	int min = 15;
+    int max = 30;
+    float brightness = 0.055f;
+    int s = utils::getRandom(1,3);
+
+    int r = 0;
+    int g = 0;
+    int b = 0;
+
+    if (gdata.random_colors)
+    {
+        r = utils::getRandom(s == 1 ? 0 : min,s == 1? 5 : max);
+        g = utils::getRandom(s == 2 ? 0 : min,s == 2 ? 5 : max);
+        b = utils::getRandom(s == 3 ? 0 : min,s == 3 ? 5 : max);
+    }
+    else
+    {
+        r = utils::getRandom(mr ? min + 5 : 0,mr ? max : 5);
+        g = utils::getRandom(mg ? min + 5 : 0,mg ? max : 5);
+        b = utils::getRandom(mb ? min + 5 : 0,mb ? max : 5);
+    }
+
+    r += (255.f * brightness);
+    g += (255.f * brightness);
+    b += (255.f * brightness);
+
+    r = r > 255 ? 255 : r;
+    g = g > 255 ? 255 : g;
+    b = b > 255 ? 255 : b;
+
+    bg.rec.setFillColor(sf::Color(r,g,b,255));
+    cout << "complete" << endl;
+
     gdata.countdown = 0;
     gdata.bounce_counter = 0;
     ps.init();
-
     cout << "===================================================" << endl;
     loading = false;
 }
@@ -273,8 +280,6 @@ void StateGame::draw()
         fntAngle.drawString(p.x + cx,p.y - 50,a);
     }
 
-    fntIns.drawString(gdata.settings->getScreenWidth() / 2,gdata.settings->getScreenHeight() - 10,"Press R to restart level",Align::MIDDLE,Align::BOTTOM);
-
     //===========================================
     // DRAW A GRID
     //===========================================
@@ -310,13 +315,26 @@ void StateGame::draw()
 
     render_texts();
 
-    fntIns.drawString(10,10,"Bounes: " + gz::toString(gdata.bounce_counter));
+    fntIns.drawString(10,0,"F1:Help");
+    if (gdata.show_help)
+    {
+        font.drawString(10,30,"Controls");
+        font.drawString(10,50,"===================================");
+        font.drawString(10,70,"shoot:         click and drag the ball");
+        font.drawString(10,90,"right click:   toggle lock angle");
+        font.drawString(10,110,"spacebar:   toggle snapping the angle");
+        font.drawString(10,130,"S:                show previous shot");
+        font.drawString(10,150,"R:                restart level");
+    }
+
+    fntIns.drawString(150,0,"Bounces: " + gz::toString(gdata.bounce_counter));
+    fntIns.drawString(310,0,"Par: " + gz::toString(par));
 
     if (gdata.show_progress)
     {
-        if (gdata.bounce_counter <= gold)           ps.setStars(3,gdata.bounce_counter,gold);
-        else if (gdata.bounce_counter <= silver)    ps.setStars(2,gdata.bounce_counter,gold);
-        else                                        ps.setStars(1,gdata.bounce_counter,gold);
+        if (gdata.bounce_counter <= gold)           ps.setStars(3,gdata.bounce_counter);
+        else if (gdata.bounce_counter <= silver)    ps.setStars(2,gdata.bounce_counter);
+        else                                        ps.setStars(1,gdata.bounce_counter);
 
         ps.draw();
     }
@@ -446,16 +464,19 @@ void StateGame::loadLevel()
 			else if (attribute_type == "text")      createText(element);
 			else if (attribute_type == "color")
             {
-                int r = atoi(element->Attribute("r"));
-                int g = atoi(element->Attribute("g"));
-                int b = atoi(element->Attribute("b"));
+                mr = atoi(element->Attribute("r"));
+                mg = atoi(element->Attribute("g"));
+                mb = atoi(element->Attribute("b"));
 
-                bg.rec.setFillColor( sf::Color(r,g,b) );
+                //bg.rec.setFillColor( sf::Color(r,g,b) );
             }
             else if (attribute_type == "score")
             {
                 gold = atoi(element->Attribute("gold"));
                 silver = atoi(element->Attribute("silver"));
+                par = gold;
+                ps.one_star = gold;
+                ps.two_star = silver;
             }
 
 			element = element->NextSiblingElement("object");

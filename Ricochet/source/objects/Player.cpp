@@ -32,6 +32,7 @@ void Player::onDestroy()
     explode_emitter.enabled = true;
     explode_emitter.v = getVelocity();
     draw_player = false;
+    m_active = false;
 
     if (!gdata.show_progress)
     {
@@ -96,9 +97,9 @@ void Player::onCollision(Object* objectB)
 
 void Player::onPostPhysicsUpdate()
 {
-    Vector2 vel = getVelocity();
-    if (vel.x != 0 && vel.y != 0)
+    if (m_active)
     {
+        Vector2 vel = getVelocity();
         vel.setMagnitude(currentSpeed);
         setLinearVelocity(vel);
     }

@@ -97,6 +97,11 @@ class StateGame : public IState
 
 		float cx = 20;
 
+		int     mr = false; // make_red
+		int     mg = false; // make_green
+		int     mb = false; // make_blue
+		int     par = 0;
+
         private:
             void createPlatform(XMLElement* element,Toggle* t = nullptr);
             void createWall(XMLElement* element);

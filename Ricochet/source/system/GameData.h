@@ -55,6 +55,9 @@ class GameData
 		Vector2         p2;
 		bool            show_progress = false;
 
+		bool            show_help = false;
+		bool            random_colors = false;
+
 		int             bounce_counter = 0;
 
 		vector<AchievementBar*> achieves;

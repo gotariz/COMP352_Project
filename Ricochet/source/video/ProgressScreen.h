@@ -42,17 +42,18 @@ class ProgressScreen
         void init();
         void draw();
         void handleEvents();
-        void setStars(int n, int b, int min_b);
+        void setStars(int n, int b);
         void update();
 
         float elapsed = 0;
         int stars = 1;
         bool fading = true;
 
+        int one_star = 0;
+        int two_star = 0;
     protected:
 
         int bounces = 0;
-        int min_bounces = 0;
 
         sf::Sprite star;
         sf::Sprite glow;

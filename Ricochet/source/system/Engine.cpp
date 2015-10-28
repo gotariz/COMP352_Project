@@ -31,7 +31,7 @@ void Engine::draw()
 {
     for (int i =0; i < gdata.achieves.size(); ++i)
     {
-        gdata.achieves.at(i)->draw(10,(gdata.settings->getScreenHeight() - 60) - (60 * i) );
+        gdata.achieves.at(i)->draw((gdata.settings->getScreenWidth() / 2) - 250,(gdata.settings->getScreenHeight() - 120) - (60 * i) );
     }
 }
 

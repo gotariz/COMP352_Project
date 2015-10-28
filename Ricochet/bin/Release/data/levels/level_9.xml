@@ -4,7 +4,7 @@
 <root>
 	<object type="score" gold="7" silver="10" />
 	<object type="text" pos="-9.9,-8.1" rotation="0" text="LVL 9 | PAR 7" r="255" g="255" b="255" a="100" font="segoe-ui-light-48" h_align="left" v_align="bottom" />
-	<object type="color" r="55" g="18" b="23" />
+	<object type="color" r="1" g="0" b="0" />
 	<!-- HOLE -->
 	
 	<object type="hole" position="-7,7" />

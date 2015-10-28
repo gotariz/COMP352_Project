@@ -99,6 +99,15 @@ void InputHandler::handlePlayerEvents()
         gdata.angle_snap = angle_snap;
     }
 
+    if (gdata.keys[sf::Keyboard::F1].isKeyPressed)
+    {
+        gdata.show_help = !gdata.show_help;
+    }
+
+    if (gdata.keys[sf::Keyboard::C].isKeyPressed)
+    {
+        gdata.random_colors = !gdata.random_colors;
+    }
 
 	if (gdata.keys[KEY_MOUSE_LEFT].isKeyPressed)
 	{

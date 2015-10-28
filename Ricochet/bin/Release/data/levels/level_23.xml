@@ -4,17 +4,15 @@
 <root>
 	<object type="score" gold="1" silver="2" />
 	<object type="text" pos="0,-6" rotation="0" text="LVL 23 | PAR 1" r="255" g="255" b="255" a="100" font="segoe-ui-light-48" h_align="middle" v_align="bottom" />
-	<object type="color" r="14" g="57" b="30" />
+	<object type="color" r="0" g="1" b="0" />
 	<!-- HOLE -->
 	<object type="hole" position="-13,0" />
 
 	<!-- LASERS -->
 	<object type="laser" position="-7,6" rotation="0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
 	<object type="laser" position="-7,-6" rotation="0" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
-	<object type="laser" position="12.5,10.5" rotation="270" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
-	<object type="laser" position="13,-10.5" rotation="90" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
-	<object type="laser" position="1.6,10.5" rotation="315" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
-	<object type="laser" position="1.6,-10.5" rotation="45" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="5.5,6.5" rotation="315" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
+	<object type="laser" position="5.5,-6.5" rotation="45" p1="0,0" p2="5,0" moving="0" duration="5" time="0" start_angle="270" delta_angle="0" rotation_duration="1" rotating="0" rotation_time="0"/>
 	
 	<!-- switches -->
 	<object type="switch" switch_type="3" time="3" position="3.5,0">
@@ -40,8 +38,8 @@
 	<!-- PLATFORMS -->
 
 	<!-- BORDER -->
-	<object type="wall" position="0,13" size="38,5" rotation="0"/> 		<!-- top -->
-	<object type="wall" position="0,-13" size="38,5" rotation="0"/> 	<!-- bottom -->
+	<object type="wall" position="0,9" size="38,5" rotation="0"/> 		<!-- top -->
+	<object type="wall" position="0,-9" size="38,5" rotation="0"/> 	<!-- bottom -->
 	<object type="wall" position="-21.5,0" size="5,31" rotation="0"/> 	<!-- left -->
 	<object type="wall" position="21.5,0" size="5,31" rotation="0"/> 	<!-- right -->
 	

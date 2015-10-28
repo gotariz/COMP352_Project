@@ -3,7 +3,7 @@
 
 #include "general.h"
 
-#include "objects/Object.h"
+#include "objects/gObject.h"
 #include "system/GameData.h"
 
 class ObjectManager

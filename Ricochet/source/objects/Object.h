@@ -19,6 +19,7 @@ class Object
         sf::Sprite              m_image;
 		int						m_type = NONE;
         std::string             m_name = "";
+        bool                    m_active = true;
 
         bool                    m_lockPosition = false;
         bool                    m_lockRotation = false;
