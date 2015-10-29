@@ -148,11 +148,11 @@ void StateMenu::load()
     cout << "Level count: " << levelCount << endl;
 
     //! CHANGE THIS WHEN MORE LEVELS ADDED !//
-    for (int j = 0; j < 3 ; j++ )
+    for (int j = 0; j < 4 ; j++ )
     {
         // 9 levels per world
         int counter = 10;
-        if(j == 2)
+        if(j == 3)
             counter = 9;
 
         for (int i = 1; i < counter ; i++ )
@@ -175,23 +175,16 @@ void StateMenu::load()
 
     leftLevel = world[selectedWorld].size()-1;
 
-
     mx = gdata.settings->getScreenWidth() - 400;
     tx = gdata.settings->getScreenWidth() + 10;
     y = gdata.settings->getScreenHeight() - 40 - (78 * 4);
     x = mx;
-//
-//    lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(selectedLevel)));
-//    leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(leftLevel)));
-//    rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(rightLevel)));
-//    lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(lbLevel)));
-//    rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(rbLevel)));
 
-    lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
-    leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
-    rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
-    lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
-    rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(1)));
+    lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedLevel])));
+    leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][leftLevel])));
+    rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][rightLevel])));
+    lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][lbLevel])));
+    rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][rbLevel])));
 
     cx = gdata.settings->getScreenWidth()/2;
     rx = gdata.settings->getScreenWidth() - (rightLvlShot.getTexture()->getSize().x/5) - 20;
@@ -684,14 +677,16 @@ void StateMenu::handleEvents()
 
             else if (gdata.keys[sf::Keyboard::Right].isKeyPressed)
             {
-                if(!slideLeft && !slideRight)
+                if(!slideLeft && !slideRight && (selectedWorld < 3 || selectedLevel < world[3].size()-1))
                     slideLeft = true;
             }
 
             else if (gdata.keys[sf::Keyboard::Left].isKeyPressed)
             {
-                if(!slideLeft && !slideRight)
+                if(!slideLeft && !slideRight && (selectedWorld > 0 || selectedLevel > 0)) //world[selectedWorld][selectedLevel]
                     slideRight = true;
+                else
+                    cout << selectedWorld << ", " << selectedLevel << endl;
             }
 
             else if (gdata.keys[sf::Keyboard::Down].isKeyPressed)
@@ -861,30 +856,6 @@ void StateMenu::update()
                 transitioning = false;
                 x = mx;
             }
-//            if(menuState == MENU_LEVELS)
-//            {
-//                if(lvlShot.getColor().r < 255 )
-//                    lvlShot.setColor(sf::Color(lvlShot.getColor().r + (255)*(gdata.m_timeDelta * (1/dur)),
-//                                               lvlShot.getColor().g + (255)*(gdata.m_timeDelta * (1/dur)),
-//                                               lvlShot.getColor().b + (255)*(gdata.m_timeDelta * (1/dur)),
-//                                               lvlShot.getColor().a + (255)*(gdata.m_timeDelta * (1/dur))));
-//                else
-//                    lvlShot.setColor(sf::Color(255,255,255,255));
-//                if(rightLvlShot.getColor().r < 150 )
-//                    rightLvlShot.setColor(sf::Color(rightLvlShot.getColor().r + (150)*(gdata.m_timeDelta * (1/dur)),
-//                                                    rightLvlShot.getColor().g + (150)*(gdata.m_timeDelta * (1/dur)),
-//                                                    rightLvlShot.getColor().b + (150)*(gdata.m_timeDelta * (1/dur)),
-//                                                    rightLvlShot.getColor().a + (200)*(gdata.m_timeDelta * (1/dur))));
-//                else
-//                    rightLvlShot.setColor(sf::Color(150,150,150,200));
-//                if(leftLvlShot.getColor().r < 150 )
-//                    leftLvlShot.setColor(sf::Color(leftLvlShot.getColor().r + (150)*(gdata.m_timeDelta * (1/dur)),
-//                                                   leftLvlShot.getColor().g + (150)*(gdata.m_timeDelta * (1/dur)),
-//                                                   leftLvlShot.getColor().b + (150)*(gdata.m_timeDelta * (1/dur)),
-//                                                   leftLvlShot.getColor().a + (200)*(gdata.m_timeDelta * (1/dur))));
-//                else
-//                    leftLvlShot.setColor(sf::Color(150,150,150,200));
-//            }
         }
         else if (!slideIn)
         {
@@ -895,30 +866,6 @@ void StateMenu::update()
                 menuState = pushMenu;
                 x = tx;
             }
-//            if(menuState == MENU_LEVELS)
-//            {
-//                if(lvlShot.getColor().r > 0 )
-//                    lvlShot.setColor(sf::Color(lvlShot.getColor().r - (255)*(gdata.m_timeDelta * (1/dur)),
-//                                               lvlShot.getColor().g - (255)*(gdata.m_timeDelta * (1/dur)),
-//                                               lvlShot.getColor().b - (255)*(gdata.m_timeDelta * (1/dur)),
-//                                               lvlShot.getColor().a - (255)*(gdata.m_timeDelta * (1/dur))));
-//                else
-//                    lvlShot.setColor(sf::Color(0,0,0,0));
-//                if(rightLvlShot.getColor().r > 0 )
-//                    rightLvlShot.setColor(sf::Color(rightLvlShot.getColor().r - (150)*(gdata.m_timeDelta * (1/dur)),
-//                                                    rightLvlShot.getColor().g - (150)*(gdata.m_timeDelta * (1/dur)),
-//                                                    rightLvlShot.getColor().b - (150)*(gdata.m_timeDelta * (1/dur)),
-//                                                    rightLvlShot.getColor().a - (200)*(gdata.m_timeDelta * (1/dur))));
-//                else
-//                    rightLvlShot.setColor(sf::Color(0,0,0,0));
-//                if(leftLvlShot.getColor().r > 0 )
-//                    leftLvlShot.setColor(sf::Color(leftLvlShot.getColor().r - (150)*(gdata.m_timeDelta * (1/dur)),
-//                                                   leftLvlShot.getColor().g - (150)*(gdata.m_timeDelta * (1/dur)),
-//                                                   leftLvlShot.getColor().b - (150)*(gdata.m_timeDelta * (1/dur)),
-//                                                   leftLvlShot.getColor().a - (200)*(gdata.m_timeDelta * (1/dur))));
-//                else
-//                    leftLvlShot.setColor(sf::Color(0,0,0,0));
-//            }
         }
     }
 
@@ -1124,16 +1071,16 @@ void StateMenu::update()
 
 void StateMenu::refreshTextures()
 {
-//            lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][selectedLevel])));
-//            leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][leftLevel])));
-//            rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][rightLevel])));
-//            lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][lbLevel])));
-//            rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][rbLevel])));
-    lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
-    leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
-    rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
-    lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
-    rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
+            lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][selectedLevel])));
+            leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][leftLevel])));
+            rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][rightLevel])));
+            lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][lbLevel])));
+            rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][rbLevel])));
+//    lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
+//    leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
+//    rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
+//    lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
+//    rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
 }
 
 void StateMenu::updateMenuBox()

@@ -14,6 +14,7 @@
 	<asset type="image" path="media/images/hole_off.png" />
 	<asset type="image" path="media/images/switch_off.png" />
 	<asset type="image" path="media/images/switch_on.png" />
+	
 	<asset type="image" path="media/images/Screencap_Level_1.png" />
 	<asset type="image" path="media/images/Screencap_Level_2.png" />
 	<asset type="image" path="media/images/Screencap_Level_3.png" />
@@ -26,6 +27,29 @@
 	<asset type="image" path="media/images/Screencap_Level_10.png" />
 	<asset type="image" path="media/images/Screencap_Level_11.png" />
 	<asset type="image" path="media/images/Screencap_Level_12.png" />
+	<asset type="image" path="media/images/Screencap_Level_13.png" />
+	<asset type="image" path="media/images/Screencap_Level_14.png" />
+	<asset type="image" path="media/images/Screencap_Level_15.png" />
+	<asset type="image" path="media/images/Screencap_Level_16.png" />
+	<asset type="image" path="media/images/Screencap_Level_17.png" />
+	<asset type="image" path="media/images/Screencap_Level_18.png" />
+	<asset type="image" path="media/images/Screencap_Level_19.png" />
+	<asset type="image" path="media/images/Screencap_Level_20.png" />
+	<asset type="image" path="media/images/Screencap_Level_21.png" />
+	<asset type="image" path="media/images/Screencap_Level_22.png" />
+	<asset type="image" path="media/images/Screencap_Level_23.png" />
+	<asset type="image" path="media/images/Screencap_Level_24.png" />
+	<asset type="image" path="media/images/Screencap_Level_25.png" />
+	<asset type="image" path="media/images/Screencap_Level_26.png" />
+	<asset type="image" path="media/images/Screencap_Level_27.png" />
+	<asset type="image" path="media/images/Screencap_Level_28.png" />
+	<asset type="image" path="media/images/Screencap_Level_29.png" />
+	<asset type="image" path="media/images/Screencap_Level_30.png" />
+	<asset type="image" path="media/images/Screencap_Level_31.png" />
+	<asset type="image" path="media/images/Screencap_Level_32.png" />
+	<asset type="image" path="media/images/Screencap_Level_33.png" />
+	<asset type="image" path="media/images/Screencap_Level_34.png" />
+	<asset type="image" path="media/images/Screencap_Level_35.png" />
 
 	<!-- SOUNDS -->
 	<asset type="sound" path="media/sounds/AchievementUnlocked.wav" />
