@@ -29,7 +29,8 @@ class StateMenu : public IState
         virtual void freeResources();
         virtual void start();
 
-        bool isTouching(Vector2 point, sf::RectangleShape mRec);
+        bool isTouching(Vector2 point, sf::RectangleShape box);
+        bool isTouching(Vector2 point, sf::Sprite box);
 
         void updateMenuBox();
         void updateOpsBox();

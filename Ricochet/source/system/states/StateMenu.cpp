@@ -10,13 +10,24 @@ StateMenu::~StateMenu()
     //dtor
 }
 
-bool StateMenu::isTouching(Vector2 point, sf::RectangleShape mRec)
+bool StateMenu::isTouching(Vector2 point, sf::RectangleShape box)
 {
-    if (point.x < mRec.getPosition().x) return false;
-    if (point.y < mRec.getPosition().y) return false;
+    if (point.x < box.getPosition().x) return false;
+    if (point.y < box.getPosition().y) return false;
 
-    if (point.x > mRec.getPosition().x + mRec.getSize().x - 1) return false;
-    if (point.y > mRec.getPosition().y + mRec.getSize().y - 1) return false;
+    if (point.x > box.getPosition().x + box.getSize().x - 1) return false;
+    if (point.y > box.getPosition().y + box.getSize().y - 1) return false;
+
+    return true;
+}
+
+bool StateMenu::isTouching(Vector2 point, sf::Sprite box)
+{
+    if (point.x < box.getPosition().x - ((box.getTexture()->getSize().x /2)* box.getScale().x)) return false;
+    if (point.y < box.getPosition().y - ((box.getTexture()->getSize().y /2)* box.getScale().y)) return false;
+
+    if (point.x > box.getPosition().x + ((box.getTexture()->getSize().x /2)* box.getScale().x) - 1) return false;
+    if (point.y > box.getPosition().y + ((box.getTexture()->getSize().y /2)* box.getScale().y) - 1) return false;
 
     return true;
 }
@@ -685,8 +696,6 @@ void StateMenu::handleEvents()
             {
                 if(!slideLeft && !slideRight && (selectedWorld > 0 || selectedLevel > 0)) //world[selectedWorld][selectedLevel]
                     slideRight = true;
-                else
-                    cout << selectedWorld << ", " << selectedLevel << endl;
             }
 
             else if (gdata.keys[sf::Keyboard::Down].isKeyPressed)
@@ -725,12 +734,33 @@ void StateMenu::handleEvents()
                     gdata.gamestate = STATE_GAME;
                 }
             }
-
-            else if (gdata.keys[sf::Keyboard::Space].isKeyPressed)
+            else if(gdata.keys[KEY_MOUSE_LEFT].isKeyPressed)
             {
-//               cout << "lx:" << lx + ((leftLvlShot.getSize().x * leftLvlShot.getScale().x) /2)
-//                    << " cx:" << cx
-//                    << " rx:" << rx - ((rightLvlShot.getSize().x * rightLvlShot.getScale().x) /2) << endl;
+
+                if (isTouching(gdata.mouse_raw, rightLvlShot))
+                {
+                    gdata.audio->playSound("click");
+                    if(!slideLeft && !slideRight && (selectedWorld < 3 || selectedLevel < world[3].size()-1))
+                        slideLeft = true;
+                }
+
+                else if (isTouching(gdata.mouse_raw, leftLvlShot))
+                {
+                    gdata.audio->playSound("click");
+                    if(!slideLeft && !slideRight && (selectedWorld > 0 || selectedLevel > 0)) //world[selectedWorld][selectedLevel]
+                        slideRight = true;
+                }
+
+                else if (isTouching(gdata.mouse_raw, lvlShot))
+                {
+                    gdata.audio->playSound("click");
+                    if(!slideLeft && !slideRight) //world[selectedWorld][selectedLevel]
+                        if(!locked)
+                        {
+                            gdata.level = world[selectedWorld][selectedLevel];
+                            gdata.gamestate = STATE_GAME;
+                        }
+                }
             }
         }
     }
@@ -837,6 +867,10 @@ void StateMenu::update()
         {
             selectedOption = 6;
         }
+    }
+    else if(menuState == MENU_LEVELS)
+    {
+
     }
 
     mx = gdata.settings->getScreenWidth() - 400;
@@ -1071,11 +1105,11 @@ void StateMenu::update()
 
 void StateMenu::refreshTextures()
 {
-            lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][selectedLevel])));
-            leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][leftLevel])));
-            rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][rightLevel])));
-            lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][lbLevel])));
-            rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][rbLevel])));
+    lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][selectedLevel])));
+    leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][leftLevel])));
+    rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][rightLevel])));
+    lbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][lbLevel])));
+    rbLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[selectedWorld][rbLevel])));
 //    lvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
 //    leftLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
 //    rightLvlShot.setTexture(*gdata.assets->getTexture("Screencap_Level_"+gz::toString(world[0][selectedWorld])));
