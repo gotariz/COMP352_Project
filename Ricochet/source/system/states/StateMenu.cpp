@@ -1189,7 +1189,6 @@ void StateMenu::updateOpsBox()
 
 void StateMenu::draw()
 {
-    gdata.window->clear(sf::Color(255,255,255,255));
     bg.draw();
 
 //    font.drawString(10, 10, gz::toString(gdata.mouse.x) + " " + gz::toString(gdata.mouse.y));
@@ -1317,8 +1316,6 @@ void StateMenu::draw()
 
     gdata.window->draw(t_bar);
     gdata.window->draw(b_bar);
-
-    gdata.window->display();
 }
 
 void StateMenu::freeResources()
