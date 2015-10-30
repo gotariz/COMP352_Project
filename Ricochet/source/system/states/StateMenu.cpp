@@ -738,7 +738,7 @@ void StateMenu::handleEvents()
             }
             else if(gdata.keys[KEY_MOUSE_LEFT].isKeyPressed)
             {
-                if(rightLevel <= levelCount)
+                if(selectedLevel < levelCount)
                 {
                     if (isTouching(gdata.mouse_raw, rightLvlShot))
                     {
@@ -747,7 +747,7 @@ void StateMenu::handleEvents()
                             slideLeft = true;
                     }
                 }
-                if(leftLevel > 0)
+                if(selectedLevel > 1)
                 {
                     if (isTouching(gdata.mouse_raw, leftLvlShot))
                     {
@@ -757,7 +757,7 @@ void StateMenu::handleEvents()
                     }
                 }
 
-                else if (isTouching(gdata.mouse_raw, lvlShot))
+                if (isTouching(gdata.mouse_raw, lvlShot))
                 {
                     gdata.audio->playSound("click");
                     if(!slideLeft && !slideRight)
@@ -1310,7 +1310,7 @@ void StateMenu::draw()
                 font.drawString(x + 25, y + (78*i), optionsItems[i]);
                 if(!transitioning)
                 {
-                    font.setColor(sf::Color::White);
+                    font.setColor(sf::Color::White);https://i.imgur.com/kI25oKC.jpg
                     font.drawString(x - 20, y + (78*i),optionsSettings[i][selectedOps[i]],Align::RIGHT);
                 }
             }
