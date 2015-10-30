@@ -15,6 +15,7 @@
 	<asset type="image" path="media/images/switch_off.png" />
 	<asset type="image" path="media/images/switch_on.png" />
 	
+	<asset type="image" path="media/images/Screencap_Level_0.png" />	
 	<asset type="image" path="media/images/Screencap_Level_1.png" />
 	<asset type="image" path="media/images/Screencap_Level_2.png" />
 	<asset type="image" path="media/images/Screencap_Level_3.png" />

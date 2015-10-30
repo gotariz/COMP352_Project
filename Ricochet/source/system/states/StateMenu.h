@@ -143,12 +143,12 @@ class StateMenu : public IState
         int pushMenu = -1;
 
         //count the levels for level select
-        int levelCount = 0;
-        int selectedLevel = 0;
+        int levelCount = 35;
+        int selectedLevel = 1;
         int leftLevel = 0;
-        int rightLevel = 1;
+        int rightLevel = 2;
         int lbLevel = 0;
-        int rbLevel = 0;
+        int rbLevel = 3;
 
         //center, left and right x for level screenshots
         float cx = 0;
