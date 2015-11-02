@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
 	<!-- IMAGES -->
+	<asset type="image" path="media/images/level_complete.png" />
+	<asset type="image" path="media/images/score_bar.png" />
+	<asset type="image" path="media/images/title.png" />
 	<asset type="image" path="media/images/title.png" />
 	<asset type="image" path="media/images/glow.png" />
 	<asset type="image" path="media/images/star.png" />

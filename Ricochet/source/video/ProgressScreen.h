@@ -55,8 +55,10 @@ class ProgressScreen
 
         int bounces = 0;
 
-        sf::Sprite star;
         sf::Sprite glow;
+
+        sf::Sprite lvl_complete;
+        sf::Sprite score_bar;
 
         Button btn_redo;
         Button btn_next;
