@@ -5,7 +5,7 @@
  <!-- once the top of the platform on the most right the 8th line from the top at angle 256 at power 82 -->
 <root>
 	<object type="score" gold="7" silver="12" />
-	<object type="text" pos="0,-9.5" rotation="0" text="LVL 16 | PAR 7" r="255" g="255" b="255" a="100" font="segoe-ui-light-48" h_align="middle" v_align="bottom" />
+	<object type="text" pos="0,-9.5" rotation="0" text="level 16" r="255" g="255" b="255" a="100" font="elemental-end-30" h_align="middle" v_align="bottom" />
 	<object type="color" r="0" g="0" b="1" />
 	<!-- HOLE -->
 	<object type="hole" position="-16,0" />

@@ -3,7 +3,7 @@
  <!-- ORIGINAL LEVEL 18-->
 <root>
 	<object type="score" gold="32" silver="40" />
-	<object type="text" pos="0,-7.1" rotation="0" text="LVL 25 | PAR 32" r="255" g="255" b="255" a="100" font="segoe-ui-light-48" h_align="middle" v_align="bottom" />
+	<object type="text" pos="0,-7" rotation="0" text="level 25" r="255" g="255" b="255" a="100" font="elemental-end-30" h_align="middle" v_align="bottom" />
 	<object type="color" r="0" g="1" b="0" />
 	<!-- HOLE -->
 	<object type="hole" position="0,5" />
@@ -11,6 +11,7 @@
 	<!-- switches -->
 	<object type="switch" switch_type="3" time="3" position="-6.5,5.5">
 		<object type="laser" position="-3,2.5" rotation="0" switch_bits="4" disabled="0"/>
+		<!--<object type="platform" position="0,2.5" size = "6,0.5" rotation="0" switch_bits="4" disabled="0"/>-->
 	</object>
 	
 	<object type="switch" switch_type="3" time="3" position="6.5,5.5">

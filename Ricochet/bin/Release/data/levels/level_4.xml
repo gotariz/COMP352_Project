@@ -3,7 +3,7 @@
 <!-- ORIGINAL LEVEL 3 -->
 <root>
 	<object type="score" gold="1" silver="3" />
-	<object type="text" pos="1.5,0.4" rotation="0" text="LVL 4 | PAR 1" r="255" g="255" b="255" a="100" font="segoe-ui-light-48" h_align="left" v_align="bottom" />
+	<object type="text" pos="1.5,0.5" rotation="0" text="level 4" r="255" g="255" b="255" a="100" font="elemental-end-30" h_align="left" v_align="bottom" />
 	<object type="color" r="1" g="0" b="0" />
 	<!-- HOLE -->
 	<object type="hole" position="10,3" />
