@@ -231,24 +231,34 @@ void ProgressScreen::draw()
     gdata.window->draw(s_silver);
     gdata.window->draw(s_gold);
 
+    int st = 255;
+    int gt = 255;
     if (stars == 1)
     {
         s_silver.setColor(sf::Color(255,255,255,24));
         s_gold.setColor(sf::Color(255,255,255,24));
+        st = 32;
+        gt = 32;
     }
     if (stars == 2)
     {
         s_silver.setColor(sf::Color(255,255,255,255));
         s_gold.setColor(sf::Color(255,255,255,24));
+        st = 255;
+        gt = 32;
     }
     if (stars == 3)
     {
         s_silver.setColor(sf::Color(255,255,255,255));
         s_gold.setColor(sf::Color(255,255,255,255));
+        st = 255;
+        gt = 255;
     }
 
     txt.setColor(sf::Color::Black);
+    txt.setTransparency(st);
     txt.drawString(cx,ty+95,gz::toString(two_star),Align::MIDDLE);
+    txt.setTransparency(gt);
     txt.drawString(cx+152,ty+95,gz::toString(one_star),Align::MIDDLE);
 }
 
