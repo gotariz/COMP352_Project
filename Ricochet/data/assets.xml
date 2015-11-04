@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
 	<!-- IMAGES -->
+	<asset type="image" path="media/images/bronze.png" />
+	<asset type="image" path="media/images/silver.png" />
+	<asset type="image" path="media/images/gold.png" />
+	
 	<asset type="image" path="media/images/level_complete.png" />
-	<asset type="image" path="media/images/score_bar.png" />
-	<asset type="image" path="media/images/title.png" />
 	<asset type="image" path="media/images/title.png" />
 	<asset type="image" path="media/images/glow.png" />
-	<asset type="image" path="media/images/star.png" />
 	<asset type="image" path="media/images/trophey.png" />
 	<asset type="image" path="media/images/achieve_glow.png" />
 	<asset type="image" path="media/images/loading.png" />

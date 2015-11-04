@@ -88,7 +88,7 @@ void ProgressScreen::init()
     int cy = sh / 2;
 
     int w  = 460;
-    int h  = 190;
+    int h  = 280;
     int tx = cx - (w / 2);
     int ty = cy - (h / 2);
 
@@ -127,14 +127,26 @@ void ProgressScreen::init()
     glow.setPosition(sw/2,sh/2);
 
     txt.setWindow(gdata.window);
-    txt.setFont(gdata.assets->getFont("purista-medium-14"));
+    txt.setFont(gdata.assets->getFont("segoe-ui-light-48"));
     txt.setColor(sf::Color::White);
 
     lvl_complete.setTexture( *gdata.assets->getTexture("level_complete") );
-    score_bar.setTexture( *gdata.assets->getTexture("score_bar") );
+
+    s_bronze.setTexture(*gdata.assets->getTexture("bronze"));
+    s_silver.setTexture(*gdata.assets->getTexture("silver"));
+    s_gold.setTexture(*gdata.assets->getTexture("gold"));
+
+    s_bronze.setOrigin(75,121);
+    s_silver.setOrigin(75,121);
+    s_gold.setOrigin(75,121);
+
+    s_bronze.setPosition(cx - 152,cy + 35);
+    s_silver.setPosition(cx,cy + 35);
+    s_gold.setPosition(cx + 152,cy + 35);
+
+
 
     lvl_complete.setPosition(cx - 176,ty + 10);
-    score_bar.setPosition(tx + 17,ty + h - 95);
 }
 
 void ProgressScreen::setStars(int n, int b)
@@ -180,7 +192,7 @@ void ProgressScreen::draw()
     gdata.window->draw(glow);
 
     int w  = 460;
-    int h  = 190;
+    int h  = 280;
     int tx = cx - (w / 2);
     int ty = cy - (h / 2);
 
@@ -207,36 +219,37 @@ void ProgressScreen::draw()
     btn_menu.draw();
 
     gdata.window->draw(lvl_complete);
-    gdata.window->draw(score_bar);
+    //gdata.window->draw(score_bar);
 
-    txt.setColor(sf::Color::White);
-    txt.drawString(cx,cy - 10,"Bounces: " + gz::toString(gdata.bounce_counter),Align::MIDDLE, Align::BOTTOM);
+//    txt.setColor(sf::Color::White);
+//    txt.drawString(cx,cy - 10,"Bounces: " + gz::toString(gdata.bounce_counter),Align::MIDDLE, Align::BOTTOM);
 
     sf::RectangleShape r(sf::Vector2f(140,15));
     r.setFillColor(sf::Color(0,153,255));
 
-    if (stars > 0)
-    {
-        r.setPosition(tx + 18,ty + 96);
-        gdata.window->draw(r);
-    }
+    gdata.window->draw(s_bronze);
+    gdata.window->draw(s_silver);
+    gdata.window->draw(s_gold);
 
-    if (stars > 1)
+    if (stars == 1)
     {
-        r.setPosition(tx + 159,ty + 96);
-        gdata.window->draw(r);
+        s_silver.setColor(sf::Color(255,255,255,24));
+        s_gold.setColor(sf::Color(255,255,255,24));
     }
-
-    if (stars > 2)
+    if (stars == 2)
     {
-        r.setPosition(tx + 300,ty + 96);
-        gdata.window->draw(r);
+        s_silver.setColor(sf::Color(255,255,255,255));
+        s_gold.setColor(sf::Color(255,255,255,24));
+    }
+    if (stars == 3)
+    {
+        s_silver.setColor(sf::Color(255,255,255,255));
+        s_gold.setColor(sf::Color(255,255,255,255));
     }
 
     txt.setColor(sf::Color::Black);
-    txt.drawString(tx+87,ty+92,"+" + gz::toString(two_star),Align::MIDDLE);
-    txt.drawString(tx+228,ty+92,gz::toString(two_star),Align::MIDDLE);
-    txt.drawString(tx+369,ty+92,gz::toString(one_star),Align::MIDDLE);
+    txt.drawString(cx,ty+95,gz::toString(two_star),Align::MIDDLE);
+    txt.drawString(cx+152,ty+95,gz::toString(one_star),Align::MIDDLE);
 }
 
 void ProgressScreen::handleEvents()

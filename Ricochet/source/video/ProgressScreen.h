@@ -58,7 +58,10 @@ class ProgressScreen
         sf::Sprite glow;
 
         sf::Sprite lvl_complete;
-        sf::Sprite score_bar;
+
+        sf::Sprite s_bronze;
+        sf::Sprite s_silver;
+        sf::Sprite s_gold;
 
         Button btn_redo;
         Button btn_next;
