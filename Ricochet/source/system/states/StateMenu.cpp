@@ -240,7 +240,7 @@ void StateMenu::load()
 
     if (!gdata.bg_music)
     {
-        gdata.bg_music = gdata.audio->addMusic("Divider");
+        gdata.bg_music = gdata.audio->addMusic("music2");
         gdata.bg_music->loop(true);
     }
 
@@ -672,7 +672,7 @@ void StateMenu::handleEvents()
 
         else if(menuState == MENU_AWARDS) //Handle events within the achievements menu screen
         {
-            if(gdata.keys[sf::Keyboard::BackSpace].isKeyPressed)
+            if(gdata.keys[sf::Keyboard::BackSpace].isKeyPressed || gdata.keys[KEY_MOUSE_RIGHT].isKeyPressed)
             {
 //                menuState = MENU_MAIN;
                 transitioning = true;
@@ -682,7 +682,7 @@ void StateMenu::handleEvents()
 
         else if(menuState == MENU_LEVELS) //Handle events within the level select menu screen
         {
-            if(gdata.keys[sf::Keyboard::BackSpace].isKeyPressed)
+            if(gdata.keys[sf::Keyboard::BackSpace].isKeyPressed || gdata.keys[KEY_MOUSE_RIGHT].isKeyPressed)
             {
                 transitioning = true;
                 pushMenu = MENU_MAIN;
