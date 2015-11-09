@@ -330,7 +330,7 @@ void StateMenu::handleEvents()
             }
 
 
-            else if(event.key.code == sf::Keyboard::Return)
+            else if(gdata.keys[sf::Keyboard::Return].isKeyPressed)
             {
                 gdata.audio->playSound("click");
                 if(selected == 0) //Start
