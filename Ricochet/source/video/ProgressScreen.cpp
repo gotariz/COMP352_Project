@@ -111,7 +111,7 @@ void ProgressScreen::init()
     btn_menu.setSize(140,45);
     btn_menu.setPosition(tx + 160,btn_y);
     btn_menu.init();
-    btn_menu.name = "MAIN MENU";
+    btn_menu.name = "WATCH REPLAY";
 
     btn_next.c_idle = idle;
     btn_next.c_hover = hover;
@@ -276,6 +276,8 @@ void ProgressScreen::handleEvents()
         btn_next.clicked = false;
         gdata.show_progress = false;
         gdata.audio->playSound("click");
+        gdata.replay_level = false;
+        gdata.shotData.clear();
     }
 
     if (btn_redo.clicked)
@@ -284,14 +286,18 @@ void ProgressScreen::handleEvents()
         gdata.first_shot = true;
         btn_redo.clicked = false;
         gdata.show_progress = false;
+        gdata.replay_level = false;
         gdata.audio->playSound("click");
+        gdata.shotData.clear();
     }
 
     if (btn_menu.clicked)
     {
+        gdata.reload = true;
+        gdata.replay_level = true;
         // go back to main menu
-        gdata.gamestate = STATE_MENU;
-        btn_menu.clicked = false;
+//        gdata.gamestate = STATE_MENU;
+//        btn_menu.clicked = false;
         gdata.show_progress = false;
         gdata.audio->playSound("click");
     }

@@ -79,7 +79,7 @@ void ExplodeEmitter::createParticle()
 void ExplodeEmitter::drawParticles()
 {
     //ParticleEmitter::drawParticles();
-    for (int i = 0; i < particles.size(); ++i)
+    for (unsigned i = 0; i < particles.size(); ++i)
     {
         particles.at(i)->particle_draw();
     }

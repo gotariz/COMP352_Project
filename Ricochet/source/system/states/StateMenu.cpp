@@ -73,7 +73,7 @@ void StateMenu::load()
     }
 
     vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
-    for (int i = 0; i < modes.size(); i++)
+    for (unsigned i = 0; i < modes.size(); i++)
     {
         sf::VideoMode mode = modes[i];
         res.push_back(gz::toString(mode.width) + "x" + gz::toString(mode.height));
@@ -174,15 +174,6 @@ void StateMenu::load()
         levelsInWorld.clear();
     }
 
-    for (int i=0; i < world.size(); i++)
-    {
-        cout << "World: " << i << " Levels: ";
-        for (int j =0; j < world[i].size(); j++)
-        {
-            cout << world[i][j] << ", ";
-        }
-        cout << endl;
-    }
     //hard coded because buggy
     levelCount = 35;
 
@@ -334,7 +325,7 @@ void StateMenu::handleEvents()
             else if (gdata.keys[sf::Keyboard::Down].isKeyPressed)
             {
                 selected += 1;
-                if(selected > menuItems.size() -1)
+                if(selected > static_cast<signed>(menuItems.size()) -1)
                     selected = 0;
             }
 
@@ -421,7 +412,7 @@ void StateMenu::handleEvents()
                 else if(isTouching(gdata.mouse_raw, opsBox7))
                 {
                     selectedOps[selectedOption] += 1;
-                    if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
+                    if(selectedOps[selectedOption] > static_cast<signed>(optionsSettings[selectedOption].size())-1)
                         selectedOps[selectedOption] = 0;
                     selectedSave = selectedOps[selectedOption];
                 }
@@ -431,42 +422,42 @@ void StateMenu::handleEvents()
                 if(isTouching(gdata.mouse_raw, opsBox1))
                 {
                     selectedOps[selectedOption] += 1;
-                    if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
+                    if(selectedOps[selectedOption] > static_cast<signed>(optionsSettings[selectedOption].size())-1)
                         selectedOps[selectedOption] = 0;
                     selectedVSync = selectedOps[selectedOption];
                 }
                 else if(isTouching(gdata.mouse_raw, opsBox2))
                 {
                     selectedOps[selectedOption] += 1;
-                    if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
+                    if(selectedOps[selectedOption] > static_cast<signed>(optionsSettings[selectedOption].size())-1)
                         selectedOps[selectedOption] = 0;
                     selectedFs = selectedOps[selectedOption];
                 }
                 else if(isTouching(gdata.mouse_raw, opsBox3))
                 {
                     selectedOps[selectedOption] += 1;
-                    if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
+                    if(selectedOps[selectedOption] > static_cast<signed>(optionsSettings[selectedOption].size())-1)
                         selectedOps[selectedOption] = 0;
                     selectedRes = selectedOps[selectedOption];
                 }
                 else if(isTouching(gdata.mouse_raw, opsBox4))
                 {
                     selectedOps[selectedOption] += 1;
-                    if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
+                    if(selectedOps[selectedOption] > static_cast<signed>(optionsSettings[selectedOption].size())-1)
                         selectedOps[selectedOption] = 0;
                     selectedFPS = selectedOps[selectedOption];
                 }
                 else if(isTouching(gdata.mouse_raw, opsBox5))
                 {
                     selectedOps[selectedOption] += 1;
-                    if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
+                    if(selectedOps[selectedOption] > static_cast<signed>(optionsSettings[selectedOption].size())-1)
                         selectedOps[selectedOption] = 0;
                     selectedMus = selectedOps[selectedOption];
                 }
                 else if(isTouching(gdata.mouse_raw, opsBox6))
                 {
                     selectedOps[selectedOption] += 1;
-                    if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
+                    if(selectedOps[selectedOption] > static_cast<signed>(optionsSettings[selectedOption].size())-1)
                         selectedOps[selectedOption] = 0;
                     selectedSFX = selectedOps[selectedOption];
                 }
@@ -503,14 +494,7 @@ void StateMenu::handleEvents()
                         gdata.audio->setVolumeMusic(gdata.settings->getVolume());
                         gdata.audio->setVolumeSFX(gdata.settings->getSFX());
 
-                        cout << "\n<----------------------SETTINGS SAVED-------------------------->\n"
-                             << "\tvSync:\t\t\t\t" << vSyncMode << "\n"
-                             << "\tFullscreen:\t\t\t" << selectedFs << "\n"
-                             << "\tResolution:\t\t\t" << gz::splitString(optionsSettings[2][selectedRes], 'x')[0] << "x"
-                             << gz::splitString(optionsSettings[2][selectedRes], 'x')[1] << "\n"
-                             << "\tFPS Limit:\t\t\t" << gz::stringToUnsigned(optionsSettings[3][selectedFPS]) << "\n"
-                             << "\tVolume:\t\t\t\t" << gz::stringToUnsigned(optionsSettings[4][selectedMus]) << "\n"
-                             << "\tSFX:\t\t\t\t" << gz::stringToUnsigned(optionsSettings[4][selectedSFX]) << endl;
+                        cout << "settings saved" << endl;
 
                         mx = gdata.settings->getScreenWidth() - 400;
                         tx = gdata.settings->getScreenWidth() + 10;
@@ -574,14 +558,7 @@ void StateMenu::handleEvents()
                     gdata.audio->setVolumeMusic(gdata.settings->getVolume());
                     gdata.audio->setVolumeSFX(gdata.settings->getSFX());
 
-                    cout << "\n<----------------------SETTINGS SAVED-------------------------->\n"
-                         << "\tvSync:\t\t\t\t" << vSyncMode << "\n"
-                         << "\tFullscreen:\t\t\t" << selectedFs << "\n"
-                         << "\tResolution:\t\t\t" << gz::splitString(optionsSettings[2][selectedRes], 'x')[0] << "x"
-                         << gz::splitString(optionsSettings[2][selectedRes], 'x')[1] << "\n"
-                         << "\tFPS Limit:\t\t\t" << gz::stringToUnsigned(optionsSettings[3][selectedFPS]) << "\n"
-                         << "\tVolume:\t\t\t\t" << gz::stringToUnsigned(optionsSettings[4][selectedMus]) << "\n"
-                         << "\tSFX:\t\t\t\t" << gz::stringToUnsigned(optionsSettings[4][selectedSFX]) << endl;
+                    cout << "settings saved" << endl;
 
                     mx = gdata.settings->getScreenWidth() - 400;
                     tx = gdata.settings->getScreenWidth() + 10;
@@ -621,14 +598,14 @@ void StateMenu::handleEvents()
             else if (gdata.keys[sf::Keyboard::Down].isKeyPressed)
             {
                 selectedOption += 1;
-                if(selectedOption > optionsItems.size() -1)
+                if(selectedOption > static_cast<signed>(optionsItems.size()) -1)
                     selectedOption = 0;
             }
 
             else if (gdata.keys[sf::Keyboard::Right].isKeyPressed)
             {
                 selectedOps[selectedOption] += 1;
-                if(selectedOps[selectedOption] > optionsSettings[selectedOption].size()-1)
+                if(selectedOps[selectedOption] > static_cast<signed>(optionsSettings[selectedOption].size())-1)
                     selectedOps[selectedOption] = 0;
 
                 if(selectedOption == 0)
@@ -786,13 +763,12 @@ void StateMenu::reset()
     gdata.settings->saveSettings();
 
     vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
-    for (int i = 0; i < modes.size(); i++)
+    for (unsigned i = 0; i < modes.size(); i++)
     {
         sf::VideoMode mode = modes[i];
         if(mode.width == gdata.settings->getScreenWidth() && mode.height == gdata.settings->getScreenHeight())
         {
             selectedRes = (modes.size() - 1) - i;
-            cout << "selectedRes = " << i << endl;
         }
     }
     selectedOps[0] = 0;
@@ -1226,9 +1202,9 @@ void StateMenu::draw()
         gdata.window->draw(optionsBox);
         gdata.window->draw(startBox);
 
-        for(int i = 0; i < menuItems.size(); i++)
+        for(unsigned i = 0; i < menuItems.size(); i++)
         {
-            if(selected == i)
+            if(selected == static_cast<signed>(i))
             {
                 font.setColor(sf::Color::Black);
 
@@ -1297,9 +1273,9 @@ void StateMenu::draw()
         gdata.window->draw(opsBox6);
         gdata.window->draw(opsBox7);
 
-        for (int i = 0; i < optionsItems.size(); i++)
+        for (unsigned i = 0; i < optionsItems.size(); i++)
         {
-            if(selectedOption == i)
+            if(selectedOption == static_cast<signed>(i))
             {
                 rec.setPosition(x, y + (78*i));
                 rec.setSize(sf::Vector2f(500,70));
@@ -1310,7 +1286,7 @@ void StateMenu::draw()
                 font.drawString(x + 25, y + (78*i), optionsItems[i]);
                 if(!transitioning)
                 {
-                    font.setColor(sf::Color::White);https://i.imgur.com/kI25oKC.jpg
+                    font.setColor(sf::Color::White);
                     font.drawString(x - 20, y + (78*i),optionsSettings[i][selectedOps[i]],Align::RIGHT);
                 }
             }
@@ -1326,20 +1302,6 @@ void StateMenu::draw()
             }
         }
     }
-
-
-    sf::RectangleShape t_bar(sf::Vector2f(gdata.settings->getScreenWidth(),75));
-    t_bar.setFillColor(sf::Color::Black);
-    t_bar.setPosition(0,0);
-    t_bar.setOrigin(0,0);
-
-    sf::RectangleShape b_bar(sf::Vector2f(gdata.settings->getScreenWidth(),75));
-    b_bar.setFillColor(sf::Color::Black);
-    b_bar.setPosition(0,gdata.settings->getScreenHeight() - 75);
-    b_bar.setOrigin(0,0);
-
-    gdata.window->draw(t_bar);
-    gdata.window->draw(b_bar);
 }
 
 void StateMenu::freeResources()

@@ -4,8 +4,26 @@
 #include <vector>
 using namespace std;
 class Object;
+class Player;
 #include "utils/Vector2.h"
 #include "dependencies.h"
+
+struct BallShotData
+{
+    float time = 0;
+    float angle = 0;
+    int power = 0;
+    Player* p = nullptr;
+
+    bool shot = false;
+
+    BallShotData(float t, float a, float p)
+    {
+        time = t;
+        angle = a;
+        power = p;
+    }
+};
 
 struct TextData
 {

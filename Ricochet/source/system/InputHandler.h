@@ -41,6 +41,10 @@ class InputHandler
 		int  angle_snap = 0;
 		Vector2 vel;
 
+		float timer = 0;
+
+		bool show_replay = false;
+
     private:
 
         int         lastUsed = 0;

@@ -34,6 +34,10 @@ void StateGame::load()
     cout << "Loading Level " << gdata.level << endl;
     cout << "===================================================" << endl;
 
+    cout << "adjusting screen size:";
+	gdata.zoom = (gdata.settings->getScreenWidth() / 1900.f);
+	cout << "complete" << endl;
+
     cout << "setting RNG seed:";
     gzClock clock;
 	srand(clock.getCurrentTimeMilliseconds());
@@ -90,10 +94,6 @@ void StateGame::load()
 
     text_renderer.setWindow(gdata.window);
     cout << "complete" << endl;
-
-    cout << "adjusting screen size:";
-	gdata.zoom = (gdata.settings->getScreenWidth() / 1900.f);
-	cout << "complete" << endl;
 
     cout << "creating background:";
 	bg.bubble_alpha_range.set(0,8);
@@ -198,6 +198,9 @@ void StateGame::handleEvents()
 
 void StateGame::update()
 {
+    timer += gdata.m_timeDelta;
+    input.timer = timer;
+
 	manager.update();
 	bg.update();
 	ps.update();
@@ -208,6 +211,45 @@ void StateGame::update()
         achieve->init();
         achieve->setText("This is a test achievemet, hooray!");
         gdata.achieves.push_back(achieve);
+    }
+
+    if (gdata.replay_level && !replay)
+    {
+        timer = 0;
+        input.show_replay = false;
+        replay = true;
+
+        // add all the players to the world
+        shotData = gdata.shotData;
+        for (unsigned i = 0; i < shotData.size(); ++i)
+        {
+            Player* gplayer = new Player();
+            gplayer->setPhysicsObject(factory.createPlayer(startpos.x, startpos.y, gplayer));
+            gplayer->m_name = "Object: player";
+            gplayer->reset_pos = startpos;
+            gplayer->makeGhost();
+
+            manager.addObject(gplayer);
+
+            shotData.at(i).p = gplayer;
+        }
+    }
+
+    if (replay)
+    {
+        for (unsigned i = 0; i < shotData.size(); ++i)
+        {
+            Player* gplayer = shotData.at(i).p;
+
+            if (timer >= shotData.at(i).time && !shotData.at(i).shot)
+            {
+                shotData.at(i).shot = true;
+
+                gplayer->angle = shotData.at(i).angle;
+                gplayer->power = shotData.at(i).power;
+                gplayer->shootPlayer();
+            }
+        }
     }
 }
 
@@ -235,6 +277,8 @@ void StateGame::draw()
         Vector2 p = gdata.toScreenPixels(start);
         Vector2 n = gdata.toScreenPixels(start + dir);
         drawLine(p,n,50 * gdata.zoom,sf::Color(255,255,255,16));
+        drawLine(p,n,1,sf::Color(255,255,255,32));
+
 
         dir.setMagnitude( (static_cast<float>(input.power) / 100.f) * WORLD_SCALE * 0.4);
         Vector2 n2 = gdata.toScreenPixels(start + dir);
@@ -252,7 +296,6 @@ void StateGame::draw()
 	if (input.selecting)
     {
         float dist = 140;
-        float xo = 20;
         float duration = 0.25;
         if (input.angle <= 90 || (input.angle >= 180 && input.angle < 270))
         {
@@ -342,7 +385,7 @@ void StateGame::draw()
 
 void StateGame::render_texts()
 {
-    for (int i = 0; i < text_data.size(); ++i)
+    for (unsigned i = 0; i < text_data.size(); ++i)
     {
         TextData& td = text_data.at(i);
 
@@ -608,6 +651,10 @@ void StateGame::createWall(XMLElement* element)
 void StateGame::createPlayer(XMLElement* element)
 {
     Vector2 pos = Vector2(element->Attribute("position"));
+    startpos = pos;
+
+    if (gdata.replay_level) return;
+
     player = new Player();
     player->setPhysicsObject(factory.createPlayer(pos.x, pos.y, player));
     player->m_name = "Object: player";

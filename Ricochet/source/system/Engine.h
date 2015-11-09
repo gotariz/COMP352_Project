@@ -27,7 +27,6 @@ class Engine
 
     public: // public member variables
         bool            running;
-		Settings	    settings;
 		AssetManager    assets;
 		AudioManager    audio;
 

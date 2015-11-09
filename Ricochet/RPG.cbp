@@ -130,6 +130,8 @@
 		<Unit filename="source/utils/Interpolator.h" />
 		<Unit filename="source/utils/LinkedList.cpp" />
 		<Unit filename="source/utils/LinkedList.h" />
+		<Unit filename="source/utils/LoopInterpolator.cpp" />
+		<Unit filename="source/utils/LoopInterpolator.h" />
 		<Unit filename="source/utils/Utils.cpp" />
 		<Unit filename="source/utils/Utils.h" />
 		<Unit filename="source/utils/Vector2.cpp" />

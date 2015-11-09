@@ -29,9 +29,12 @@ void Engine::run()
 
 void Engine::draw()
 {
-    for (int i =0; i < gdata.achieves.size(); ++i)
+    for (unsigned i =0; i < gdata.achieves.size(); ++i)
     {
-        gdata.achieves.at(i)->draw((gdata.settings->getScreenWidth() / 2) - 250,(gdata.settings->getScreenHeight() - 120) - (60 * i) );
+        gdata.achieves.at(i)->draw(
+                                   (gdata.settings->getScreenWidth() / 2) - 250,        // x pos
+                                   (gdata.settings->getScreenHeight() - 120) - (60 * i) // y pos
+                                   );
     }
 }
 
@@ -40,8 +43,21 @@ void Engine::updateEngine()
     time_delta = clock.getDeltaSeconds();
     fps_delta = time_delta;
 
-    // calculate fps
-    time_delta = (time_delta > 1.f /60) ? 1.f / 60 : time_delta;
+    unsigned fpsLimit = gdata.settings->getFpsLimit();
+
+    if (fpsLimit == 60)
+    {
+        time_delta = 0.01666f;
+    }
+    else if (fpsLimit == 120)
+    {
+        time_delta = 0.00833f;
+    }
+    else
+    {
+        time_delta = (time_delta > 1.f /60) ? 1.f / 60 : time_delta;
+    }
+
     double fps = 1.f / fps_delta;
     string title = "fps" + gz::toString(fps);
     gdata.window->setTitle( title.c_str() );
@@ -66,7 +82,7 @@ void Engine::updateEngine()
         }
     }
 
-    for (int i =0; i < gdata.achieves.size(); ++i)
+    for (int i =0; i < static_cast<signed>(gdata.achieves.size()); ++i)
     {
         gdata.achieves.at(i)->update();
         if (gdata.achieves.at(i)->age >= 5)

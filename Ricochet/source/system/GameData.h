@@ -62,6 +62,9 @@ class GameData
 
 		vector<AchievementBar*> achieves;
 
+        bool replay_level = false;
+		vector<BallShotData>    shotData;
+
     public:
 
 		void updateKeys();

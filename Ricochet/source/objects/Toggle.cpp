@@ -25,7 +25,7 @@ void Toggle::toggleObstacles()
 {
     gdata.audio->playSound("switch");
     // loop through obstacles and enable/disable accordingly
-    for (int i = 0; i < obs.size(); ++i)
+    for (unsigned i = 0; i < obs.size(); ++i)
     {
         Obstacle& o = *obs.at(i);
         if (o.switch_mask & SW_ENB)

@@ -103,7 +103,7 @@ namespace gz
     ///
     /// \return the positive int or -1 if failed
     ////////////////////////////////////////////////////////////
-    int stringToUnsigned(std::string str);
+    unsigned stringToUnsigned(std::string str);
 
     ////////////////////////////////////////////////////////////
     /// \brief splits a string into a name and value using the
@@ -179,7 +179,7 @@ namespace gz
     }
 
     ////////////////////////////////////////////////////////////
-    inline int stringToUnsigned(std::string str)
+    inline unsigned stringToUnsigned(std::string str)
     {
         for(unsigned i = 0; i < str.length(); ++i)
         {

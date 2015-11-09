@@ -39,6 +39,13 @@ void Hole::onEnterCollision(CollisionData cd)
         }
         //gdata.delay_reload = true;
     }
+    else if (cd.objectB->m_type == GHOST_PLAYER)
+    {
+        m_image.setTexture(*gdata.assets->getTexture("hole_on"));
+        cd.objectB->setLinearVelocity(Vector2(0,0));
+        cd.objectB->m_active = false;
+        gdata.show_progress = true;
+    }
 }
 
 

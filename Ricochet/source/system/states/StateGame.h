@@ -94,6 +94,12 @@ class StateGame : public IState
 		int silver = 0;
 		int gold = 0;
 
+		float timer = 0;
+		Vector2 startpos;
+		bool replay = false;
+		vector<BallShotData> shotData;
+		Vector2 rp;
+
 
 		float cx = 20;
 

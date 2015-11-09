@@ -17,7 +17,7 @@ void ObjectManager::initialise()
 
 void ObjectManager::freeResources()
 {
-    for (int i = 0; i < m_objects.size(); ++i)
+    for (unsigned i = 0; i < m_objects.size(); ++i)
     {
         Object* obj = m_objects.at(i);
         obj->freeResources();
@@ -40,6 +40,7 @@ void ObjectManager::update()
 
     // PHYSICS_UPDATE
 	accumulator += gdata.m_timeDelta;
+	//cout << "accumulator=" << gdata.m_timeDelta << endl;
 	while(accumulator > 0)
     {
         updatePhysicsWorld();
@@ -55,6 +56,8 @@ void ObjectManager::updatePhysicsWorld()
     }
 
     float timeStep = accumulator > MAX_TIME_STEP ? MAX_TIME_STEP : accumulator;
+    //float timeStep = 1.f/120.f;
+    //cout << "time_step:" << timeStep << endl;
 	//float timeStep_seconds = timeStep / 1000.f;
 	physics_world->Step(timeStep, MAX_POSITION_ITERATIONS, MAX_VELOCITY_ITERATIONS);
     accumulator -= timeStep;
@@ -73,12 +76,12 @@ void ObjectManager::callOnCollision()
 	for (unsigned i = 0; i < m_objects.size(); ++i)
 	{
 		Object* o = m_objects.at(i);
-		for (int j = 0; j < o->m_collidingObjects.size(); ++j)
+		for (unsigned j = 0; j < o->m_collidingObjects.size(); ++j)
 		{
 			o->onCollision(o->m_collidingObjects.at(j));
 		}
 		vector<Object*> children = o->getChildren();
-		for (int j = 0; j < children.size(); j++)
+		for (unsigned j = 0; j < children.size(); j++)
 		{
 			callOnCollision_recursive(children.at(j));
 		}
@@ -88,13 +91,13 @@ void ObjectManager::callOnCollision()
 
 void ObjectManager::callOnCollision_recursive(Object* obj)
 {
-	for (int j = 0; j < obj->m_collidingObjects.size(); ++j)
+	for (unsigned j = 0; j < obj->m_collidingObjects.size(); ++j)
 	{
 		obj->onCollision(obj->m_collidingObjects.at(j));
 	}
 
 	vector<Object*> children = obj->getChildren();
-	for (int j = 0; j < children.size(); j++)
+	for (unsigned j = 0; j < children.size(); j++)
 	{
 		callOnCollision_recursive(children.at(j));
 	}

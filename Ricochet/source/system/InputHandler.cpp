@@ -47,6 +47,7 @@ void InputHandler::handleEvents()
 	{
 		gdata.reload = true;
 		gdata.show_progress = false;
+		gdata.replay_level = false;
 	}
 
 	if(gdata.keys[sf::Keyboard::Comma].isKeyPressed)
@@ -54,6 +55,8 @@ void InputHandler::handleEvents()
         gdata.level -= 1;
         gdata.reload = true;
         gdata.show_progress = false;
+        gdata.replay_level = false;
+        gdata.shotData.clear();
     }
 
     if(gdata.keys[sf::Keyboard::Period].isKeyPressed)
@@ -61,6 +64,8 @@ void InputHandler::handleEvents()
         gdata.level += 1;
         gdata.reload = true;
         gdata.show_progress = false;
+        gdata.replay_level = false;
+        gdata.shotData.clear();
     }
 
     if(gdata.keys[sf::Keyboard::D].isKeyPressed)
@@ -74,8 +79,10 @@ void InputHandler::handleEvents()
 
     if(gdata.keys[sf::Keyboard::Escape].isKeyPressed)
     {
-        gdata.gamestate = STATE_MENU;\
+        gdata.gamestate = STATE_MENU;
         gdata.show_progress = false;
+        gdata.replay_level = false;
+        gdata.shotData.clear();
         cout << "Back to menu"<< endl;
     }
 }
@@ -84,8 +91,23 @@ void InputHandler::handlePlayerEvents()
 {
     if (!m_player) return;
 
-    float h = 0;
-    float v = 0;
+    // check to see if mouse is hovering
+    s_pos = gdata.toScreenPixels(m_player->getAbsolutePosition());
+    s_pos.y = gdata.window->getSize().y - s_pos.y;
+
+    Vector2 d = gdata.mouse - s_pos;
+    if (d.getMagnitude() <= (0.5 * WORLD_SCALE * gdata.zoom))
+    {
+        if (!m_player->hover)
+        {
+            m_player->hover = true;
+            m_player->shrink_thickness = m_player->circle.getOutlineThickness();
+        }
+    }
+    else
+    {
+        m_player->hover = false;
+    }
 
     if (gdata.keys[KEY_MOUSE_RIGHT].isKeyPressed)
     {
@@ -120,6 +142,7 @@ void InputHandler::handlePlayerEvents()
             if (d.getMagnitude() <= (0.5 * WORLD_SCALE * gdata.zoom))
             {
                 selecting = true;
+                m_player->shot = true;
                 //power = 10;
             }
         }
@@ -154,9 +177,9 @@ void InputHandler::handlePlayerEvents()
 
 
                 power = utils::roundNearest(vel_percent*100,1);
-                //cout << "power percent:" << m_player->maxSpeed * (power / 100.f) << endl;
-                //vel.setMagnitude(  )
                 angle = vel.getAngle();
+                m_player->angle = angle;
+                m_player->power = power;
             }
             else
             {
@@ -171,6 +194,8 @@ void InputHandler::handlePlayerEvents()
 
                 power = utils::roundNearest(vel_percent*100,1);
                 angle = vel.getAngle();
+                m_player->power = power;
+                m_player->angle = angle;
             }
 	    }
 	}
@@ -179,12 +204,11 @@ void InputHandler::handlePlayerEvents()
 	{
 	    if (selecting && !launched)
 		{
-		    m_player->currentSpeed = vel.getMagnitude();
-		    //m_player->currentSpeed = m_player->maxSpeed * (power / 100.f);
-		    //vel.setMagnitude( m_player->currentSpeed );
-            m_player->trail.addPoint( m_player->getAbsolutePosition() );
-            m_player->setLinearVelocity(vel);
-            m_player->trail.length = MAX_TAIL_LENGTH * (vel.getMagnitude() / m_player->maxSpeed);
+		    m_player->shootPlayer();
+		    //m_player->currentSpeed = vel.getMagnitude();
+            //m_player->trail.addPoint( m_player->getAbsolutePosition() );
+            //m_player->setLinearVelocity(vel);
+            //m_player->trail.length = MAX_TAIL_LENGTH * (vel.getMagnitude() / m_player->maxSpeed);
 
 		    launched = true;
 		    selecting = false;
@@ -197,6 +221,10 @@ void InputHandler::handlePlayerEvents()
 		    gdata.p2 = gdata.p1 + dir;
 
 		    gdata.audio->playSound("shoot",true);
+
+		    // need to keep track for direction, speed and time
+		    BallShotData bsd(timer,vel.getAngle(),power);
+		    gdata.shotData.push_back(bsd);
 		}
 	}
 }

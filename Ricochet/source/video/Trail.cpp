@@ -50,7 +50,7 @@ void Trail::draw()
     vector<gzPair> pairs;
     float dist = 0;
     Vector2 last;
-    for (int i = 0; i < points.size(); ++i)
+    for (unsigned i = 0; i < points.size(); ++i)
     {
         Vector2 p1 = gdata.toScreenPixels(points.at(i));
         Vector2 p2;

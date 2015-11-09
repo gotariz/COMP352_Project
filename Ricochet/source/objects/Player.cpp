@@ -6,6 +6,29 @@ void Player::freeResources()
     explode_emitter.freeResources();
 }
 
+void Player::makeGhost()
+{
+  m_type = GHOST_PLAYER;
+  shot = true;
+}
+
+void Player::shootPlayer()
+{
+    float percent = power / 100.f;
+    float speed = maxSpeed * percent;
+    currentSpeed = speed;
+
+    Vector2 vel(maxSpeed,0);
+    vel.rotate(angle);
+    vel.setMagnitude(speed);
+
+    setLinearVelocity(vel);
+    trail.addPoint( getAbsolutePosition() );
+    trail.length = MAX_TAIL_LENGTH * (vel.getMagnitude() / maxSpeed);
+
+    gdata.audio->playSound("shoot",true);
+}
+
 void Player::onCreate()
 {
     color.setColor(5,91,165,255);
@@ -15,6 +38,13 @@ void Player::onCreate()
     explode_emitter.num_particles = 200;
     explode_emitter.min_size = 0.05;
     explode_emitter.max_size = 0.15;
+
+    circle = sf::CircleShape((0.5 * WORLD_SCALE) * gdata.zoom);
+    circle.setOutlineColor(sf::Color(255,255,255,32));
+
+    lp.setValue1(10);
+    lp.setValue2(25);
+    lp.setDuration(0.5);
 }
 
 void Player::onUpdate()
@@ -23,6 +53,25 @@ void Player::onUpdate()
     explode_emitter.c = color.getCurrentColor();
     emitter.update();
     explode_emitter.update();
+
+    // adjust thickness
+    if (!hover && !shot && m_type != GHOST_PLAYER)
+    {
+        lp.update(gdata.m_timeDelta);
+        circle.setOutlineThickness(lp.getValue());
+    }
+    else
+    {
+        lp.setDirection(1);
+        lp.setTime(0);
+        if (shrink_thickness > 0)
+        {
+            shrink_thickness -= gdata.m_timeDelta * 200; // 50 units per second
+            if (shrink_thickness < 0) shrink_thickness = 0;
+        }
+        circle.setOutlineThickness(shrink_thickness);
+    }
+    //cout << "val:" << lp.getValue() << endl;
 }
 
 void Player::onDestroy()
@@ -36,7 +85,11 @@ void Player::onDestroy()
 
     if (!gdata.show_progress)
     {
+        if (m_type != GHOST_PLAYER)
+        {
+            cout << "you died" << endl;
             gdata.countdown = 2.f;
+        }
     } // a bit dodgey but oh well
     else
     {
@@ -87,7 +140,7 @@ void Player::onCollision(Object* objectB)
         r = (r > 165) ? 165 : r;
         g = (g < 0) ? 0 : g;
 
-        color.setColor2(r,g,165,255);
+        color.setColor2(r,g,b,255);
         color.reset();
         color.start();
 
@@ -117,7 +170,6 @@ void Player::onDraw()
         Vector2 pos = getAbsolutePosition();
 		pos = gdata.toScreenPixels(pos.x, pos.y);
 
-		sf::CircleShape circle((0.5 * WORLD_SCALE) * gdata.zoom);
         circle.setFillColor(color.getCurrentColor());
         circle.setPosition(pos.x,pos.y);
         circle.setOrigin(circle.getRadius(),circle.getRadius());

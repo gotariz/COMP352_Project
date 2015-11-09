@@ -63,7 +63,7 @@ void Background::draw()
     }
 
 
-    for (int i = 0; i < circles.size(); ++i)
+    for (unsigned i = 0; i < circles.size(); ++i)
     {
         bgCircle* circle = &circles.at(i);
 
@@ -82,7 +82,7 @@ void Background::update()
     //Vector2 p = gdata.toScreenPixels(0,0);
     rec.setPosition(0,0);
 
-    for (int i = 0; i < circles.size(); ++i)
+    for (unsigned i = 0; i < circles.size(); ++i)
     {
         bgCircle* circle = &circles.at(i);
 

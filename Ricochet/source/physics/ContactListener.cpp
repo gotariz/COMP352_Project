@@ -45,8 +45,6 @@ void ContactListener::BeginContact(b2Contact* contact)
 
 void ContactListener::EndContact(b2Contact* contact)
 {
-    b2Manifold* m = contact->GetManifold();
-
     void* userDataA = contact->GetFixtureA()->GetBody()->GetUserData();
     void* userDataB = contact->GetFixtureB()->GetBody()->GetUserData();
 

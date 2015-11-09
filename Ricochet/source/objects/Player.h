@@ -10,6 +10,7 @@
 #include "video/particles/ExplodeEmitter.h"
 #include "system/AssetManager.h"
 #include "system/AudioManager.h"
+#include "utils/LoopInterpolator.h"
 
 class Player : public gObject
 {
@@ -27,17 +28,34 @@ class Player : public gObject
         virtual void onDraw();
         virtual void freeResources();
 
+        void shootPlayer();
+
+        void makeGhost();
+
         float maxSpeed = 30;
 		float currentSpeed = 0;
 
 		BounceEmitter   emitter;
 		ExplodeEmitter  explode_emitter;
 
+		// bool
+		sf::CircleShape circle;
+		LoopInterpolator lp;
+
+		bool hover = false;
+		bool shot = false;
+		float shrink_thickness = 0;
+
+
 		bool draw_player = true;
 
         sfColor color;
         Trail trail;
         Vector2 reset_pos;
+
+        // shot data
+        float   angle = 0;
+        float   power = 10;
 };
 
 #endif // PLAYER_H

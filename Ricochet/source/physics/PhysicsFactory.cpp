@@ -201,7 +201,7 @@ b2Body* PhysicsFactory::createParticle(float x, float y, void* userPointer)
     fixtureDef.restitution  = 0.75;
 	fixtureDef.friction     = 0;
 
-	fixtureDef.filter.categoryBits = CF_PARTICLE;			// what the object is
+	fixtureDef.filter.categoryBits = CF_EPARTICLE;			// what the object is
 	fixtureDef.filter.maskBits = CF_WALL | CF_GROUND | CF_PLAYER;   // what the object collides with
 
 	b2BodyDef bodyDef;

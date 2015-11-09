@@ -118,7 +118,7 @@ void Laser::raycast()
 		{
 		    int categoryBits = f->GetFilterData().categoryBits;
 
-		    if (categoryBits != CF_PARTICLE && categoryBits != CF_NONE && !f->IsSensor())
+		    if (categoryBits != CF_EPARTICLE && categoryBits != CF_NONE && !f->IsSensor())
 			{
 			    b2RayCastOutput output;
                 if (!f->RayCast(&output, input, 0)) continue;
@@ -138,11 +138,10 @@ void Laser::raycast()
 	{
 		Object* p = static_cast<Object*>(body->GetUserData());
 
-		if (body->GetUserData() != nullptr && p->m_type == PLAYER)
+		if (body->GetUserData() != nullptr && (p->m_type == PLAYER || p->m_type == GHOST_PLAYER))
 		{
 		    if (gdata.countdown <= 0)
 			{
-			    cout << "you died" << endl;
                 static_cast<Object*>(body->GetUserData())->onDestroy();
 			}
 		}
