@@ -4,6 +4,7 @@
 #include "general.h"
 #include <string>
 #include <iostream>
+#include <time.h>
 
 #include "system/states/IState.h"
 #include "system/AssetManager.h"
@@ -34,6 +35,9 @@ class StateMenu : public IState
 
         void updateMenuBox();
         void updateOpsBox();
+
+        float scaleWidth  = 0;
+        float scaleHeight = 0;
 
         // the cemra at 0,0
         Camera c;

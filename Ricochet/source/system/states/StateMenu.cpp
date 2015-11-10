@@ -229,9 +229,18 @@ void StateMenu::load()
     title.setOrigin(title.getTexture()->getSize().x/2,title.getTexture()->getSize().y/2);
     title.setPosition(gdata.settings->getScreenWidth()/2,150);
 
+    // Make the music random
+    srand(time(NULL));
+    int randomMusic = rand() % 2 + 1;
+    cout << "RandomMusic: " << randomMusic << endl;
+
     if (!gdata.bg_music)
     {
-        gdata.bg_music = gdata.audio->addMusic("music2");
+        if(randomMusic == 1)
+            gdata.bg_music = gdata.audio->addMusic("music2");
+        else
+            gdata.bg_music = gdata.audio->addMusic("Divider");
+
         gdata.bg_music->loop(true);
     }
 
