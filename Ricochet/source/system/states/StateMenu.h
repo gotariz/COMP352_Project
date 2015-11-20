@@ -24,11 +24,31 @@ class StateMenu : public IState
     public:
         virtual void load();
         virtual bool initialise();
+
         virtual void handleEvents();
         virtual void update();
         virtual void draw();
+
+        virtual void handleMainMenuEvents();
+        virtual void updateMainMenu();
+        virtual void drawMainMenu();
+
+        virtual void handleOptionsEvents();
+        virtual void updateOptions();
+        virtual void drawOptions();
+
+        virtual void handleLevelSelectEvents();
+        virtual void updateLevelSelect();
+        virtual void drawLevelSelect();
+
+        virtual void handleAwardsEvents();
+        virtual void updateAwards();
+        virtual void drawAwards();
+
         virtual void freeResources();
         virtual void start();
+
+        virtual void saveSettings();
 
         bool isTouching(Vector2 point, sf::RectangleShape box);
         bool isTouching(Vector2 point, sf::Sprite box);
