@@ -1,5 +1,28 @@
 #include "Utils.h"
 
+bool utils::isTouching(Vector2 point, sf::RectangleShape box)
+{
+    if (point.x < box.getPosition().x) return false;
+    if (point.y < box.getPosition().y) return false;
+
+    if (point.x > box.getPosition().x + box.getSize().x - 1) return false;
+    if (point.y > box.getPosition().y + box.getSize().y - 1) return false;
+
+    return true;
+}
+
+bool utils::isTouching(Vector2 point, int x, int y, int w, int h)
+{
+    if (point.x < x) return false;
+    if (point.y < y) return false;
+
+    if (point.x > x + w - 1) return false;
+    if (point.y > y + h - 1) return false;
+
+    return true;
+}
+
+
 float utils::toAngle(float rotation)
 {
 	int intAngle = rotation;

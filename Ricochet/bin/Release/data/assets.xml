@@ -19,6 +19,20 @@
 	<asset type="image" path="media/images/switch_off.png" />
 	<asset type="image" path="media/images/switch_on.png" />
 	
+	<asset type="image" path="media/images/SSL1.png" />	
+	<asset type="image" path="media/images/SSL2.png" />	
+	<asset type="image" path="media/images/SSL3.png" />	
+	<asset type="image" path="media/images/SSL4.png" />	
+	<asset type="image" path="media/images/SSL5.png" />	
+	<asset type="image" path="media/images/SSL6.png" />	
+	<asset type="image" path="media/images/SSL7.png" />	
+	<asset type="image" path="media/images/SSL8.png" />	
+	<asset type="image" path="media/images/SSL9.png" />	
+	<asset type="image" path="media/images/SSL10.png" />	
+	<asset type="image" path="media/images/SSL11.png" />	
+	<asset type="image" path="media/images/SSL12.png" />	
+	<asset type="image" path="media/images/SSL13.png" />	
+	
 	<asset type="image" path="media/images/Screencap_Level_0.png" />	
 	<asset type="image" path="media/images/Screencap_Level_1.png" />
 	<asset type="image" path="media/images/Screencap_Level_2.png" />

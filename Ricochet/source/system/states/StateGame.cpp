@@ -96,7 +96,7 @@ void StateGame::load()
     cout << "complete" << endl;
 
     cout << "creating background:";
-	bg.bubble_alpha_range.set(0,8);
+	bg.bubble_alpha_range.set(8,16);
     bg.bubble_color = sf::Color(255,255,255,0);
 	bg.num_circles = 60;
 	bg.init();
@@ -131,7 +131,11 @@ void StateGame::load()
     g = g > 255 ? 255 : g;
     b = b > 255 ? 255 : b;
 
-    bg.rec.setFillColor(sf::Color(r,g,b,255));
+    //bg.rec.setFillColor(sf::Color(r,g,b,255));
+    if (gdata.level < 10)
+        bg.rec.setFillColor(sf::Color(6,52,64,255));
+    else if (gdata.level < 19)
+        bg.rec.setFillColor(sf::Color(28,64,6,255));
     cout << "complete" << endl;
 
     gdata.countdown = 0;
@@ -198,21 +202,6 @@ void StateGame::handleEvents()
 
 void StateGame::update()
 {
-    timer += gdata.m_timeDelta;
-    input.timer = timer;
-
-	manager.update();
-	bg.update();
-	ps.update();
-
-	if (gdata.keys[sf::Keyboard::A].isKeyPressed)
-    {
-        AchievementBar* achieve = new AchievementBar;
-        achieve->init();
-        achieve->setText("This is a test achievemet, hooray!");
-        gdata.achieves.push_back(achieve);
-    }
-
     if (gdata.replay_level && !replay)
     {
         timer = 0;
@@ -243,6 +232,7 @@ void StateGame::update()
 
             if (timer >= shotData.at(i).time && !shotData.at(i).shot)
             {
+                cout << "timer:" << timer << endl;
                 shotData.at(i).shot = true;
 
                 gplayer->angle = shotData.at(i).angle;
@@ -250,6 +240,19 @@ void StateGame::update()
                 gplayer->shootPlayer();
             }
         }
+    }
+
+
+	manager.update();
+	bg.update();
+	ps.update();
+
+	if (gdata.keys[sf::Keyboard::A].isKeyPressed)
+    {
+        AchievementBar* achieve = new AchievementBar;
+        achieve->init();
+        achieve->setText("This is a test achievemet, hooray!");
+        gdata.achieves.push_back(achieve);
     }
 }
 
@@ -378,6 +381,10 @@ void StateGame::draw()
 
         ps.draw();
     }
+
+
+    timer += gdata.m_timeDelta;
+    input.timer = timer;
 }
 
 void StateGame::render_texts()
@@ -630,6 +637,8 @@ void StateGame::createPlatform(XMLElement* element,Toggle* t)
 
     if (t) t->obs.push_back(platform);
 
+
+    wall = platform;
     manager.addObject(platform);
 }
 

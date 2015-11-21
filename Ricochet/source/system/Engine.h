@@ -7,7 +7,7 @@
 #include "system/Settings.h"
 #include "system/states/IState.h"
 #include "system/states/StateGame.h"
-#include "system/states/StateMenu.h"
+#include "system/states/StateMenu2.h"
 #include "System/AudioManager.h"
 #include "video/AchievementBar.h"
 

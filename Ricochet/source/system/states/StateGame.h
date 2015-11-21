@@ -99,6 +99,7 @@ class StateGame : public IState
 		bool replay = false;
 		vector<BallShotData> shotData;
 		Vector2 rp;
+		Object* wall = nullptr;
 
 
 		float cx = 20;

@@ -658,7 +658,7 @@ void StateMenu::handleAwardsEvents()
 
 void StateMenu::handleEvents()
 {
-    gdata.updateKeys();
+    //gdata.updateKeys();
 
     sf::Event event;
     while (gdata.window->pollEvent(event))
@@ -752,7 +752,7 @@ void StateMenu::reset()
 
 void StateMenu::updateMainMenu()
 {
-    vec = menuItems;
+    //vec = menuItems;
     if(isTouching(gdata.mouse_raw, startBox))
     {
         selected = 0;
@@ -777,7 +777,7 @@ void StateMenu::updateMainMenu()
 
 void StateMenu::updateOptions()
 {
-    vec = optionsItems;
+    //vec = optionsItems;
     if(isTouching(gdata.mouse_raw, opsBox1))
     {
         selectedOption = 0;
@@ -914,11 +914,11 @@ void StateMenu::updateLevelSelect()
         if(lvlShot.getScale().x > 0.2)
             lvlShot.setScale(lvlShot.getScale().x - ((0.5-0.2)*(gdata.m_timeDelta * (1/dur))),
                              lvlShot.getScale().y - ((0.5-0.2)*(gdata.m_timeDelta * (1/dur))));
-        if(lvlShot.getColor().r > 150 )
-            lvlShot.setColor(sf::Color(lvlShot.getColor().r - (255-150)*(gdata.m_timeDelta * (1/dur)),
-                                       lvlShot.getColor().g - (255-150)*(gdata.m_timeDelta * (1/dur)),
-                                       lvlShot.getColor().b - (255-150)*(gdata.m_timeDelta * (1/dur)),
-                                                    vSyncMode = selectedOps[0];
+//        if(lvlShot.getColor().r > 150 )
+//            lvlShot.setColor(sf::Color(lvlShot.getColor().r - (255-150)*(gdata.m_timeDelta * (1/dur)),
+//                                       lvlShot.getColor().g - (255-150)*(gdata.m_timeDelta * (1/dur)),
+//                                       lvlShot.getColor().b - (255-150)*(gdata.m_timeDelta * (1/dur)),
+//                                                    vSyncMode = selectedOps[0];
                 selectedFs = selectedOps[1];
 
                 gdata.settings->setVsync(vSyncMode);
@@ -960,7 +960,7 @@ void StateMenu::updateLevelSelect()
                 cy = gdata.settings->getScreenHeight()/2;
                 olx = 0;
                 orx = gdata.settings->getScreenWidth();
-   lvlShot.getColor().a - (255-200)*(gdata.m_timeDelta * (1/dur))));
+//   lvlShot.getColor().a - (255-200)*(gdata.m_timeDelta * (1/dur))));
 
         //MOVE olx to lx
         if(lbLvlShot.getPosition().x < lx)

@@ -26,6 +26,9 @@ class utils
 
 		static bool fexists(const std::string& filename);
 		static bool fexists(const char *filename);
+
+		static bool isTouching(Vector2 point, sf::RectangleShape box);
+		static bool isTouching(Vector2 point, int x, int y, int w, int h);
 };
 
 #endif // UTILS_H

@@ -34,9 +34,6 @@ void InputHandler::handleEvents()
 
     if (!gdata.window->hasFocus()) return;
 
-	// update bound keys
-	gdata.updateKeys();
-
     handlePlayerEvents();
     handleMouseEvents();
     handleControllerEvents();
@@ -225,6 +222,7 @@ void InputHandler::handlePlayerEvents()
 		    // need to keep track for direction, speed and time
 		    BallShotData bsd(timer,vel.getAngle(),power);
 		    gdata.shotData.push_back(bsd);
+		    cout << "timer:" << timer << endl;
 		}
 	}
 }

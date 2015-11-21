@@ -40,6 +40,9 @@ void Engine::draw()
 
 void Engine::updateEngine()
 {
+    // update bound keys
+	gdata.updateKeys();
+
     time_delta = clock.getDeltaSeconds();
     fps_delta = time_delta;
 
@@ -118,7 +121,7 @@ void Engine::updateState()
         }
 		else if (gdata.gamestate == RunState::STATE_MENU)
         {
-            IState* stateMenu = new StateMenu();
+            IState* stateMenu = new StateMenu2();
             stateMenu->initialise();
             activeState = stateMenu;
         }

@@ -3,10 +3,10 @@
 void Background::init()
 {
 
-//    rec.setSize(sf::Vector2f(38 * WORLD_SCALE * gdata.zoom,21 * WORLD_SCALE * gdata.zoom));
-//    rec.setOrigin(rec.getSize().x/2,rec.getSize().y/2);
-//    Vector2 p = gdata.toScreenPixels(0,0);
-//    rec.setPosition(p.x,p.y);
+    rec.setSize(sf::Vector2f(38 * WORLD_SCALE * gdata.zoom,21 * WORLD_SCALE * gdata.zoom));
+    rec.setOrigin(rec.getSize().x/2,rec.getSize().y/2);
+    Vector2 p = gdata.toScreenPixels(0,0);
+    rec.setPosition(p.x,p.y);
 
     for (int i = 0; i < num_circles; ++i)
     {

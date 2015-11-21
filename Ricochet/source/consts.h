@@ -43,4 +43,10 @@ static const int            MAX_SUB_STEPS = 5;
 static const int            MAX_VELOCITY_ITERATIONS = 8;
 static const int            MAX_POSITION_ITERATIONS = 3;
 
+//Menus
+static const int            BOTTOM_BUFFER = 100;
+static const int            ITEM_SPACING = 65;
+static const int            ITEM_WIDTH = 450;
+static const int            BOX_WIDTH = ITEM_WIDTH + 10;
+
 #endif // CONSTS_H_INCLUDED
