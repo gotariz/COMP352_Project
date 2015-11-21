@@ -15,6 +15,7 @@ Laser::Laser()
     laser_end.setOrigin(0,7);
 
     laser_dir.set(1,0);
+    m_type = LASER;
 }
 
 Laser::~Laser()

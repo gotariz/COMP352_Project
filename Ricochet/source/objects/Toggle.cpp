@@ -3,7 +3,7 @@
 Toggle::Toggle()
 {
     //ctor
-    m_type = TOGGLE;
+    m_type = SWITCH;
 }
 
 Toggle::~Toggle()

@@ -16,7 +16,9 @@ enum ObjectType
     NONE,
     PLAYER,
     HOLE,
+    SWITCH,
     WALL,
+    LASER,
     PARTICLE,
     GHOST_PLAYER,
 };

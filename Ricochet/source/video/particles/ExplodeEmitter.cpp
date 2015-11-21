@@ -58,15 +58,18 @@ void ExplodeEmitter::createParticle()
 
         dir.setMagnitude(d);
 
+        float dur = 2000 + utils::getRandom(0,2000);
+
         ExplodeParticle* p = new ExplodeParticle();
         p->setPhysicsObject(gdata.factory->createParticle(pos.x + dir.x,pos.y + dir.y,r,p));
         p->size = r;
-        p->particle_dur = 10000;
+        //p->particle_dur = 10000;
         p->particle_create();
         p->c = c;
         dir.setMagnitude(velocity);
         p->setLinearVelocity( dir + (v * 0.25) );
         p->particle_create();
+        p->particle_dur = dur;
 
         particles.push_back(p);
 

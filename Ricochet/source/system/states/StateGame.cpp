@@ -370,9 +370,6 @@ void StateGame::draw()
         font.drawString(10,150,"R:                restart level");
     }
 
-    fntIns.drawString(150,0,"Bounces: " + gz::toString(gdata.bounce_counter));
-    fntIns.drawString(310,0,"Par: " + gz::toString(par));
-
     if (gdata.show_progress)
     {
         if (gdata.bounce_counter <= gold)           ps.setStars(3,gdata.bounce_counter);

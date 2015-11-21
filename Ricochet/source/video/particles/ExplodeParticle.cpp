@@ -22,11 +22,6 @@ void ExplodeParticle::particle_create()
     circle.setPointCount(8);
 }
 
-void ExplodeParticle::particle_update()
-{
-
-}
-
 void ExplodeParticle::particle_destroy()
 {
     deletePhysicsObject();

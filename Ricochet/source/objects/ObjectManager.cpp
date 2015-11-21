@@ -105,9 +105,37 @@ void ObjectManager::callOnCollision_recursive(Object* obj)
 
 void ObjectManager::draw()
 {
+    Object* obj = nullptr;
+    // draw holes and switches
     for (unsigned i = 0; i < m_objects.size(); ++i)
     {
-        m_objects.at(i)->onDraw();
+        obj = m_objects.at(i);
+        if (obj->m_type == SWITCH || obj->m_type == HOLE)
+            m_objects.at(i)->onDraw();
+    }
+
+    // draw lasers
+    for (unsigned i = 0; i < m_objects.size(); ++i)
+    {
+        obj = m_objects.at(i);
+        if (obj->m_type == LASER)
+            m_objects.at(i)->onDraw();
+    }
+
+    // draw players
+    for (unsigned i = 0; i < m_objects.size(); ++i)
+    {
+        obj = m_objects.at(i);
+        if (obj->m_type == PLAYER || obj->m_type == GHOST_PLAYER)
+            m_objects.at(i)->onDraw();
+    }
+
+    // draw walls
+    for (unsigned i = 0; i < m_objects.size(); ++i)
+    {
+        obj = m_objects.at(i);
+        if (obj->m_type == WALL)
+            m_objects.at(i)->onDraw();
     }
 }
 

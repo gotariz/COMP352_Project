@@ -17,7 +17,6 @@ class ExplodeParticle : public Particle, public gObject
 
         virtual void particle_draw();
         virtual void particle_create();
-        virtual void particle_update();
         virtual void particle_destroy();
 
         virtual void onDraw();
