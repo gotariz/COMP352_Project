@@ -29,8 +29,9 @@ void Hole::onEnterCollision(CollisionData cd)
             cd.objectB->m_active = false;
             gdata.show_progress = true;
 
-            if (gdata.bounce_counter >= 20)
+            if (gdata.bounce_counter >= 20 && !gdata.replay_level)
             {
+
                 AchievementBar* a = new AchievementBar;
                 a->init();
                 a->setText("Complete a level while getting at least 20 bounces");

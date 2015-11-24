@@ -7,6 +7,7 @@
 #include "system/AssetManager.h"
 #include "system/GameData.h"
 #include "system/Settings.h"
+#include "system/AudioManager.h"
 
 #include "video/sfFontRenderer.h"
 #include "video/Background.h"
@@ -93,10 +94,26 @@ class StateMenu2 : public IState
         vector<string> mm_items;
 
     protected: // OptionMenu Data
+        void applySettings();
+        void setApplied(); // sets the options in the menu to what is currently applied
         int om_selected = 0;
+        sf::Sprite  next;
+        sf::Sprite  prev;
+        int next_state = 0;
+        int prev_state = 0;
         vector<string> om_items;
 
+        vector<string> o_res;
+        bool fullscreen = true;
+        bool vsync = true;
+        int fps = 0;
+        int sfx_vol = 100;
+        int mus_vol = 100;
+
+        int res_index = 0;
+
     protected: // Level Select Data
+        int selected_level = 0;
         vector<LevelIcon> icons;
 };
 

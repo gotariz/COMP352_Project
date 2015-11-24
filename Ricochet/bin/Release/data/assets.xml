@@ -5,6 +5,10 @@
 	<asset type="image" path="media/images/silver.png" />
 	<asset type="image" path="media/images/gold.png" />
 	
+	<asset type="image" path="media/images/arrow_idle.png" />
+	<asset type="image" path="media/images/arrow_active.png" />
+	<asset type="image" path="media/images/arrow_inactive.png" />
+	
 	<asset type="image" path="media/images/level_complete.png" />
 	<asset type="image" path="media/images/title.png" />
 	<asset type="image" path="media/images/glow.png" />
@@ -32,43 +36,28 @@
 	<asset type="image" path="media/images/SSL11.png" />	
 	<asset type="image" path="media/images/SSL12.png" />	
 	<asset type="image" path="media/images/SSL13.png" />	
-	
-	<asset type="image" path="media/images/Screencap_Level_0.png" />	
-	<asset type="image" path="media/images/Screencap_Level_1.png" />
-	<asset type="image" path="media/images/Screencap_Level_2.png" />
-	<asset type="image" path="media/images/Screencap_Level_3.png" />
-	<asset type="image" path="media/images/Screencap_Level_4.png" />
-	<asset type="image" path="media/images/Screencap_Level_5.png" />
-	<asset type="image" path="media/images/Screencap_Level_6.png" />
-	<asset type="image" path="media/images/Screencap_Level_7.png" />
-	<asset type="image" path="media/images/Screencap_Level_8.png" />
-	<asset type="image" path="media/images/Screencap_Level_9.png" />
-	<asset type="image" path="media/images/Screencap_Level_10.png" />
-	<asset type="image" path="media/images/Screencap_Level_11.png" />
-	<asset type="image" path="media/images/Screencap_Level_12.png" />
-	<asset type="image" path="media/images/Screencap_Level_13.png" />
-	<asset type="image" path="media/images/Screencap_Level_14.png" />
-	<asset type="image" path="media/images/Screencap_Level_15.png" />
-	<asset type="image" path="media/images/Screencap_Level_16.png" />
-	<asset type="image" path="media/images/Screencap_Level_17.png" />
-	<asset type="image" path="media/images/Screencap_Level_18.png" />
-	<asset type="image" path="media/images/Screencap_Level_19.png" />
-	<asset type="image" path="media/images/Screencap_Level_20.png" />
-	<asset type="image" path="media/images/Screencap_Level_21.png" />
-	<asset type="image" path="media/images/Screencap_Level_22.png" />
-	<asset type="image" path="media/images/Screencap_Level_23.png" />
-	<asset type="image" path="media/images/Screencap_Level_24.png" />
-	<asset type="image" path="media/images/Screencap_Level_25.png" />
-	<asset type="image" path="media/images/Screencap_Level_26.png" />
-	<asset type="image" path="media/images/Screencap_Level_27.png" />
-	<asset type="image" path="media/images/Screencap_Level_28.png" />
-	<asset type="image" path="media/images/Screencap_Level_29.png" />
-	<asset type="image" path="media/images/Screencap_Level_30.png" />
-	<asset type="image" path="media/images/Screencap_Level_31.png" />
-	<asset type="image" path="media/images/Screencap_Level_32.png" />
-	<asset type="image" path="media/images/Screencap_Level_33.png" />
-	<asset type="image" path="media/images/Screencap_Level_34.png" />
-	<asset type="image" path="media/images/Screencap_Level_35.png" />
+	<asset type="image" path="media/images/SSL14.png" />	
+	<asset type="image" path="media/images/SSL15.png" />	
+	<asset type="image" path="media/images/SSL16.png" />	
+	<asset type="image" path="media/images/SSL17.png" />	
+	<asset type="image" path="media/images/SSL18.png" />	
+	<asset type="image" path="media/images/SSL19.png" />	
+	<asset type="image" path="media/images/SSL20.png" />	
+	<asset type="image" path="media/images/SSL21.png" />	
+	<asset type="image" path="media/images/SSL22.png" />	
+	<asset type="image" path="media/images/SSL23.png" />	
+	<asset type="image" path="media/images/SSL24.png" />	
+	<asset type="image" path="media/images/SSL25.png" />	
+	<asset type="image" path="media/images/SSL26.png" />	
+	<asset type="image" path="media/images/SSL27.png" />	
+	<asset type="image" path="media/images/SSL28.png" />	
+	<asset type="image" path="media/images/SSL29.png" />	
+	<asset type="image" path="media/images/SSL30.png" />	
+	<asset type="image" path="media/images/SSL31.png" />	
+	<asset type="image" path="media/images/SSL32.png" />	
+	<asset type="image" path="media/images/SSL33.png" />	
+	<asset type="image" path="media/images/SSL34.png" />	
+	<asset type="image" path="media/images/SSL35.png" />	
 
 	<!-- SOUNDS -->
 	<asset type="sound" path="media/sounds/AchievementUnlocked.wav" />

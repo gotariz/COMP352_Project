@@ -96,7 +96,7 @@ void StateGame::load()
     cout << "complete" << endl;
 
     cout << "creating background:";
-	bg.bubble_alpha_range.set(8,16);
+	bg.bubble_alpha_range.set(5,10);
     bg.bubble_color = sf::Color(255,255,255,0);
 	bg.num_circles = 60;
 	bg.init();
@@ -115,27 +115,29 @@ void StateGame::load()
         r = utils::getRandom(s == 1 ? 0 : min,s == 1? 5 : max);
         g = utils::getRandom(s == 2 ? 0 : min,s == 2 ? 5 : max);
         b = utils::getRandom(s == 3 ? 0 : min,s == 3 ? 5 : max);
+
+        r += (255.f * brightness);
+        g += (255.f * brightness);
+        b += (255.f * brightness);
+
+        r = r > 255 ? 255 : r;
+        g = g > 255 ? 255 : g;
+        b = b > 255 ? 255 : b;
+
+        bg.rec.setFillColor(sf::Color(r,g,b,255));
     }
     else
     {
-        r = utils::getRandom(mr ? min + 5 : 0,mr ? max : 5);
-        g = utils::getRandom(mg ? min + 5 : 0,mg ? max : 5);
-        b = utils::getRandom(mb ? min + 5 : 0,mb ? max : 5);
+        if (gdata.level < 10)
+            bg.rec.setFillColor(sf::Color(16,33,57,255));
+        else if (gdata.level < 19)
+            bg.rec.setFillColor(sf::Color(41,26,79,255));
+        else if (gdata.level < 28)
+            bg.rec.setFillColor(sf::Color(18,73,29,255));
+        else //if (gdata.level < 36)
+            bg.rec.setFillColor(sf::Color(73,18,61,255));
     }
 
-    r += (255.f * brightness);
-    g += (255.f * brightness);
-    b += (255.f * brightness);
-
-    r = r > 255 ? 255 : r;
-    g = g > 255 ? 255 : g;
-    b = b > 255 ? 255 : b;
-
-    //bg.rec.setFillColor(sf::Color(r,g,b,255));
-    if (gdata.level < 10)
-        bg.rec.setFillColor(sf::Color(6,52,64,255));
-    else if (gdata.level < 19)
-        bg.rec.setFillColor(sf::Color(28,64,6,255));
     cout << "complete" << endl;
 
     gdata.countdown = 0;

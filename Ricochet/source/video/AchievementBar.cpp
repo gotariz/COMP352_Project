@@ -40,7 +40,7 @@ void AchievementBar::update()
 void AchievementBar::init()
 {
     gdata.audio->playSound("AchievementUnlocked",true);
-    c_box = sf::Color(16,16,16);
+    c_box = sf::Color(230,230,230);
     box.setSize(sf::Vector2f(500,50));
     box.setFillColor(c_box);
     box.setOutlineThickness(1);
@@ -65,11 +65,11 @@ void AchievementBar::draw(int x, int y)
     gdata.window->draw(glow);
 
     renderer.setFont(gdata.assets->getFont("segoe-ui-light-20"));
-    renderer.setColor(sf::Color(196,196,196));
+    renderer.setColor(sf::Color::Black);
     renderer.drawString(x+60,y,"Achievement Unlocked!");
 
     renderer.setFont(gdata.assets->getFont("purista-medium-14"));
-    renderer.setColor(sf::Color(64,64,64));
+    renderer.setColor(sf::Color(94,94,94));
     renderer.drawString(x+60,y+25,text);
 }
 

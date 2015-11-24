@@ -83,11 +83,30 @@ struct KeyboardKey
    bool        isKeyPressed = false;
    bool        isKeyReleased = false;
 
-   void updateKey(bool isDown)
+   bool keyRepeat = false;
+   float repeatTime = 0.1;
+   float elapsedTime = 0;
+
+   void updateKey(bool isDown, float timeDelta)
    {
        isKeyPressed     = (!isKeyDown && isDown);
        isKeyReleased    = (isKeyDown && !isDown);
        isKeyDown        = isDown;
+
+       if (!keyRepeat) return;
+       if (isKeyDown)
+       {
+           elapsedTime += timeDelta;
+           if (elapsedTime >= repeatTime)
+           {
+               isKeyPressed = true;
+               elapsedTime = 0;
+           }
+       }
+       if (isKeyReleased)
+       {
+           elapsedTime = 0;
+       }
    }
 
    KeyboardKey(int code = sf::Keyboard::Unknown, std::string name = "Unknown") : m_code(code), m_name(name)

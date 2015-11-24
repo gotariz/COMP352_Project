@@ -48,5 +48,6 @@ static const int            BOTTOM_BUFFER = 100;
 static const int            ITEM_SPACING = 65;
 static const int            ITEM_WIDTH = 450;
 static const int            BOX_WIDTH = ITEM_WIDTH + 10;
+static const int            OBOX_WIDTH = 365;
 
 #endif // CONSTS_H_INCLUDED

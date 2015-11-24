@@ -13,7 +13,7 @@
 	<!-- LASERS -->
 	<object type="laser" position="5,-1" rotation="0" />
 	<object type="laser" position="15,-1" rotation="180" />
-	<object type="laser" position="-15.4, 7.8" rotation="270" />
+	<object type="laser" position="-15, 9" rotation="270" />
 	
 	<!-- PLAYER -->
 	<object type="player" position="-14,5" />

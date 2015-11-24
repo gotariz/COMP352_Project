@@ -28,11 +28,57 @@ void StateMenu2::load()
 
     title.setTexture(*gdata.assets->getTexture("title"));
     title.setOrigin( title.getTexture()->getSize().x / 2, 0 );
-    title.setPosition(cx,20);
 
     mm_init();
     om_init();
     ls_init();
+}
+
+void StateMenu2::applySettings()
+{
+    // apply resolution
+    vector<string> resolution = gz::splitString(o_res.at(res_index),'x');
+    int w = atoi(resolution.at(0).c_str());
+    int h = atoi(resolution.at(1).c_str());
+    gdata.settings->setScreenWidth(w);
+    gdata.settings->setScreenHeight(h);
+    gdata.window->setSize(sf::Vector2u(w,h));
+    gdata.view = new sf::View(sf::FloatRect(0,0,w,h));
+    gdata.window->setView(*gdata.view);
+    // apply fullscreen
+    gdata.settings->setFullscreen(fullscreen);
+    // apply vsync
+    gdata.settings->setVsync(vsync);
+    gdata.window->setVerticalSyncEnabled(vsync);
+    // apply fps limit
+    gdata.settings->setFpsLimit(fps);
+    gdata.window->setFramerateLimit(fps);
+    // apply sfx volume
+    gdata.settings->setSFX(sfx_vol);
+    gdata.audio->setVolumeSFX(sfx_vol);
+    // apply mus volume
+    gdata.settings->setVolume(mus_vol);
+    gdata.audio->setVolumeMusic(mus_vol);
+
+    gdata.settings->saveSettings();
+}
+
+void StateMenu2::setApplied()
+{
+    for (int i = 0; i < o_res.size(); ++i)
+    {
+        string resolution = gz::toString(gdata.settings->getScreenWidth()) + "x" + gz::toString(gdata.settings->getScreenHeight());
+        if (o_res.at(i) == resolution)
+        {
+            res_index = i;
+        }
+    }
+
+    fullscreen = gdata.settings->getFullscreen();
+    vsync = gdata.settings->getVsync();
+    fps = gdata.settings->getFpsLimit();
+    sfx_vol = gdata.audio->volume_sfx;
+    mus_vol = gdata.audio->volume_music;
 }
 
 void StateMenu2::mm_init()
@@ -45,16 +91,49 @@ void StateMenu2::mm_init()
 
 void StateMenu2::om_init()
 {
+    int w = gdata.settings->getScreenWidth();
+    int h = gdata.settings->getScreenHeight();
+
+    next.setTexture(*gdata.assets->getTexture("arrow_idle"));
+    prev.setTexture(*gdata.assets->getTexture("arrow_idle"));
+    prev.setRotation(180);
+    prev.setOrigin(33,65);
+
     om_items.push_back("Resolution");
     om_items.push_back("Screen Mode");
     om_items.push_back("V-Sync");
     om_items.push_back("FPS Limit");
     om_items.push_back("SFX Volume");
     om_items.push_back("Music Volume");
+    om_items.push_back("Apply");
+    om_items.push_back("Cancel");
+
+    bool found = false;
+    vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
+    for (unsigned i = 0; i < modes.size(); i++)
+    {
+        sf::VideoMode mode = modes[i];
+        o_res.push_back(gz::toString(mode.width) + "x" + gz::toString(mode.height));
+
+        if (mode.width == w && mode.height == h)
+        {
+            res_index = i;
+            found = true;
+        }
+    }
+    reverse(o_res.begin(),o_res.end());
+    res_index = o_res.size() - 1 - res_index;
+
+    if (!found)
+    {
+        o_res.push_back(gz::toString(w) + "x" + gz::toString(h));
+        res_index = o_res.size() - 1;
+    }
 }
 
 void StateMenu2::ls_init()
 {
+    icons.clear();
 
     int w = gdata.settings->getScreenWidth();
     int h = gdata.settings->getScreenHeight();
@@ -141,9 +220,9 @@ void StateMenu2::mm_handleEvents()
     //clicking menu items
     if ( gdata.keys[sf::Keyboard::Return].isKeyPressed || (gdata.keys[KEY_MOUSE_LEFT].isKeyPressed && onItem) )
     {
-        if (mm_selected == 0)       screen = 2;// go to level select
+        if (mm_selected == 0)       {screen = 2;ls_init();}// go to level select
         else if (mm_selected == 1)  ;// go to achievements
-        else if (mm_selected == 2)  screen = 1;// go to settings
+        else if (mm_selected == 2)  {screen = 1;setApplied();}// go to settings
         else if (mm_selected == 3)  gdata.running = false;// exit
     }
 
@@ -153,48 +232,129 @@ void StateMenu2::mm_handleEvents()
 
 void StateMenu2::om_handleEvents()
 {
-        if (gdata.keys[sf::Keyboard::Up].isKeyPressed)
-    {
-        if (om_selected > 0)
-            --om_selected;
-    }
-    if (gdata.keys[sf::Keyboard::Down].isKeyPressed)
-    {
-        if (om_selected < mm_items.size()-1)
-            ++om_selected;
-    }
-
-    // handle mouse events (mouse over menu items)
     int h = gdata.settings->getScreenHeight();
     int w = gdata.settings->getScreenWidth();
 
+    // next button
+    int nx = next.getPosition().x;
+    int ny = next.getPosition().y;
+    int nw = next.getTexture()->getSize().x;
+    int nh = next.getTexture()->getSize().y;
+    //prev button
+    int px = prev.getPosition().x;
+    int py = prev.getPosition().y;
+    int pw = prev.getTexture()->getSize().x;
+    int ph = prev.getTexture()->getSize().y;
+
+    bool clicked_next = utils::isTouching(gdata.mouse_raw,nx,ny,nw,nh) && gdata.keys[KEY_MOUSE_LEFT].isKeyPressed;
+    bool clicked_prev = utils::isTouching(gdata.mouse_raw,px,py,pw,ph) && gdata.keys[KEY_MOUSE_LEFT].isKeyPressed;
+
+    if (gdata.keys[sf::Keyboard::Up].isKeyPressed)
+    {
+        if (om_selected > 0) {--om_selected;}
+    }
+    if (gdata.keys[sf::Keyboard::Down].isKeyPressed)
+    {
+        if (om_selected < om_items.size()-1) {++om_selected;}
+    }
+
+    // handle mouse events (mouse over menu items)
     bool onItem = false;
     for (int i = 0; i < om_items.size(); ++i)
     {
         int x = w-ITEM_WIDTH;
         int y = h-BOTTOM_BUFFER-(om_items.size()-i)*ITEM_SPACING;
 
-        if (utils::isTouching(gdata.mouse_raw,x-10,y+5,BOX_WIDTH,ITEM_SPACING))
+        if (i < om_items.size() - 2)
         {
-            om_selected = i;
-            onItem = true;
+            if (utils::isTouching(gdata.mouse_raw,x-OBOX_WIDTH - 20,y+5,BOX_WIDTH+OBOX_WIDTH+20,ITEM_SPACING))
+            {
+                om_selected = i;
+                onItem = true;
+            }
+        }
+        else
+        {
+            if (utils::isTouching(gdata.mouse_raw,x-20,y+5,BOX_WIDTH,ITEM_SPACING))
+            {
+                om_selected = i;
+                onItem = true;
+            }
         }
     }
 
     //clicking menu items
-    if ( gdata.keys[sf::Keyboard::Return].isKeyPressed || (gdata.keys[KEY_MOUSE_LEFT].isKeyPressed && onItem) )
+    if (gdata.keys[sf::Keyboard::Escape].isKeyPressed)  screen = 0;
+
+    if (gdata.keys[sf::Keyboard::Left].isKeyPressed || clicked_prev)
     {
+        if (om_selected == 0)
+        {
+            --res_index;
+            if (res_index < 0){res_index = 0;}
+        }
+        else if (om_selected == 1) fullscreen = false;
+        else if (om_selected == 2) vsync = false;
+        else if (om_selected == 3) {--fps;if(fps < 0) fps=0;}
+        else if (om_selected == 4) {--sfx_vol;if (sfx_vol < 0) sfx_vol=0;}
+        else if (om_selected == 5) {--mus_vol;if (mus_vol < 0) mus_vol=0;}
+    }
+    if (gdata.keys[sf::Keyboard::Right].isKeyPressed || clicked_next)
+    {
+        if (om_selected == 0)
+        {
+            ++res_index;
+            if (res_index >= o_res.size()){res_index = o_res.size()-1;}
+        }
+        else if (om_selected == 1) fullscreen = true;
+        else if (om_selected == 2) vsync = true;
+        else if (om_selected == 3) ++fps;
+        else if (om_selected == 4) {++sfx_vol;if (sfx_vol > 100) sfx_vol=100;}
+        else if (om_selected == 5) {++mus_vol;if (mus_vol > 100) mus_vol=100;}
     }
 
-    if (gdata.keys[sf::Keyboard::Escape].isKeyPressed)
-        screen = 0;
+    if (gdata.keys[sf::Keyboard::Return].isKeyPressed || (gdata.keys[KEY_MOUSE_LEFT].isKeyPressed && onItem))
+    {
+        if (om_selected == 6) {applySettings();}
+        else if (om_selected == 7) {screen = 0;}
+    }
+
+    if (next_state != 2)
+    {
+        if (utils::isTouching(gdata.mouse_raw,nx,ny,nw,nh))
+        {
+            next.setTexture(*gdata.assets->getTexture("arrow_active"));
+            next_state = 1;
+        }
+        else
+        {
+            next.setTexture(*gdata.assets->getTexture("arrow_idle"));
+            next_state = 0;
+        }
+    }
+
+    if (next_state != 2)
+    {
+        if (utils::isTouching(gdata.mouse_raw,px,py,pw,ph))
+        {
+            prev.setTexture(*gdata.assets->getTexture("arrow_active"));
+            prev_state = 1;
+        }
+        else
+        {
+            prev.setTexture(*gdata.assets->getTexture("arrow_idle"));
+            prev_state = 0;
+        }
+    }
 }
 
 void StateMenu2::ls_handleEvents()
 {
     for (int i = 0; i < icons.size(); ++i)
     {
-        icons.at(i).hover = utils::isTouching(gdata.mouse_raw,icons.at(i).rec);
+        bool touching = utils::isTouching(gdata.mouse_raw,icons.at(i).rec);
+        icons.at(i).hover = touching;
+        if (touching)   selected_level = i;
         if (icons.at(i).hover && gdata.keys[KEY_MOUSE_LEFT].isKeyPressed)
         {
             gdata.level = i + 1;
@@ -202,6 +362,35 @@ void StateMenu2::ls_handleEvents()
         }
 
     }
+
+    if (gdata.keys[sf::Keyboard::Return].isKeyPressed)
+    {
+        gdata.level = selected_level+1;
+        gdata.gamestate = STATE_GAME;
+    }
+
+    if (gdata.keys[sf::Keyboard::Up].isKeyPressed)
+    {
+        if (selected_level - 9 >= 0)
+            selected_level -= 9;
+    }
+    if (gdata.keys[sf::Keyboard::Down].isKeyPressed)
+    {
+        if (selected_level + 9 <= 35)
+            selected_level += 9;
+    }
+    if (gdata.keys[sf::Keyboard::Left].isKeyPressed)
+    {
+        if (selected_level - 1 >= 0)
+            selected_level -= 1;
+    }
+    if (gdata.keys[sf::Keyboard::Right].isKeyPressed)
+    {
+        if (selected_level + 1 < 35)
+            selected_level += 1;
+    }
+
+
 
     if (gdata.keys[sf::Keyboard::Escape].isKeyPressed)
         screen = 0;
@@ -229,6 +418,7 @@ void StateMenu2::om_update()
 
 void StateMenu2::ls_update()
 {
+    icons.at(selected_level).hover = true;
     for (int i = 0; i < icons.size(); ++i)
     {
         icons.at(i).update();
@@ -238,6 +428,8 @@ void StateMenu2::ls_update()
 void StateMenu2::draw()
 {
     background.draw();
+
+    title.setPosition(gdata.settings->getScreenWidth() / 2,20);
     gdata.window->draw(title);
 
     if (screen == 0)        mm_draw();
@@ -294,6 +486,18 @@ void StateMenu2::om_draw()
             rec.setFillColor(sf::Color::White);
             gdata.window->draw(rec);
 
+            if (i < om_items.size() - 2)
+            {
+                sf::RectangleShape rec2(sf::Vector2f(OBOX_WIDTH,ITEM_SPACING));
+                rec2.setPosition(x-OBOX_WIDTH - 20,y+5);
+                rec2.setFillColor(sf::Color::White);
+                gdata.window->draw(rec2);
+                prev.setPosition(x-OBOX_WIDTH-20,y+5);
+                gdata.window->draw(prev);
+                next.setPosition(x-20-33,y+5);
+                gdata.window->draw(next);
+            }
+
             font.setColor(sf::Color::Black);
             indent = 20;
         }
@@ -304,6 +508,24 @@ void StateMenu2::om_draw()
         }
 
         font.drawString(x+indent,y,om_items.at(i));
+
+
+        // some hard coding here
+        string text = "";
+        if (i == 0)
+            text = o_res.at(res_index);
+        else if (i == 1)
+            text = fullscreen ? "fullscreen" : "windowed";
+        else if (i == 2)
+            text = vsync ? "on" : "off";
+        else if(i == 3)
+            text = gz::toString(fps);
+        else if(i == 4)
+            text = gz::toString(sfx_vol);
+        else if(i == 5)
+            text = gz::toString(mus_vol);
+
+        font.drawString(x - 100,y,text,Align::RIGHT);
     }
 }
 

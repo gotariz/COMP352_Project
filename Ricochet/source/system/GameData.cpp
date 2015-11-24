@@ -131,14 +131,14 @@ void GameData::updateKeys()
 {
     for (unsigned i = 0; i < keys.size() - 7; ++i)
     {
-        keys.at(i).updateKey( sf::Keyboard::isKeyPressed(keys.at(i).m_key) );
+        keys.at(i).updateKey( sf::Keyboard::isKeyPressed(keys.at(i).m_key),m_timeDelta );
     }
 
-    keys.at(KEY_MOUSE_LEFT).updateKey( sf::Mouse::isButtonPressed(sf::Mouse::Left) );
-    keys.at(KEY_MOUSE_RIGHT).updateKey( sf::Mouse::isButtonPressed(sf::Mouse::Right) );
-    keys.at(KEY_MOUSE_MIDDLE).updateKey( sf::Mouse::isButtonPressed(sf::Mouse::Middle) );
-    keys.at(KEY_MOUSE_BUTTON_4).updateKey( sf::Mouse::isButtonPressed(sf::Mouse::XButton1) );
-    keys.at(KEY_MOUSE_BUTTON_5).updateKey( sf::Mouse::isButtonPressed(sf::Mouse::XButton2) );
+    keys.at(KEY_MOUSE_LEFT).updateKey( sf::Mouse::isButtonPressed(sf::Mouse::Left),m_timeDelta );
+    keys.at(KEY_MOUSE_RIGHT).updateKey( sf::Mouse::isButtonPressed(sf::Mouse::Right),m_timeDelta );
+    keys.at(KEY_MOUSE_MIDDLE).updateKey( sf::Mouse::isButtonPressed(sf::Mouse::Middle),m_timeDelta );
+    keys.at(KEY_MOUSE_BUTTON_4).updateKey( sf::Mouse::isButtonPressed(sf::Mouse::XButton1),m_timeDelta );
+    keys.at(KEY_MOUSE_BUTTON_5).updateKey( sf::Mouse::isButtonPressed(sf::Mouse::XButton2),m_timeDelta );
 }
 
 /*

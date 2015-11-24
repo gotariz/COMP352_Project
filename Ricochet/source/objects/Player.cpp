@@ -40,7 +40,7 @@ void Player::onCreate()
     explode_emitter.max_size = 0.15;
 
     circle = sf::CircleShape((0.5 * WORLD_SCALE) * gdata.zoom);
-    circle.setOutlineColor(sf::Color(255,255,255,32));
+    circle.setOutlineColor(sf::Color(255,255,255,50));
 
     lp.setValue1(10);
     lp.setValue2(25);
@@ -93,10 +93,13 @@ void Player::onDestroy()
     } // a bit dodgey but oh well
     else
     {
-        AchievementBar* a = new AchievementBar;
-        a->init();
-        a->setText("Die after completing a level");
-        gdata.achieves.push_back(a);
+        if (!gdata.replay_level)
+        {
+            AchievementBar* a = new AchievementBar;
+            a->init();
+            a->setText("Die after completing a level");
+            gdata.achieves.push_back(a);
+        }
     }
 
     deletePhysicsObject();
@@ -109,12 +112,12 @@ void Player::onEnterCollision(CollisionData cd)
     {
         if (cd.objectB->m_type != PARTICLE)
         {
-            ++gdata.bounce_counter;
+            if (m_type != GHOST_PLAYER) {++gdata.bounce_counter;}
             emitter.spawn = true;
             emitter.pos = cd.points.at(0);
             trail.addPoint(getAbsolutePosition());
 
-            if (gdata.bounce_counter == 100)
+            if (gdata.bounce_counter == 100 && !gdata.replay_level)
             {
                 AchievementBar* a = new AchievementBar;
                 a->init();
