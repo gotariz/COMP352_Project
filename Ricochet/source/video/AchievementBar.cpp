@@ -69,7 +69,7 @@ void AchievementBar::draw(int x, int y)
     renderer.drawString(x+60,y,"Achievement Unlocked!");
 
     renderer.setFont(gdata.assets->getFont("purista-medium-14"));
-    renderer.setColor(sf::Color(94,94,94));
+    renderer.setColor(sf::Color(64,64,64));
     renderer.drawString(x+60,y+25,text);
 }
 

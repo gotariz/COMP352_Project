@@ -32,6 +32,12 @@ void StateMenu2::load()
     mm_init();
     om_init();
     ls_init();
+
+    if (!gdata.bg_music)
+    {
+        gdata.bg_music = gdata.audio->addMusic("Divider");
+        gdata.bg_music->loop(true);
+    }
 }
 
 void StateMenu2::applySettings()
@@ -295,9 +301,9 @@ void StateMenu2::om_handleEvents()
         }
         else if (om_selected == 1) fullscreen = false;
         else if (om_selected == 2) vsync = false;
-        else if (om_selected == 3) {--fps;if(fps < 0) fps=0;}
-        else if (om_selected == 4) {--sfx_vol;if (sfx_vol < 0) sfx_vol=0;}
-        else if (om_selected == 5) {--mus_vol;if (mus_vol < 0) mus_vol=0;}
+        else if (om_selected == 3) {fps -= 5;if(fps < 0) fps=0;}
+        else if (om_selected == 4) {sfx_vol-=5;if (sfx_vol < 0) sfx_vol=0;}
+        else if (om_selected == 5) {mus_vol-=5;if (mus_vol < 0) mus_vol=0;}
     }
     if (gdata.keys[sf::Keyboard::Right].isKeyPressed || clicked_next)
     {
@@ -309,8 +315,8 @@ void StateMenu2::om_handleEvents()
         else if (om_selected == 1) fullscreen = true;
         else if (om_selected == 2) vsync = true;
         else if (om_selected == 3) ++fps;
-        else if (om_selected == 4) {++sfx_vol;if (sfx_vol > 100) sfx_vol=100;}
-        else if (om_selected == 5) {++mus_vol;if (mus_vol > 100) mus_vol=100;}
+        else if (om_selected == 4) {sfx_vol+=5;if (sfx_vol > 100) sfx_vol=100;}
+        else if (om_selected == 5) {mus_vol+=5;if (mus_vol > 100) mus_vol=100;}
     }
 
     if (gdata.keys[sf::Keyboard::Return].isKeyPressed || (gdata.keys[KEY_MOUSE_LEFT].isKeyPressed && onItem))

@@ -134,6 +134,8 @@ bool Engine::initialise()
     assets.loadAssetList("data/assets.xml");
 	gdata.assets = &assets;
 	gdata.audio = &audio;
+	audio.setVolumeSFX(gdata.settings->getSFX());
+	audio.setVolumeMusic(gdata.settings->getVolume());
     return true;
 }
 
