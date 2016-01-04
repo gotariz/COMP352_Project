@@ -15,6 +15,57 @@ void StateGame::reload()
 
 }
 
+void StateGame::loadBezier()
+{
+    try
+    {
+        XMLDocument doc;
+        XMLError error = doc.LoadFile("data/bezier.xml");
+
+        if (error != XML_NO_ERROR)
+        {
+            gz::print_w("Error loading bezier.xml error#" + XML_NO_ERROR);
+            return;
+        }
+
+        XMLElement* root = doc.RootElement();
+
+        if (!root)
+        {
+            gz::print_w("Error getting bezier root element");  // no root element
+            return;
+        }
+
+
+        XMLElement* element = root->FirstChildElement("point");
+        while (element)
+        {
+            std::string sh1 = element->Attribute("h1");
+            std::string sp = element->Attribute("p");
+            std::string sh2 = element->Attribute("h2");
+
+
+            Vector2 p(sp.c_str());
+            Vector2 h1(sh1.c_str());
+            Vector2 h2(sh2.c_str());
+            bezier.points.push_back(BPoint(p,h1,h2));
+
+            p.print("p");
+            h1.print("h1");
+            h2.print("h2");
+
+            element = element->NextSiblingElement("point");
+        }
+
+        cout << bezier.points.size() << endl;
+
+    }
+    catch ( std::exception& ex )
+    {
+        gz::print_w("Exception Thrown:" + gz::toString(ex.what()) );
+    }
+}
+
 void StateGame::reInit()
 {
     gdata.settings->setScreenWidth(1920);
@@ -33,6 +84,8 @@ void StateGame::load()
     cout << "===================================================" << endl;
     cout << "Loading Level " << gdata.level << endl;
     cout << "===================================================" << endl;
+
+    loadBezier();
 
     cout << "adjusting screen size:";
 	gdata.zoom = (gdata.settings->getScreenWidth() / 1900.f);
@@ -300,32 +353,48 @@ void StateGame::draw()
 
 	if (input.selecting)
     {
-        float dist = 140;
-        float duration = 0.25;
-        if (input.angle <= 90 || (input.angle >= 180 && input.angle < 270))
+        const int L = -1;
+        const int R = 1;
+        float dist = 200;
+        float duration = 0.5;
+
+        bool aimingRight    = input.angle <= 90 || (input.angle >= 180 && input.angle < 270);
+        bool aimingLeft     = !aimingRight;
+
+        if (aimingRight && text == R && !transitioning)
         {
-            // move text to the left
-            if (cx > -120)
-            {
-                cx -= dist * (gdata.m_timeDelta / duration);
-                if (cx < -120) cx = -120;
-            }
+            transitioning = true;
+            elapsed = 0;
         }
-        else
+        if (aimingLeft && text == L && !transitioning)
         {
-            //moving text to the right
-            if (cx < 20)
+            transitioning = true;
+            elapsed = 0;
+        }
+
+        if (transitioning)
+        {
+            elapsed += gdata.m_timeDelta;
+            if (elapsed > duration) elapsed = duration;
+            float delta = elapsed / duration;
+
+            if      (text == R)  cx = 100 - (bezier.getPoint(delta).y) * dist; // move left
+            else if (text == L)  cx = -100 + bezier.getPoint(delta).y * dist; // move right
+
+            if (delta >= 1)
             {
-                cx += dist * (gdata.m_timeDelta / duration);
-                if (cx > 20) cx = 20;
+                delta = 0;
+                transitioning = false;
+                if (text == L)          text = R;
+                else if (text == R)     text = L;
             }
         }
 
         Vector2 p = gdata.toScreenPixels(player->getAbsolutePosition());
         string v = gz::toString(input.power) + "%";
         string a = gz::toString(input.angle) + " degrees";
-        fntPower.drawString(p.x + cx,p.y - 100,v);
-        fntAngle.drawString(p.x + cx,p.y - 50,a);
+        fntPower.drawString(p.x + cx,p.y - 100,v,MIDDLE);
+        fntAngle.drawString(p.x + cx,p.y - 50,a,MIDDLE);
     }
 
     //===========================================

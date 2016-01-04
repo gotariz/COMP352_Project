@@ -28,6 +28,8 @@
 #include "video/ProgressScreen.h"
 #include "video/AchievementBar.h"
 
+#include "bezier/BezierPath.h"
+
 
 /////////////////////////////////////////////////////////
 //#include "animation/AnimationManager.h"
@@ -102,12 +104,18 @@ class StateGame : public IState
 		Object* wall = nullptr;
 
 
-		float cx = 20;
+		float cx = 100;
 
 		int     mr = false; // make_red
 		int     mg = false; // make_green
 		int     mb = false; // make_blue
 		int     par = 0;
+
+        float elapsed = 0;
+        bool transitioning  = false;
+        int text = 1;
+        BezierPath  bezier;
+        void loadBezier();
 
         private:
             void createPlatform(XMLElement* element,Toggle* t = nullptr);

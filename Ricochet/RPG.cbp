@@ -79,6 +79,8 @@
 		<Unit filename="source/animation/AnimationInstruction.h" />
 		<Unit filename="source/animation/AnimationManager.cpp" />
 		<Unit filename="source/animation/AnimationManager.h" />
+		<Unit filename="source/bezier/BezierPath.cpp" />
+		<Unit filename="source/bezier/BezierPath.h" />
 		<Unit filename="source/consts.h" />
 		<Unit filename="source/dependencies.h" />
 		<Unit filename="source/enums.h" />
